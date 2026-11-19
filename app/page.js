@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 const rainbow = [
   "bg-red-500",
   "bg-orange-500",
@@ -36,12 +34,17 @@ export default function Home() {
         <p className="mx-auto mt-5 max-w-md text-base leading-7 text-slate-600 sm:text-lg">
           A brighter little space for ideas to take shape. Pick a color, follow a thought, and see where it floats.
         </p>
-        <Button
-          size="lg"
-          className="mt-8 rounded-full bg-gradient-to-r from-rose-500 via-amber-500 to-violet-600 px-8 text-white shadow-lg shadow-rose-200 transition hover:scale-[1.02] hover:opacity-95"
+        <a
+          href="https://web.grindr.com/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex h-9 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-rose-500 via-amber-500 to-violet-600 px-8 text-sm font-medium text-white shadow-lg shadow-rose-200 transition hover:scale-[1.02] hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-700"
         >
-          Get started
-        </Button>
+          Get started on Grindr <span aria-hidden="true">↗</span>
+        </a>
+        <p className="mt-3 text-xs text-slate-500">
+          Opens Grindr Web so you can sign in.
+        </p>
       </section>
     </main>
   );
