@@ -21,7 +21,7 @@ Copy `.env.example` to `.env.local` (Next.js reads it automatically). Share the 
 | Variable | Used by | Notes |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | `lib/ai/claude.js` | console.anthropic.com → API keys |
-| `ANTHROPIC_MODEL` | `lib/ai/claude.js` | default `claude-opus-5-5` |
+| `ANTHROPIC_MODEL` | `lib/ai/claude.js` | default `claude-sonnet-5-5` |
 | `OPENAI_API_KEY` | `lib/ai/openai.js` | only if used |
 | `OPENAI_MODEL` | `lib/ai/openai.js` | set to the model you pick for that job |
 | `ELEVENLABS_API_KEY` | `lib/voice/elevenlabs.js` | elevenlabs.io → Profile → API keys |
@@ -32,8 +32,9 @@ Copy `.env.example` to `.env.local` (Next.js reads it automatically). Share the 
 ## Claude (default LLM)
 - Package: `@anthropic-ai/sdk`. Server-side only (API routes / `lib/`), never import it in a client component.
 - The client reads `ANTHROPIC_API_KEY` from the environment automatically.
-- Model comes from `ANTHROPIC_MODEL` (default `claude-opus-5-5`). Keep the model name in that one place.
-- On `claude-opus-5-5`, thinking is always on and can't be disabled. For snappy demo replies set `output_config: { effort: "low" }`; use higher effort only where quality matters.
+- Model comes from `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`, fast for live demos). Keep the model name in that one place.
+- `chat()` sends `output_config: { effort: "low" }` for snappy replies; use higher effort only where quality matters. Don't send `thinking: { type: "disabled" }`, `budget_tokens` or `temperature` (400 on this model).
+- `chat()` also enables server-side refusal fallbacks (`fallbacks: "default"`, beta `server-side-fallback-2026-07-01`), so a policy decline is retried on a fallback model automatically.
 - Always check `stop_reason` before reading the reply: handle `"refusal"` and `"max_tokens"` by showing a clear message (or the mock).
 - For long answers, stream the response so the UI doesn't sit blank.
 - Keep system prompts in `lib/ai/prompts/` as plain strings so everyone can tweak them.

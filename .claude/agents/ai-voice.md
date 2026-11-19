@@ -9,8 +9,8 @@ Scope:
 - `lib/ai/claude.js`, `lib/ai/openai.js`, `lib/ai/prompts/`, `lib/voice/elevenlabs.js`, and the routes that use them (`app/api/chat`, `app/api/voice/*`).
 
 Claude (default):
-- Use the official `@anthropic-ai/sdk`. Model from `process.env.ANTHROPIC_MODEL`, default `claude-opus-5-5`.
-- Thinking can't be disabled on `claude-opus-5-5`; control speed with `output_config: { effort: "low" }` for chat, higher only where quality matters. Don't send `temperature`/`top_p` or `budget_tokens`.
+- Use the official `@anthropic-ai/sdk`. Model from `process.env.ANTHROPIC_MODEL`, default `claude-sonnet-5-5` (fast for live demos).
+- Control speed with `output_config: { effort: "low" }` for chat, higher only where quality matters. Don't send `thinking: { type: "disabled" }`, `temperature`/`top_p` or `budget_tokens` (400 on `claude-sonnet-5-5`).
 - Check `stop_reason` before reading content; handle `"refusal"` and `"max_tokens"` with a clear message or the mock.
 - Stream long responses. If you're unsure of an SDK call, check the official docs rather than guessing.
 - Need structured data back? Use structured outputs / a JSON schema instead of parsing free text.
