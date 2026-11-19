@@ -7,6 +7,22 @@ Also read:
 - **STATUS.md**: who owns which folders and what's in progress. Stay inside the owner's folders.
 - **docs/integrations.md**: how Claude, OpenAI, ElevenLabs and n8n are wired in.
 
+## Before you start any task: catch up first
+Three people are pushing in parallel. Never work from a stale picture.
+
+1. **Fetch and read the latest commits**
+   - `git fetch origin`
+   - `git log --oneline -15 origin/main` (what landed on main)
+   - `git log --oneline --all --since="6 hours ago"` (what's happening on everyone's branches)
+   - For anything touching the files you're about to change: `git show --stat <sha>`, and read the diff if it's relevant.
+2. **Check your own branch**
+   - `git status` (uncommitted changes from the human: never overwrite or discard them)
+   - `git log --oneline HEAD..origin/main`: if this shows commits, your branch is behind main. Tell the human and suggest **Branch → Update from main** in GitHub Desktop (or `git merge origin/main`) before you start. Don't merge or rebase yourself unless asked.
+3. **Read STATUS.md**: *In progress*, *Blocked* and *Decisions*. Don't start something someone else is already doing, and follow decisions already made.
+4. **Re-read SPEC.md** if any recent commit touched it.
+5. **Give the human a 3-line catch-up** before writing code: what changed since their last session, who's working on what, and anything that affects this task (conflicts, changed API contracts, new env vars, new dependencies → `npm install`).
+6. **Add your task to STATUS.md → In progress** (name, task, branch).
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know
