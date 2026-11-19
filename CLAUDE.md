@@ -1,3 +1,11 @@
+# Read first, every time
+@STATUS.md
+@SPEC.md
+
+`scripts/sync.sh` runs on every session start and prompt (hook in `.claude/settings.json`) and prints `[sync]` lines: what's new on origin/main and the current STATUS.md. Read them before anything else.
+
+After finishing a task: update your own entry in STATUS.md and commit it.
+
 # Project
 Hackathon prototype, 24h, 3 people. Goal: one clean happy path that can be demoed live.
 Idea and flow are defined in SPEC.md. If anything conflicts, SPEC.md wins.

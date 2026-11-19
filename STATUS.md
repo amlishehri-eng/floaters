@@ -34,9 +34,14 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 
 ## Done
 - Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)
+- Hackathon starter top-up: `/test` integration panel, `scripts/sync.sh` + session hooks, `reviewer` agent, `openai` installed, SPEC wow/jury sections (main)
 
 ## Blocked / needs help
 - _what, waiting on whom_
+
+## Deploy and bugs
+- Last deployment: _URL, time, commit_
+- Open bugs: _none yet_
 
 ## Decisions
 - _short note of anything we agreed on, so nobody re-argues it at 3am_

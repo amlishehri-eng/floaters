@@ -8,6 +8,9 @@ _TODO: what it does, for whom, in one sentence._
 ## Problem
 _TODO: who has the problem and why it hurts (2–3 sentences)._
 
+## Wow moment
+_TODO: what we show live in the first 30 seconds._
+
 ## Target user
 _TODO: one specific person, e.g. "a freelance designer sending 20 invoices a month"._
 
@@ -57,3 +60,8 @@ _Delete the rows you don't need; add your own._
 Things we deliberately won't build in 24h:
 - Auth / accounts (use a hardcoded demo user)
 - _TODO_
+
+## Jury criteria and how we hit them
+| Criterion | How we hit it |
+|---|---|
+| _TODO_ | _TODO_ |
