@@ -55,5 +55,3 @@ Ask for them by name, e.g. _"use the frontend agent to build the home screen fro
 - Live app (Vercel): _TODO_
 - n8n workspace: _TODO_
 - Pitch / slides: _TODO_
-
-GitHub connection check.
