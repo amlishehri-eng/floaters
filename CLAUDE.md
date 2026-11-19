@@ -24,7 +24,7 @@ Who owns what and what's in progress: STATUS.md. How each external service is wi
 | `docs/` | Integrations, pitch, demo script | Pitch |
 
 # Commands
-- `npm run dev` start locally
+- `npm run dev` start locally on :4000 (first runs `scripts/predev.mjs`: fetches, fast-forwards a clean branch, warns if behind main, runs `npm install` if deps changed)
 - `npm run build` before every merge into main
 - `npm run lint`
 
