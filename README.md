@@ -34,7 +34,8 @@ docs/                integrations, pitch
 1. Clone in GitHub Desktop (**File → Clone Repository…**).
 2. `cp .env.example .env.local` and fill in the values you got privately.
 3. `npm install`
-4. `npm run dev`, then open http://localhost:3000
+4. `npm run dev`, then open http://localhost:4000
+   (it fetches from GitHub first, pulls your branch if it's behind and you have no uncommitted changes, tells you if `main` has new commits, and runs `npm install` when dependencies changed)
 
 No keys yet? Set `USE_MOCKS=true` in `.env.local` and everything runs on mock data from `/data`.
 
@@ -55,5 +56,3 @@ Ask for them by name, e.g. _"use the frontend agent to build the home screen fro
 - Live app (Vercel): _TODO_
 - n8n workspace: _TODO_
 - Pitch / slides: _TODO_
-
-GitHub connection check.

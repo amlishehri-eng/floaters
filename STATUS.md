@@ -5,9 +5,9 @@ Update this file whenever you start, finish or get stuck on something. Keep entr
 ## Team
 | Person | Role | Branch prefix | Owns |
 |---|---|---|---|
-| _Name 1_ | Frontend + pitch | `frontend/…`, `pitch/…` | `app/` (not `app/api/`), `components/`, `docs/pitch.md` |
+| _Name 1_ | Frontend | `frontend/…` | `app/` (not `app/api/`), `components/` |
 | _Name 2_ | Backend + AI | `backend/…`, `ai/…` | `app/api/`, `lib/ai/`, `lib/voice/` |
-| _Name 3_ | n8n + integrations | `n8n/…` | `lib/n8n.js`, `n8n/`, the n8n workspace |
+| _Name 3_ | n8n + pitch | `n8n/…`, `pitch/…` | `lib/n8n.js`, `n8n/`, the n8n workspace, `docs/pitch.md` |
 
 ## Timeline
 | Hour | Checkpoint | Done? |
@@ -20,11 +20,20 @@ Update this file whenever you start, finish or get stuck on something. Keep entr
 | H22 | Demo rehearsed twice, tag `demo-v1` | ☐ |
 | H24 | Demo | ☐ |
 
+## Sleep rotation
+Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (freeze, rehearsal, demo).
+
+| Slot | Who sleeps |
+|---|---|
+| H8–11 | _Name_ |
+| H11–14 | _Name_ |
+| H14–17 | _Name_ |
+
 ## In progress
 - _Name_: _what_ (branch `…`)
 
 ## Done
-- _what_ (_who_)
+- Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)
 
 ## Blocked / needs help
 - _what, waiting on whom_

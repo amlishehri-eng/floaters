@@ -24,7 +24,7 @@ Who owns what and what's in progress: STATUS.md. How each external service is wi
 | `docs/` | Integrations, pitch, demo script | Pitch |
 
 # Commands
-- `npm run dev` start locally
+- `npm run dev` start locally on :4000 (first runs `scripts/predev.mjs`: fetches, fast-forwards a clean branch, warns if behind main, runs `npm install` if deps changed)
 - `npm run build` before every merge into main
 - `npm run lint`
 
@@ -43,6 +43,14 @@ Who owns what and what's in progress: STATUS.md. How each external service is wi
 - Short functions, clear names, no over-engineered abstractions
 - Catch errors and show them in the UI, don't swallow them silently
 - Comments only where the reason isn't obvious
+
+# Before starting a task: catch up first
+Three people push in parallel, so never work blind. Follow **"Before you start any task"** in AGENTS.md. In short:
+1. `git fetch origin`, then read `git log --oneline -15 origin/main` and `git log --oneline --all --since="6 hours ago"`; `git show --stat` anything touching your files
+2. `git status` (never overwrite the human's uncommitted work) and `git log --oneline HEAD..origin/main` (if behind, tell the human to update from main; don't merge yourself unless asked)
+3. Read STATUS.md (In progress, Blocked, Decisions) and SPEC.md if it changed
+4. Give the human a 3-line catch-up (what changed, who's on what, what affects this task, e.g. new deps → `npm install`)
+5. Add your task to STATUS.md → In progress
 
 # Before finishing a task
 1. Does `npm run build` pass?
