@@ -35,16 +35,15 @@ docs/                integrations, pitch
 2. `cp .env.example .env.local` and fill in the values you got privately.
 3. `npm install`
 4. `npm run dev`, then open http://localhost:4000
-   (it fetches from GitHub first, pulls your branch if it's behind and you have no uncommitted changes, tells you if `main` has new commits, and runs `npm install` when dependencies changed)
+   (it fetches from GitHub first, pulls if you're behind and have no uncommitted changes, and runs `npm install` when dependencies changed)
 
 No keys yet? Set `USE_MOCKS=true` in `.env.local` and everything runs on mock data from `/data`.
 
 ## How we work
-- **One branch per person and area**: `frontend/…`, `backend/…`, `ai/…`, `n8n/…`, `pitch/…`
-  (GitHub Desktop: **Current Branch → New Branch**).
-- **Commit small, push often.** Open a pull request into `main` when a piece works; merge at least every few hours so nobody drifts.
-- **`npm run build` must pass before merging.** Vercel auto-deploys `main`, so a broken main is a broken demo.
-- **No direct pushes to main**, except announced bugfixes in the final phase.
+- **Everyone works directly on `main`.** Claude Code hooks auto-commit after every turn, `git pull --rebase`, and push only if `npm run build` passes (`scripts/autosync.sh`, log in `.git/autosync.log`).
+- **If Claude shows `[sync] … FAIL`**, a push was blocked (rebase conflict or broken build). Fix it before anything else.
+- **Nothing is pushed unless `npm run build` passes.** Vercel auto-deploys `main`, so a broken main is a broken demo.
+- **Tag stable states:** `git tag demo-v1 && git push --tags`.
 - **Stay in your folders** (see STATUS.md); ask before touching someone else's.
 - **Every external API has a mock fallback** in `/data`.
 - **Before judging:** run the `demo-check` subagent, rehearse twice, tag the working commit `demo-v1`.

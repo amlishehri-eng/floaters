@@ -3,11 +3,11 @@
 Update this file whenever you start, finish or get stuck on something. Keep entries one line each.
 
 ## Team
-| Person | Role | Branch prefix | Owns |
-|---|---|---|---|
-| _Name 1_ | Frontend | `frontend/…` | `app/` (not `app/api/`), `components/` |
-| _Name 2_ | Backend + AI | `backend/…`, `ai/…` | `app/api/`, `lib/ai/`, `lib/voice/` |
-| _Name 3_ | n8n + pitch | `n8n/…`, `pitch/…` | `lib/n8n.js`, `n8n/`, the n8n workspace, `docs/pitch.md` |
+| Person | Role | Owns |
+|---|---|---|
+| _Name 1_ | Frontend | `app/` (not `app/api/`), `components/` |
+| _Name 2_ | Backend + AI | `app/api/`, `lib/ai/`, `lib/voice/` |
+| _Name 3_ | n8n + pitch | `lib/n8n.js`, `n8n/`, the n8n workspace, `docs/pitch.md` |
 
 ## Timeline
 | Hour | Checkpoint | Done? |
@@ -30,7 +30,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
-- _Name_: _what_ (branch `…`)
+- _Name_: _what_
 
 ## Done
 - Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)
@@ -45,3 +45,4 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 
 ## Decisions
 - _short note of anything we agreed on, so nobody re-argues it at 3am_
+- Decision: everyone works directly on main with auto-commit/push hooks (replaces branch+PR flow).

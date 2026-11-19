@@ -1,10 +1,24 @@
 {
   "hooks": {
     "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && node scripts/predev.mjs 2>&1 || true",
+            "timeout": 120,
+            "statusMessage": "Fetching latest from GitHub..."
+          }
+        ]
+      },
       { "hooks": [{ "type": "command", "command": "bash scripts/sync.sh" }] }
     ],
     "UserPromptSubmit": [
       { "hooks": [{ "type": "command", "command": "bash scripts/sync.sh" }] }
+    ],
+    "Stop": [
+      { "hooks": [{ "type": "command", "command": "bash scripts/autosync.sh" }] }
     ]
   }
 }

@@ -13,15 +13,15 @@ Three people are pushing in parallel. Never work from a stale picture.
 1. **Fetch and read the latest commits**
    - `git fetch origin`
    - `git log --oneline -15 origin/main` (what landed on main)
-   - `git log --oneline --all --since="6 hours ago"` (what's happening on everyone's branches)
+   - `git log --oneline --all --since="6 hours ago"` (what everyone pushed recently)
    - For anything touching the files you're about to change: `git show --stat <sha>`, and read the diff if it's relevant.
-2. **Check your own branch**
+2. **Check your working tree**
    - `git status` (uncommitted changes from the human: never overwrite or discard them)
-   - `git log --oneline HEAD..origin/main`: if this shows commits, your branch is behind main. Tell the human and suggest **Branch → Update from main** in GitHub Desktop (or `git merge origin/main`) before you start. Don't merge or rebase yourself unless asked.
+   - Everyone works directly on main. `scripts/sync.sh` already ran `git pull --rebase` before this prompt, and `scripts/autosync.sh` auto-commits, rebases and pushes (only if the build passes) after every turn. If the `[sync]` lines report a conflict or FAIL, fix that with the human before anything else.
 3. **Read STATUS.md**: *In progress*, *Blocked* and *Decisions*. Don't start something someone else is already doing, and follow decisions already made.
 4. **Re-read SPEC.md** if any recent commit touched it.
 5. **Give the human a 3-line catch-up** before writing code: what changed since their last session, who's working on what, and anything that affects this task (conflicts, changed API contracts, new env vars, new dependencies → `npm install`).
-6. **Add your task to STATUS.md → In progress** (name, task, branch).
+6. **Add your task to STATUS.md → In progress** (name, task).
 
 <!-- BEGIN:nextjs-agent-rules -->
 

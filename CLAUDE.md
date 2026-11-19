@@ -2,7 +2,7 @@
 @STATUS.md
 @SPEC.md
 
-`scripts/sync.sh` runs on every session start and prompt (hook in `.claude/settings.json`) and prints `[sync]` lines: what's new on origin/main and the current STATUS.md. Read them before anything else.
+`scripts/sync.sh` runs on every session start and prompt (hook in `.claude/settings.json`): it pulls with rebase and prints `[sync]` lines: what's new on origin/main, the current STATUS.md, and the last autosync result if it failed. Read them before anything else.
 
 After finishing a task: update your own entry in STATUS.md and commit it.
 
@@ -33,14 +33,14 @@ Who owns what and what's in progress: STATUS.md. How each external service is wi
 
 # Commands
 - `npm run dev` start locally on :4000 (first runs `scripts/predev.mjs`: fetches, fast-forwards a clean branch, warns if behind main, runs `npm install` if deps changed)
-- `npm run build` before every merge into main
+- `npm run build` (autosync runs it before every push; run it yourself before big changes)
 - `npm run lint`
 
 # Working rules
 - Small changes, keep it runnable after every step, commit often
-- One branch per person: `frontend/…`, `backend/…`, `ai/…`, `n8n/…`, `pitch/…`
-- Never push directly to main, except bugfixes in the final phase (announce in chat first)
-- Merge into main via pull request, small and often (at least every few hours)
+- Everyone works directly on main. Small commits, `git pull --rebase` happens automatically, push only when the build passes.
+- Hooks auto-commit, rebase and push after every Claude turn (see scripts/autosync.sh). If `[sync]` reports FAIL, fix it before doing anything else.
+- Tag stable states: `git tag demo-v1 && git push --tags`.
 - Respect folder ownership, only touch other people's files after agreeing
 - No new libraries without a short reason in chat
 - Mock data lives in /data so the demo can run without external APIs
@@ -55,7 +55,7 @@ Who owns what and what's in progress: STATUS.md. How each external service is wi
 # Before starting a task: catch up first
 Three people push in parallel, so never work blind. Every Claude Code session already starts by running `scripts/predev.mjs` (SessionStart hook in `.claude/settings.json`); its `[predev]` lines tell you whether it pulled, what's behind, and whether it ran `npm install`. Then follow **"Before you start any task"** in AGENTS.md. In short:
 1. `git fetch origin`, then read `git log --oneline -15 origin/main` and `git log --oneline --all --since="6 hours ago"`; `git show --stat` anything touching your files
-2. `git status` (never overwrite the human's uncommitted work) and `git log --oneline HEAD..origin/main` (if behind, tell the human to update from main; don't merge yourself unless asked)
+2. `git status` (never overwrite the human's uncommitted work) and check the `[sync]` lines: sync.sh already pulled with rebase; if it reported a conflict or FAIL, sort that out with the human first
 3. Read STATUS.md (In progress, Blocked, Decisions) and SPEC.md if it changed
 4. Give the human a 3-line catch-up (what changed, who's on what, what affects this task, e.g. new deps → `npm install`)
 5. Add your task to STATUS.md → In progress
