@@ -53,7 +53,7 @@ Who owns what and what's in progress: STATUS.md. How each external service is wi
 - Comments only where the reason isn't obvious
 
 # Before starting a task: catch up first
-Three people push in parallel, so never work blind. Follow **"Before you start any task"** in AGENTS.md. In short:
+Three people push in parallel, so never work blind. Every Claude Code session already starts by running `scripts/predev.mjs` (SessionStart hook in `.claude/settings.json`); its `[predev]` lines tell you whether it pulled, what's behind, and whether it ran `npm install`. Then follow **"Before you start any task"** in AGENTS.md. In short:
 1. `git fetch origin`, then read `git log --oneline -15 origin/main` and `git log --oneline --all --since="6 hours ago"`; `git show --stat` anything touching your files
 2. `git status` (never overwrite the human's uncommitted work) and `git log --oneline HEAD..origin/main` (if behind, tell the human to update from main; don't merge yourself unless asked)
 3. Read STATUS.md (In progress, Blocked, Decisions) and SPEC.md if it changed
