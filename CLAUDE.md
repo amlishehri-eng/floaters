@@ -1,0 +1,50 @@
+# Project
+Hackathon prototype, 24h, 3 people. Goal: one clean happy path that can be demoed live.
+Idea and flow are defined in SPEC.md. If anything conflicts, SPEC.md wins.
+Who owns what and what's in progress: STATUS.md. How each external service is wired: docs/integrations.md.
+
+# Stack
+- Next.js 16 (App Router), JavaScript, Tailwind v4, shadcn/ui
+  - Next 16 has breaking changes vs. older versions: check `node_modules/next/dist/docs/` before writing Next-specific code
+- API routes under /app/api for everything that uses keys (never keys in the frontend)
+- LLM: Claude (@anthropic-ai/sdk) by default, OpenAI only if SPEC.md requires it
+- Voice: ElevenLabs (TTS/STT) through our own API route
+- Automations: n8n via webhook (URL from .env)
+- Deployment: Vercel, auto-deploy on push to main
+
+# Folders
+| Folder | What goes there | Owner |
+|---|---|---|
+| `app/` (except `app/api/`) | Pages and layouts | Frontend |
+| `components/` | UI components (shadcn lives in `components/ui/`) | Frontend |
+| `app/api/` | API routes, the only place keys are used | Backend |
+| `lib/ai/`, `lib/voice/` | Claude, OpenAI, ElevenLabs helpers | Backend |
+| `lib/n8n.js`, `n8n/` | Webhook calls + exported n8n workflow JSON | n8n |
+| `data/` | Mock data and fallback responses | Whoever owns the API it mocks |
+| `docs/` | Integrations, pitch, demo script | Pitch |
+
+# Commands
+- `npm run dev` start locally
+- `npm run build` before every merge into main
+- `npm run lint`
+
+# Working rules
+- Small changes, keep it runnable after every step, commit often
+- One branch per person: `frontend/…`, `backend/…`, `ai/…`, `n8n/…`, `pitch/…`
+- Never push directly to main, except bugfixes in the final phase (announce in chat first)
+- Merge into main via pull request, small and often (at least every few hours)
+- Respect folder ownership, only touch other people's files after agreeing
+- No new libraries without a short reason in chat
+- Mock data lives in /data so the demo can run without external APIs
+- Every external API has a fallback (mock response) in case it fails during the demo
+- Never commit .env, add new variables to .env.example immediately
+
+# Code style
+- Short functions, clear names, no over-engineered abstractions
+- Catch errors and show them in the UI, don't swallow them silently
+- Comments only where the reason isn't obvious
+
+# Before finishing a task
+1. Does `npm run build` pass?
+2. Does the happy path from SPEC.md work?
+3. Is STATUS.md updated?
