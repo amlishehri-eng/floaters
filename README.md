@@ -34,7 +34,7 @@ docs/                integrations, pitch
 1. Clone in GitHub Desktop (**File → Clone Repository…**).
 2. `cp .env.example .env.local` and fill in the values you got privately.
 3. `npm install`
-4. `npm run dev`, then open http://localhost:3000
+4. `npm run dev`, then open http://localhost:4000
 
 No keys yet? Set `USE_MOCKS=true` in `.env.local` and everything runs on mock data from `/data`.
 
