@@ -63,3 +63,5 @@ Copy `.env.example` to `.env.local` (Next.js reads it automatically). Share the 
 ## Mocks and fallbacks
 - One file per service in `/data`, e.g. `data/chat.json`, `data/automation.json`, plus `public/demo/*.mp3`.
 - Pattern for every helper in `lib/`: if `USE_MOCKS` is `true` → return the mock. Otherwise try the real call, and on error log it, return the mock, and flag it (e.g. `{ ..., mocked: true }`) so the UI can show a small "offline mode" badge instead of failing silently.
+- **Frontend: check `mocked` and `error`, not `ok`.** A fallback response still looks successful (e.g. `/api/automation` returns `ok: true` from the mock), so `mocked: true` is the only signal the real service wasn't used, and `error` is set when it was tried and failed.
+- `/api/voice/tts` returns `audio/mpeg` (header `X-Mocked: true` if it's the fallback mp3), or JSON `{ mocked: true }` when there's no audio at all: then speak the text with `speechSynthesis`.
