@@ -1,0 +1,3 @@
+{
+  "reply": "This is a mock reply from data/chat.json. Set USE_MOCKS=false and add ANTHROPIC_API_KEY to get real answers from Claude."
+}
