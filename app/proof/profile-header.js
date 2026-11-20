@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, MapPin } from "lucide-react";
 import CompanyLogo from "./company-logo";
+import CompanyWebsite from "./company-website";
 
 export default function ProfileHeader({ company, label }) {
   return (
@@ -16,6 +17,7 @@ export default function ProfileHeader({ company, label }) {
             <MapPin size={16} aria-hidden="true" /> {company.location}
             <span>·</span> {company.sector}
           </p>
+          <CompanyWebsite website={company.website} />
         </div>
         <CompanyLogo company={company} />
       </header>

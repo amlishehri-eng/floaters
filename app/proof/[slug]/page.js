@@ -31,10 +31,26 @@ export async function generateMetadata({ params }) {
   };
 }
 
+function scoreEvidence(company) {
+  const { round, location, sector, fit } = company;
+  return {
+    germany: `The portfolio lists ${location} as the company’s base. The demo awards 20 points in the Munich area and 15 elsewhere in Germany.`,
+    sector: `The announcement describes work in ${sector.toLowerCase()}. ${company.description}`,
+    tech_depth: fit.rationale,
+    stage:
+      round.stage === "Series A"
+        ? "The linked announcement reports a Series A. This falls outside the demo’s seed-or-earlier scoring window."
+        : `The linked announcement reports a ${round.stage.toLowerCase()} round, which falls inside the demo’s early-stage scoring window.`,
+    no_funding: `HTGF publicly announced this ${round.stage.toLowerCase()} round. The rubric awards zero funding-visibility points once institutional funding has been announced.`,
+  };
+}
+
 export default async function CandidatePage({ params }) {
   const company = await getCompany(params);
   const { round } = company;
   const scoreDate = dateFormatter.format(new Date(round.date));
+  const evidence = scoreEvidence(company);
+  const portfolioSource = `https://www.htgf.de/en/portfolio/htgffamily/${company.slug}/`;
 
   return (
     <main className="candidate-shell candidate-main candidate-profile">
@@ -79,11 +95,10 @@ export default async function CandidatePage({ params }) {
           </span>
         </div>
         <p>
-          Shortlist priority based on information in the funding announcement on{" "}
+          Demo points reflect our interpretation of the funding announcement on{" "}
           <time dateTime={round.date}>{scoreDate}</time>.
         </p>
-        <p>{company.fit.rationale}</p>
-        <dl className="candidate-fitBreakdown">
+        <dl className="candidate-fitBreakdown candidate-fitEvidence">
           {fitCriteria.map(({ id, max, title }) => (
             <div key={id}>
               <dt>{title}</dt>

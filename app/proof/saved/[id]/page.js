@@ -64,8 +64,23 @@ export default async function SavedCandidateProfile({ params }) {
           <strong>Stage:</strong> {lead.stage}
         </p>
         <p>{lead.label_reason}</p>
+        <dl className="candidate-fitBreakdown candidate-fitEvidence">
+          <div>
+            <dt>Why the demo fit score?</dt>
+            <dd>
+              <p>{lead.fit_reason}</p>
+            </dd>
+          </div>
+          <div>
+            <dt>Why the demo team score?</dt>
+            <dd>
+              <p>{lead.team_reason}</p>
+            </dd>
+          </div>
+        </dl>
         <p>
-          {lead.fit_reason} {lead.team_reason}
+          These ratings use fictional data.{" "}
+          <a href="#demo-evidence">See the sample traces.</a>
         </p>
       </section>
       <section className="candidate-about" aria-labelledby="demo-team">

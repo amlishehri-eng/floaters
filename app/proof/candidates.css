@@ -361,3 +361,39 @@
 .candidate-profileList li p {
   margin-top: 4px;
 }
+
+.candidate-website {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #fff;
+  color: #5043bf;
+  font-size: 14px;
+  font-weight: 600;
+}
+.candidate-website:hover,
+.candidate-fitEvidence a:hover {
+  text-decoration: underline;
+}
+.candidate-websiteUnavailable {
+  margin-top: 12px;
+  color: #e4e9ff;
+  font-size: 13px;
+}
+.candidate-fitEvidence > div {
+  display: block;
+}
+.candidate-fitEvidence dd {
+  font-weight: 400;
+}
+.candidate-fitEvidence p {
+  margin-block: 6px;
+}
+.candidate-fitEvidence a,
+.candidate-about > p a {
+  color: #5043bf;
+  text-decoration: underline;
+}
