@@ -51,11 +51,13 @@ function handle(raw) {
 function connect() {
   console.log(`[ct] connecting to ${url}`);
   let ws;
+  let retried = false;
+  const again = () => { if (!retried) { retried = true; retry(); } };
   try {
     ws = new WebSocket(url);
   } catch (e) {
     console.error(`[ct] cannot open websocket: ${e.message}`);
-    return retry();
+    return again();
   }
   ws.addEventListener('open', () => {
     console.log('[ct] connected, listening for new certificates…');
@@ -65,11 +67,9 @@ function connect() {
     const data = typeof ev.data === 'string' ? ev.data : ev.data instanceof Blob ? await ev.data.text() : Buffer.from(ev.data).toString();
     handle(data);
   });
-  ws.addEventListener('error', (ev) => console.error(`[ct] websocket error: ${ev.message || 'connection failed'}`));
-  ws.addEventListener('close', (ev) => {
-    console.warn(`[ct] closed (${ev.code}).`);
-    retry();
-  });
+  // A failed handshake may emit only 'error' (no 'close'), so both paths schedule one retry.
+  ws.addEventListener('error', (ev) => { console.error(`[ct] websocket error: ${ev.message || 'connection failed'}`); again(); });
+  ws.addEventListener('close', (ev) => { console.warn(`[ct] closed (${ev.code}).`); again(); });
 }
 
 function retry() {
@@ -81,6 +81,6 @@ function retry() {
 setInterval(() => {
   const mins = ((Date.now() - stats.since) / 60000).toFixed(1);
   console.log(`[ct] ${mins} min: ${stats.messages} msgs, ${stats.domains} domains, ${stats.kept} kept -> ${path.relative(process.cwd(), file)}`);
-}, 60000).unref?.();
+}, 60000); // keeps the process alive between reconnects
 
 connect();

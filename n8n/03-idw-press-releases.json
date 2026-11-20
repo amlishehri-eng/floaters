@@ -1,0 +1,175 @@
+{
+  "name": "HTGF engine: idw spin-off press releases",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "2082a89d-132b-4b51-a477-338a429f53be",
+      "name": "Every 6 hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://idw-online.de/de/REPLACE_WITH_YOUR_RSS_FEED",
+        "options": {}
+      },
+      "id": "da2b37b9-74c6-4b1c-a607-9c0120cf0d68",
+      "name": "idw press releases (RSS)",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Keep only press releases about new ventures, send them in ONE request.\nconst KEYWORDS = /ausgr[üu]ndung|spin-?off|start-?up|gr[üu]nderteam|gr[üu]ndungsteam|\\bexist\\b|gegr[üu]ndet|neugr[üu]ndung/i;\nconst items = $input.all()\n  .map((i) => i.json)\n  .filter((j) => KEYWORDS.test(`${j.title || ''} ${j.contentSnippet || ''} ${j.content || ''}`))\n  .map((j) => ({\n    source: 'press_release',\n    url: j.link,\n    date: j.isoDate || j.pubDate,\n    title: j.title,\n    text: `${j.title || ''}\\n\\n${j.contentSnippet || j.content || ''}`.slice(0, 15000),\n  }));\nreturn [{ json: { items, count: items.length } }];"
+      },
+      "id": "71d46d3b-18d8-4b75-987f-313335fabe23",
+      "name": "Filter spin-off news",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "56894066-d513-453c-84a0-4950a1fdaf52",
+              "leftValue": "={{ $json.count }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "56f07d6a-bd07-465c-95c1-531902470cbd",
+      "name": "Anything new?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        720,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8787/api/candidates?process=0",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ items: $json.items }) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "bde4befc-29b6-4d76-a395-a174b7919941",
+      "name": "Send to engine",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## idw feed setup\n1. Go to **idw-online.de/de/rsssubscription** and build a feed (e.g. category *Wirtschaft* + *Forschungsprojekte*, your universities).\n2. Paste the feed URL into the **RSS** node (replace REPLACE_WITH_YOUR_RSS_FEED).\n\n**What it does:** every 6h, keeps releases mentioning Ausgründung / Spin-off / Start-up / Gründerteam / EXIST and POSTs them in ONE call to `/api/candidates?process=0`. The LLM extracts the ventures; they are enriched on the next hourly run.\n\n## Setup\nBase URL is **http://localhost:8787** (the engine: `cd engine && npm start`).\n\n- n8n in **Docker**: replace localhost with **host.docker.internal**\n- **n8n cloud**: expose the engine with a tunnel (e.g. `cloudflared tunnel --url http://localhost:8787` or `ngrok http 8787`) and use that URL\n\nSearch & replace the URL in every HTTP Request node, then activate the workflow.",
+        "height": 460,
+        "width": 560
+      },
+      "id": "172ccadb-98f6-46b0-818e-35f9a3afd9db",
+      "name": "Setup note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -520
+      ]
+    }
+  ],
+  "connections": {
+    "Every 6 hours": {
+      "main": [
+        [
+          {
+            "node": "idw press releases (RSS)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "idw press releases (RSS)": {
+      "main": [
+        [
+          {
+            "node": "Filter spin-off news",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter spin-off news": {
+      "main": [
+        [
+          {
+            "node": "Anything new?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anything new?": {
+      "main": [
+        [
+          {
+            "node": "Send to engine",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

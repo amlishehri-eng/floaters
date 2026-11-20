@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Founder Radar · HTGF sourcing</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%23a78bfa' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23a78bfa'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" /><circle cx="16" cy="16" r="7" /><path d="M16 16 L27 9" /><circle cx="16" cy="16" r="2.5" class="dot" /></svg>
+      <div>
+        <h1>Founder Radar</h1>
+        <p>German deep-tech teams, found from public traces before their first round</p>
+      </div>
+    </div>
+    <div class="actions">
+      <span id="llmBadge" class="badge"></span>
+      <button id="briefingBtn" class="btn ghost">Morning briefing</button>
+      <button id="runBtn" class="btn primary">Run sourcing</button>
+    </div>
+  </header>
+
+  <section id="kpis" class="kpis" aria-label="Key figures"></section>
+
+  <section id="briefing" class="briefing" hidden>
+    <div class="briefing-head">
+      <strong>Morning briefing</strong>
+      <span id="briefingMeta" class="muted"></span>
+      <button id="briefingClose" class="icon-btn" aria-label="Close briefing">×</button>
+    </div>
+    <div id="briefingBody"></div>
+  </section>
+
+  <div id="runStatus" class="run-status" hidden></div>
+
+  <section class="filters" aria-label="Filters">
+    <input id="q" type="search" placeholder="Search name, domain, city, sector…" />
+    <label class="slider">Min score <input id="minScore" type="range" min="0" max="100" step="5" value="0" /><output id="minScoreOut">0</output></label>
+    <select id="status" aria-label="Status filter">
+      <option value="all">All statuses</option>
+      <option value="new">New</option>
+      <option value="watch">Watch</option>
+      <option value="contact">Contact</option>
+      <option value="rejected">Rejected</option>
+    </select>
+    <form id="addForm" class="add">
+      <input id="addInput" placeholder="Check a domain or name, e.g. peakquantum.de" autocomplete="off" />
+      <button class="btn">Check</button>
+    </form>
+  </section>
+
+  <main>
+    <table class="leads">
+      <thead>
+        <tr>
+          <th class="c-score">Score</th>
+          <th>Company</th>
+          <th class="c-sector">Sector</th>
+          <th class="c-src">Sources</th>
+          <th class="c-first">First trace</th>
+          <th class="c-press">Press</th>
+          <th class="c-status">Status</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p id="empty" class="empty" hidden></p>
+  </main>
+
+  <aside id="panel" class="panel" aria-hidden="true">
+    <div class="panel-inner" id="panelBody"></div>
+  </aside>
+  <div id="scrim" class="scrim" hidden></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

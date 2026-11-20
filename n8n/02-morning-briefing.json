@@ -1,0 +1,82 @@
+{
+  "name": "HTGF engine: weekday morning briefing",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 7 * * 1-5"
+            }
+          ]
+        }
+      },
+      "id": "f057f370-f790-4d3c-9e88-24205460c931",
+      "name": "Weekdays 07:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8787/api/briefing",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "09b76dfe-ef09-4481-9436-eb57b2e3bd9c",
+      "name": "Create morning briefing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Setup\nBase URL is **http://localhost:8787** (the engine: `cd engine && npm start`).\n\n- n8n in **Docker**: replace localhost with **host.docker.internal**\n- **n8n cloud**: expose the engine with a tunnel (e.g. `cloudflared tunnel --url http://localhost:8787` or `ngrok http 8787`) and use that URL\n\nSearch & replace the URL in every HTTP Request node, then activate the workflow.\n\n**What it does:** weekdays at 07:00 the engine writes a 150-200 word German briefing on the top 5 leads and renders it with ElevenLabs to `public/briefing-YYYY-MM-DD.mp3`. The response has `script` and `audioUrl`; add a Slack/E-Mail node after this one to send it to the team.\n\nTimezone: set it in the workflow settings (default is the n8n instance timezone).",
+        "height": 360,
+        "width": 460
+      },
+      "id": "05ca390b-1a99-4057-a047-0508e46fef5d",
+      "name": "Setup note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -400
+      ]
+    }
+  ],
+  "connections": {
+    "Weekdays 07:00": {
+      "main": [
+        [
+          {
+            "node": "Create morning briefing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

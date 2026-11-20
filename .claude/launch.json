@@ -4,8 +4,19 @@
     {
       "name": "floaters-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 4000
+    },
+    {
+      "name": "engine",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "engine/src/server.js"
+      ],
+      "port": 8787
     }
   ]
 }

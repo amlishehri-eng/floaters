@@ -22,6 +22,9 @@ let current = null;
 export const isRunning = () => Boolean(current);
 
 const familyCount = (lead) => new Set(lead.signals.map((s) => familyOf(s.source)).filter(Boolean)).size;
+// Enrichment budget goes to the most informative sources first.
+const SOURCE_WEIGHT = { manual: 5, incubator: 4, press_release: 3, idw: 3, text: 3, podcast: 3, competition: 3, github: 2, ct: 1 };
+const weight = (lead) => Math.max(0, ...lead.signals.map((s) => SOURCE_WEIGHT[s.source] ?? 2));
 
 /** Leads that have new signals since their last enrichment, multi-source first. */
 function needsWork(lead) {
@@ -32,7 +35,7 @@ function needsWork(lead) {
 export function enrichQueue(leads, limit) {
   return leads
     .filter(needsWork)
-    .sort((a, b) => familyCount(b) - familyCount(a) || (b.domain ? 1 : 0) - (a.domain ? 1 : 0) || (b.signalsUpdatedAt || '').localeCompare(a.signalsUpdatedAt || ''))
+    .sort((a, b) => familyCount(b) - familyCount(a) || weight(b) - weight(a) || (b.signalsUpdatedAt || '').localeCompare(a.signalsUpdatedAt || ''))
     .slice(0, limit);
 }
 

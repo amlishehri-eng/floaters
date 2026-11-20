@@ -10,7 +10,7 @@ export const CT_KEYWORDS = [
   'semicon', 'chip', 'silicon', 'nano', 'fusion', 'plasma', 'cryo', 'magnet', 'aero', 'space', 'orbit',
   'satell', 'rocket', 'drone', 'autonom', 'genom', 'protein', 'enzym', 'microb', 'pharma', 'medtech', 'neuro',
   'cardio', 'onco', 'immun', 'vaccin', 'cell', 'molecul', 'catal', 'polymer', 'carbon', 'climate', 'energy',
-  'energie', 'solar', 'thermal', 'geotherm', 'grid', 'fab', 'additive', 'machin', 'automat', 'cyber', 'secur',
+  'energie', 'solar', 'thermal', 'geotherm', 'grid', 'fabricat', 'additive', 'machin', 'automat', 'cyber', 'secur',
   'deeptech', 'mobility', 'radar', 'acoustic', 'spectr', 'imaging', 'surgic', 'implant',
 ];
 // Short keywords only at label start or end, else they match everything ("ai" in "mail").
@@ -25,7 +25,7 @@ export const CT_JUNK = [
   'sex', 'escort', 'dating', 'loan', 'kredit', 'versicherung', 'insurance', 'pharmacy', 'apotheke', 'viagra',
   'cbd', 'vape', 'fashion', 'beauty', 'kosmetik', 'friseur', 'tattoo', 'wedding', 'hochzeit', 'bio-laden',
   'bioladen', 'biohof', 'biomarkt', 'fahrschule', 'handwerk', 'umzug', 'reinigung', 'cleaning', 'steuerberat',
-  'anwalt', 'kanzlei', 'praxis', 'therapie', 'therapeut', 'consult', 'seminar', 'coaching', 'akademie', 'schule', 'verein', 'sicherheitsdienst', 'security-', 'zahnarzt', 'physio', 'yoga', 'fitness', 'gym', 'blog', 'test', 'staging',
+  'anwalt', 'kanzlei', 'praxis', 'glaserei', 'schreinerei', 'tischlerei', 'metallbau', 'sanitaer', 'heizung', 'dachdecker', 'maler', 'autohaus', 'kfz', 'pflege', 'energieberat', 'stadtwerke', 'werbung', 'region', 'photos', 'fotograf', 'implantolog', 'chemnitz', 'internetdesign', 'webdesign', 'werkstatt', 'energieberatung', 'therapie', 'therapeut', 'consult', 'seminar', 'coaching', 'akademie', 'schule', 'verein', 'sicherheitsdienst', 'security-', 'zahnarzt', 'physio', 'yoga', 'fitness', 'gym', 'blog', 'test', 'staging',
   'dev-', 'localhost', 'cloudflare', 'amazonaws', 'azure', 'cdn', 'xn--', 'vpn', 'proxy', 'hosting',
 ];
 

@@ -14,6 +14,7 @@
 | [docs/integrations.md](docs/integrations.md) | How Claude, OpenAI, ElevenLabs and n8n are wired in |
 | [.claude/agents/](.claude/agents/) | Claude Code subagents: `frontend`, `backend`, `ai-voice`, `n8n`, `pitch`, `demo-check` |
 | [.env.example](.env.example) | Every environment variable, as placeholders |
+| [engine/README.md](engine/README.md) | **HTGF sourcing engine** (Founder Radar): plain Node, `cd engine && npm start`, dashboard on :8787 |
 
 ## Folder structure
 ```

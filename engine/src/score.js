@@ -176,7 +176,8 @@ const NOT_STARTUP = /agentur|agency|webdesign|online-?shop|restaurant|immobilien
 /** Keyword fallback when no LLM key: 0-20, conservative on purpose. */
 export function keywordThesis(lead) {
   const e = lead.enrichment || {};
-  const text = [lead.name, lead.domain, e.website?.title, e.website?.description, truncate(e.website?.text, 3000),
+  // Only what the company says about itself (not its name/domain: "solar-kamen.de" is not evidence of deep tech).
+  const text = [e.website?.title, e.website?.description, truncate(e.website?.text, 3000),
     ...lead.signals.flatMap((s) => [s.data?.description, s.data?.title, s.data?.keyword, ...(s.data?.topics || []),
       ...(s.data?.topRepos || []).map((r) => `${r.name} ${r.description || ''}`)])].filter(Boolean).join(' ');
   let best = null;

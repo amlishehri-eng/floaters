@@ -1,0 +1,79 @@
+{
+  "name": "HTGF engine: live check webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "htgf-check",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "5a3ce99e-4f42-4f0f-985f-79fdc670539f",
+      "name": "Webhook: check a startup",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "4d391cc3-53c5-48cf-953b-c36b8b3072a1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8787/api/candidates",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ name: $json.body.name, domain: $json.body.domain, source: 'manual' }) }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "76adfe69-e656-4447-a5ce-9aff164d079e",
+      "name": "Check in engine",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Live demo check\nA judge names a startup -> anyone POSTs to this webhook:\n```\ncurl -X POST <n8n>/webhook/htgf-check \\\n  -H 'content-type: application/json' \\\n  -d '{\"domain\":\"example.de\"}'\n```\n(`name` works too.) The engine enriches + scores it right away and the webhook answers with the scored lead (`processed[0]`). It also shows up in the dashboard.\n\n## Setup\nBase URL is **http://localhost:8787** (the engine: `cd engine && npm start`).\n\n- n8n in **Docker**: replace localhost with **host.docker.internal**\n- **n8n cloud**: expose the engine with a tunnel (e.g. `cloudflared tunnel --url http://localhost:8787` or `ngrok http 8787`) and use that URL\n\nSearch & replace the URL in every HTTP Request node, then activate the workflow.",
+        "height": 460,
+        "width": 480
+      },
+      "id": "d90c85cf-ea05-4400-9730-b26606e8c3c4",
+      "name": "Setup note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -520
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook: check a startup": {
+      "main": [
+        [
+          {
+            "node": "Check in engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

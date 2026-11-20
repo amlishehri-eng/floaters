@@ -1,0 +1,83 @@
+{
+  "name": "HTGF engine: hourly sourcing run",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "d46b30d1-8a96-4b37-8b1a-16e5703a5db4",
+      "name": "Every hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8787/api/run",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"sources\": [\"github\", \"ct\", \"incubator\"]\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "12eb19b2-768e-4578-b0b6-98d0d841939c",
+      "name": "Start sourcing run",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## Setup\nBase URL is **http://localhost:8787** (the engine: `cd engine && npm start`).\n\n- n8n in **Docker**: replace localhost with **host.docker.internal**\n- **n8n cloud**: expose the engine with a tunnel (e.g. `cloudflared tunnel --url http://localhost:8787` or `ngrok http 8787`) and use that URL\n\nSearch & replace the URL in every HTTP Request node, then activate the workflow.\n\n**What it does:** POST /api/run every hour. Returns 202 immediately (the run is async). A 409 means the previous run is still going; that is fine, *On Error* is set to continue.",
+        "height": 320,
+        "width": 460
+      },
+      "id": "3c9bd26c-bf9b-4ae4-9255-a1459f0def6b",
+      "name": "Setup note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -360
+      ]
+    }
+  ],
+  "connections": {
+    "Every hour": {
+      "main": [
+        [
+          {
+            "node": "Start sourcing run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}
