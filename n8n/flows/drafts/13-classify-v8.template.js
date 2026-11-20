@@ -76,6 +76,9 @@ for (const item of $input.all()) {
   const regChecked = !!l.registry_checked_at;
   const deep = obj(l.deep_signals);
   const deepUrl = f => f && f.url ? f.url : 'flow 17';
+  // flow 35 web check: founding year and rounds, each with a source URL
+  const ageChk = obj(l.age_check);
+  const webFund = ageChk.institutional && ageChk.institutional.url ? ageChk.institutional : null;
   // student-team words only in the name and the one-line description (type_reason often says "not a research project");
   // a founding plan may show anywhere in the evidence
   const aboutShort = [l.name, l.what].join(' ');
@@ -99,15 +102,20 @@ for (const item of $input.all()) {
   else elig.sector = check('unknown', `sector: ${l.sector || 'none'}`, typeIds);
 
   // 3 age (v8: exact register date when there is one)
-  const regDate = l.registered_at ? new Date(l.registered_at) : null;
+  // register date: flow 12 (handelsregister.ai) first, else the register entry flow 35 found on the web (with its URL)
+  const webReg = ageChk.register && ageChk.register.registered_date && ageChk.register.url ? ageChk.register : null;
+  const regAt = l.registered_at || (webReg ? webReg.registered_date : null);
+  const regId = l.registered_at ? (l.register_id || 'commercial register') : webReg ? `${webReg.court} ${webReg.number}`.trim() + ', ' + webReg.url : '';
+  const regDate = regAt ? new Date(regAt) : null;
   const regYears = regDate && !isNaN(regDate) ? (NOW - regDate) / (365.25 * 864e5) : null;
   const ages = [];
   if (Number.isInteger(l.founded_year)) ages.push({ year: l.founded_year, why: `founded ${l.founded_year} (from the trace)`, ids: typeIds });
-  if (regDate && !isNaN(regDate)) ages.push({ year: regDate.getFullYear(), why: `registered ${String(l.registered_at).slice(0, 10)} (${l.register_id || 'commercial register'})`, ids: ['registry'] });
+  if (Number.isInteger(ageChk.founded_year)) ages.push({ year: ageChk.founded_year, why: `founded ${ageChk.founded_year} (web check: ${ageChk.founded_url})`, ids: ['web:' + ageChk.founded_url] });
+  if (regDate && !isNaN(regDate)) ages.push({ year: regDate.getFullYear(), why: `registered ${String(regAt).slice(0, 10)} (${regId})`, ids: [l.registered_at ? 'registry' : 'web:' + webReg.url] });
   const age_warning = l.first_public_at && THIS_YEAR - new Date(l.first_public_at).getFullYear() > MAX_AGE_YEARS
     ? `first press ${String(l.first_public_at).slice(0, 10)} (${l.first_public_url || 'news'}) is more than ${MAX_AGE_YEARS} years ago; may be from the research or EXIST phase, check the register date` : '';
   const oldest = ages.sort((a, b) => a.year - b.year)[0];
-  if (regYears !== null && regYears > MAX_AGE_YEARS) elig.stage = check('fail', `older than ${MAX_AGE_YEARS} years: registered ${String(l.registered_at).slice(0, 10)} (${l.register_id || 'commercial register'}), ${regYears.toFixed(1)} years ago`, ['registry']);
+  if (regYears !== null && regYears > MAX_AGE_YEARS) elig.stage = check('fail', `older than ${MAX_AGE_YEARS} years: registered ${String(regAt).slice(0, 10)} (${regId}), ${regYears.toFixed(1)} years ago`, [l.registered_at ? 'registry' : 'web:' + webReg.url]);
   else if (regYears === null && oldest && THIS_YEAR - oldest.year > MAX_AGE_YEARS) elig.stage = check('fail', `older than ${MAX_AGE_YEARS} years: ${oldest.why}`, oldest.ids);
   else if (['idea', 'prototype', 'pilot customers', 'revenue'].includes(l.stage)) elig.stage = check('pass', `stage: ${l.stage}${oldest ? '; ' + oldest.why : ''}`, typeIds);
   else elig.stage = check('unknown', `stage: ${l.stage || 'unknown'}${oldest ? '; ' + oldest.why : ''}`, typeIds);
@@ -131,6 +139,7 @@ for (const item of $input.all()) {
   else if (total_m != null && total_m >= 3) { funding_status = funding_status === 'unknown' ? 'seed_vc' : funding_status; elig.no_funding = check('fail', `EUR ${total_m}M disclosed (3M or more)`, typeIds); }
   else if (instHolders.length) { funding_status = 'seed_vc'; funding_evidence = `register: ${instHolders.join(', ')}`; elig.no_funding = check('fail', `register: institutional investor ${instHolders.join(', ')} ${instHolders.length > 1 ? 'are shareholders' : 'is a shareholder'}`, ['registry']); }
   else if (deepFund) { funding_status = /series|serie/i.test(deepFund.claim) ? 'series_a_plus' : 'seed_vc'; funding_evidence = `${deepFund.claim} (${deepUrl(deepFund)})`; elig.no_funding = check('fail', `deep check: ${String(deepFund.claim).slice(0, 140)} (${deepUrl(deepFund)})`, ['deep:' + deepUrl(deepFund)]); }
+  else if (webFund) { funding_status = /series/i.test(webFund.claim) ? 'series_a_plus' : 'seed_vc'; funding_evidence = `${webFund.claim} (${webFund.url})`; elig.no_funding = check('fail', `web check: ${String(webFund.claim).slice(0, 140)} (${webFund.url})`, ['web:' + webFund.url]); }
   else if (fundQuote) { funding_status = statusFromText(fundQuote); funding_evidence = fundQuote.slice(0, 160); elig.no_funding = check('fail', `quote: "${fundQuote.replace(/^\[[^\]]*\]\s*/, '').slice(0, 140)}"`, typeIds); }
   else if (['angels', 'grants', 'seeking', 'pre_seed', 'none'].includes(funding_status)) elig.no_funding = check('pass', `${funding_status}${fund.what ? ': "' + String(fund.what).slice(0, 120) + '"' : ''}${personalHolders.length ? '; register: personal holdings ' + personalHolders.join(', ') : ''} (HTGF invests pre-seed and seed, with angels)`, typeIds);
   else elig.no_funding = check('unknown', `no institutional money in the traces; register ${regChecked ? (holders.length ? 'only personal holdings: ' + personalHolders.join(', ') : 'without an investor shareholder') : 'not checked yet'}`, typeIds);
@@ -184,6 +193,10 @@ for (const item of $input.all()) {
   if (!techFounder) missing.push('no known technical founder');
   if (team_score_known === null || team_score_known < A_TEAM_KNOWN) missing.push(`team ${team_score_known ?? 'unknown'} < ${A_TEAM_KNOWN} on known criteria`);
   if (fit < FIT_BAR) missing.push(`fit ${fit} < ${FIT_BAR}`);
+  // v8.1: HTGF only invests in companies up to 3 years old, so call_now needs a known age (founding year or register date).
+  // Unknown age let Vyoma (2020), AlixLabs (2019), SaxonQ (2021) and Devanthro (2018) through on 20 Nov.
+  if (!oldest && regYears === null) missing.push('age unknown: no founding year or register date in the evidence');
+  if (age_warning && regYears === null && !Number.isInteger(ageChk.founded_year)) missing.push('first press more than 3 years ago: check the register date');
 
   const htgfHolder = holders.map(x => x.name).find(n => /high-tech gr(ü|ue)nderfonds|\bhtgf\b/i.test(n));
   const inPortfolio = PORTFOLIO_NAMES.has(normName(l.name)) || PORTFOLIO_HOSTS.has(hostOf(l.website)) || !!htgfHolder;

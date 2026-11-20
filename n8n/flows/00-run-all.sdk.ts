@@ -209,7 +209,20 @@ const runCapital = node({
   }
 });
 
-const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **09** finds company websites, then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runTeam, runScore, runCapital], { color: 7 });
+const runAge = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 35 Age and funding check',
+    executeOnce: true,
+    alwaysOutputData: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'vgUgIjpBglIrReF7', cachedResultName: '35 Age and funding check' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **09** finds company websites, then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runTeam, runScore, runCapital, runAge], { color: 7 });
 
 export default workflow('run-all', '00 Run all sources')
   .add(runByHand)
@@ -228,9 +241,10 @@ export default workflow('run-all', '00 Run all sources')
   .to(runTeam)
   .to(runScore)
   .to(runCapital)
+  .to(runAge)
   .add(every6Hours)
   .to(runLuma)
   .add(runFromDemo)
   .to(runLuma)
   .add(howItWorks)
-  .group('Whole engine', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runTeam, runScore, runCapital], { description: 'Every source, then Make leads, then 34 Team enrichment, 15 scores the enriched leads, then 33 Capital need. 04 Eventbrite is not in here' });
+  .group('Whole engine', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runTeam, runScore, runCapital, runAge], { description: 'Every source, then Make leads, then 34 Team enrichment, 15 scores the enriched leads, then 33 Capital need, then 35 Age and funding check. 04 Eventbrite is not in here' });
