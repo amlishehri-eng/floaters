@@ -55,7 +55,7 @@ Optional header `x-brain-key` on `/api/brain/*` when `BRAIN_API_KEY` is set.
 | Job | Service | Why |
 |---|---|---|
 | Brain: extract people/projects/quotes, noise filter, same-person checks, days-ahead web search | OpenAI `OPENAI_MODEL_FAST` (gpt-5.4-mini) | The team plan requires OpenAI: strict structured output so n8n writes answers straight into tables, plus its built-in web_search tool for "days ahead"; the cheap model keeps cost per trace low |
-| Brain: fit and team scoring | OpenAI `OPENAI_MODEL` (gpt-5.5) | Stronger model where judgement matters; weights fixed in `lib/ai/prompts/brain.js` |
+| Brain: fit and team scoring, best-find memo | OpenAI `OPENAI_MODEL` (gpt-5.5) | Stronger model where judgement matters; weights fixed in `lib/ai/prompts/brain.js` |
 | Main reasoning / text generation elsewhere | Claude | default LLM |
 | Voice output / input | ElevenLabs | STT for pitch recordings (speakers told apart), founder clip, audio briefing |
 | Fetch sources on a schedule, read/write the Traces and Leads tables, alerts | n8n | every flow; calls `/api/brain/run` |
