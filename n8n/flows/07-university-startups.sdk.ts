@@ -57,6 +57,53 @@ const pageToText = node({
   }
 });
 
+const getPageMemory = node({
+  type: 'n8n-nodes-base.dataTable',
+  version: 1.1,
+  config: {
+    name: 'Get page memory',
+    executeOnce: true,
+    alwaysOutputData: true,
+    parameters: { resource: 'row', operation: 'get', dataTableId: { __rl: true, mode: 'id', value: 'HU8vkWsRJIGzz7Rv', cachedResultName: 'Page memory' }, matchType: 'allConditions', returnAll: true },
+    output: [{ page_url: 'https://example.org/startups/', flow: '07', fingerprint: '1a2b3c-4000', startups: 20, checked_at: '2026-11-20T12:00:00.000Z' }]
+  }
+});
+
+const keepChangedPages = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Keep changed pages',
+    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// Only pages whose content changed since the last run go to the AI (saves time and AI credits).\n// Changed = its fingerprint differs from the one in Page memory, or it was last read more than 7 days ago.\n// The fingerprint ignores link numbers, line order and lines that are only numbers or dates.\nconst FLOW = '07';\nconst memory = {};\nfor (const it of $input.all()) { const r = it.json; if (r && r.page_url && r.flow === FLOW) memory[r.page_url] = r; }\nconst fingerprint = s => {\n  const lines = [...new Set(String(s || '').split('\\n')\n    .map(l => l.replace(/\\[L\\d+\\]/g, '').replace(/^L\\d+:\\s*/, '').replace(/\\s+/g, ' ').trim())\n    .filter(l => l && !/^[\\d\\s.,:\\/-]+$/.test(l)))].sort();\n  const t = lines.join('\\n');\n  let h = 0x811c9dc5;\n  for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }\n  return h.toString(16) + '-' + t.length;\n};\nconst WEEK = 7 * 864e5;\nconst out = [];\nfor (const p of $('Page to text').all()) {\n  const fp = fingerprint(p.json.prompt);\n  const m = memory[p.json.page_url];\n  const unchanged = m && m.fingerprint === fp && m.checked_at && (Date.now() - new Date(m.checked_at).getTime()) < WEEK;\n  if (!unchanged) out.push({ json: { ...p.json, fingerprint: fp } });\n}\nreturn out;\n" },
+    output: [{ page_url: 'https://example.org/startups/', page_host: 'example.org', prompt: '...', link_urls: [], fingerprint: '1a2b3c-4000' }]
+  }
+});
+
+const rememberPages = node({
+  type: 'n8n-nodes-base.code',
+  version: 2,
+  config: {
+    name: 'Remember pages',
+    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// Pages the AI read successfully -> remembered in Page memory, so the next run skips them while they stay the same.\n// A page whose AI answer could not be read is not remembered, so it is tried again next run.\nconst FLOW = '07';\nconst pages = $('Keep changed pages').all();\nconst findJson = v => {\n  if (typeof v === 'string') { try { return findJson(JSON.parse(v)); } catch (e) { return null; } }\n  if (Array.isArray(v)) { for (const x of v) { const r = findJson(x); if (r) return r; } return null; }\n  if (v && typeof v === 'object') { if (Array.isArray(v.startups)) return v; for (const k of Object.keys(v)) { const r = findJson(v[k]); if (r) return r; } }\n  return null;\n};\nconst now = new Date().toISOString();\nconst out = [];\n$input.all().forEach((item, i) => {\n  const p = pages[i] && pages[i].json;\n  const a = findJson(item.json);\n  if (!p || !p.page_url || !a) return;\n  out.push({ json: { page_url: p.page_url, flow: FLOW, fingerprint: p.fingerprint, startups: a.startups.length, checked_at: now } });\n});\nreturn out;\n" },
+    output: [{ page_url: 'https://example.org/startups/', flow: '07', fingerprint: '1a2b3c-4000', startups: 20, checked_at: '2026-11-20T12:00:00.000Z' }]
+  }
+});
+
+const savePageMemory = node({
+  type: 'n8n-nodes-base.dataTable',
+  version: 1.1,
+  config: {
+    name: 'Save page memory',
+    parameters: {
+      resource: 'row', operation: 'upsert', dataTableId: { __rl: true, mode: 'id', value: 'HU8vkWsRJIGzz7Rv', cachedResultName: 'Page memory' }, matchType: 'allConditions',
+      filters: { conditions: [{ keyName: 'page_url', condition: 'eq', keyValue: expr('{{ $json.page_url }}') }] },
+      columns: { mappingMode: 'autoMapInputData', value: {}, matchingColumns: [], schema: [] },
+      options: {}
+    },
+    output: [{ id: 1 }]
+  }
+});
+
 const findStartups = node({
   type: '@n8n/n8n-nodes-langchain.openAi',
   version: 2.3,
@@ -86,7 +133,7 @@ const oneTracePerStartup = node({
   version: 2,
   config: {
     name: 'One trace per startup',
-    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// OpenAI's list of startups per page -> one trace per startup.\n// Safety checks, so nothing invented gets saved: the startup's name and each founder's name must\n// appear in the page text; the website must be a link on the page or an address written on it.\n// Email addresses and phone numbers are removed.\nconst pages = $('Page to text').all();\nconst NOT_A_WEBSITE = /(^|\\.)(linkedin\\.com|facebook\\.com|fb\\.com|instagram\\.com|twitter\\.com|x\\.com|youtube\\.com|youtu\\.be|xing\\.com|tiktok\\.com|bsky\\.app|spotify\\.com|apple\\.com|google\\.[a-z.]+|calendly\\.com|northdata\\.(de|com)|firmenwissen\\.de|cylex\\.de|founderio\\.com|crunchbase\\.com|dealroom\\.co|github\\.com|wikipedia\\.org)$/i;\nconst findJson = v => {\n  if (typeof v === 'string') { try { return findJson(JSON.parse(v)); } catch (e) { return null; } }\n  if (Array.isArray(v)) { for (const x of v) { const r = findJson(x); if (r) return r; } return null; }\n  if (v && typeof v === 'object') {\n    if (Array.isArray(v.startups)) return v;\n    for (const k of Object.keys(v)) { const r = findJson(v[k]); if (r) return r; }\n  }\n  return null;\n};\nconst norm = s => (s || '').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g, '').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim();\nconst slug = s => norm(s).replace(/\\b(gmbh|ug|haftungsbeschrankt|ag|se|kg|co|gbr|e v|ev|i g|ig|inc|ltd|llc|pvt|sl|sas|bv)\\b/g, ' ').trim().replace(/\\s+/g, '-').slice(0, 60);\nconst clean = s => (s || '').replace(/[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+/g, '[email removed]').replace(/(\\+\\d{1,3}|\\b0)[\\d \\/()-]{6,}\\d/g, '[phone removed]').trim();\n// (No URL class in n8n's Code sandbox, so addresses are read with a regular expression.)\nconst hostOf = u => { const m = String(u || '').trim().match(/^(?:https?:\\/\\/)?([^\\/?#:\\s]+)/i); const h = m ? m[1].toLowerCase().replace(/^www\\./, '') : ''; return /^[a-z0-9-]+(\\.[a-z0-9-]+)*\\.[a-z]{2,}$/.test(h) ? h : ''; };\n// Words from buttons and menus that are not startups.\nconst NOT_A_NAME = /^(teilen|share|mehr( informationen| erfahren)?|more|read more|learn more|weiter(lesen)?|zurück|back|kontakt|contact|start-?ups?|portfolio|alle|all|filter|exist( women| gründerstipendium| forschungstransfer)?|impressum|datenschutz|newsletter|apply|bewerben|jetzt bewerben|team|alumni)$/i;\nconst baseOf = h => h.split('.').slice(-2).join('.');\nconst now = new Date();\nconst out = [];\nconst seen = new Set();\n$input.all().forEach((item, i) => {\n  const page = (pages[i] || {}).json;\n  if (!page || !page.page_host) return;\n  const answer = findJson(item.json);\n  if (!answer) return;\n  const pageText = norm(page.prompt);\n  const pageTextLower = (page.prompt || '').toLowerCase();\n  const linkHosts = {};\n  (page.link_urls || []).forEach(u => { linkHosts[hostOf(u)] = u; });\n  answer.startups.forEach(s => {\n    const name = (s && typeof s.name === 'string' ? s.name : '').replace(/\\s+/g, ' ').trim();\n    if (!name || name.length > 120 || NOT_A_NAME.test(name) || !pageText.includes(norm(name))) return;\n    const key = slug(name);\n    if (!key) return;\n    const trace_id = 'uni:' + page.page_host + ':' + key;\n    if (seen.has(trace_id)) return;\n    seen.add(trace_id);\n    // Website: only a link from the page, or an address written on it; never the institution's own site or a social profile.\n    let website = '';\n    const cand = typeof s.website === 'string' ? s.website.trim() : '';\n    const host = cand ? hostOf(cand) : '';\n    if (host && host.includes('.') && baseOf(host) !== baseOf(page.page_host) && !NOT_A_WEBSITE.test(host) && !/(^|\\.)uni-[a-z-]+\\.de$/.test(host)) {\n      if (linkHosts[host]) website = linkHosts[host];\n      else if (pageTextLower.includes(host)) website = 'https://' + (/^www\\./i.test(cand.replace(/^https?:\\/\\//i, '')) ? 'www.' : '') + host + '/';\n    }\n    const founders = (Array.isArray(s.founders) ? s.founders : [])\n      .filter(f => typeof f === 'string')\n      .map(f => clean(f).replace(/\\s+/g, ' ').replace(/\\s*\\(.*?\\)\\s*/g, ' ').trim())\n      .filter((f, k, a) => f && f.length < 80 && !/removed/.test(f) && pageText.includes(norm(f)) && a.indexOf(f) === k);\n    const year = Number(s.founded_year);\n    const yearOk = Number.isInteger(year) && year >= 1950 && year <= now.getFullYear();\n    const description = clean(typeof s.description === 'string' ? s.description : '');\n    const text = [\n      description,\n      founders.length ? 'Founders: ' + founders.join(', ') : '',\n      yearOk ? 'Founded: ' + year : '',\n      'Listed by: ' + page.institution + ' (' + page.city + ')',\n      website ? 'Website: ' + website : 'Website: not given on the page',\n      'Source page: ' + page.page_url,\n    ].filter(Boolean).join('\\n').slice(0, 5000);\n    out.push({ json: {\n      trace_id,\n      source: 'campus',\n      url: page.page_url,\n      website,\n      happened_at: yearOk ? year + '-01-01T00:00:00.000Z' : now.toISOString(),\n      found_at: now.toISOString(),\n      title: '[' + page.institution + '] ' + name,\n      text,\n      people: founders.map(f => f + ' (founder)').join('; '),\n      org_name: name,\n      city: page.city,\n      status: 'new',\n    }});\n  });\n});\nreturn out;\n" },
+    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// OpenAI's list of startups per page -> one trace per startup.\n// Safety checks, so nothing invented gets saved: the startup's name and each founder's name must\n// appear in the page text; the website must be a link on the page or an address written on it.\n// Email addresses and phone numbers are removed.\nconst pages = $('Keep changed pages').all();\nconst NOT_A_WEBSITE = /(^|\\.)(linkedin\\.com|facebook\\.com|fb\\.com|instagram\\.com|twitter\\.com|x\\.com|youtube\\.com|youtu\\.be|xing\\.com|tiktok\\.com|bsky\\.app|spotify\\.com|apple\\.com|google\\.[a-z.]+|calendly\\.com|northdata\\.(de|com)|firmenwissen\\.de|cylex\\.de|founderio\\.com|crunchbase\\.com|dealroom\\.co|github\\.com|wikipedia\\.org)$/i;\nconst findJson = v => {\n  if (typeof v === 'string') { try { return findJson(JSON.parse(v)); } catch (e) { return null; } }\n  if (Array.isArray(v)) { for (const x of v) { const r = findJson(x); if (r) return r; } return null; }\n  if (v && typeof v === 'object') {\n    if (Array.isArray(v.startups)) return v;\n    for (const k of Object.keys(v)) { const r = findJson(v[k]); if (r) return r; }\n  }\n  return null;\n};\nconst norm = s => (s || '').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g, '').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim();\nconst slug = s => norm(s).replace(/\\b(gmbh|ug|haftungsbeschrankt|ag|se|kg|co|gbr|e v|ev|i g|ig|inc|ltd|llc|pvt|sl|sas|bv)\\b/g, ' ').trim().replace(/\\s+/g, '-').slice(0, 60);\nconst clean = s => (s || '').replace(/[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+/g, '[email removed]').replace(/(\\+\\d{1,3}|\\b0)[\\d \\/()-]{6,}\\d/g, '[phone removed]').trim();\n// (No URL class in n8n's Code sandbox, so addresses are read with a regular expression.)\nconst hostOf = u => { const m = String(u || '').trim().match(/^(?:https?:\\/\\/)?([^\\/?#:\\s]+)/i); const h = m ? m[1].toLowerCase().replace(/^www\\./, '') : ''; return /^[a-z0-9-]+(\\.[a-z0-9-]+)*\\.[a-z]{2,}$/.test(h) ? h : ''; };\n// Words from buttons and menus that are not startups.\nconst NOT_A_NAME = /^(teilen|share|mehr( informationen| erfahren)?|more|read more|learn more|weiter(lesen)?|zurück|back|kontakt|contact|start-?ups?|portfolio|alle|all|filter|exist( women| gründerstipendium| forschungstransfer)?|impressum|datenschutz|newsletter|apply|bewerben|jetzt bewerben|team|alumni)$/i;\nconst baseOf = h => h.split('.').slice(-2).join('.');\nconst now = new Date();\nconst out = [];\nconst seen = new Set();\n$input.all().forEach((item, i) => {\n  const page = (pages[i] || {}).json;\n  if (!page || !page.page_host) return;\n  const answer = findJson(item.json);\n  if (!answer) return;\n  const pageText = norm(page.prompt);\n  const pageTextLower = (page.prompt || '').toLowerCase();\n  const linkHosts = {};\n  (page.link_urls || []).forEach(u => { linkHosts[hostOf(u)] = u; });\n  answer.startups.forEach(s => {\n    const name = (s && typeof s.name === 'string' ? s.name : '').replace(/\\s+/g, ' ').trim();\n    if (!name || name.length > 120 || NOT_A_NAME.test(name) || !pageText.includes(norm(name))) return;\n    const key = slug(name);\n    if (!key) return;\n    const trace_id = 'uni:' + page.page_host + ':' + key;\n    if (seen.has(trace_id)) return;\n    seen.add(trace_id);\n    // Website: only a link from the page, or an address written on it; never the institution's own site or a social profile.\n    let website = '';\n    const cand = typeof s.website === 'string' ? s.website.trim() : '';\n    const host = cand ? hostOf(cand) : '';\n    if (host && host.includes('.') && baseOf(host) !== baseOf(page.page_host) && !NOT_A_WEBSITE.test(host) && !/(^|\\.)uni-[a-z-]+\\.de$/.test(host)) {\n      if (linkHosts[host]) website = linkHosts[host];\n      else if (pageTextLower.includes(host)) website = 'https://' + (/^www\\./i.test(cand.replace(/^https?:\\/\\//i, '')) ? 'www.' : '') + host + '/';\n    }\n    const founders = (Array.isArray(s.founders) ? s.founders : [])\n      .filter(f => typeof f === 'string')\n      .map(f => clean(f).replace(/\\s+/g, ' ').replace(/\\s*\\(.*?\\)\\s*/g, ' ').trim())\n      .filter((f, k, a) => f && f.length < 80 && !/removed/.test(f) && pageText.includes(norm(f)) && a.indexOf(f) === k);\n    const year = Number(s.founded_year);\n    const yearOk = Number.isInteger(year) && year >= 1950 && year <= now.getFullYear();\n    const description = clean(typeof s.description === 'string' ? s.description : '');\n    const text = [\n      description,\n      founders.length ? 'Founders: ' + founders.join(', ') : '',\n      yearOk ? 'Founded: ' + year : '',\n      'Listed by: ' + page.institution + ' (' + page.city + ')',\n      website ? 'Website: ' + website : 'Website: not given on the page',\n      'Source page: ' + page.page_url,\n    ].filter(Boolean).join('\\n').slice(0, 5000);\n    out.push({ json: {\n      trace_id,\n      source: 'campus',\n      url: page.page_url,\n      website,\n      happened_at: yearOk ? year + '-01-01T00:00:00.000Z' : now.toISOString(),\n      found_at: now.toISOString(),\n      title: '[' + page.institution + '] ' + name,\n      text,\n      people: founders.map(f => f + ' (founder)').join('; '),\n      org_name: name,\n      city: page.city,\n      status: 'new',\n    }});\n  });\n});\nreturn out;\n" },
     output: [{ trace_id: 'uni:highest-darmstadt.de:fenexity', source: 'campus', url: 'https://highest-darmstadt.de/en/fuer-unternehmen/start-ups/', website: 'https://www.fenexity.com/', happened_at: '2026-11-20T12:00:00.000Z', found_at: '2026-11-20T12:00:00.000Z', title: '[HIGHEST TU Darmstadt] Fenexity', text: 'Software for charging management of electric commercial vehicle fleets.\nListed by: HIGHEST TU Darmstadt (Darmstadt)\nWebsite: https://www.fenexity.com/\nSource page: https://highest-darmstadt.de/en/fuer-unternehmen/start-ups/', people: '', org_name: 'Fenexity', city: 'Darmstadt', status: 'new' }]
   }
 });
@@ -132,15 +179,21 @@ export default workflow('university-startups', '07 University startups Germany -
   .to(startupPages)
   .to(fetchPages)
   .to(pageToText)
+  .to(getPageMemory)
+  .to(keepChangedPages)
   .to(findStartups)
   .to(oneTracePerStartup)
   .to(onlyNewStartups)
   .to(saveToTraces)
+  .add(findStartups)
+  .to(rememberPages)
+  .to(savePageMemory)
   .add(calledByRunAll)
   .to(startupPages)
   .add(runFromDemo)
   .to(startupPages)
   .add(howItWorks)
   .group('Read the startup pages', [startupPages, fetchPages, pageToText], { description: 'List of pages -> each page fetched (one every 2 s) -> plain text with its links to other websites' })
-  .group('Find the startups', [findStartups, oneTracePerStartup], { description: 'OpenAI lists the startups on each page -> checked against the page -> one trace per startup, no email or phone' })
-  .group('Save new startups', [onlyNewStartups, saveToTraces], { description: 'Startups already in Traces are skipped -> the new ones are saved' });
+  .group('Skip unchanged pages', [getPageMemory, keepChangedPages], { description: 'Pages whose text is the same as last time (and read within 7 days) are skipped' })
+  .group('Remember pages', [rememberPages, savePageMemory], { description: 'Pages the AI read are remembered with their fingerprint' })
+  .group('Save new startups', [oneTracePerStartup, onlyNewStartups, saveToTraces], { description: 'Startups already in Traces are skipped -> the new ones are saved' });
