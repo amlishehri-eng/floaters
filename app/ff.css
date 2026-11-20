@@ -1,0 +1,171 @@
+/* Founders First design tokens and shared pieces (design/DESIGN.md, look from design/reference/*.dc.html).
+   One place for the colours, the type family, the top navigation, focus rings and small shared components.
+   Page layouts live next to each page (app/home.css, app/proof/live/call-list.css, ...). Not layered, so these
+   rules win over Tailwind's base layer from globals.css. */
+
+:root {
+  --ff-void: #000000;
+  --ff-paper: #f5f5f7;
+  --ff-paper-call: #f4f6f9;
+  --ff-white: #ffffff;
+  --ff-ink: #1d1d1f;
+  --ff-ink-2: #3a3a3f;
+  --ff-ink-3: #4a4a4f;
+  --ff-muted: #6e6e73;
+  --ff-fog: #a1a1a6;
+  --ff-fog-2: #86868b;
+  --ff-mist: #f5f5f7;
+  --ff-nav-dim: #d2d2d7;
+  --ff-rank: #c7c7cc;
+  --ff-ion: #33d1ff;
+  --ff-ion-deep: #0a6e99;
+  --ff-ion-deep-hover: #064f6f;
+  --ff-infrared: #ff5b3a;
+  --ff-infrared-text: #d93d1e;
+  --ff-infrared-on-black: #ff8a70;
+  --ff-infrared-panel: #b8321a;
+  --ff-pass: #1b7a4b;
+  --ff-pass-dot: #2fbf71;
+  --ff-amber: #9a5b00;
+  --ff-amber-2: #7a4a00;
+  --ff-amber-panel: #fff7e8;
+  --ff-callnow-panel: #fff3ef;
+  --ff-unknown: #9a9aa0;
+  --ff-unknown-dot: #b8bcc6;
+  --ff-track: #e8ecf2;
+  --ff-track-2: #eef1f6;
+  --ff-track-3: #e3e7ee;
+  --ff-hair: rgba(29, 29, 31, 0.08);
+  --ff-hair-2: rgba(29, 29, 31, 0.1);
+  --ff-hair-3: rgba(29, 29, 31, 0.12);
+  --ff-hair-dark: rgba(255, 255, 255, 0.08);
+  --ff-hair-dark-2: rgba(255, 255, 255, 0.1);
+  --ff-font: var(--font-mona), system-ui, sans-serif;
+}
+
+/* The body takes the page colour so overscroll never flashes white on the black pages. */
+body:has(.ff--dark) { background: var(--ff-void); }
+body:has(.ff--paper) { background: var(--ff-paper); }
+body:has(.ff--call) { background: var(--ff-paper-call); }
+body:has(.ff--white) { background: var(--ff-white); }
+
+.ff {
+  min-height: 100vh;
+  font-family: var(--ff-font);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+.ff--dark { background: var(--ff-void); color: var(--ff-mist); }
+.ff--paper { background: var(--ff-paper); color: var(--ff-ink); }
+.ff--call { background: var(--ff-paper-call); color: var(--ff-ink); font-size: 15px; }
+.ff--white { background: var(--ff-white); color: var(--ff-ink); }
+
+.ff h1, .ff h2, .ff h3, .ff p, .ff blockquote { margin: 0; }
+.ff button { font: inherit; }
+.ff a { text-decoration: none; }
+.ff a:hover { text-decoration: underline; }
+.ff--dark a { color: var(--ff-ion); }
+.ff--paper a, .ff--call a, .ff--white a { color: var(--ff-ion-deep); }
+.ff--call a:hover { color: var(--ff-ion-deep-hover); }
+.ff-light-section a { color: var(--ff-ion-deep); }
+
+/* Visible focus everywhere: 2px ion-deep, 3px offset (DESIGN.md section 9). */
+.ff a:focus-visible,
+.ff button:focus-visible {
+  outline: 2px solid var(--ff-ion-deep);
+  outline-offset: 3px;
+}
+
+/* ---- Top navigation ---------------------------------------------------------------------- */
+.ff-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--ff-hair);
+}
+.ff-nav--dark { background: rgba(0, 0, 0, 0.72); border-bottom-color: var(--ff-hair-dark); }
+.ff-nav--paper { background: rgba(245, 245, 247, 0.78); }
+.ff-nav--call { background: rgba(244, 246, 249, 0.78); }
+.ff-nav--white { background: rgba(255, 255, 255, 0.78); }
+.ff-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 16px;
+  flex-wrap: wrap;
+}
+.ff-nav--call .ff-nav__inner { max-width: 1320px; min-height: 56px; }
+.ff .ff-nav__brand {
+  font-weight: 700;
+  font-stretch: 125%;
+  letter-spacing: -0.3px;
+  font-size: 16px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ff-ink);
+}
+.ff-nav--dark .ff-nav__brand { color: var(--ff-mist); }
+.ff-nav__links { display: flex; gap: 4px; flex-wrap: wrap; font-size: 13px; }
+/* 44px tall touch target, same look as the reference's 8px 12px padding. */
+.ff .ff-nav__link {
+  padding: 0 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ff-ink-3);
+}
+.ff-nav--dark .ff-nav__link { color: var(--ff-nav-dim); }
+.ff .ff-nav__link[aria-current="page"] { color: var(--ff-ink); font-weight: 600; }
+.ff-nav--dark .ff-nav__link[aria-current="page"] { color: var(--ff-white); }
+@media (max-width: 480px) {
+  .ff-nav__inner { padding: 0 16px; }
+  .ff-nav__links { gap: 0; margin-left: -8px; }
+  .ff .ff-nav__link { padding: 0 8px; }
+}
+
+/* ---- Shared pieces ----------------------------------------------------------------------- */
+.ff-btn {
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--ff-ink);
+  color: var(--ff-white);
+  cursor: pointer;
+  font-weight: 500;
+}
+.ff-btn--secondary { border: 1px solid rgba(29, 29, 31, 0.2); background: transparent; color: var(--ff-ink); }
+.ff-btn:disabled { cursor: default; opacity: 0.6; }
+
+.ff-dot {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ff-infrared);
+  box-shadow: 0 0 10px var(--ff-infrared);
+}
+
+/* Data-source line: where the numbers come from, and the error when n8n did not answer. */
+.ff-source { font-size: 13px; line-height: 1.5; color: var(--ff-muted); }
+.ff--dark .ff-source { color: var(--ff-fog-2); }
+
+.ff-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

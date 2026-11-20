@@ -1,195 +1,153 @@
-import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowDown,
-  ArrowRight,
-  Code2,
-  GraduationCap,
-  MapPin,
-  Mic,
-  Radar,
-} from "lucide-react";
-import companies from "@/data/portfolio-examples.json";
+import SiteNav from "@/components/ff/site-nav";
+import coords from "@/data/city-coords.json";
+import { getExtras, getFunnel, getLeads } from "@/lib/n8n";
+import { dataLine, longDate } from "@/lib/screen/format";
+import { homePage } from "@/lib/screen/home";
 import "./home.css";
 
-export const metadata = {
-  title: "Founders First | Early startup discovery",
-  description:
-    "Explore early startup signals from Munich’s universities, developer communities, and pitch events.",
-};
+// Home (design/reference/home.dc.html). Numbers from /api/funnel (flow 44), radar points = current call-now leads,
+// backtest from flow 46. Each falls back to its dated snapshot.
+export const dynamic = "force-dynamic";
 
-const sources = [
-  {
-    Icon: GraduationCap,
-    title: "University research",
-    signal: "Research grant",
-    description:
-      "Find teams through grants, incubator programs, and university spinouts.",
-  },
-  {
-    Icon: Code2,
-    title: "Developer communities",
-    signal: "Code release",
-    description:
-      "Track public code releases and prototypes on GitHub and Hugging Face.",
-  },
-  {
-    Icon: Mic,
-    title: "Pitch events",
-    signal: "Founder pitch",
-    description:
-      "See what founders share at demo days and in recorded pitches.",
-  },
+const RINGS = [
+  { inset: "6.216%", a: 0.18 }, { inset: "18.649%", a: 0.14 }, { inset: "31.081%", a: 0.12 }, { inset: "43.514%", a: 0.1 },
+  { inset: "0", a: 0.22 }, { inset: "12.432%", a: 0.16 }, { inset: "24.865%", a: 0.13 }, { inset: "37.297%", a: 0.1 },
 ];
 
-const featuredCompany = companies.find(
-  (company) => company.slug === "proxima-fusion",
-);
-const announcementDate = new Intl.DateTimeFormat("en-GB", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-  timeZone: "UTC",
-});
+const SOURCES = [
+  { title: "University spin-off lists", text: "Fifteen universities and institutes, from KIT to Max Planck." },
+  { title: "Incubators and accelerators", text: "TUM Venture Labs and 28 cohort and competition pages." },
+  { title: "Research news", text: "Spin-off and EXIST releases from idw, the science news service." },
+  { title: "Code", text: "New GitHub organisations and Hugging Face models in 16 German cities." },
+  { title: "First hires", text: "Job ads from young companies hiring their first people." },
+  { title: "Pitches and boards", text: "Transcribed pitch podcasts, campus co-founder boards and Luma events." },
+];
 
-export default function Home() {
-  const example = featuredCompany;
-
+export default async function Home() {
+  const [funnel, leadsData, extras] = await Promise.all([getFunnel(), getLeads(), getExtras()]);
+  const v = homePage({ funnel, leads: leadsData.leads, extras, coords });
+  const runDate = longDate(funnel.as_of);
+  const offline = [funnel, leadsData, extras].filter((d) => d.mocked);
   return (
-    <div className="home-site">
-      <header className="home-header">
-        <div className="home-shell home-nav">
-          <Link className="home-brand" href="/">
-            <span className="home-brandMark">
-              <Radar size={19} aria-hidden="true" />
-            </span>
-            Founders First
-          </Link>
-          <nav aria-label="Main navigation">
-            <a className="home-methodLink" href="#how-it-works">
-              How it works
-            </a>
-            <Link className="home-action home-actionNav" href="/proof">
-              Analytics <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-          </nav>
+    <div className="ff ff--dark">
+      <SiteNav theme="dark" />
+
+      <section className="ho-hero">
+        <h1>{v.title[0]}<br /><span>{v.title[1]}</span></h1>
+        <p>Founders First reads Germany’s spin-off lists, research news, code and pitches every day, and tells HTGF who to call before anyone writes about them.</p>
+        <div className="ho-hero__cta">
+          <Link href="/proof/live" className="ho-btn">See the call list</Link>
+          <Link href="/proof/funnel" className="ho-link">See how it filters</Link>
         </div>
-      </header>
-      <main className="home-shell">
-        <section className="home-hero">
-          <div className="home-heroCopy">
-            <p className="home-market">
-              <MapPin size={15} aria-hidden="true" /> Sourcing in Munich
-            </p>
-            <h1>
-              Find founders <span>before the headlines.</span>
-            </h1>
-            <p className="home-intro">
-              Discover emerging startups through the research, code, and pitches
-              founders share before they make the news.
-            </p>
-            <div className="home-heroActions">
-              <Link className="home-action home-actionPrimary" href="/proof">
-                Go to analytics <ArrowRight size={17} aria-hidden="true" />
-              </Link>
-              <a className="home-action" href="#how-it-works">
-                How it works <ArrowDown size={16} aria-hidden="true" />
-              </a>
+      </section>
+
+      <section aria-label={v.radarLabel} className="ho-radar-wrap">
+        <div className="ho-radar">
+          <div className="ho-layer ho-clip" style={{ clipPath: v.clip }} aria-hidden="true">
+            <div className="ho-scope">
+              {RINGS.map((r) => (
+                <div key={r.inset} className="ho-ring" style={{ inset: r.inset, borderColor: `rgba(51,209,255,${r.a})` }} />
+              ))}
+              <div className="ho-cross ho-cross--v" />
+              <div className="ho-cross ho-cross--h" />
+              <div className="ho-sweep" />
             </div>
           </div>
-          <div className="home-signalMap" aria-hidden="true">
-            <div className="home-radarField">
-              <div className="home-radarRing" />
-              <div className="home-radarRing" />
-              <div className="home-radarRing" />
-              <div className="home-radarRing" />
-              <div className="home-radarCore">
-                <Radar size={32} strokeWidth={1.55} />
-              </div>
-            </div>
-            {sources.map(({ Icon, signal }) => (
-              <div className="home-mapSignal" key={signal}>
-                <Icon size={15} strokeWidth={1.7} /> {signal}
+          <svg viewBox="0 0 600 800" className="ho-layer" aria-hidden="true">
+            <polygon points={v.outline} fill="rgba(51,209,255,0.05)" stroke="rgba(51,209,255,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+          <div className="ho-layer">
+            {v.dots.map((d, i) => (
+              <span key={i} className="ho-dot" style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, background: d.c, opacity: d.o }} aria-hidden="true" />
+            ))}
+            {v.stars.map((t) => (
+              <span key={t.key}>
+                <span className="ho-star" style={{ left: `${t.x}%`, top: `${t.y}%` }} aria-hidden="true" />
+                <span className={t.left ? "ho-label ho-label--left" : "ho-label"} style={{ left: `${t.lx}%`, top: `${t.ly}%` }}>
+                  <span className="ho-label__name">{t.name}</span>
+                  <span className="ho-label__city">{t.city}</span>
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="ho-big">
+          {v.big.map((b) => (
+            <div key={b.label}><span style={{ color: b.color }}>{b.n}</span><span>{b.label}</span></div>
+          ))}
+        </div>
+      </section>
+
+      <section className="ho-light">
+        <div className="ho-light__inner">
+          <h2>The cheapest step runs first. The expensive ones only where it matters.</h2>
+          <div className="ho-steps">
+            {v.steps.map((st) => (
+              <div key={st.no} className="ho-step">
+                <span className="ho-step__no" style={{ color: st.color }}>{st.no}</span>
+                <span className="ho-step__title">{st.title}</span>
+                <span className="ho-step__text">{st.text}</span>
+                <span className="ho-step__cost">{st.cost}</span>
               </div>
             ))}
           </div>
-        </section>
-        <section className="home-preview" aria-labelledby="preview-title">
-          <div className="home-previewCopy">
-            <p className="home-previewScope">Portfolio examples · Germany</p>
-            <h2 id="preview-title">
-              Explore the portfolio examples.
-            </h2>
-            <p>
-              Browse German startups backed by HTGF and see what they build,
-              when their funding was announced, and how much they raised.
-            </p>
-          </div>
-          <Link href={`/proof/${example.slug}`} className="home-previewCard">
-            <div className="home-cardTitle">
-              <Image
-                className="home-companyLogo"
-                src={`/candidate-logos/${example.logo}`}
-                alt=""
-                width={170}
-                height={70}
-                unoptimized
-              />
-              <div>
-                <h3>{example.name}</h3>
-                <p>{example.sector} · {example.location}</p>
-              </div>
-            </div>
-            <p className="home-cardDescription">{example.description}</p>
-            <dl>
-              <div>
-                <dt>Round amount</dt>
-                <dd>{example.round.amount}</dd>
-              </div>
-              <div>
-                <dt>Round stage</dt>
-                <dd>{example.round.stage}</dd>
-              </div>
-              <div>
-                <dt>Announced</dt>
-                <dd>
-                  <time dateTime={example.round.date}>
-                    {announcementDate.format(new Date(example.round.date))}
-                  </time>
-                </dd>
-              </div>
-            </dl>
-            <span className="home-previewLink">
-              View company profile <ArrowRight size={16} aria-hidden="true" />
-            </span>
-          </Link>
-        </section>
-        <section
-          className="home-method"
-          id="how-it-works"
-          aria-labelledby="method-title"
-        >
-          <h2 id="method-title">Where early signals appear</h2>
-          <p>
-            When a founder turns up across these sources, we link the evidence
-            so you can review the team in one place.
-          </p>
-          <ul>
-            {sources.map(({ Icon, title, description }) => (
-              <li key={title}>
-                <Icon size={25} aria-hidden="true" />
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </li>
+        </div>
+      </section>
+
+      {v.top ? (
+        <section className="ho-top">
+          <span className="ho-top__kicker">Top of today’s list</span>
+          <h2>{v.top.name}</h2>
+          <p>{v.top.what}</p>
+          <div className="ho-top__numbers">
+            {v.top.numbers.map((tp) => (
+              <div key={tp.label}><span style={{ color: tp.color }}>{tp.n}</span><span>{tp.label}</span></div>
             ))}
-          </ul>
+          </div>
+          <Link href={`/proof/live?lead=${encodeURIComponent(v.top.key)}`} className="ho-top__link">Open the lead</Link>
         </section>
-      </main>
-      <footer className="home-shell home-footer">
-        <span>Founders First · HTGF hackathon prototype</span>
-        <Link href="/proof">
-          Analytics <ArrowRight size={14} aria-hidden="true" />
-        </Link>
+      ) : (
+        <section className="ho-top">
+          <span className="ho-top__kicker">Top of today’s list</span>
+          <p>No team is on the call list right now. New leads appear after the next pipeline run.</p>
+        </section>
+      )}
+
+      <section className="ho-light">
+        <div className="ho-light__inner ho-light__inner--48">
+          <h2>Where the first signals show up.</h2>
+          <div className="ho-sources">
+            {SOURCES.map((so) => (
+              <div key={so.title} className="ho-source"><span>{so.title}</span><span>{so.text}</span></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="ho-white">
+        <div className="ho-white__inner">
+          <div className="ho-bt__text">
+            <h2>Tested blind on HTGF’s own portfolio.</h2>
+            <p>Earliest archived websites only, every investor mention removed. {v.backtest ? v.backtest.sentence : "The backtest has not run yet."}</p>
+            <Link href="/proof/methodology">Read the method</Link>
+          </div>
+          {v.backtest && (
+            <div className="ho-bt__bars">
+              {v.backtest.bars.map((b) => (
+                <div key={b.label} className="ho-bt__bar">
+                  <span className="ho-bt__head"><span>{b.label}</span><span>{b.n} of {b.of}</span></span>
+                  <span className="ho-bt__track"><span style={{ width: `${b.pct}%`, background: b.color }} /></span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <footer className="ho-footer">
+        Founders First, an HTGF hackathon prototype. {runDate ? `Data from the run on ${runDate}.` : "Run date not known."}
+        {offline.length > 0 && ` ${dataLine({ asOf: offline[0].as_of, mocked: true, error: offline.map((d) => d.error).filter(Boolean)[0] })}`}
       </footer>
     </div>
   );

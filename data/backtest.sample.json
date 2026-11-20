@@ -1,0 +1,152 @@
+{
+  "as_of": "2026-11-20T22:58:11.960Z",
+  "snapshot_note": "Snapshot of GET /webhook/htgf-screen-extras (flow 46), 20 Nov 2026 23:58 CET. Latest run of flow 41 Blind backtest.",
+  "backtest": {
+    "run_at": "2026-11-20T21:31:04.847Z",
+    "portfolio": {
+      "n": 40,
+      "stage0_pass": 39,
+      "deep_tech": 22,
+      "kept": 21,
+      "call_now": 3,
+      "cost_usd": 0.1172
+    },
+    "control": {
+      "n": 40,
+      "stage0_pass": 40,
+      "deep_tech": 15,
+      "kept": 25,
+      "call_now": 3,
+      "cost_usd": 0.1211
+    },
+    "deep_tech_min": 15,
+    "misses": [
+      {
+        "company": "DNTOX",
+        "verdict": "not_high_tech",
+        "tech_depth": 5,
+        "stage0_rule": "",
+        "source_kind": "wayback 2021-12-26"
+      },
+      {
+        "company": "neotiv",
+        "verdict": "not_a_startup",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2008-10-26"
+      },
+      {
+        "company": "Tech11",
+        "verdict": "not_a_startup",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2001-09-25"
+      },
+      {
+        "company": "R3DT",
+        "verdict": "not_high_tech",
+        "tech_depth": 12,
+        "stage0_rule": "",
+        "source_kind": "wayback 2017-12-29"
+      },
+      {
+        "company": "Zentio",
+        "verdict": "needs_enrichment",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2024-07-17"
+      },
+      {
+        "company": "Semasio",
+        "verdict": "not_high_tech",
+        "tech_depth": 8,
+        "stage0_rule": "",
+        "source_kind": "wayback 2012-01-02; skipped 2011-01-31 (empty)"
+      },
+      {
+        "company": "Nuuron",
+        "verdict": "not_a_startup",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2006-02-03"
+      },
+      {
+        "company": "Grandcentrix",
+        "verdict": "not_a_startup",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2010-04-26"
+      },
+      {
+        "company": "Co-reactive",
+        "verdict": "needs_enrichment",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2023-11-30"
+      },
+      {
+        "company": "Fiagon",
+        "verdict": "out_of_scope",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2013-08-14"
+      },
+      {
+        "company": "Datarade",
+        "verdict": "not_high_tech",
+        "tech_depth": 12,
+        "stage0_rule": "",
+        "source_kind": "wayback 2020-02-29; skipped 2019-05-07 (empty)"
+      },
+      {
+        "company": "Autoaid",
+        "verdict": "needs_enrichment",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2007-04-27"
+      },
+      {
+        "company": "Industrial Technology and Witchcraft",
+        "verdict": "not_high_tech",
+        "tech_depth": 5,
+        "stage0_rule": "",
+        "source_kind": "wayback 2021-08-27"
+      },
+      {
+        "company": "Mitigant (formerly known as Resility)",
+        "verdict": "not_high_tech",
+        "tech_depth": 14,
+        "stage0_rule": "",
+        "source_kind": "wayback 2020-11-01"
+      },
+      {
+        "company": "sunhill technologies",
+        "verdict": "stopped at stage 0",
+        "tech_depth": null,
+        "stage0_rule": "agency",
+        "source_kind": "wayback 2007-10-31"
+      },
+      {
+        "company": "GlassDollar",
+        "verdict": "not_a_startup",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2013-06-03"
+      },
+      {
+        "company": "AirGateway",
+        "verdict": "not_a_startup",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2001-11-28"
+      },
+      {
+        "company": "multiBIND",
+        "verdict": "not_a_startup",
+        "tech_depth": 0,
+        "stage0_rule": "",
+        "source_kind": "wayback 2009-04-24; skipped 2006-10-20 (empty), 2007-05-13 (empty), 2008-01-24 (empty)"
+      }
+    ]
+  }
+}

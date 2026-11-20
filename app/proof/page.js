@@ -1,55 +1,57 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import SiteNav from "@/components/ff/site-nav";
 import companies from "@/data/portfolio-examples.json";
-import fixture from "@/data/proof-leads.json";
-import SavedCandidates from "./saved-candidates";
-import CandidateCard from "./candidate-card";
-import { fitScore, maxFit } from "./fit-scoring";
+import htgfPortfolio from "@/data/htgf-portfolio.json";
+import { getLeads } from "@/lib/n8n";
+import { dataLine, int } from "@/lib/screen/format";
+import { portfolioPage } from "@/lib/screen/portfolio";
+import "./portfolio.css";
+
+// Portfolio (design/reference/portfolio.dc.html): known HTGF investments, and how many leads the engine recognised as portfolio.
+export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Startup candidates | Founders First",
-  description:
-    "Explore German HTGF portfolio examples and their illustrative VC fit scores.",
+  title: "Portfolio | Founders First",
+  description: "Every lead is matched against HTGF's portfolio, so nobody calls a company HTGF already backs.",
 };
 
-export default function CandidatesPage() {
+export default async function PortfolioPage() {
+  const { leads, as_of, mocked, error } = await getLeads();
+  const v = portfolioPage({ companies, leads });
+  const known = Array.isArray(htgfPortfolio) ? htgfPortfolio.length : htgfPortfolio?.companies?.length;
   return (
-    <main className="candidate-shell candidate-main">
-      <section className="candidate-intro">
-        <p className="candidate-kicker">Analytics</p>
-        <h1>Startup candidates</h1>
-        <p>
-          Review the teams you shortlisted during the demo, or browse publicly
-          documented HTGF portfolio examples across Germany.
-        </p>
-        <div className="candidate-introActions">
-          <Link className="candidate-introLink" href="/proof/search">
-            Start search demo <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
-          <Link className="candidate-introLink" href="/proof/methodology">
-            How we score VC fit <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
-          <Link className="candidate-introLink" href="/proof/live">
-            Open lead explorer <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
-      <SavedCandidates leads={fixture.leads} />
-      <section className="candidate-about" aria-labelledby="portfolio-title">
-        <h2 id="portfolio-title">HTGF portfolio examples</h2>
-        <ul className="candidate-grid">
-          {companies.map((company) => (
-            <li key={company.slug}>
-              <CandidateCard
-                company={company}
-                href={`/proof/${company.slug}`}
-                fit={`${fitScore(company)}/${maxFit}`}
-                fitLabel="Illustrative fit"
-              />
-            </li>
+    <div className="ff ff--paper">
+      <SiteNav current="portfolio" theme="paper" />
+      <main className="po-main">
+        <section className="po-hero">
+          <div className="po-hero__text">
+            <h1>It knows what HTGF already owns.</h1>
+            <p>
+              Every lead is matched against {known ? int(known) : "the"} portfolio companies. A match comes off the call list, so nobody calls a company HTGF already backs.
+            </p>
+            {mocked && <p className="ff-source">{dataLine({ asOf: as_of, mocked, error, what: "Leads" })}</p>}
+          </div>
+          <div className="po-count">
+            <span>{int(v.count)}</span>
+            <span>{v.count === 1 ? "lead recognised as portfolio" : "leads recognised as portfolio"}</span>
+          </div>
+        </section>
+
+        <section aria-label="Portfolio examples" className="po-grid">
+          {v.tiles.map((c) => (
+            <article key={c.key} className={c.matched ? "po-tile po-tile--matched" : "po-tile"}>
+              <span className="po-tile__sub">{c.sector}, {c.city}</span>
+              <h2>{c.name}</h2>
+              <div className="po-tile__round">
+                <span className="po-tile__amount">{c.amount}</span>
+                <span className="po-tile__sub">{c.stage}, {c.date}</span>
+              </div>
+              {c.matched && (
+                <span className="po-tile__found"><span aria-hidden="true" />Found by our engine and marked as portfolio</span>
+              )}
+            </article>
           ))}
-        </ul>
-      </section>
-    </main>
+        </section>
+      </main>
+    </div>
   );
 }

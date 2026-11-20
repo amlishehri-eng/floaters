@@ -21,9 +21,13 @@ const TIMEOUT_MS = 30_000;
 
 const CHECKS = [
   { name: "home", path: "/", page: true },
-  { name: "candidate gallery", path: "/proof", page: true },
-  { name: "real leads", path: "/proof/live", page: true },
-  { name: "search demo", path: "/proof/search", page: true },
+  { name: "call list", path: "/proof/live", page: true },
+  { name: "funnel page", path: "/proof/funnel", page: true },
+  { name: "labs page", path: "/proof/labs", page: true },
+  { name: "method page", path: "/proof/methodology", page: true },
+  { name: "portfolio page", path: "/proof", page: true },
+  { name: "search demo (old)", path: "/proof/search", page: true },
+  { name: "extras (labs + backtest)", path: "/api/extras", expect: (j) => Array.isArray(j.labs) && j.labs.length > 0 && Boolean(j.backtest), note: (j) => `${j.labs?.length ?? 0} labs, backtest ${j.backtest?.run_at ?? "none"}` },
   { name: "leads", path: "/api/leads", expect: (j) => Array.isArray(j.leads) && j.leads.length > 0, note: (j) => `${j.leads?.length ?? 0} leads` },
   { name: "funnel", path: "/api/funnel", expect: (j) => Array.isArray(j.stages), note: (j) => funnelNote(j) },
   { name: "briefing json", path: "/api/briefing?format=json", expect: (j) => typeof j.script === "string" && j.script.length > 0, note: (j) => `${j.source}, ${j.leads?.length ?? 0} leads, ${j.words} words ~${j.est_seconds}s` },

@@ -24,6 +24,7 @@ Around it:
 - **41 Blind backtest** `Tno68Cy081sQ5Q9a`: HTGF portfolio companies on their earliest Wayback snapshot (blinded in code) vs random processed traces, through the same stage 0 / stage 1 / Shape / 13 code → table **Backtest**.
 - **42 Feedback** `4NvaofydeNfFZaQ1`: `POST /webhook/htgf-feedback` ← `/api/feedback` → table **Feedback**. **43 Calibration** `H89AIsfbEkdXFET9` (Mondays): up- vs down-voted leads per criterion → proposal in **Calibration** (never changes a weight).
 - **44 Funnel stats** `uXusnZJq4EuW303i`: `GET /webhook/htgf-funnel` → `/api/funnel` (counts per stage, cost per stage from **Run costs**, per trace, per call_now lead).
+- **46 Screen extras** `qyIgfO2oAjk2szm0`: `GET /webhook/htgf-screen-extras` → `/api/extras` (Labs top 10 by gap_score, summary of the latest Backtest run), for `/proof/labs`, `/proof/methodology` and the home backtest band. Read-only.
 - Test helpers: 18 Calibrate `Q00KDMeS9bbjb6ki`, 19 Reset test traces `dWvlW57gLVfClgcF`.
 
 ## The coded brain (offline reference)

@@ -99,7 +99,7 @@ function Score({ label, score, reason }) {
     </div>
   );
 }
-function downloadMemo(lead, asOf, demo) {
+export function downloadMemo(lead, asOf, demo) {
   const website = publicHttpUrl(lead.website);
   const memo = [
     `# ${lead.name}`,

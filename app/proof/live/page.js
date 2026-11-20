@@ -1,17 +1,35 @@
-import { getLeads } from "@/lib/n8n";
-import ProofDashboard from "../proof-dashboard";
+import SiteNav from "@/components/ff/site-nav";
+import { getFunnel, getLeads } from "@/lib/n8n";
+import { callList } from "@/lib/screen/call-list";
+import CallList from "./call-list";
+import "./call-list.css";
 
-// Real leads from n8n on every visit (no caching).
+// Real leads from n8n on every visit (no caching); the dated Leads snapshot when n8n does not answer.
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Founders First | Live leads",
-  description: "The leads our engine found, straight from the n8n Leads table.",
+  title: "Today’s call list | Founders First",
+  description: "The teams worth a call today, with the evidence behind every score.",
 };
 
-export default async function LiveLeadsPage() {
-  const { leads, as_of, mocked, error } = await getLeads();
+export default async function CallListPage({ searchParams }) {
+  const [{ leads, as_of, mocked, error }, funnel, params] = await Promise.all([getLeads(), getFunnel(), searchParams]);
+  const view = callList({ leads, asOf: as_of, funnel, mocked });
+  const wanted = typeof params?.lead === "string" ? params.lead : "";
+  const initial = Math.max(0, view.rows.findIndex((r) => r.key === wanted));
   return (
-    <ProofDashboard leads={leads} asOf={as_of} demo={mocked} feedUnavailable={Boolean(error)} />
+    <div className="ff ff--call">
+      <SiteNav current="call-list" theme="call" />
+      <CallList
+        intro={view.intro}
+        rows={view.rows}
+        details={view.details}
+        memos={view.memos}
+        asOf={as_of}
+        initial={initial}
+        source={error ? `The live leads did not load (${error}), so these come from the snapshot.` : mocked ? "Offline mode: these leads come from the snapshot." : ""}
+        snapshot={Boolean(mocked)}
+      />
+    </div>
   );
 }

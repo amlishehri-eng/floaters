@@ -1,0 +1,569 @@
+{
+  "as_of": "2026-11-20T22:58:11.960Z",
+  "snapshot_note": "Snapshot of GET /webhook/htgf-screen-extras (flow 46), 20 Nov 2026 23:58 CET. Labs table top 10 by gap_score (flow 40 run 18:54 CET).",
+  "labs": [
+    {
+      "lab_key": "stuttgart",
+      "name": "University of Stuttgart",
+      "institution": "University of Stuttgart",
+      "city": "Stuttgart",
+      "fields": {
+        "engineering": 3192,
+        "computer science": 1453,
+        "physics": 985,
+        "materials science": 618,
+        "chemistry": 307,
+        "biochemistry, genetics, molecular biology": 213,
+        "energy": 152,
+        "chemical engineering": 114,
+        "pharmacology": 17,
+        "immunology and microbiology": 15
+      },
+      "works_24m": 7066,
+      "spinoffs_known": 7,
+      "gap_score": 44,
+      "top_works": [
+        {
+          "title": "RepairAgent: An Autonomous, LLM-Based Agent for Program Repair",
+          "year": 2025,
+          "cited_by": 652,
+          "openalex": "https://openalex.org/W4411551762",
+          "doi": "https://doi.org/10.1109/icse55347.2025.00157",
+          "subfield": "Software"
+        },
+        {
+          "title": "Can LLMs Replace Manual Annotation of Software Engineering Artifacts?",
+          "year": 2025,
+          "cited_by": 160,
+          "openalex": "https://openalex.org/W4411272222",
+          "doi": "https://doi.org/10.1109/msr66628.2025.00086",
+          "subfield": "Information Systems"
+        },
+        {
+          "title": "Biomass Ash: A Review of Chemical Compositions and Management Trends",
+          "year": 2025,
+          "cited_by": 120,
+          "openalex": "https://openalex.org/W4410774991",
+          "doi": "https://doi.org/10.3390/su17114925",
+          "subfield": "Fuel Technology"
+        }
+      ],
+      "why_visit": "7066 works in last 24 months; top fields: engineering 3192, computer science 1453, physics 985, materials science 618.\nGap: only 7 known spin-offs despite high output (gap score 44/100); paper hinting at a startup: \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\".",
+      "spinoff_examples": [
+        "EcoDeltaV",
+        "Fibryx",
+        "Atomiq One",
+        "sereact",
+        "ESPARgOS"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.87, rate 0.99); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I100066346,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "kit",
+      "name": "Karlsruhe Institute of Technology",
+      "institution": "Karlsruhe Institute of Technology",
+      "city": "Karlsruhe",
+      "fields": {
+        "engineering": 4143,
+        "computer science": 2373,
+        "physics": 1893,
+        "materials science": 1292,
+        "energy": 899,
+        "chemistry": 732,
+        "biochemistry, genetics, molecular biology": 531,
+        "chemical engineering": 300,
+        "pharmacology": 39,
+        "immunology and microbiology": 30
+      },
+      "works_24m": 12232,
+      "spinoffs_known": 24,
+      "gap_score": 31,
+      "top_works": [
+        {
+          "title": "All-solid-state Li–S batteries with fast solid–solid sulfur reaction",
+          "year": 2025,
+          "cited_by": 310,
+          "openalex": "https://openalex.org/W4406385644",
+          "doi": "https://doi.org/10.1038/s41586-024-08298-9",
+          "subfield": "Electrical and Electronic Engineering"
+        },
+        {
+          "title": "Theory and applications of photonic time crystals: a tutorial",
+          "year": 2024,
+          "cited_by": 161,
+          "openalex": "https://openalex.org/W4402716970",
+          "doi": "https://doi.org/10.1364/aop.525163",
+          "subfield": "Atomic and Molecular Physics, and Optics"
+        },
+        {
+          "title": "Assessing political bias in large language models",
+          "year": 2025,
+          "cited_by": 145,
+          "openalex": "https://openalex.org/W4408043112",
+          "doi": "https://doi.org/10.1007/s42001-025-00376-w",
+          "subfield": "Artificial Intelligence"
+        }
+      ],
+      "why_visit": "12232 works in last 24 months, strongest in engineering (4143), computer science (2373), physics (1893) and materials science (1292).\nOnly 24 known spin-offs despite high output (gap score 31/100); paper \"Assessing political bias in large language models\" suggests AI productization potential.",
+      "spinoff_examples": [
+        "Cloudaccess",
+        "AmbientPower",
+        "companycore",
+        "noyhaus",
+        "Floronics GmbH"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.93, rate 1.96); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I102335020,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "heidelberg",
+      "name": "Heidelberg University",
+      "institution": "Heidelberg University",
+      "city": "Heidelberg",
+      "fields": {
+        "physics": 3165,
+        "biochemistry, genetics, molecular biology": 2117,
+        "computer science": 883,
+        "engineering": 469,
+        "chemistry": 344,
+        "immunology and microbiology": 325,
+        "materials science": 281,
+        "pharmacology": 90,
+        "energy": 29,
+        "chemical engineering": 11
+      },
+      "works_24m": 7714,
+      "spinoffs_known": 16,
+      "gap_score": 29,
+      "top_works": [
+        {
+          "title": "nnInteractive: Redefining 3D Promptable Segmentation",
+          "year": 2025,
+          "cited_by": 155,
+          "openalex": "https://openalex.org/W4414578049",
+          "doi": "https://doi.org/10.48550/arxiv.2503.08373",
+          "subfield": "Computer Vision and Pattern Recognition"
+        },
+        {
+          "title": "Realization of a Laughlin State of Two Rapidly Rotating Fermions",
+          "year": 2024,
+          "cited_by": 80,
+          "openalex": "https://openalex.org/W4405424024",
+          "doi": "https://doi.org/10.1103/physrevlett.133.253401",
+          "subfield": "Atomic and Molecular Physics, and Optics"
+        },
+        {
+          "title": "How Reliable is Multilingual LLM-as-a-Judge?",
+          "year": 2025,
+          "cited_by": 78,
+          "openalex": "https://openalex.org/W4416034673",
+          "doi": "https://doi.org/10.18653/v1/2025.findings-emnlp.587",
+          "subfield": "Artificial Intelligence"
+        }
+      ],
+      "why_visit": "Heidelberg University produced 7,714 works in the last 24 months, strongest in physics (3,165), biochemistry/genetics/molecular biology (2,117) and computer science (883).\nGap: only 16 known spin-offs despite high output; paper \"nnInteractive: Redefining 3D Promptable Segmentation\" suggests commercialization potential in 3D segmentation tools.",
+      "spinoff_examples": [
+        "Little Life Support",
+        "eatappie",
+        "MYSCRIBE",
+        "MIDAIA",
+        "AQUAI"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.88, rate 2.07); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I223822909,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "lmu",
+      "name": "LMU Munich",
+      "institution": "LMU Munich",
+      "city": "Munich",
+      "fields": {
+        "physics": 2826,
+        "computer science": 2604,
+        "biochemistry, genetics, molecular biology": 2367,
+        "immunology and microbiology": 584,
+        "engineering": 581,
+        "materials science": 442,
+        "chemistry": 331,
+        "pharmacology": 105,
+        "energy": 71,
+        "chemical engineering": 42
+      },
+      "works_24m": 9953,
+      "spinoffs_known": 23,
+      "gap_score": 27,
+      "top_works": [
+        {
+          "title": "Explainable AI improves task performance in human–AI collaboration",
+          "year": 2024,
+          "cited_by": 202,
+          "openalex": "https://openalex.org/W4405853181",
+          "doi": "https://doi.org/10.1038/s41598-024-82501-9",
+          "subfield": "Artificial Intelligence"
+        },
+        {
+          "title": "DepthFM: Fast Generative Monocular Depth Estimation with Flow Matching",
+          "year": 2025,
+          "cited_by": 194,
+          "openalex": "https://openalex.org/W4409369458",
+          "doi": "https://doi.org/10.1609/aaai.v39i3.32330",
+          "subfield": "Computer Vision and Pattern Recognition"
+        },
+        {
+          "title": "OpenDriveVLA: Towards End-to-end Autonomous Driving with Large Vision Language Action Model",
+          "year": 2025,
+          "cited_by": 161,
+          "openalex": "https://openalex.org/W4416413108",
+          "doi": "https://doi.org/10.48550/arxiv.2503.23463",
+          "subfield": "Automotive Engineering"
+        }
+      ],
+      "why_visit": "9953 works in last 24 months; strongest fields are physics 2826, computer science 2604, biochemistry/genetics/molecular biology 2367.\nGap: 23 known spin-offs vs high research activity (gap score 27/100); paper hinting at a startup: OpenDriveVLA: Towards End-to-end Autonomous Driving with Large Vision Language Action Model.",
+      "spinoff_examples": [
+        "Melanie Schewtschenko Consulting",
+        "ReXanh",
+        "Klarvus",
+        "Jorge Sanchez Rosado",
+        "EMIR Consulting UG (haftungsbeschränkt)"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.91, rate 2.31); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I8204097,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "tum:physics-materials",
+      "name": "TUM physics and materials (quantum, semiconductors)",
+      "institution": "Technical University of Munich",
+      "city": "Munich",
+      "fields": {
+        "physics": 2285,
+        "materials science": 683
+      },
+      "works_24m": 2968,
+      "spinoffs_known": 6,
+      "gap_score": 26,
+      "top_works": [
+        {
+          "title": "Benchmarking autoregressive conditional diffusion models for turbulent flow simulation",
+          "year": 2026,
+          "cited_by": 114,
+          "openalex": "https://openalex.org/W7125608365",
+          "doi": "https://doi.org/10.1016/j.neunet.2026.108641",
+          "subfield": "Statistical and Nonlinear Physics"
+        },
+        {
+          "title": "Exhaustive Characterization of Quantum Many-Body Scars Using Commutant Algebras",
+          "year": 2024,
+          "cited_by": 106,
+          "openalex": "https://openalex.org/W4405801243",
+          "doi": "https://doi.org/10.1103/physrevx.14.041069",
+          "subfield": "Atomic and Molecular Physics, and Optics"
+        },
+        {
+          "title": "Hybrids, tetraquarks, pentaquarks, doubly heavy baryons, and quarkonia in Born-Oppenheimer effective theory",
+          "year": 2024,
+          "cited_by": 80,
+          "openalex": "https://openalex.org/W4404562562",
+          "doi": "https://doi.org/10.1103/physrevd.110.094040",
+          "subfield": "Nuclear and High Energy Physics"
+        }
+      ],
+      "why_visit": "TUM physics and materials has 2,968 works in the last 24 months, dominated by physics (2,285) and materials science (683), with strengths in quantum and semiconductor research.\nGap: only 6 known spin-offs despite high output (gap score 26/100); paper 'Benchmarking autoregressive conditional diffusion models for turbulent flow simulation' suggests startup opportunity in high-fidelity simulation tools.",
+      "spinoff_examples": [
+        "Peak Quantum",
+        "Linque",
+        "Serino",
+        "planqc",
+        "Quantum Diamonds"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.79, rate 2.02); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I62916508,from_publication_date:2024-11-20,primary_topic.field.id:31|25",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "tum:computer-science",
+      "name": "TUM computer science and AI",
+      "institution": "Technical University of Munich",
+      "city": "Munich",
+      "fields": {
+        "computer science": 5509
+      },
+      "works_24m": 5509,
+      "spinoffs_known": 17,
+      "gap_score": 21,
+      "top_works": [
+        {
+          "title": "SkyEyeGPT: Unifying remote sensing vision-language tasks via instruction tuning with large language model",
+          "year": 2025,
+          "cited_by": 331,
+          "openalex": "https://openalex.org/W4407152340",
+          "doi": "https://doi.org/10.1016/j.isprsjprs.2025.01.020",
+          "subfield": "Computer Vision and Pattern Recognition"
+        },
+        {
+          "title": "Explainable AI improves task performance in human–AI collaboration",
+          "year": 2024,
+          "cited_by": 202,
+          "openalex": "https://openalex.org/W4405853181",
+          "doi": "https://doi.org/10.1038/s41598-024-82501-9",
+          "subfield": "Artificial Intelligence"
+        },
+        {
+          "title": "DepthFM: Fast Generative Monocular Depth Estimation with Flow Matching",
+          "year": 2025,
+          "cited_by": 194,
+          "openalex": "https://openalex.org/W4409369458",
+          "doi": "https://doi.org/10.1609/aaai.v39i3.32330",
+          "subfield": "Computer Vision and Pattern Recognition"
+        }
+      ],
+      "why_visit": "5509 works in the last 24 months; strongest field: computer science (5509 works) showing major research output in CS and AI.\nGap score 21/100 with 17 known spin-offs; paper 'SkyEyeGPT: Unifying remote sensing vision-language tasks via instruction tuning with large language model' suggests remote-sensing LLM product potential.",
+      "spinoff_examples": [
+        "The Robot Learning Company",
+        "foresAIght.ai",
+        "DeepSynergy.AI",
+        "EASE",
+        "Navel Robotics"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.85, rate 3.09); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I62916508,from_publication_date:2024-11-20,primary_topic.field.id:17",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "tu-darmstadt",
+      "name": "TU Darmstadt",
+      "institution": "TU Darmstadt",
+      "city": "Darmstadt",
+      "fields": {
+        "engineering": 2155,
+        "computer science": 1673,
+        "physics": 903,
+        "materials science": 620,
+        "energy": 260,
+        "chemistry": 207,
+        "biochemistry, genetics, molecular biology": 203,
+        "chemical engineering": 108,
+        "immunology and microbiology": 43,
+        "pharmacology": 8
+      },
+      "works_24m": 6180,
+      "spinoffs_known": 20,
+      "gap_score": 20,
+      "top_works": [
+        {
+          "title": "Multi-Objective Loss Balancing for Physics-Informed Deep Learning",
+          "year": 2025,
+          "cited_by": 408,
+          "openalex": "https://openalex.org/W4408489371",
+          "doi": "https://doi.org/10.1016/j.cma.2025.117914",
+          "subfield": "Statistical and Nonlinear Physics"
+        },
+        {
+          "title": "Retrieval-Augmented Generation (RAG)",
+          "year": 2025,
+          "cited_by": 175,
+          "openalex": "https://openalex.org/W4410929991",
+          "doi": "https://doi.org/10.1007/s12599-025-00945-3",
+          "subfield": "Information Systems"
+        },
+        {
+          "title": "Culturally Aware and Adapted NLP: A Taxonomy and a Survey of the State of the Art",
+          "year": 2025,
+          "cited_by": 158,
+          "openalex": "https://openalex.org/W4412073924",
+          "doi": "https://doi.org/10.1162/tacl_a_00760",
+          "subfield": "Artificial Intelligence"
+        }
+      ],
+      "why_visit": "TU Darmstadt produced 6180 works in the last 24 months; strongest fields are engineering 2155, computer science 1673, and physics 903.\nGap: only 20 known spin-offs despite high output; recent paper “Multi-Objective Loss Balancing for Physics-Informed Deep Learning” suggests opportunities for ML/physics-informed tooling startups.",
+      "spinoff_examples": [
+        "Fenexity",
+        "Zenules",
+        "AutonomIQ",
+        "CeraSleeve®",
+        "dianovi"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.86, rate 3.24); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I31512782,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "saarland",
+      "name": "Saarland University",
+      "institution": "Saarland University",
+      "city": "Saarbrücken",
+      "fields": {
+        "computer science": 1014,
+        "biochemistry, genetics, molecular biology": 489,
+        "engineering": 446,
+        "materials science": 273,
+        "physics": 183,
+        "immunology and microbiology": 169,
+        "chemistry": 163,
+        "pharmacology": 101,
+        "chemical engineering": 20,
+        "energy": 18
+      },
+      "works_24m": 2876,
+      "spinoffs_known": 9,
+      "gap_score": 19,
+      "top_works": [
+        {
+          "title": "LatentSplat: Autoencoding Variational Gaussians for Fast Generalizable 3D Reconstruction",
+          "year": 2024,
+          "cited_by": 149,
+          "openalex": "https://openalex.org/W4404545830",
+          "doi": "https://doi.org/10.1007/978-3-031-73021-4_27",
+          "subfield": "Computer Graphics and Computer-Aided Design"
+        },
+        {
+          "title": "The PLSDB 2025 update: enhanced annotations and improved functionality for comprehensive plasmid research",
+          "year": 2024,
+          "cited_by": 100,
+          "openalex": "https://openalex.org/W4404531745",
+          "doi": "https://doi.org/10.1093/nar/gkae1095",
+          "subfield": "Genetics"
+        },
+        {
+          "title": "Interpretable and explainable machine learning methods for predictive process monitoring: a systematic literature review",
+          "year": 2025,
+          "cited_by": 63,
+          "openalex": "https://openalex.org/W4415152031",
+          "doi": "https://doi.org/10.1007/s10462-025-11399-0",
+          "subfield": "Artificial Intelligence"
+        }
+      ],
+      "why_visit": "2876 works in last 24 months, strongest in computer science (1014), biochemistry/genetics/molecular biology (489), engineering (446) and materials science (273).\nGap: only 9 known spin-offs despite high research; paper \"LatentSplat: Autoencoding Variational Gaussians for Fast Generalizable 3D Reconstruction\" hints at commercializable 3D reconstruction/graphics tech.",
+      "spinoff_examples": [
+        "Ascle",
+        "CarboSlag",
+        "ChromaMOS",
+        "Fuelbite",
+        "Griffi"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.78, rate 3.13); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I91712215,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "max-planck",
+      "name": "Max Planck Society",
+      "institution": "Max Planck Society",
+      "city": "Munich",
+      "fields": {
+        "physics": 12264,
+        "biochemistry, genetics, molecular biology": 4300,
+        "computer science": 2794,
+        "materials science": 2054,
+        "engineering": 1691,
+        "chemistry": 1163,
+        "energy": 581,
+        "immunology and microbiology": 350,
+        "chemical engineering": 237,
+        "pharmacology": 71
+      },
+      "works_24m": 25505,
+      "spinoffs_known": 115,
+      "gap_score": 18,
+      "top_works": [
+        {
+          "title": "Software Update: The ORCA Program System—Version 6.0",
+          "year": 2025,
+          "cited_by": 1843,
+          "openalex": "https://openalex.org/W4409901056",
+          "doi": "https://doi.org/10.1002/wcms.70019",
+          "subfield": "Atomic and Molecular Physics, and Optics"
+        },
+        {
+          "title": "DepthSplat: Connecting Gaussian Splatting and Depth",
+          "year": 2025,
+          "cited_by": 409,
+          "openalex": "https://openalex.org/W4413157519",
+          "doi": "https://doi.org/10.1109/cvpr52734.2025.01534",
+          "subfield": "Computer Graphics and Computer-Aided Design"
+        },
+        {
+          "title": "Helixer: ab initio prediction of primary eukaryotic gene models combining deep learning and a hidden Markov model",
+          "year": 2025,
+          "cited_by": 234,
+          "openalex": "https://openalex.org/W4416571000",
+          "doi": "https://doi.org/10.1038/s41592-025-02939-1",
+          "subfield": "Molecular Biology"
+        }
+      ],
+      "why_visit": "Max Planck Society produced 25,505 works in last 24 months, strongest in physics (12,264), biochemistry/genetics/molecular biology (4,300), computer science (2,794), materials science (2,054).\nGap: 115 known spin-offs despite huge output (gap score 18/100); 'Helixer: ab initio prediction of primary eukaryotic gene models combining deep learning and a hidden Markov model' hints at a bioinformatics startup opportunity.",
+      "spinoff_examples": [
+        "Acus Laboratories GmbH",
+        "Alacris Theranostics GmbH",
+        "Alnylam Pharmaceuticals Inc.",
+        "ARTEMIS Pharmaceuticals GmbH",
+        "ATEM SD GmbH"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 1, rate 4.51); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I149899117,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    },
+    {
+      "lab_key": "fraunhofer",
+      "name": "Fraunhofer-Gesellschaft",
+      "institution": "Fraunhofer-Gesellschaft",
+      "city": "Munich",
+      "fields": {
+        "engineering": 5507,
+        "computer science": 3124,
+        "materials science": 979,
+        "physics": 746,
+        "energy": 598,
+        "biochemistry, genetics, molecular biology": 455,
+        "immunology and microbiology": 244,
+        "chemistry": 203,
+        "pharmacology": 126,
+        "chemical engineering": 108
+      },
+      "works_24m": 12090,
+      "spinoffs_known": 51,
+      "gap_score": 18,
+      "top_works": [
+        {
+          "title": "Compact 3D Scene Representation via Self-Organizing Gaussian Grids",
+          "year": 2024,
+          "cited_by": 237,
+          "openalex": "https://openalex.org/W4404725206",
+          "doi": "https://doi.org/10.1007/978-3-031-73013-9_2",
+          "subfield": "Computer Graphics and Computer-Aided Design"
+        },
+        {
+          "title": "Explainable AI for Forensic Analysis: A Comparative Study of SHAP and LIME in Intrusion Detection Models",
+          "year": 2025,
+          "cited_by": 171,
+          "openalex": "https://openalex.org/W4411878412",
+          "doi": "https://doi.org/10.3390/app15137329",
+          "subfield": "Artificial Intelligence"
+        },
+        {
+          "title": "3DGS.zip: A survey on 3D Gaussian Splatting Compression Methods",
+          "year": 2025,
+          "cited_by": 130,
+          "openalex": "https://openalex.org/W4409586866",
+          "doi": "https://doi.org/10.1111/cgf.70078",
+          "subfield": "Computer Graphics and Computer-Aided Design"
+        }
+      ],
+      "why_visit": "12,090 works in last 24 months, strongest in engineering (5,507), computer science (3,124), materials science (979), physics (746) and energy (598).\nOnly 51 known spin-offs despite high output (gap score 18/100); paper \"Compact 3D Scene Representation via Self-Organizing Gaussian Grids\" hints at 3D scene/graphics commercialization.",
+      "spinoff_examples": [
+        "Solar Info Center GmbH",
+        "Sunbloom Proteins GmbH",
+        "EDENenergy GmbH",
+        "Ampeers Energy GmbH",
+        "NexWafe GmbH"
+      ],
+      "updated_at": "2026-11-20T18:54:22.390Z",
+      "gap_formula": "gap_score = round(100 * R / (1 + rate)); R = log10(1+works_24m) / log10(1+max works_24m); rate = spinoffs_known per 1,000 works_24m (R 0.93, rate 4.22); works: https://api.openalex.org/works?filter=authorships.institutions.lineage:I4923324,from_publication_date:2024-11-20,primary_topic.field.id:17|22|25|16|15|21|13|30|24|31",
+      "note": "spinoffs_known counts only the startups in our own traces (university lists, TUM Venture Labs, pinboard, accelerator pages, leads); it grows as the backlog is drained"
+    }
+  ]
+}

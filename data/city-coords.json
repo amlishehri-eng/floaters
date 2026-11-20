@@ -1,0 +1,29 @@
+{
+  "note": "City centres (lon, lat) for the home radar. Projection in design/reference/home.dc.html: x = (lon - 5.6) * 63, y = (55.2 - lat) * 100 in a 600 x 800 box. Covers every city of the call_now leads (20 Nov 2026) plus the big German university and startup cities. Keys are English names; aliases map local spellings.",
+  "cities": {
+    "Aachen": [6.084, 50.776], "Augsburg": [10.898, 48.371], "Bamberg": [10.902, 49.898], "Bayreuth": [11.578, 49.948],
+    "Berlin": [13.405, 52.52], "Bielefeld": [8.532, 52.03], "Bochum": [7.216, 51.481], "Bonn": [7.098, 50.737],
+    "Braunschweig": [10.521, 52.269], "Bremen": [8.802, 53.079], "Bruchsal": [8.598, 49.124], "Chemnitz": [12.921, 50.828],
+    "Cologne": [6.96, 50.938], "Darmstadt": [8.651, 49.873], "Dortmund": [7.468, 51.514], "Dresden": [13.738, 51.05],
+    "Duisburg": [6.762, 51.434], "Düsseldorf": [6.774, 51.228], "Erlangen": [11.004, 49.59], "Essen": [7.012, 51.456],
+    "Frankfurt": [8.682, 50.11], "Freiburg": [7.842, 47.999], "Garching": [11.651, 48.249], "Gießen": [8.678, 50.584],
+    "Göttingen": [9.916, 51.541], "Greifswald": [13.388, 54.096], "Halle": [11.97, 51.483], "Hamburg": [9.994, 53.551],
+    "Hannover": [9.732, 52.376], "Heidelberg": [8.672, 49.399], "Ilmenau": [10.919, 50.684], "Jena": [11.589, 50.927],
+    "Kaiserslautern": [7.769, 49.444], "Karlsruhe": [8.404, 49.007], "Kassel": [9.479, 51.312], "Kiel": [10.123, 54.323],
+    "Konstanz": [9.175, 47.66], "Leipzig": [12.375, 51.34], "Lübeck": [10.686, 53.866], "Magdeburg": [11.628, 52.12],
+    "Mainz": [8.247, 49.993], "Mannheim": [8.466, 49.488], "Marburg": [8.771, 50.81], "Martinsried": [11.45, 48.11],
+    "Marzling": [11.797, 48.41], "Munich": [11.575, 48.137], "Münster": [7.626, 51.961], "Nuremberg": [11.077, 49.452],
+    "Oldenburg": [8.214, 53.144], "Osnabrück": [8.047, 52.279], "Paderborn": [8.754, 51.719], "Passau": [13.432, 48.567],
+    "Planegg": [11.425, 48.106], "Potsdam": [13.064, 52.391], "Regensburg": [12.102, 49.013], "Rostock": [12.099, 54.092],
+    "Saarbrücken": [6.997, 49.24], "Schwerin": [11.401, 53.635], "Siegen": [8.024, 50.875], "Stuttgart": [9.182, 48.775],
+    "Tübingen": [9.057, 48.521], "Ulm": [9.987, 48.401], "Unterföhring": [11.644, 48.193], "Wuppertal": [7.15, 51.256],
+    "Würzburg": [9.953, 49.791]
+  },
+  "aliases": {
+    "München": "Munich", "Muenchen": "Munich", "Köln": "Cologne", "Koeln": "Cologne", "Nürnberg": "Nuremberg", "Nuernberg": "Nuremberg",
+    "Frankfurt am Main": "Frankfurt", "Frankfurt a. M.": "Frankfurt", "Hanover": "Hannover", "Duesseldorf": "Düsseldorf",
+    "Wuerzburg": "Würzburg", "Tuebingen": "Tübingen", "Freiburg im Breisgau": "Freiburg", "Goettingen": "Göttingen",
+    "Luebeck": "Lübeck", "Muenster": "Münster", "Saarbruecken": "Saarbrücken", "Halle (Saale)": "Halle", "Giessen": "Gießen",
+    "Garching bei München": "Garching", "Planegg-Martinsried": "Planegg"
+  }
+}

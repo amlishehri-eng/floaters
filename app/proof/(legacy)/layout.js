@@ -1,10 +1,13 @@
+// Geist ships the font files locally; only these older pages use it (the new pages use Mona Sans).
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import Link from "next/link";
 import { Radar } from "lucide-react";
 import "./candidates.css";
 
 export default function AnalyticsLayout({ children }) {
   return (
-    <div className="candidate-site">
+    <div className={`candidate-site ${GeistSans.variable} ${GeistMono.variable} font-sans`}>
       <header className="candidate-header">
         <div className="candidate-shell candidate-nav">
           <Link href="/" className="candidate-brand">

@@ -1,0 +1,77 @@
+import SiteNav from "@/components/ff/site-nav";
+import { getFunnel } from "@/lib/n8n";
+import { dataLine, dayTime } from "@/lib/screen/format";
+import { funnelPage } from "@/lib/screen/funnel";
+import "./funnel.css";
+
+// Funnel (design/reference/funnel.dc.html): counts and costs from flow 44, the snapshot when n8n does not answer.
+export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Funnel | Founders First",
+  description: "How a few thousand faint signals become a short call list, and what each step costs.",
+};
+
+export default async function FunnelPage() {
+  const funnel = await getFunnel();
+  const v = funnelPage(funnel, { mocked: funnel.mocked });
+  const when = dayTime(funnel.as_of);
+  return (
+    <div className="ff ff--dark">
+      <SiteNav current="funnel" theme="dark" />
+      <main className="fu-main">
+        <section className="fu-hero">
+          <h1>{v.title[0]}<br /><span>{v.title[1]}</span></h1>
+          <p>
+            Every stage costs more than the one before, so each one only sees what the cheaper stage let through.
+            {when ? ` ${funnel.mocked ? "Snapshot of the run of" : "Run of"} ${when}.` : ""}
+          </p>
+          {funnel.mocked && <p className="ff-source">{dataLine({ asOf: funnel.as_of, mocked: true, error: funnel.error, what: "Funnel" })}</p>}
+        </section>
+
+        <section aria-label="Stages" className="fu-stages">
+          {v.stages.map((s) => (
+            <div key={s.label} className="fu-stage">
+              <span className="fu-stage__label">{s.label}</span>
+              <span className="fu-stage__beam">
+                <span style={{ width: `${s.pct}%`, background: s.color, boxShadow: s.glow, color: s.ink }}>{s.n}</span>
+              </span>
+              <span className="fu-stage__cost">{s.cost}</span>
+            </div>
+          ))}
+        </section>
+
+        <section className="fu-cols">
+          <div className="fu-col">
+            <h2>Cut by code, for free</h2>
+            {v.codeCuts.map((c) => (
+              <div key={c.label} className="fu-line"><span>{c.label}</span><span className="fu-n">{c.n}</span></div>
+            ))}
+            {v.codeCuts.length === 0 && <p className="fu-note">Not known for this run.</p>}
+            <p className="fu-note">{v.parkedNote}</p>
+          </div>
+          <div className="fu-col">
+            <h2>{v.teamsLabel}</h2>
+            {v.verdicts.map((x) => (
+              <div key={x.key} className="fu-line">
+                <span className="fu-verdict"><span style={{ background: x.color }} aria-hidden="true" />{x.label}</span>
+                <span className="fu-n">{x.n}</span>
+              </div>
+            ))}
+            {v.verdicts.length === 0 && <p className="fu-note">Not known for this run.</p>}
+            <p className="fu-note">{when ? `Counted from the Leads table at ${when}.` : "Counted from the Leads table."}</p>
+          </div>
+          <div className="fu-col fu-col--costs">
+            <h2>What it costs</h2>
+            {v.costs.map((c) => (
+              <div key={c.label} className="fu-cost">
+                <span style={{ color: c.color }}>{c.n}</span>
+                <span>{c.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
