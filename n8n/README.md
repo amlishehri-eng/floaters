@@ -7,7 +7,7 @@ and so a flow can be rebuilt if someone breaks it. **n8n itself is the live copy
 ## Workflows
 | # | Name | n8n id | Owner | What it does |
 |---|---|---|---|---|
-| 00 | Run all sources | `YLjdNTgC73QKTWKg` | Person 1 | Runs 01, 02, 03, 05, 06, 07, 08, 30, 31, then 32 (duplicates), 09 (websites), then 10. A full run takes ~27 min (first scan 18 min 49 s for 01–09; 30 ~1.5 min; 31 ~7 min); later runs are faster because each source skips what it already has. A source with nothing new or an error does not stop the rest. Schedule every 6 h (off until published) + demo webhook `GET /webhook/run-all` |
+| 00 | Run all sources | `YLjdNTgC73QKTWKg` | Person 1 | Runs 01, 02, 03, 05, 06, 07, 08, 30, 31, then 32 (duplicates), 09 (websites), then 10. A first full run takes ~27 min (scan 18 min 49 s for 01–09; 30 ~1.5 min; 31 ~5–7 min); repeat runs ~14 min, because 07 and 31 skip unchanged pages (50 s / 56 s instead of ~5.5 min each) and every source skips what it already has. A source with nothing new or an error does not stop the rest. Schedule every 6 h (off until published) + demo webhook `GET /webhook/run-all` |
 | 01 | Luma Germany -> Traces | `dkBBn1k8pGmdUqfv` | Person 1 | luma.com pages for **Munich, Berlin, Hamburg, Frankfurt** (other cities have none) → startup events (keyword filter) → each new event page. source `luma` |
 | 02 | LMU pinboard -> Traces | `6e9qbOQ2CzcjxVz3` | Person 1 | lmu-pinboard.munich-startup.de: co-founder search, jobs, cooperations, other → each new post. source `campus` |
 | 03 | TUM Venture Labs -> Traces | `rBvaaF23ZcfY1Hcd` | Person 1 | tum-venture-labs.de sitemap → every /teams/ page → team, lab, founders. source `campus` |
@@ -55,7 +55,7 @@ What screening should know about the rows:
 ## Rules
 - Public pages only. Never Luma's internal API (api.lu.ma).
 - Only public, professional facts about people. Phone numbers and emails are removed in the flows.
-- Keys only in n8n Credentials. OpenAI in flow 10 uses n8n's built-in credits ("Gateway credits").
+- Keys only in n8n Credentials. n8n's built-in AI credits ("Gateway credits") ran out on 20 Nov; flows 07 and 31 use our own key (credential "OpenAI Team Key"). 09 still uses Brave via gateway credits.
 - Every fetch is gentle: one page every 2 s.
 
 ## Traces so far (20 Nov, 14:50)
