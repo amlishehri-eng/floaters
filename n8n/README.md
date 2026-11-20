@@ -7,13 +7,16 @@ and so a flow can be rebuilt if someone breaks it. **n8n itself is the live copy
 ## Workflows
 | # | Name | n8n id | Owner | What it does |
 |---|---|---|---|---|
-| 00 | Run all sources | `YLjdNTgC73QKTWKg` | Person 1 | Runs 01, 02, 03, 05, 06 in turn, then 10. A source with nothing new or an error does not stop the rest. Schedule every 6 h (off until published) + demo webhook `GET /webhook/run-all` |
-| 01 | Luma Munich -> Traces | `dkBBn1k8pGmdUqfv` | Person 1 | luma.com/munich public page → startup events (keyword filter) → each event page. source `luma` |
+| 00 | Run all sources | `YLjdNTgC73QKTWKg` | Person 1 | Runs 01, 02, 03, 05, 06, 07, 08, then 09 (websites), then 10. A source with nothing new or an error does not stop the rest. Schedule every 6 h (off until published) + demo webhook `GET /webhook/run-all` |
+| 01 | Luma Germany -> Traces | `dkBBn1k8pGmdUqfv` | Person 1 | luma.com pages for **Munich, Berlin, Hamburg, Frankfurt** (other cities have none) → startup events (keyword filter) → each new event page. source `luma` |
 | 02 | LMU pinboard -> Traces | `6e9qbOQ2CzcjxVz3` | Person 1 | lmu-pinboard.munich-startup.de: co-founder search, jobs, cooperations, other → each new post. source `campus` |
-| 03 | TUM Venture Labs -> Traces | `rBvaaF23ZcfY1Hcd` | Person 1 | tum-venture-labs.de sitemap → every /teams/ page → team, lab, founders. 84 teams. source `campus` |
-| 04 | Eventbrite Munich -> Traces | `kvSBgO4NLMRVswB0` | Person 1 | Built but **not in Run all**: Eventbrite shows n8n Cloud a "human verification" page. We don't get around that. Works from a home connection (17 startup events in a local test). **To do later:** run it from Amli's laptop and post into Traces via a webhook (see STATUS.md) |
-| 05 | GitHub Munich -> Traces | `Fg6ZU1fqi7JnRNu2` | Person 1 | GitHub API (no token): new organisations located in Munich/München (last 120 days) → profile, newest repos, public members, Hugging Face models/datasets. source `github` |
-| 06 | Pitch podcasts -> Traces | `J0YCRvXE1fVlNsXT` | Person 1 | PITCH & PEOPLE + Lenas Start-ups RSS → every episode of the last 2 years from its show notes; each run, the 3 newest episodes without a transcript are transcribed by **ElevenLabs** (speakers told apart). source `recording`. Uses the n8n Header Auth credential (header `xi-api-key`), set up 20 Nov |
+| 03 | TUM Venture Labs -> Traces | `rBvaaF23ZcfY1Hcd` | Person 1 | tum-venture-labs.de sitemap → every /teams/ page → team, lab, founders. source `campus` |
+| 04 | Eventbrite Munich -> Traces | `kvSBgO4NLMRVswB0` | Person 1 | Built but **not in Run all**: Eventbrite shows n8n Cloud a "human verification" page. We don't get around that. **To do later:** run it from Amli's laptop (see STATUS.md) |
+| 05 | GitHub Germany -> Traces | `Fg6ZU1fqi7JnRNu2` | Person 1 | GitHub API (no token): new organisations (last 120 days) in **16 German places**, searches 7 s apart → profile, newest repos, public members, Hugging Face. Max 15 orgs per run. `website` from the org profile. source `github` |
+| 06 | Pitch podcasts -> Traces | `J0YCRvXE1fVlNsXT` | Person 1 | PITCH & PEOPLE + Lenas Start-ups RSS → every episode of the last 2 years from its show notes; each run, the 3 newest episodes without a transcript are transcribed by **ElevenLabs** (speakers told apart). source `recording` |
+| 07 | University startups Germany -> Traces | `938DWxWRYzIEvNNh` | Person 1 | 15 public university/incubator startup lists (TU Berlin, HU Berlin, Max Planck, Fraunhofer, KIT, TU Darmstadt, Tübingen, Cologne, Heidelberg, Hamburg, Leipzig SpinLab, Stuttgart, Hannover, Oldenburg, Kaiserslautern) → OpenAI (gateway credits) reads each page → one trace per startup with founders and `website`. trace_id `uni:<host>:<slug>`, source `campus`. ~10 min per run |
+| 08 | Spin-off news (idw) -> Traces | `6ZlZePphuAyIfo90` | Person 1 | idw-online.de newest 8 listing pages (~160 university press releases; its robots.txt forbids search/RSS, so not used) → startup/spin-off headlines (~1–3 a day) → each release. trace_id `idw:<id>`, source `campus` |
+| 09 | Find websites | `3omXcLPOp5Y7i2pE` | Person 1 | Traces with an org_name and no `website` → Brave search (gateway credits, max 15 per run) → official site checked on its home page → writes **only** `website` (or `none`). Never touches status |
 | 10–19 | Make leads, days ahead, … | `jLWKNwEC08SHfAfP`, … | Person 2 (Nils) | Screening and eligibility: Traces → Leads. Their code lives in n8n |
 | 20 | Leads for the screen | `qd840KXqIoUEnbxl` | Person 3 (set up by Amli) | Read-only link `GET /webhook/htgf-leads`: every lead + date, source, link and title of the traces behind it. The app's `/proof/live` and `/api/leads` read it (`lib/n8n.js` → `getLeads`). **Works only while published** |
 
@@ -36,13 +39,14 @@ What screening should know about the rows:
 ## Tables (n8n data tables in the HTGF project)
 | Table | id | Written by | Read by |
 |---|---|---|---|
-| Traces | `crxSUMWXcPfMrXt4` | source flows 01–06 | screening (10–19) |
+| Traces | `crxSUMWXcPfMrXt4` | source flows 01–09 | screening (10–19) |
 | Leads | `CmDqydXaXEK5mg6F` | screening (10–19) | the screen |
 
 **Differences from the contract in AGENTS.md** (n8n data tables reserve the column name `id`):
 - Traces: the trace id lives in `trace_id` (e.g. `tumvl:planqc`, `github:<login>`, `podcast:<guid>`).
 - Leads: the lead id lives in `lead_key` (no `lead:` prefix).
-- Traces now has the `extraction` column; pinboard rows use `source = campus` (old rows relabelled).
+- Traces has the `extraction` column and a `website` column (the company's own site, or `none` when 09 could not find one); pinboard rows use `source = campus`.
+- 20 Nov ~16:00: Traces was emptied on purpose and everything rescanned Germany-wide (Amli's decision).
 
 ## Rules
 - Public pages only. Never Luma's internal API (api.lu.ma).

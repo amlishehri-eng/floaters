@@ -38,12 +38,13 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
-- Amli: sources live in Run all (01 Luma, 02 LMU pinboard, 03 TUM Venture Labs, 05 GitHub, 06 podcasts with ElevenLabs transcripts); next: reliability, then Eventbrite from the laptop.
+- Amli: Germany-wide scanning: full rescan running (Traces emptied ~16:00, then Run all with Nils's step switched off for this one test).
 - Meto: connect the proof dashboard at `/proof` to the real Leads table.
 - Nils: task 3 calibration of "Read trace with OpenAI": 20 traces out for hand-labelling; then Amli's gap list (duplicates like Malao) and the ~180-trace backlog
 - Nils: task 5 n8n "12 Registry check" (`gYc6PMjzMDMYAwjc`, called at the end of 11, vc_backable only) built: handelsregister.ai search → fetch → founder's other companies → Leads `registered`, `legal_form`, `registered_at`, `register_id`, `registry_signals`, `registry_checked_at`; fit/team adjusted in code, 10 Make leads v2.4 keeps the adjustments. Waiting for the n8n Header Auth credential "handelsregister.ai" (Nils adds the key), then test on Klarvus, KyNext, ReXanh
 
 ## Done
+- Amli: Germany-wide sources: Luma Munich/Berlin/Hamburg/Frankfurt, GitHub in 16 German places, new 07 university startup lists (15 universities/incubators, OpenAI reads each page), 08 university spin-off news (idw), 09 find websites (Brave, writes only `website`). Traces got a `website` column. Ids and details in `n8n/README.md`.
 - Meto: built the local simulated search at `/proof/search` with a four-step funnel, exclusion reasons, and candidate details. Ready for review before pushing.
 - Meto: refreshed the homepage and expanded the German portfolio gallery to ten companies, with illustrative fit scores for the frontend prototype.
 - Amli: real leads on the screen: n8n flow "20 Leads for the screen" (read-only link) → `lib/n8n.js` `getLeads()` → new page `/proof/live` (uses Meto's ProofDashboard unchanged) and `/api/leads`. Falls back to the demo leads when n8n is unreachable. Tested with real data: 34 traces → 31 teams → 25 VC potential. The flow must be **published** in n8n for the live link to work.
@@ -66,6 +67,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Amli: Eventbrite from the laptop. Eventbrite blocks n8n Cloud, but its pages load from a home connection. A small script on Amli's Mac reads the Eventbrite Munich startup pages gently (one every 2 s, same code as flow 04) and sends new events into Traces through an n8n webhook. Runs only while the laptop is on: run it once before the demo. Local test found 17 events (TUM IDEAward, Migrant Accelerator demo day, Female Founder Society kick-off).
 
 ## Blocked / needs help
+- Nils (from Amli, 20 Nov ~16:00): Traces was **emptied and rescanned** Germany-wide (Amli's call). Same trace_ids come back, all as `new`, plus many more (TUM Berlin, Max Planck, SpinLab, …). Your Leads table was not touched. Expect a large backlog: 10 per run won't keep up.
 - Meto (from Amli): `/proof/live` shows real leads in your ProofDashboard, but the dashboard still says "Fictional demo data" (badge, line 218) and "FICTIONAL DEMO DATA" in the memo (line 84). Could it take a prop like `demo={false}`? Also: your "worth a call" rule is fit ≥ 80, team ≥ 80, 2+ sources; the brain's is fit ≥ 70, team ≥ 60. Pick one with Nils (today 0 real leads pass yours).
 - Nils (from Amli): the live leads show duplicates the name match misses, e.g. "Malao GmbH" and "Malao / Twinkle" (point 1 of the gap list).
 - Nils (from Amli, 20 Nov): what n8n screening (10 + 11) is missing compared with the coded brain (`lib/ai/brain`) and `engine/`. Most important first:
