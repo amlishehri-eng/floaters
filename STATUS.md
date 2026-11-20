@@ -74,6 +74,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Hackathon starter top-up: `/test` integration panel, `scripts/sync.sh` + session hooks, `reviewer` agent, `openai` installed, SPEC wow/jury sections (main)
 
 ## To do later
+- Everyone: one full end-to-end test ("00 Run all" → Nils's screening → Leads → `/proof/live`) once Nils's step is on the "OpenAI Team Key" and his calibration is done. Scanning alone is already tested (~1,240 traces, repeat run ~14 min). Whoever finishes last says go; Amli starts the run.
 - Amli + Meto: when Meto's frontend is done, publish n8n flow "20 Leads for the screen" so `/proof/live` shows the real leads instead of the demo ones (one click in n8n, Amli decides).
 - Amli: Eventbrite from the laptop. Eventbrite blocks n8n Cloud, but its pages load from a home connection. A small script on Amli's Mac reads the Eventbrite Munich startup pages gently (one every 2 s, same code as flow 04) and sends new events into Traces through an n8n webhook. Runs only while the laptop is on: run it once before the demo. Local test found 17 events (TUM IDEAward, Migrant Accelerator demo day, Female Founder Society kick-off).
 
