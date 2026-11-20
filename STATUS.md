@@ -4,7 +4,7 @@ Update this file whenever you start, finish or get stuck on something. Keep entr
 
 ## Where we work (read first, keep current)
 - **Code**: GitHub `amlishehri-eng/floaters`, branch `main`. Everyone pushes to main; the hooks pull before and push after every Claude turn.
-- **Local app**: `npm run dev` → http://localhost:4000 (home `/`, candidate gallery `/proof`, sourcing demo `/proof/demo`, test panel `/test`).
+- **Local app**: `npm run dev` → http://localhost:4000 (home `/`, candidate gallery `/proof`, sourcing demo `/proof/demo`, **real leads `/proof/live`**, test panel `/test`).
 - **n8n**: floaters.app.n8n.cloud → project **HTGF** (shared; nothing in anyone's Personal project). The Traces and Leads tables live there. Workflow and table ids: `n8n/README.md`.
 - **Pipeline**: scraping (Amli, n8n flows 00–09) → **Traces** → screening and eligibility (Nils, n8n flows 10–19) → **Leads** → screen and pitch (Meto, `/` and `/proof` on :4000).
 - **Plans**: team plan https://claude.ai/artifact/Fn8ks5JuzbgW7tM85s7hMb · Person 1 sources plan https://claude.ai/artifact/2r75xemMjuU3K5xVvZaUMQ
@@ -43,6 +43,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Nils: next: calibration of "Read trace with OpenAI" on 20 hand-labelled traces (task 3)
 
 ## Done
+- Amli: real leads on the screen: n8n flow "20 Leads for the screen" (read-only link) → `lib/n8n.js` `getLeads()` → new page `/proof/live` (uses Meto's ProofDashboard unchanged) and `/api/leads`. Falls back to the demo leads when n8n is unreachable. Tested with real data: 34 traces → 31 teams → 25 VC potential. The flow must be **published** in n8n for the live link to work.
 - Amli: podcast transcripts work (ElevenLabs, speakers told apart): each run transcribes the 3 newest episodes without one; the trace goes back to `new` with the transcript. Luma flow now skips events already in Traces, so their status is no longer reset (Nils's note).
 - Meto: added six sourced portfolio example profiles and a candidate grid at `/proof`, with the fictional sourcing workspace at `/proof/demo`.
 - Amli: source flows 03 TUM Venture Labs (84 teams with founders), 05 GitHub Munich (new orgs + Hugging Face), 06 pitch podcasts (65 episodes), 04 Eventbrite built but blocked by Eventbrite for n8n Cloud. Traces: `extraction` column added, pinboard source = `campus`. Run all keeps going when a source has nothing new.
@@ -61,6 +62,8 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Amli: Eventbrite from the laptop. Eventbrite blocks n8n Cloud, but its pages load from a home connection. A small script on Amli's Mac reads the Eventbrite Munich startup pages gently (one every 2 s, same code as flow 04) and sends new events into Traces through an n8n webhook. Runs only while the laptop is on: run it once before the demo. Local test found 17 events (TUM IDEAward, Migrant Accelerator demo day, Female Founder Society kick-off).
 
 ## Blocked / needs help
+- Meto (from Amli): `/proof/live` shows real leads in your ProofDashboard, but the dashboard still says "Fictional demo data" (badge, line 218) and "FICTIONAL DEMO DATA" in the memo (line 84). Could it take a prop like `demo={false}`? Also: your "worth a call" rule is fit ≥ 80, team ≥ 80, 2+ sources; the brain's is fit ≥ 70, team ≥ 60. Pick one with Nils (today 0 real leads pass yours).
+- Nils (from Amli): the live leads show duplicates the name match misses, e.g. "Malao GmbH" and "Malao / Twinkle" (point 1 of the gap list).
 - Nils (from Amli, 20 Nov): what n8n screening (10 + 11) is missing compared with the coded brain (`lib/ai/brain`) and `engine/`. Most important first:
   1. Link by person, not only by exact project name (same GitHub handle = certain; same name + same university/city = likely; close names checked by the model). Convergence is our pitch.
   2. Several projects per trace (a demo day or podcast can name five teams; n8n keeps one).

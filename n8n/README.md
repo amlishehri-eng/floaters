@@ -15,6 +15,7 @@ and so a flow can be rebuilt if someone breaks it. **n8n itself is the live copy
 | 05 | GitHub Munich -> Traces | `Fg6ZU1fqi7JnRNu2` | Person 1 | GitHub API (no token): new organisations located in Munich/München (last 120 days) → profile, newest repos, public members, Hugging Face models/datasets. source `github` |
 | 06 | Pitch podcasts -> Traces | `J0YCRvXE1fVlNsXT` | Person 1 | PITCH & PEOPLE + Lenas Start-ups RSS → every episode of the last 2 years from its show notes; each run, the 3 newest episodes without a transcript are transcribed by **ElevenLabs** (speakers told apart). source `recording`. Uses the n8n Header Auth credential (header `xi-api-key`), set up 20 Nov |
 | 10–19 | Make leads, days ahead, … | `jLWKNwEC08SHfAfP`, … | Person 2 (Nils) | Screening and eligibility: Traces → Leads. Their code lives in n8n |
+| 20 | Leads for the screen | `qd840KXqIoUEnbxl` | Person 3 (set up by Amli) | Read-only link `GET /webhook/htgf-leads`: every lead + date, source, link and title of the traces behind it. The app's `/proof/live` and `/api/leads` read it (`lib/n8n.js` → `getLeads`). **Works only while published** |
 
 One owner per workflow: n8n does not merge edits, the last save wins. Every source flow has three triggers: Run by hand, Called by Run all, Run from demo (webhook path = the flow's name, e.g. `/webhook/tum-venture-labs`).
 
