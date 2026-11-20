@@ -39,7 +39,7 @@ What screening should know about the rows:
   - `recording`: a podcast episode; `people` is empty, names are in the show notes and transcript (Speaker 0/1, the host is Kyrill Ring on PITCH & PEOPLE). `org_name` is the episode topic, which can be an investor or an association (Start Munich, Women in Business e.V.), not a startup. Those should not end up `vc_backable`.
 - Text is at most 5000 characters, 12000 for an episode with a transcript.
 
-## Setting `N8N_WEBHOOK_URL_MAIN` (handed to Nils, 20 Nov ~20:45)
+## Setting `N8N_WEBHOOK_URL_MAIN` (Amli sets it up, 20 Nov ~20:50: flow "39 App check", path `htgf-automation`)
 Not needed for the demo. Only the `/test` panel's "n8n → /api/automation" button uses it: `/api/automation` → `lib/n8n.js` `trigger()` sends a **POST** with a JSON body to this URL and shows the answer. Empty = the button answers the mock (`mocked: true`), which is harmless. No flow listens for it yet; 00 Run all's `/webhook/run-all` is GET only and starts a ~14 min run, so don't use that one.
 
 Step by step, once there is a flow for it:
