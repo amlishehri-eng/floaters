@@ -57,6 +57,9 @@ export const config = {
     'https://www.tcf.tum.de/en/facit/venture-lab-fab/start-ups/',
     'https://www.venturelabs.tum.de/labs/robotics-ai/',
     'https://www.tum.de/en/innovation/entrepreneurship/for-alumni-corporates/tum-start-up-wall',
+    // Other TUM Venture Labs with the same card layout
+    ...['quantum', 'additive-manufacturing', 'chem-biosystems', 'food-agro-biotech', 'healthcare', 'climate-circular', 'aerospace-defense', 'mobility', 'software-ai']
+      .map((l) => `https://www.tum-venture-labs.de/labs/${l}/`),
   ].join(',')).split(',').map((s) => s.trim()).filter(Boolean),
 };
 

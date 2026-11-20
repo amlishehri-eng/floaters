@@ -19,6 +19,8 @@ const CAP = '[A-ZÄÖÜ][a-zäöüß.]+';
 const CONNECT = '(?:bei|am|an der|im|in der|ob der|vor der|a\\.\\s?M\\.|a\\.d\\.)';
 const CITY = `${CAP}(?:-${CAP})*(?:[ \\t]+${CONNECT}[ \\t]+${CAP}(?:-${CAP})*)?(?:[ \\t]+\\(${CAP}\\))?`;
 
+const EN_CITY = { Munich: 'München', Cologne: 'Köln', Nuremberg: 'Nürnberg', Brunswick: 'Braunschweig', Hanover: 'Hannover', Frankfurt: 'Frankfurt am Main' };
+
 function legalFormOf(s) {
   for (const [form, re] of LEGAL_FORM_PATTERNS) if (re.test(s)) return form;
   return null;
@@ -47,7 +49,9 @@ export function parseImpressum(text) {
   const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
 
   // Company line: first short line that carries a legal form.
-  const companyLine = lines.find((l) => l.length <= 120 && legalFormOf(l) && !/^(Registergericht|Amtsgericht|Handelsregister|Sitz|Rechtsform)/i.test(l) && !/haftet|Haftung für|verantwortlich für/i.test(l));
+  const companyLines = lines.filter((l) => l.length <= 120 && legalFormOf(l) && !/^(Registergericht|Amtsgericht|Handelsregister|Sitz|Rechtsform|Copyright|©)/i.test(l) && !/haftet|Haftung f|verantwortlich|[|–]|\s-\s/i.test(l));
+  // Prefer a line that ends with the legal form ("QuantumFab UG (haftungsbeschränkt) i.G.") over prose.
+  const companyLine = companyLines.find((l) => /(GmbH|UG \(haftungsbeschränkt\)|UG|AG|SE|KG|GbR|e\.\s?V\.)\s*(i\.\s?G\.|in Gründung)?\.?$/i.test(l)) || companyLines[0];
   if (companyLine) {
     out.company = companyLine.replace(/^(Anbieter|Betreiber|Herausgeber|Angaben gemäß § ?5 TMG|Diensteanbieter)\s*:?\s*/i, '').trim();
     out.legalForm = legalFormOf(companyLine);
@@ -63,8 +67,10 @@ export function parseImpressum(text) {
   const ag = text.match(new RegExp(`Amtsgericht[ \\t]+(${CITY})`));
   if (ag) out.court = `Amtsgericht ${ag[1].trim()}`;
   else {
-    const rg = text.match(new RegExp(`Registergericht\\s*:?[ \\t]*(${CITY})`));
-    if (rg) out.court = `Amtsgericht ${rg[1].trim()}`;
+    const rg = text.match(new RegExp(`Registergericht\\s*:?[ \\t]*(${CITY})`))
+      || text.match(new RegExp(`(?:District|Local|Registry|Register|Registration)[ \\t]+[Cc]ourt(?:[ \\t]+of)?\\s*:?[ \\t]*(${CITY})`))
+      || text.match(new RegExp(`(${CITY})[ \\t]+(?:District|Local|Registry|Register)[ \\t]+[Cc]ourt`));
+    if (rg) out.court = `Amtsgericht ${EN_CITY[rg[1].trim()] || rg[1].trim()}`;
   }
 
   // PLZ + city, but not a register number ("HRB 12345 München").

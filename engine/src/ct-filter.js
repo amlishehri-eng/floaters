@@ -11,10 +11,10 @@ export const CT_KEYWORDS = [
   'satell', 'rocket', 'drone', 'autonom', 'genom', 'protein', 'enzym', 'microb', 'pharma', 'medtech', 'neuro',
   'cardio', 'onco', 'immun', 'vaccin', 'cell', 'molecul', 'catal', 'polymer', 'carbon', 'climate', 'energy',
   'energie', 'solar', 'thermal', 'geotherm', 'grid', 'fab', 'additive', 'machin', 'automat', 'cyber', 'secur',
-  'deeptech', 'mobility', 'radar', 'acoustic', 'spectr', 'imaging', 'surgic', 'implant', 'dental',
+  'deeptech', 'mobility', 'radar', 'acoustic', 'spectr', 'imaging', 'surgic', 'implant',
 ];
 // Short keywords only at label start or end, else they match everything ("ai" in "mail").
-export const CT_SHORT = ['ai', 'ml', 'h2', 'ev', 'xr', 'iot'];
+export const CT_SHORT = ['ai', 'ml', 'h2', 'xr', 'iot'];
 
 // Labels that look like the short keyword but are words or places.
 const SHORT_FALSE = /(thai|dubai|shanghai|bonsai|mumbai|samurai|hawaii|bahai|html|xml|yaml|toml|level|travel|hotel)$|^(air|aid|aim|aisle|evil|ever|event|mlm)/;
@@ -25,7 +25,7 @@ export const CT_JUNK = [
   'sex', 'escort', 'dating', 'loan', 'kredit', 'versicherung', 'insurance', 'pharmacy', 'apotheke', 'viagra',
   'cbd', 'vape', 'fashion', 'beauty', 'kosmetik', 'friseur', 'tattoo', 'wedding', 'hochzeit', 'bio-laden',
   'bioladen', 'biohof', 'biomarkt', 'fahrschule', 'handwerk', 'umzug', 'reinigung', 'cleaning', 'steuerberat',
-  'anwalt', 'kanzlei', 'praxis', 'zahnarzt', 'physio', 'yoga', 'fitness', 'gym', 'blog', 'test', 'staging',
+  'anwalt', 'kanzlei', 'praxis', 'therapie', 'therapeut', 'consult', 'seminar', 'coaching', 'akademie', 'schule', 'verein', 'sicherheitsdienst', 'security-', 'zahnarzt', 'physio', 'yoga', 'fitness', 'gym', 'blog', 'test', 'staging',
   'dev-', 'localhost', 'cloudflare', 'amazonaws', 'azure', 'cdn', 'xn--', 'vpn', 'proxy', 'hosting',
 ];
 
@@ -56,8 +56,6 @@ export function filterCtDomain(raw) {
         : (label.startsWith(k) || label.endsWith(k)) && label.length > k.length + 2 && !SHORT_FALSE.test(label),
     );
   }
-  // .ai is itself a sector hint, but only for compound-looking labels
-  if (!keyword && tld === 'ai' && label.length >= 5) keyword = '.ai';
   if (!keyword) return null;
   return { domain: apex, host, label, keyword };
 }

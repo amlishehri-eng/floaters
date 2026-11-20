@@ -73,7 +73,7 @@ export function htmlToText(html) {
   return decodeEntities(
     String(html)
       .replace(/<!--[\s\S]*?-->/g, ' ')
-      .replace(/<(script|style|noscript|svg|template)[\s\S]*?<\/\1>/gi, ' ')
+      .replace(/<(script|style|noscript|svg|template|title|head)\b[\s\S]*?<\/\1>/gi, ' ')
       .replace(/<br\s*\/?>/gi, '\n')
       .replace(/<\/(p|div|li|h[1-6]|tr|section|article|header|footer|address|dd|dt|table|ul|ol)>/gi, '\n')
       .replace(/<[^>]+>/g, ' '),

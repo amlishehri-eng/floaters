@@ -1,0 +1,4 @@
+data/*
+!data/.gitkeep
+public/briefing-*.mp3
+.env

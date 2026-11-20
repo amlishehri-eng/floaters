@@ -144,3 +144,26 @@ export function mergeSignals(leads, signals) {
   leads.push(...kept);
   return { leads, created, updated, removed };
 }
+
+/** Merge leads that ended up with the same domain (e.g. after domain discovery). Returns removed ids. */
+export function dedupeByDomain(leads) {
+  const byDomain = new Map();
+  const removed = new Set();
+  for (const lead of leads) {
+    if (!lead.domain) continue;
+    const keep = byDomain.get(lead.domain);
+    if (!keep) { byDomain.set(lead.domain, lead); continue; }
+    // Keep the older lead (stable id), absorb the newer one.
+    const [into, from] = keep.createdAt <= lead.createdAt ? [keep, lead] : [lead, keep];
+    absorb(into, from);
+    into.signalsUpdatedAt = new Date().toISOString();
+    removed.add(from.id);
+    byDomain.set(lead.domain, into);
+  }
+  if (removed.size) {
+    const kept = leads.filter((l) => !removed.has(l.id));
+    leads.length = 0;
+    leads.push(...kept);
+  }
+  return removed;
+}

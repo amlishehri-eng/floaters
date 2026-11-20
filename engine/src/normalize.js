@@ -64,7 +64,7 @@ export function normDomain(input) {
   }
   if (NON_COMPANY.some((d) => endsWithHost(host, d))) return null;
   // University domains are institutions, not companies (tum.de, kit.edu, *.uni-*.de, fraunhofer.de)
-  if (/(^|\.)(tum\.de|kit\.edu|rwth-aachen\.de|tu-[a-z]+\.de|uni-[a-z-]+\.de|fraunhofer\.de|mpg\.de|helmholtz\.de|lmu\.de|fu-berlin\.de|hu-berlin\.de|tu-berlin\.de|idw-online\.de)$/.test(host)) return null;
+  if (/(^|\.)(tum\.de|kit\.edu|rwth-aachen\.de|tu-[a-z]+\.de|uni-[a-z-]+\.de|fraunhofer\.de|mpg\.de|helmholtz\.de|lmu\.de|fu-berlin\.de|hu-berlin\.de|tu-berlin\.de|idw-online\.de|tum-venture-labs\.de|unternehmertum\.de|tum\.ai|tum4health\.de)$/.test(host)) return null;
   return rootDomain(host);
 }
 
