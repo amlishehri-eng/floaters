@@ -29,6 +29,9 @@ export default function CandidatesPage() {
           <Link className="candidate-introLink" href="/proof/methodology">
             How we score VC fit <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
+          <Link className="candidate-introLink" href="/proof/live">
+            Open lead explorer <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
         </div>
       </section>
       <SavedCandidates leads={fixture.leads} />

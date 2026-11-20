@@ -1,19 +1,20 @@
 import { ArrowUpRight } from "lucide-react";
 
-export default function CompanyWebsite({ website }) {
-  let url;
+export function publicHttpUrl(value) {
   try {
-    url = new URL(website);
+    const url = new URL(value);
+    if (["https:", "http:"].includes(url.protocol) && !url.username && !url.password) {
+      return url.href;
+    }
   } catch {
-    // The pipeline may have no confirmed website for a lead.
+    // The pipeline may have no valid link.
   }
+  return null;
+}
 
-  if (
-    !url ||
-    !["https:", "http:"].includes(url.protocol) ||
-    url.username ||
-    url.password
-  ) {
+export default function CompanyWebsite({ website }) {
+  const href = publicHttpUrl(website);
+  if (!href) {
     return (
       <p className="candidate-websiteUnavailable">
         Company website unavailable
@@ -24,7 +25,7 @@ export default function CompanyWebsite({ website }) {
   return (
     <a
       className="candidate-website"
-      href={url.href}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
     >

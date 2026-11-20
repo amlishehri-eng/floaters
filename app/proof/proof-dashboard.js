@@ -16,6 +16,8 @@ import {
   Target,
   Users,
 } from "lucide-react";
+import CompanyWebsite, { publicHttpUrl } from "./company-website";
+import ScoreCriteria from "./score-criteria";
 import "./proof.css";
 
 const funnelIcons = [Activity, Users, Layers, Target];
@@ -26,6 +28,23 @@ const sourceNames = {
   recording: "Pitch recording",
   luma: "Luma",
   eventbrite: "Eventbrite",
+};
+const verdictNames = {
+  call_now: "Worth a call",
+  watchlist: "Watchlist",
+  needs_enrichment: "Needs more evidence",
+  not_high_tech: "Outside the high-tech focus",
+  too_late: "Too late",
+  out_of_scope: "Out of scope",
+  not_a_startup: "Not a startup",
+  not_a_lead: "Not a lead",
+  unscored: "Unscored",
+};
+const sortLabels = {
+  screening: "Screening priority",
+  fit_score: "HTGF fit",
+  team_score: "Team score",
+  source_count: "Source count",
 };
 
 function sourceCount(count) {
@@ -39,22 +58,25 @@ const dateFormatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "UTC",
 });
 function date(value) {
-  return dateFormatter.format(new Date(value));
+  return Number.isFinite(Date.parse(value)) ? dateFormatter.format(new Date(value)) : "Date unknown";
 }
 function timing(lead, asOf) {
+  const firstTrace = Date.parse(lead.first_trace_at);
+  const benchmark = Date.parse(lead.first_public_at || asOf);
+  if (!Number.isFinite(firstTrace) || !Number.isFinite(benchmark)) return "Timing unknown";
+  const elapsed = Math.floor((benchmark - firstTrace) / day);
+  if (lead.first_public_at && elapsed < 0) {
+    return `${Math.abs(elapsed)} days after the public mention`;
+  }
   const days = Math.max(
     0,
-    Math.floor(
-      (Date.parse(lead.first_public_at || asOf) -
-        Date.parse(lead.first_trace_at)) /
-        day,
-    ),
+    elapsed,
   );
   return lead.first_public_at
     ? `${days} days ahead`
     : `${days} days since first trace`;
 }
-function worthCalling(lead) {
+function demoWorthCalling(lead) {
   return (
     lead.label === "vc_backable" &&
     lead.fit_score >= 80 &&
@@ -77,26 +99,31 @@ function Score({ label, score, reason }) {
     </div>
   );
 }
-function downloadMemo(lead, asOf) {
+function downloadMemo(lead, asOf, demo) {
+  const website = publicHttpUrl(lead.website);
   const memo = [
     `# ${lead.name}`,
     "",
-    "FICTIONAL DEMO DATA — not a verified startup discovery.",
+    demo ? "FICTIONAL DEMO DATA — not a verified startup discovery." : "Screening snapshot from the Leads feed.",
     "",
     lead.what,
     "",
-    `Location: ${lead.city}, ${lead.country}`,
+    `Location: ${[lead.city, lead.country].filter(Boolean).join(", ")}`,
     `Sector: ${lead.sector}`,
     `Stage: ${lead.stage}`,
     `HTGF fit: ${lead.fit_score}/100 — ${lead.fit_reason}`,
     `Team: ${lead.team_score}/100 — ${lead.team_reason}`,
+    ...(website ? [`Company website: ${website}`] : []),
+    ...(!demo && lead.verdict ? [`Screening verdict: ${verdictNames[lead.verdict] || lead.verdict}`] : []),
+    ...(!demo && lead.verdict_reason ? [lead.verdict_reason] : []),
+    ...(!demo && lead.next_step ? [`Next step: ${lead.next_step}`] : []),
     "",
     "## People",
     ...lead.people.map((person) => `- ${person.name} — ${person.role}`),
     "",
     "## Evidence",
     ...[...lead.signals]
-      .sort((a, b) => a.happened_at.localeCompare(b.happened_at))
+      .sort((a, b) => (a.happened_at || "").localeCompare(b.happened_at || ""))
       .map(
         (signal) =>
           `- ${signal.happened_at} · ${signal.kind}${signal.timestamp ? ` · ${signal.timestamp}` : ""}: ${signal.quote}${signal.url ? ` (${signal.url})` : ""}`,
@@ -104,8 +131,8 @@ function downloadMemo(lead, asOf) {
     "",
     `Timing as of ${asOf}: ${timing(lead, asOf)}.`,
     lead.first_public_at
-      ? `Public benchmark: ${lead.first_public_at} (illustrative).`
-      : "No public benchmark is supplied in this fixture. Visibility and funding status require verification.",
+      ? `Public benchmark: ${lead.first_public_at}${demo ? " (illustrative)" : ""}.`
+      : "No public benchmark is available. Visibility and funding status require verification.",
     "",
     "## Before presenting",
     "Verify the team, activity, funding status, source links and dates. Identify a public professional introduction route.",
@@ -126,12 +153,16 @@ export default function ProofDashboard({
   asOf,
   initialLeadId,
   candidateReview,
+  demo = true,
+  feedUnavailable = false,
 }) {
+  const defaultFilter = demo ? "vc_backable" : "all";
+  const worthCalling = demo ? demoWorthCalling : (lead) => lead.worth_a_call === true;
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState("vc_backable");
+  const [filter, setFilter] = useState(defaultFilter);
   const [sector, setSector] = useState("");
   const [invisibleOnly, setInvisibleOnly] = useState(false);
-  const [sort, setSort] = useState("fit_score");
+  const [sort, setSort] = useState(demo ? "fit_score" : "screening");
   const [selectedId, setSelectedId] = useState(initialLeadId ?? leads[0]?.id);
   const [sessionShortlist, setSessionShortlist] = useState([]);
   const shortlist = candidateReview?.savedIds ?? sessionShortlist;
@@ -149,9 +180,9 @@ export default function ProofDashboard({
         .includes(query.trim().toLowerCase());
       const matchesFilter =
         filter === "all" ||
-        (filter === "shortlist"
-          ? shortlist.includes(lead.id)
-          : lead.label === filter);
+        (filter === "shortlist" && shortlist.includes(lead.id)) ||
+        (filter === "call_now" && worthCalling(lead)) ||
+        lead.label === filter;
       return (
         matchesQuery &&
         matchesFilter &&
@@ -159,15 +190,19 @@ export default function ProofDashboard({
         (!invisibleOnly || !lead.first_public_at)
       );
     })
-    .sort(
-      (a, b) =>
+    .sort((a, b) => {
+      if (sort === "screening") return 0; // Preserve the feed's screening order.
+      return (
         b[sort] - a[sort] ||
         b.fit_score - a.fit_score ||
         b.team_score - a.team_score ||
         b.source_count - a.source_count ||
-        a.name.localeCompare(b.name),
-    );
+        a.name.localeCompare(b.name)
+      );
+    });
   const selected = visible.find((lead) => lead.id === selectedId) || visible[0];
+  const scoreKey = sort === "screening" ? "fit_score" : sort;
+  const scoreLabel = { fit_score: "Fit", team_score: "Team", source_count: "Sources" }[scoreKey];
   const eligible = leads.filter((lead) => lead.label === "vc_backable");
   const traceCount = leads.reduce(
     (total, lead) => total + lead.signals.length,
@@ -223,9 +258,10 @@ export default function ProofDashboard({
           </Link>
           <span
             className="proof-demoBadge"
-            title="All teams and evidence shown are fictional"
+            data-live={!demo}
+            title={feedUnavailable ? "Live feed unavailable. Showing sample leads." : undefined}
           >
-            Fictional demo data
+            {demo ? "Fictional demo data" : "Live Leads feed"}
           </span>
         </header>
         <div className="proof-content">
@@ -263,8 +299,9 @@ export default function ProofDashboard({
                 })}
               </section>
               <p className="proof-threshold">
-                Worth a call = VC potential, fit and team scores ≥80, and at
-                least two sources.
+                {demo
+                  ? "Worth a call = VC potential, fit and team scores ≥80, and at least two sources."
+                  : "Worth a call uses the screening verdict from the Leads feed."}
               </p>
             </>
           )}
@@ -276,7 +313,7 @@ export default function ProofDashboard({
                 aria-pressed={filter === "shortlist"}
                 onClick={() =>
                   setFilter(
-                    filter === "shortlist" ? "vc_backable" : "shortlist",
+                    filter === "shortlist" ? defaultFilter : "shortlist",
                   )
                 }
               >
@@ -309,6 +346,7 @@ export default function ProofDashboard({
                 >
                   <option value="vc_backable">VC potential</option>
                   <option value="all">All teams</option>
+                  {!demo && <option value="call_now">Worth a call</option>}
                   <option value="shortlist">
                     Shortlist ({shortlist.length})
                   </option>
@@ -351,9 +389,10 @@ export default function ProofDashboard({
                       value={sort}
                       onChange={(event) => setSort(event.target.value)}
                     >
-                      <option value="fit_score">HTGF fit</option>
-                      <option value="team_score">Team score</option>
-                      <option value="source_count">Source count</option>
+                      {!demo && <option value="screening">{sortLabels.screening}</option>}
+                      <option value="fit_score">{sortLabels.fit_score}</option>
+                      <option value="team_score">{sortLabels.team_score}</option>
+                      <option value="source_count">{sortLabels.source_count}</option>
                     </select>
                   </label>
                 </div>
@@ -374,16 +413,8 @@ export default function ProofDashboard({
                           <small>{lead.sector}</small>
                         </div>
                         <span className="proof-rowScore">
-                          {lead[sort]}
-                          <small>
-                            {
-                              {
-                                fit_score: "Fit",
-                                team_score: "Team",
-                                source_count: "Sources",
-                              }[sort]
-                            }
-                          </small>
+                          {lead[scoreKey]}
+                          <small>{scoreLabel}</small>
                         </span>
                       </div>
                       <p>{lead.what}</p>
@@ -397,6 +428,9 @@ export default function ProofDashboard({
                             ? "Public mention"
                             : "Still invisible"}
                         </span>
+                        {!demo && lead.verdict && (
+                          <span>{verdictNames[lead.verdict] || lead.verdict.replaceAll("_", " ")}</span>
+                        )}
                         {shortlist.includes(lead.id) && (
                           <Check size={14} aria-label="Shortlisted" />
                         )}
@@ -440,18 +474,19 @@ export default function ProofDashboard({
                   <div className="proof-detailMeta">
                     <span>
                       <MapPin size={14} />
-                      {selected.city}, {selected.country}
+                      {[selected.city, selected.country].filter(Boolean).join(", ")}
                     </span>
                     <span>{selected.stage}</span>
                     <span>{sourceCount(selected.source_count)}</span>
                   </div>
+                  {!demo && <CompanyWebsite website={selected.website} />}
                   <div className="proof-timing">
                     <Radar size={20} />
                     <div>
                       <strong>{timing(selected, asOf)}</strong>
                       <p>
                         {selected.first_public_at
-                          ? `Illustrative benchmark · ${date(selected.first_public_at)}`
+                          ? `${demo ? "Illustrative benchmark" : "Public mention"} · ${date(selected.first_public_at)}`
                           : "No public benchmark supplied. Funding status is unverified."}
                       </p>
                     </div>
@@ -468,6 +503,15 @@ export default function ProofDashboard({
                       reason={selected.team_reason}
                     />
                   </div>
+                  {!demo && (
+                    <section className="proof-screening" aria-label="Screening decision and score evidence">
+                      <h3>{verdictNames[selected.verdict] || selected.verdict?.replaceAll("_", " ") || "Screening verdict pending"}</h3>
+                      {selected.verdict_reason && <p>{selected.verdict_reason}</p>}
+                      {selected.next_step && <p><strong>Next step</strong> · {selected.next_step}</p>}
+                      <ScoreCriteria label="HTGF fit" criteria={selected.fit_criteria} signals={selected.signals} />
+                      <ScoreCriteria label="Team strength" criteria={selected.team_criteria} signals={selected.signals} />
+                    </section>
+                  )}
                   <section className="proof-people">
                     <h3>
                       <Users size={16} />
@@ -487,7 +531,7 @@ export default function ProofDashboard({
                     <ol>
                       {[...selected.signals]
                         .sort((a, b) =>
-                          a.happened_at.localeCompare(b.happened_at),
+                          (a.happened_at || "").localeCompare(b.happened_at || ""),
                         )
                         .map((signal) => (
                           <li
@@ -508,9 +552,9 @@ export default function ProofDashboard({
                               {signal.timestamp && (
                                 <span>Recording · {signal.timestamp}</span>
                               )}
-                              {signal.url ? (
+                              {publicHttpUrl(signal.url) ? (
                                 <a
-                                  href={signal.url}
+                                  href={publicHttpUrl(signal.url)}
                                   target="_blank"
                                   rel="noreferrer"
                                 >
@@ -518,7 +562,7 @@ export default function ProofDashboard({
                                 </a>
                               ) : (
                                 <span>
-                                  Illustrative evidence · source pending
+                                  {demo ? "Illustrative evidence · source pending" : "Source link unavailable"}
                                 </span>
                               )}
                             </div>
@@ -526,10 +570,12 @@ export default function ProofDashboard({
                         ))}
                     </ol>
                   </section>
-                  <p className="proof-classification">
-                    <strong>{selected.label.replaceAll("_", " ")}</strong> ·{" "}
-                    {selected.label_reason}
-                  </p>
+                  {demo && (
+                    <p className="proof-classification">
+                      <strong>{selected.label.replaceAll("_", " ")}</strong> ·{" "}
+                      {selected.label_reason}
+                    </p>
+                  )}
                   <div className="proof-actions">
                     <button
                       className="proof-primary"
@@ -545,7 +591,7 @@ export default function ProofDashboard({
                         ? "Shortlisted"
                         : "Add to shortlist"}
                     </button>
-                    <button onClick={() => downloadMemo(selected, asOf)}>
+                    <button onClick={() => downloadMemo(selected, asOf, demo)}>
                       <Download size={16} />
                       Export memo
                     </button>
