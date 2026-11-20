@@ -40,7 +40,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 ## In progress
 - Amli: sources live in Run all (01 Luma, 02 LMU pinboard, 03 TUM Venture Labs, 05 GitHub, 06 podcasts with ElevenLabs transcripts); next: reliability, then Eventbrite from the laptop.
 - Meto: connect the proof dashboard at `/proof` to the real Leads table.
-- Nils: next: calibration of "Read trace with OpenAI" on 20 hand-labelled traces (task 3)
+- Nils: task 3 calibration of "Read trace with OpenAI": 20 traces out for hand-labelling; then Amli's gap list (duplicates like Malao) and the ~180-trace backlog
 
 ## Done
 - Meto: refreshed the homepage and expanded the German portfolio gallery to ten companies, with illustrative fit scores for the frontend prototype.
@@ -49,7 +49,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Meto: added six sourced portfolio example profiles and a candidate grid at `/proof`, with the fictional sourcing workspace at `/proof/demo`.
 - Amli: source flows 03 TUM Venture Labs (84 teams with founders), 05 GitHub Munich (new orgs + Hugging Face), 06 pitch podcasts (65 episodes), 04 Eventbrite built but blocked by Eventbrite for n8n Cloud. Traces: `extraction` column added, pinboard source = `campus`. Run all keeps going when a source has nothing new.
 - Nils: n8n "10 Make leads" v2.3: old `pinboard` source counts as `campus` (Amli's rename), one-time repair of rows with stale sources/counts, tie on score keeps the reading with a reason. All Leads rows now have consistent source_count/trace_count (Klarvus, ReXanh, nexpaper = 1 source, 2 traces).
-- Nils: n8n "11 Days ahead" (called at the end of 10): Brave news search per vc_backable lead + gpt-5-mini relevance check → `first_public_at`, `first_public_url`, `days_ahead` (negative = press was first; invisible = days so far), `still_invisible`, `news_checked_at`. Own site, our sources and listing pages don't count. Tested: Klarvus −51 (Startup-Radar 2026-09-23), KyNext invisible 14, ReXanh invisible 6.
+- Nils: n8n "11 Days ahead" (called at the end of 10): Brave news search per vc_backable lead + gpt-5-mini relevance check → `first_public_at`, `first_public_url`, `days_ahead` (negative = press was first; invisible = days so far), `still_invisible`, `news_checked_at`. Own site, our sources, listing pages and startup directories/databases (Startup-Radar, Crunchbase, Dealroom, startbase, North Data, company pages) don't count, only editorial coverage. Re-checked all 25: Klarvus, LexDial, Malao now still invisible; 7 leads were in the press first (e.g. Omegga 2022, simplysolve 2024 as Brakeable).
 - Nils: n8n "10 Make leads" v2.1 convergence: same lead_key merges (in one batch and into existing Leads): trace_ids/sources deduped, source_count, new `trace_count`, earliest first_trace_at, higher fit/team score kept with its reason. Leads got `trace_count`, `fit_reason`, `team_reason`. Test helper "19 Reset test traces" sets listed trace_ids back to new. Tested: Klarvus = pinboard:5028 + 5033, trace_count 2.
 - Amli: n8n project HTGF with tables Traces + Leads, flows 00 Run all, 01 Luma Munich, 02 LMU pinboard, 10 Make leads (stand-in until n8n calls `/api/brain/run`). First run: 46 traces → 8 leads. Code and ids in `n8n/README.md`.
 - Meto: launched the Founders First homepage at `/` with a fictional lead preview and two-way navigation to `/proof`.
