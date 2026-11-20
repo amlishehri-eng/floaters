@@ -101,13 +101,31 @@ const saveShowNotes = node({
   }
 });
 
+const getPodcastTraces = node({
+  type: 'n8n-nodes-base.dataTable',
+  version: 1.1,
+  config: {
+    name: 'Get podcast traces',
+    executeOnce: true,
+    parameters: {
+      resource: 'row',
+      operation: 'get',
+      dataTableId: { __rl: true, mode: 'id', value: 'crxSUMWXcPfMrXt4', cachedResultName: 'Traces' },
+      matchType: 'allConditions',
+      filters: { conditions: [{ keyName: 'source', condition: 'eq', keyValue: 'recording' }] },
+      returnAll: true
+    },
+    output: [{ trace_id: 'podcast:cfd05e9e-0bd2-4cd0-8e0c-e09aa211debf', source: 'recording', text: 'Podcast episode ...' }]
+  }
+});
+
 const pickNewest = node({
   type: 'n8n-nodes-base.code',
   version: 2,
   config: {
-    name: 'Pick newest 3 for transcript',
-    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// Transcription costs ElevenLabs credits, so only the 3 newest new episodes per run (under 60 minutes each).\nconst mins = d => { const p = String(d || '').split(':').map(Number); return p.length === 3 ? p[0] * 60 + p[1] : p.length === 2 ? p[0] : Math.round((p[0] || 0) / 60); };\nreturn $('Only new episodes').all()\n  .filter(e => e.json.audio_url && mins(e.json.duration) < 60)\n  .slice(0, 3)\n  .map(e => ({ json: { trace_id: e.json.trace_id, audio_url: e.json.audio_url } }));\n" },
-    output: [{ trace_id: 'podcast:cfd05e9e-0bd2-4cd0-8e0c-e09aa211debf', audio_url: 'https://d3ctxlq1ktw2nl.cloudfront.net/staging/2026-10-10/abc.mp3' }]
+    name: 'Pick 3 without transcript',
+    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// Transcription costs ElevenLabs credits, so per run only the 3 newest saved episodes that have no transcript yet (under 60 minutes each).\n// A failed transcription leaves the trace without one, so it is tried again next run.\nconst mins = d => { const p = String(d || '').split(':').map(Number); return p.length === 3 ? p[0] * 60 + p[1] : p.length === 2 ? p[0] : Math.round((p[0] || 0) / 60); };\nconst rows = {};\nfor (const r of $input.all()) if (r.json && r.json.trace_id) rows[r.json.trace_id] = r.json;\nconst picks = [];\nfor (const e of $('List episodes').all()) {\n  const row = rows[e.json.trace_id];\n  if (!row || !e.json.audio_url || mins(e.json.duration) >= 60) continue;\n  if ((row.text || '').includes('Transcript (ElevenLabs')) continue;\n  picks.push({ json: { trace_id: row.trace_id, audio_url: e.json.audio_url, row: { trace_id: row.trace_id, source: row.source, url: row.url, happened_at: row.happened_at, title: row.title, text: row.text || '', people: row.people || '', org_name: row.org_name || '', city: row.city || 'Munich' } } });\n  if (picks.length === 3) break;\n}\nreturn picks;\n" },
+    output: [{ trace_id: 'podcast:cfd05e9e-0bd2-4cd0-8e0c-e09aa211debf', audio_url: 'https://d3ctxlq1ktw2nl.cloudfront.net/staging/2026-10-10/abc.mp3', row: { trace_id: 'podcast:cfd05e9e-0bd2-4cd0-8e0c-e09aa211debf', text: 'Podcast episode ...' } }]
   }
 });
 
@@ -146,7 +164,7 @@ const addTranscript = node({
   version: 2,
   config: {
     name: 'Add transcript',
-    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// Transcript -> speaker turns, appended to the episode's trace. A failed transcription (no key, no credits) is skipped: the show notes stay.\nconst picks = $('Pick newest 3 for transcript').all();\nconst traces = {};\nfor (const t of $('Build traces').all()) traces[t.json.trace_id] = t.json;\nconst scrub = s => s.replace(/\\S+@\\S+\\.\\S+/g, '[email removed]').replace(/\\+?\\d[\\d \\/-]{7,}\\d/g, '[phone removed]');\nconst out = [];\n$input.all().forEach((r, i) => {\n  if (!r.json || !r.json.text || r.json.error) return;\n  const turns = [];\n  let cur = null;\n  for (const w of r.json.words || []) {\n    const sp = w.speaker_id || 'speaker';\n    if (!cur || cur.sp !== sp) { cur = { sp, t: '' }; turns.push(cur); }\n    cur.t += w.text;\n  }\n  const transcript = turns.length ? turns.map(t => t.sp.replace('speaker_', 'Speaker ') + ': ' + t.t.trim()).filter(l => !/:\\s*$/.test(l)).join('\\n') : r.json.text;\n  const ep = traces[picks[i].json.trace_id];\n  if (!ep) return;\n  out.push({ json: { ...ep, found_at: new Date().toISOString(), text: (ep.text + '\\n\\nTranscript (ElevenLabs, speakers told apart):\\n' + scrub(transcript)).slice(0, 12000) } });\n});\nreturn out;\n" },
+    parameters: { mode: 'runOnceForAllItems', language: 'javaScript', jsCode: "// Transcript -> speaker turns, appended to the episode's trace. The trace goes back to status new (extraction cleared) so screening reads it again with the transcript.\n// A failed transcription (no key, no credits, audio not reachable) is skipped: the show notes stay and it is retried next run.\nconst picks = $('Pick 3 without transcript').all();\nconst scrub = s => s.replace(/\\S+@\\S+\\.\\S+/g, '[email removed]').replace(/\\+?\\d[\\d \\/-]{7,}\\d/g, '[phone removed]');\nconst out = [];\n$input.all().forEach((r, i) => {\n  if (!r.json || !r.json.text || r.json.error) return;\n  const turns = [];\n  let cur = null;\n  for (const w of r.json.words || []) {\n    const sp = w.speaker_id || 'speaker';\n    if (!cur || cur.sp !== sp) { cur = { sp, t: '' }; turns.push(cur); }\n    cur.t += w.text;\n  }\n  const transcript = turns.length ? turns.map(t => t.sp.replace('speaker_', 'Speaker ') + ': ' + t.t.trim()).filter(l => !/:\\s*$/.test(l)).join('\\n') : r.json.text;\n  const base = picks[i] && picks[i].json.row;\n  if (!base) return;\n  out.push({ json: { ...base, found_at: new Date().toISOString(), status: 'new', extraction: null, text: (base.text + '\\n\\nTranscript (ElevenLabs, speakers told apart):\\n' + scrub(transcript)).slice(0, 12000) } });\n});\nreturn out;\n" },
     output: [{ trace_id: 'podcast:cfd05e9e-0bd2-4cd0-8e0c-e09aa211debf', source: 'recording', url: 'https://podcasters.spotify.com/pod/show/pitchandpeople/episodes/abc', happened_at: '2026-11-11T08:00:00.000Z', found_at: '2026-11-20T12:00:00.000Z', title: '[PITCH & PEOPLE (Munich Startup)] PITCH & PEOPLE #56: Women in Business', text: 'Podcast episode ... Transcript ...', people: '', org_name: 'Women in Business', city: 'Munich', status: 'new' }]
   }
 });
@@ -169,7 +187,7 @@ const saveTranscripts = node({
   }
 });
 
-const howItWorks = sticky('## Pitch podcasts -> Traces\nReads two Munich startup podcasts (PITCH & PEOPLE, Lenas Start-ups). Every new episode of the last two years becomes a trace from its show notes. The **3 newest** new episodes are also transcribed by **ElevenLabs** (speakers told apart) and the transcript is added to the trace.\n\nNeeds an n8n credential **ElevenLabs** (Header Auth, name `xi-api-key`). Without it the show notes are still saved.', [podcastFeeds, fetchFeeds, listEpisodes, onlyNewEpisodes, buildTraces, saveShowNotes, pickNewest, transcribe, addTranscript, saveTranscripts], { color: 7 });
+const howItWorks = sticky('## Pitch podcasts -> Traces\nReads two Munich startup podcasts (PITCH & PEOPLE, Lenas Start-ups). Every new episode of the last two years becomes a trace from its show notes. Each run, the **3 newest episodes without a transcript** are transcribed by **ElevenLabs** (speakers told apart) and the transcript is added to the trace.\n\nNeeds an n8n credential **ElevenLabs** (Header Auth, name `xi-api-key`). Without it the show notes are still saved.', [podcastFeeds, fetchFeeds, listEpisodes, onlyNewEpisodes, buildTraces, saveShowNotes, getPodcastTraces, pickNewest, transcribe, addTranscript, saveTranscripts], { color: 7 });
 
 export default workflow('pitch-podcasts', '06 Pitch podcasts -> Traces')
   .add(runByHand)
@@ -179,6 +197,8 @@ export default workflow('pitch-podcasts', '06 Pitch podcasts -> Traces')
   .to(onlyNewEpisodes)
   .to(buildTraces)
   .to(saveShowNotes)
+  .add(listEpisodes)
+  .to(getPodcastTraces)
   .to(pickNewest)
   .to(transcribe)
   .to(addTranscript)
@@ -188,5 +208,6 @@ export default workflow('pitch-podcasts', '06 Pitch podcasts -> Traces')
   .add(runFromDemo)
   .to(podcastFeeds)
   .add(howItWorks)
-  .group('Episodes to traces', [podcastFeeds, fetchFeeds, listEpisodes, onlyNewEpisodes, buildTraces, saveShowNotes], { description: 'Podcast feeds -> new episodes -> one trace per episode from the show notes' })
-  .group('Transcripts', [pickNewest, transcribe, addTranscript, saveTranscripts], { description: 'Newest 3 new episodes -> ElevenLabs speech-to-text -> transcript added to the trace' });
+  .group('Read feeds', [podcastFeeds, fetchFeeds, listEpisodes], { description: 'Podcast RSS feeds -> episodes of the last two years, newest first' })
+  .group('New episodes to traces', [onlyNewEpisodes, buildTraces, saveShowNotes], { description: 'Episodes not yet in Traces -> one trace each from the show notes' })
+  .group('Transcripts', [getPodcastTraces, pickNewest, transcribe, addTranscript, saveTranscripts], { description: 'Saved podcast traces -> 3 newest without a transcript -> ElevenLabs speech-to-text -> transcript added' });

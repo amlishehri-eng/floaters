@@ -13,10 +13,24 @@ and so a flow can be rebuilt if someone breaks it. **n8n itself is the live copy
 | 03 | TUM Venture Labs -> Traces | `rBvaaF23ZcfY1Hcd` | Person 1 | tum-venture-labs.de sitemap → every /teams/ page → team, lab, founders. 84 teams. source `campus` |
 | 04 | Eventbrite Munich -> Traces | `kvSBgO4NLMRVswB0` | Person 1 | Built but **not in Run all**: Eventbrite shows n8n Cloud a "human verification" page. We don't get around that. Works from a home connection (17 startup events in a local test). **To do later:** run it from Amli's laptop and post into Traces via a webhook (see STATUS.md) |
 | 05 | GitHub Munich -> Traces | `Fg6ZU1fqi7JnRNu2` | Person 1 | GitHub API (no token): new organisations located in Munich/München (last 120 days) → profile, newest repos, public members, Hugging Face models/datasets. source `github` |
-| 06 | Pitch podcasts -> Traces | `J0YCRvXE1fVlNsXT` | Person 1 | PITCH & PEOPLE + Lenas Start-ups RSS → every episode of the last 2 years from its show notes; the 3 newest new episodes transcribed by **ElevenLabs** (speakers told apart). source `recording`. Needs the n8n credential "ElevenLabs" (Header Auth `xi-api-key`) |
+| 06 | Pitch podcasts -> Traces | `J0YCRvXE1fVlNsXT` | Person 1 | PITCH & PEOPLE + Lenas Start-ups RSS → every episode of the last 2 years from its show notes; each run, the 3 newest episodes without a transcript are transcribed by **ElevenLabs** (speakers told apart). source `recording`. Uses the n8n Header Auth credential (header `xi-api-key`), set up 20 Nov |
 | 10–19 | Make leads, days ahead, … | `jLWKNwEC08SHfAfP`, … | Person 2 (Nils) | Screening and eligibility: Traces → Leads. Their code lives in n8n |
 
 One owner per workflow: n8n does not merge edits, the last save wins. Every source flow has three triggers: Run by hand, Called by Run all, Run from demo (webhook path = the flow's name, e.g. `/webhook/tum-venture-labs`).
+
+## Handover to screening (Nils, flows 10–19)
+How the two parts connect: **00 Run all** runs every source flow, then calls **10 Make leads** (its "Called by Run all" trigger), which calls **11 Days ahead**. The Traces table is the handshake: a source writes a row with `status = new`, screening sets it to `processed` or `failed`.
+
+What screening should know about the rows:
+- **Backlog:** ~180 traces are `new` (TUM 84, podcasts 65, pinboard, GitHub, Luma). 10 Make leads takes 10 per run, so at one run every 6 h that is 4–5 days. Raise the limit or drain it once by hand.
+- **A trace can come back as `new`.** When a podcast episode gets its ElevenLabs transcript, flow 06 adds it to the text and sets `status = new`, `extraction` empty, so screening reads it again with the transcript. Same trace_id, so Merge leads does not count it twice.
+- **Per source:**
+  - `luma`: an event, usually `event_only`; hosts and guests in `people` may be founders.
+  - `campus` + `pinboard:`: one post, often a co-founder search; the poster is in `people`.
+  - `campus` + `tumvl:`: one TUM Venture Labs team with its founders. `happened_at` is the page's last-edit date, not the founding date (often a bulk edit, e.g. 2026-04-29); the founding year is in the text when the page gives it.
+  - `github`: a new organisation; `happened_at` = when it was created on GitHub; `people` are GitHub logins, not names; Hugging Face lines in the text if any.
+  - `recording`: a podcast episode; `people` is empty, names are in the show notes and transcript (Speaker 0/1, the host is Kyrill Ring on PITCH & PEOPLE). `org_name` is the episode topic, which can be an investor or an association (Start Munich, Women in Business e.V.), not a startup. Those should not end up `vc_backable`.
+- Text is at most 5000 characters, 12000 for an episode with a transcript.
 
 ## Tables (n8n data tables in the HTGF project)
 | Table | id | Written by | Read by |
