@@ -1,0 +1,7778 @@
+{
+ "source": "https://www.htgf.de/portfolio-sitemap.xml (+ sitemap2), English company pages, ?output_format=md",
+ "built_at": "2026-11-20T17:48:36.173Z",
+ "note": "robots.txt allows crawling; Content-Signal ai-input=no: used only for code matching in flow 17, never as model input",
+ "count": 541,
+ "companies": [
+  {
+   "company": "adikteev (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/trademob-2/",
+   "website": "https://www.adikteev.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "evoxx technologies (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/evocatal-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Monheim",
+   "plz": "40789",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "futalis (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/futalis-2/",
+   "website": "https://futalis.de/",
+   "sectors": [],
+   "branches": [],
+   "city": "Leipzig",
+   "plz": "04109",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "H.C. Carbon (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/h-c-carbon-2/",
+   "website": "https://www.hc-carbon.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Rednitzhembach",
+   "plz": "91126",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Industrial Solar (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/industrial-solar-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Freiburg",
+   "plz": "79110",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "LEDexchange (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ledexchange-4/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Rheinbreitbach",
+   "plz": "53619",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MEDOVENT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/medovent-2/",
+   "website": "https://www.medovent.com/",
+   "sectors": [],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Middle Peak (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/middle-peak-medical/",
+   "website": "https://www.middlepeakmedical.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Palo Alto",
+   "plz": "94301",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Natural Dental Implants / NDI",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/natural-dental-implants-2/",
+   "website": "https://replicatetooth.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "12459",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Northworks Software (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/northworks-software-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Hamburg",
+   "plz": "22769",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Synoste",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/synoste-2/",
+   "website": "https://synoste.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Düsseldorf",
+   "plz": "40223",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "textunes (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/textunes-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10961",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "UROTEC (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/urotec-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "commercetools (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/commercetools-4/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "München",
+   "plz": "80797",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Lockbox (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/lockbox/",
+   "website": "https://www.lockboxsystem.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10117",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "mbmSystems (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mbmsystems-2/",
+   "website": "https://www.vogt-druck.de",
+   "sectors": [],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SOPAT (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sopat-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10587",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "4 Animals AlsterScience",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/4-animals-alsterscience-gmbh-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Hamburg",
+   "plz": "22391",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "gravit",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gravit/",
+   "website": "https://www.gravit.io",
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10119",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HMC+",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hmc-2/",
+   "website": "https://www.medical-chitosan.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Halle",
+   "plz": "06120",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PressMatrix",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pressmatrix-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10961",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "JeNaCell",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/jenacell-2/",
+   "website": "https://www.jenacell.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Jena",
+   "plz": "07745",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Notion Systems",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/notion-systems-2/",
+   "website": "https://www.notion-systems.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Schwetzingen",
+   "plz": "68723",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "medineering",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/medineering-2/",
+   "website": "https://www.medineering.de/",
+   "sectors": [],
+   "branches": [],
+   "city": "Seefeld",
+   "plz": "82229",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Agora Innovation",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/agora-innovation/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": "Darmstadt",
+   "plz": "64289",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "sunhill technologies (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sunhill-technologies-gmbh-exit/",
+   "website": "https://sunhill-technologies.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Erlangen",
+   "plz": "91058",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "RadioOpt (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/radioopt-2/",
+   "website": "https://www.radioopt.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Dresden",
+   "plz": "01067",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CommSolid (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/commsolid-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Dresden",
+   "plz": "01099",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Till (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/till-2/",
+   "website": "https://www.till-tech.com/",
+   "sectors": [],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "Hofheim",
+   "plz": "65719",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MAGAZINO (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/magazino-2/",
+   "website": "https://www.magazino.eu/",
+   "sectors": [],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "München",
+   "plz": "80687",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "gestigon (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gestigon-2/",
+   "website": "https://www.gestigon.de/",
+   "sectors": [],
+   "branches": [],
+   "city": "Lübeck",
+   "plz": "23562",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cevotec (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cevotec/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "Unterhaching",
+   "plz": "82008",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SymTAVision (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/symtavision-2/",
+   "website": "https://www.symtavision.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Braunschweig",
+   "plz": "38122",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "VisuMotion (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/visumotion-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EnShape (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/enshape/",
+   "website": "https://www.enshape.de",
+   "sectors": [],
+   "branches": [],
+   "city": "Jena",
+   "plz": "07745",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Comnovo (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/comnovo/",
+   "website": "https://www.comnovo.de",
+   "sectors": [],
+   "branches": [],
+   "city": "Dortmund",
+   "plz": "44227",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "bentekk (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/bentekk/",
+   "website": "https://www.bentekk.com",
+   "sectors": [],
+   "branches": [],
+   "city": "Hamburg",
+   "plz": "21073",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "LUPHOS (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/luphos-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Mainz",
+   "plz": "55130",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cuciniale (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cuciniale/",
+   "website": "https://www.cuciniale.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Lindau",
+   "plz": "88131",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "fos4x (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fos4x-2/",
+   "website": "https://www.fos4x.de/",
+   "sectors": [],
+   "branches": [],
+   "city": "München",
+   "plz": "81371",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Pulsar Photonics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pulsar-photonics-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Herzogenrath",
+   "plz": "52134",
+   "origin": "Fraunhofer",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Limata (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/limata/",
+   "website": "https://www.limata.de/",
+   "sectors": [],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Ismaning",
+   "plz": "85737",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "KonTEM (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kontem-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Bonn",
+   "plz": "53175",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Multiphoton Optics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/multiphoton-optics/",
+   "website": "https://multiphoton.net/",
+   "sectors": [],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Würzburg",
+   "plz": "97076",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Nanda Technologies (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nanda-technologies-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Dresden Silicon (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dresden-silicon-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Compositence (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/compositence-2/",
+   "website": "https://www.compositence.de/",
+   "sectors": [],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": "Leonberg",
+   "plz": "71229",
+   "origin": "University of Stuttgart",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Kiwigrid (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kiwigrid-2/",
+   "website": "https://www.kiwigrid.com/",
+   "sectors": [],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Dresden",
+   "plz": "01129",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ENTELIOS (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/entelios-3/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Munich",
+   "plz": "81669",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Terrawater (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/terrawater-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Circular Economy"
+   ],
+   "city": "Kiel",
+   "plz": "24148",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MinCell (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mincell-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Circular Economy"
+   ],
+   "city": "Weimar",
+   "plz": "99428",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "fodjan (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fodjan-2/",
+   "website": "https://www.fodjan.de",
+   "sectors": [],
+   "branches": [
+    "AgTech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ZIM Plant Technology (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/zim-plant-technology-gmbh-2/",
+   "website": "https://yara.zim-plant-technology.com/?Contact",
+   "sectors": [],
+   "branches": [
+    "AgTech"
+   ],
+   "city": "Hennigsdorf",
+   "plz": "16761",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Rigontec (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/rigontec-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Bonn",
+   "plz": "53127",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Kimeta (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kimeta-2/",
+   "website": "https://www.kimeta.de/",
+   "sectors": [],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Darmstadt",
+   "plz": "64295",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "softgarden (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/softgarden/",
+   "website": "https://www.softgarden.de/",
+   "sectors": [],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Berlin",
+   "plz": "10789",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Propertybase (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/propertybase-2/",
+   "website": "https://www.propertybase.com/",
+   "sectors": [],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": "München",
+   "plz": "80336",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Tech11 (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tech11/",
+   "website": "https://tech11.com",
+   "sectors": [],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Würzburg",
+   "plz": "97074",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Sablono (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sablono-2/",
+   "website": "https://www.sablono.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "13355",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "eWings.com (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ewings-com-2/",
+   "website": "https://eWings.com",
+   "sectors": [],
+   "branches": [
+    "Travel"
+   ],
+   "city": "Berlin",
+   "plz": "10179",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "kinkaa (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kinkaa-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Travel"
+   ],
+   "city": "Berlin",
+   "plz": "10119",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "givve (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/bonayou-2/",
+   "website": "https://www.givve.com/",
+   "sectors": [],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "München",
+   "plz": "80538",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mobilversichert (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mobilversichert-2/",
+   "website": "https://mobilversichert.de/",
+   "sectors": [],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Juniqe (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/juniqe-2/",
+   "website": "https://www.juniqe.com/",
+   "sectors": [],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "payever (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/payever-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "Hamburg",
+   "plz": "20359",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "tiramizoo (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tiramizoo-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "München",
+   "plz": "80336",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "windeln.de (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/windeln-de-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "München",
+   "plz": "81379",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "metoda (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/metoda/",
+   "website": "https://www.metoda.com",
+   "sectors": [],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "München",
+   "plz": "80335",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Semknox (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/semknox/",
+   "website": "https://www.semknox.com",
+   "sectors": [],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Dresden",
+   "plz": "01067",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Stocard (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/stocard-2/",
+   "website": "https://stocard.de/",
+   "sectors": [],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Mannheim",
+   "plz": "68159",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "crossvertise (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/crossvertise-2/",
+   "website": "https://www.crossvertise.com/",
+   "sectors": [],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "München",
+   "plz": "80802",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MessengerPeople (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/messengerpeople-2/",
+   "website": "https://www.messengerpeople.com",
+   "sectors": [],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "München",
+   "plz": "80336",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MEINPROSPEKT (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/meinprospekt-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "München",
+   "plz": "80636",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "plista (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/plista-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "Berlin",
+   "plz": "10119",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Semasio (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/semasio-2/",
+   "website": "https://semasio.com/",
+   "sectors": [],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "Hamburg",
+   "plz": "20251",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Ubermetrics (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ubermetrics-2/",
+   "website": "https://www.ubermetrics-technologies.com/en/",
+   "sectors": [],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "Berlin",
+   "plz": "10117",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "WeSustain (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/wesustain-2/",
+   "website": "https://www.wesustain.com/",
+   "sectors": [],
+   "branches": [
+    "ESG & Energy Transition"
+   ],
+   "city": "Buxtehude",
+   "plz": "21614",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Applanga (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/applanga-2/",
+   "website": "https://www.applanga.com",
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Berlin",
+   "plz": "10247",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "bab.la (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/bab-la/",
+   "website": "https://bab.la/",
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Hamburg",
+   "plz": "20457",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "C2S2 (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/c2s2-2/",
+   "website": "https://www.rulebook.de/en",
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Bonn",
+   "plz": "53113",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Pidoco (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pidoco-2/",
+   "website": "https://pidoco.com/de",
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Berlin",
+   "plz": "12055",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TM3 (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tm3-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Regensburg",
+   "plz": "93055",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Vanatec (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/vanatec-2/",
+   "website": "https://www.telerik.com/",
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Veodin (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/veodin-2/",
+   "website": "https://www.veodin.com/",
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Berlin",
+   "plz": "10999",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Codetrails (Exits)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/codetrails/",
+   "website": "https://www.codetrails.com",
+   "sectors": [],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Darmstadt",
+   "plz": "64293",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Geospin GmbH (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/geospin-gmbh/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Freiburg",
+   "plz": "79102",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "NYRIS (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nyris/",
+   "website": "https://nyris.io/",
+   "sectors": [],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Berlin",
+   "plz": "10243",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FTAPI Software (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ftapi-software-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "München",
+   "plz": "81929",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Protected Networks (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/protected-networks-2/",
+   "website": "https://www.protected-networks.com/",
+   "sectors": [],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Berlin",
+   "plz": "10555",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Collinor Software (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/collinor-software-2/",
+   "website": "https://www.collinor.de/",
+   "sectors": [],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Köln",
+   "plz": "50678",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Grandcentrix (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/grandcentrix-2/",
+   "website": "https://www.grandcentrix.net",
+   "sectors": [],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Köln",
+   "plz": "50676",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "incapptic Connect (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/incapptic-connect-2/",
+   "website": "https://incapptic.com",
+   "sectors": [],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Berlin",
+   "plz": "10969",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Plixos (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/plixos-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "München",
+   "plz": "80992",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "replex (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/replex-gmbh/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Duisburg",
+   "plz": "47051",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "RAIDBOXES (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/raidboxes-2/",
+   "website": "https://raidboxes.de/",
+   "sectors": [],
+   "branches": [],
+   "city": "Münster",
+   "plz": "48143",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Hofmann & Stirner (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hofmann-stirner-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "München",
+   "plz": "80992",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Product Value Systems (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/product-value-systems-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Confovis (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/confovis-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Jena",
+   "plz": "07745",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cumulocity (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cumulocity-2/",
+   "website": "https://www.cumulocity.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Düsseldorf",
+   "plz": "40545",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "bitstars (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/bitstars-2/",
+   "website": "https://www.bitstars.com",
+   "sectors": [],
+   "branches": [],
+   "city": "Aachen",
+   "plz": "52064",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ChromoTek (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/chromotek-2/",
+   "website": "https://www.chromotek.com/",
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Planegg-Martinsried",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Corimmun (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/corimmun-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Pharmaceuticals"
+   ],
+   "city": "Martinsried",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cytena (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cytena/",
+   "website": "https://www.cytena.com/",
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Freiburg",
+   "plz": "79110",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Fiagon (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fiagon-2/",
+   "website": "https://www.fiagon.com/",
+   "sectors": [],
+   "branches": [
+    "Imaging & Navigation"
+   ],
+   "city": "Henningsdorf",
+   "plz": "16761",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "GILUPI (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gilupi-2/",
+   "website": "https://www.gilupi.com/",
+   "sectors": [],
+   "branches": [
+    "Diagnostic"
+   ],
+   "city": "Potsdam",
+   "plz": "14476",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "KINAXO (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kinaxo-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Martinsried",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "LOEWI (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/loewi/",
+   "website": "https://loewi.com/",
+   "sectors": [],
+   "branches": [
+    "Industrial Biotech"
+   ],
+   "city": "München",
+   "plz": "80992",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PreOmics (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/preomics/",
+   "website": "https://preomics.com/",
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Planegg",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Provecs Medical (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/provecs-medical-2/",
+   "website": "https://www.provecs.com/",
+   "sectors": [],
+   "branches": [
+    "Pharmaceuticals"
+   ],
+   "city": "Hamburg",
+   "plz": "20246",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Sierra Sensors (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sierra-sensors-2/",
+   "website": "https://www.sierrasensors.com/",
+   "sectors": [],
+   "branches": [
+    "Diagnostic"
+   ],
+   "city": "Hamburg",
+   "plz": "20251",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Volterion (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/volterion/",
+   "website": "https://www.volterion.com/",
+   "sectors": [],
+   "branches": [
+    "Energy Generation/Storage"
+   ],
+   "city": "Dortmund",
+   "plz": "44263",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cunesoft (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cunesoft-2/",
+   "website": "https://www.cunesoft.com/",
+   "sectors": [],
+   "branches": [
+    "Regulatory"
+   ],
+   "city": "München",
+   "plz": "80636",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "m2p-labs (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/m2p-lab/",
+   "website": "https://www.m2p-labs.com/",
+   "sectors": [],
+   "branches": [
+    "Industrial Biotech"
+   ],
+   "city": "Baesweiler",
+   "plz": "52499",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Lipocalyx (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/15213/",
+   "website": "https://www.lipocalyx.de/",
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Halle",
+   "plz": "06120",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Amedrix (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/amedrix-exit-2/",
+   "website": "https://www.amedrix.de",
+   "sectors": [],
+   "branches": [
+    "Orthopedics / 3D-Printing"
+   ],
+   "city": "Esslingen",
+   "plz": "73728",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "AQ Implants (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/aq-implants-exit-2/",
+   "website": "https://www.aq-implants.de",
+   "sectors": [],
+   "branches": [
+    "Orthopedics / 3D-Printing"
+   ],
+   "city": "Ahrensburg",
+   "plz": "22926",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Kumovis",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kumovis-gmbh/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Orthopedics / 3D-Printing"
+   ],
+   "city": "München",
+   "plz": "81249",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Scopis (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/scopis-2/",
+   "website": "https://www.scopis.com/",
+   "sectors": [],
+   "branches": [
+    "Imaging & Navigation"
+   ],
+   "city": "Berlin",
+   "plz": "10179",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SiOPTICA (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sioptica-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "immersight",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/immersight/",
+   "website": "https://immersight.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Ulm",
+   "plz": "89073",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FIDLOCK (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fidlock-2/",
+   "website": "https://www.fidlock.com/",
+   "sectors": [],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": "Hannover",
+   "plz": "30163",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "VIOSO (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/vioso-2/",
+   "website": "https://www.vioso.com/",
+   "sectors": [],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Düsseldorf",
+   "plz": "40233",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "IQ Evolution (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/iq-evolution-2/",
+   "website": "https://iq-evolution.com/de/",
+   "sectors": [],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Aachen",
+   "plz": "52074",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Arioso Systems",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/arioso-systems-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Dresden",
+   "plz": "01109",
+   "origin": "Fraunhofer-IPMS",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "IPlytics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/iplytics-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Berlin",
+   "plz": "10961",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HiperScan (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hiperscan-2/",
+   "website": "https://www.hiperscan.com/",
+   "sectors": [],
+   "branches": [],
+   "city": "Dresden",
+   "plz": "01067",
+   "origin": "Fraunhofer",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Humedics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/humedics-2/",
+   "website": "https://www.humedics.de/",
+   "sectors": [],
+   "branches": [
+    "Patient Monitoring"
+   ],
+   "city": "Berlin",
+   "plz": "10652",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Capical",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/capical-2/",
+   "website": "https://www.capical.de/",
+   "sectors": [],
+   "branches": [
+    "Patient Monitoring"
+   ],
+   "city": "Braunschweig",
+   "plz": "38106",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CONTROS (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/contros-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "reINVENT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/reinvent-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": "München",
+   "plz": "80802",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Purenum",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/purenum-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Bremen",
+   "plz": "28359",
+   "origin": "Fraunhofer-IFAM",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Etvas",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/etvas/",
+   "website": "https://www.etvas.com/",
+   "sectors": [],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Hamburg",
+   "plz": "22397",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "adivo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/adivo-gmbh-2/",
+   "website": "https://www.adivo.vet/",
+   "sectors": [],
+   "branches": [
+    "Agriculture, Agritech & Animal Health"
+   ],
+   "city": "Martinsried",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "gridscale",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gridscale/",
+   "website": "https://gridscale.io/",
+   "sectors": [],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Köln",
+   "plz": "50825",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "finleap connect",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/finleap-2/",
+   "website": "https://connect.finleap.com/",
+   "sectors": [],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Hamburg",
+   "plz": "22765",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EH-D",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/boehner-eh/",
+   "website": "https://www.eh-d.de/",
+   "sectors": [],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "Burghaslach",
+   "plz": "96152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HQ plus",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hq-plus-2/",
+   "website": "https://www.hqplus.de/",
+   "sectors": [],
+   "branches": [
+    "Travel"
+   ],
+   "city": "Berlin",
+   "plz": "10117",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "memetis",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/memetis-gmbh/",
+   "website": "https://memetis.com/de/",
+   "sectors": [],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": "Karlsruhe",
+   "plz": "76185",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Valispace",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/valispace-gmbh/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Bremen",
+   "plz": "28199",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "multiBIND",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/multibind-2/",
+   "website": "https://www.multibind.de/de/",
+   "sectors": [],
+   "branches": [
+    "New Materials",
+    "Water & Mining"
+   ],
+   "city": "Köln",
+   "plz": "51105",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "KSK Diagnostics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ksk-diagnostics/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Life Sciences"
+   ],
+   "city": "Hamburg",
+   "plz": "22767",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CCI Custom Cells Itzehoe (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cci-custom-cells-itzehoe-2/",
+   "website": "https://www.customcells.de/",
+   "sectors": [],
+   "branches": [
+    "Chemistry"
+   ],
+   "city": "Itzehoe",
+   "plz": "25524",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mindance (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mindance/",
+   "website": "https://www.mindance.de/",
+   "sectors": [],
+   "branches": [
+    "Health & Lifestyle"
+   ],
+   "city": "Leipzig",
+   "plz": "04177",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Sonormed",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sonormed-2/",
+   "website": "https://www.sonormed.com/en/",
+   "sectors": [],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Hamburg",
+   "plz": "20357",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "GQ Bio Therapeutics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gq-bio-therapeutics-2/",
+   "website": "https://gq-biotx.com/home.html",
+   "sectors": [],
+   "branches": [
+    "Gene Therapy"
+   ],
+   "city": "Hamburg",
+   "plz": "21079",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Selfapy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/selfapy-2/",
+   "website": "https://www.selfapy.de/",
+   "sectors": [],
+   "branches": [
+    "Digital Health",
+    "Health & Lifestyle"
+   ],
+   "city": "Berlin",
+   "plz": "10119",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "RIMASYS (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/rimasys/",
+   "website": "https://www.rimasys.com/",
+   "sectors": [],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Köln",
+   "plz": "50829",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "NFON (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nfon-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "München",
+   "plz": "80636",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FINE Legal",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fine-legal/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Enscape™",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/enscape-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Industrial Tech"
+   ],
+   "city": "Karlsruhe",
+   "plz": "76133",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Emergence Therapeutics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/emergence-therapeutics-3/",
+   "website": "https://emergencetx.com/",
+   "sectors": [],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Duisburg",
+   "plz": "47059",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Next Kraftwerke (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/next-kraftwerke-3/",
+   "website": "https://www.next-kraftwerke.de/",
+   "sectors": [],
+   "branches": [
+    "Climate Tech",
+    "Energy"
+   ],
+   "city": "Köln",
+   "plz": "50825",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Emma Sleep (Bettzeit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/bettzeit-2/",
+   "website": "https://www.emma-matratze.de/",
+   "sectors": [],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "Frankfurt",
+   "plz": "60329",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Hornetsecurity (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hornetsecurity-2/",
+   "website": "https://www.hornetsecurity.com",
+   "sectors": [],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Hannover",
+   "plz": "30177",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CARDIOR",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cardior/",
+   "website": "https://www.cardior.de",
+   "sectors": [],
+   "branches": [
+    "Cardiology / Cardiovascular"
+   ],
+   "city": "Hannover",
+   "plz": "30625",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PAS-Analytik GmbH (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pas-analytik-hmbh-exit/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Hamburg",
+   "plz": "22044",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ICE Gateway (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ice-gateway-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Berlin",
+   "plz": "12489",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Quentic (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ecointense-2/",
+   "website": "https://www.quentic.de/",
+   "sectors": [],
+   "branches": [
+    "Digital Tech"
+   ],
+   "city": "Berlin",
+   "plz": "10317",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SIRION Biotech (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sirion-2/",
+   "website": "https://www.sirion-biotech.de/",
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Planegg Martinsried",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Wiferion",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/wiferion-2/",
+   "website": "https://www.wiferion.com/",
+   "sectors": [],
+   "branches": [
+    "Mobility",
+    "Mobility"
+   ],
+   "city": "Freiburg",
+   "plz": "79111",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FAZUA",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fazua-2/",
+   "website": "https://www.fazua.com/",
+   "sectors": [],
+   "branches": [
+    "Mobility"
+   ],
+   "city": "Ottobrunn",
+   "plz": "85521",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "envelio (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/envelio-gmbh-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Köln",
+   "plz": "50933",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Lino Biotech",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/lino-biotech/",
+   "website": "https://www.lino-biotech.com/",
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Amal Therapeutics (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/amal-therapeutics-2/",
+   "website": "https://www.amaltherapeutics.com/",
+   "sectors": [],
+   "branches": [
+    "Life Sciences"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Photonics Healthcare",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/photonics-healthcare-2/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "Patient Monitoring"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "make.tv",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/make-tv-2/",
+   "website": "https://www.make.tv",
+   "sectors": [],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CollimateHealth",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/collimatehealth/",
+   "website": "http://www.collimateHealth.com",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Medical Technology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Raumfeld (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/raumfeld-3/",
+   "website": null,
+   "sectors": [],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10787",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "7Learnings",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/7learnings/",
+   "website": "https://7learnings.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Berlin",
+   "plz": "10117",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ABH Optics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/abh-optics/",
+   "website": "https://abhoptics.dk/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ActiTrexx",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/actitrexx/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Immunology"
+   ],
+   "city": "Mainz",
+   "plz": "55131",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "6 Wunderkinder (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/6-wunderkinder/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Adtriba",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/adtriba-2/",
+   "website": "https://www.adtriba.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "Hamburg",
+   "plz": "22529",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Aegiq",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/aegiq/",
+   "website": "http://www.aegiq.com/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Quantum"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Aerleum",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/aerleum/",
+   "website": "https://www.aerleum.com/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Hydrogen / eFuels"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "agriportance",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/agriportance/",
+   "website": "https://agriportance.com/",
+   "sectors": [
+    "Agritech & Food",
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "ESG & Energy Transition"
+   ],
+   "city": "Münster",
+   "plz": "48149",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ai-predict",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ai-predict/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Simulations & Quantum Chemistry"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "AICA",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/aica/",
+   "website": "https://www.aica.tech/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Aignostics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/aignostics/",
+   "website": "https://www.aignostics.com/",
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Berlin",
+   "plz": "10117",
+   "origin": "Charité",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "AirGateway",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/airgateway-gmbh/",
+   "website": "https://airgateway.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Travel"
+   ],
+   "city": "Berlin",
+   "plz": "10827",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "akirolabs",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/akirolabs/",
+   "website": "https://akirolabs.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Berlin",
+   "plz": "10405",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Akribion Therapeutics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/akribion-therapeutics/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Alentis",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/alentis-2/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Metabolic Diseases"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ALGIAX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/algiax/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Pain"
+   ],
+   "city": "Erkrath",
+   "plz": "40699",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "All3DP",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/all3dp/",
+   "website": null,
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "München",
+   "plz": "81477",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Alpine Eagle",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/alpine-eagle/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Drones & Logistics"
+   ],
+   "city": "München",
+   "plz": "80538",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Altavo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/altavo/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Rehabilitation"
+   ],
+   "city": "Dresden",
+   "plz": "01069",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "alteva",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/alteva/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Energy Generation/Storage"
+   ],
+   "city": "Cologne",
+   "plz": "50827",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Altruja (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/altruja-2/",
+   "website": "https://www.altruja.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "München",
+   "plz": "80333",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ALUVATION",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/aluvation-2/",
+   "website": "https://aluvation.com/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "Paderborn",
+   "plz": "33104",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Angiolutions",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/angiolutions/",
+   "website": "https://www.angiolutions.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [],
+   "city": "Erlangen",
+   "plz": "91054",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "anybill",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/anybill/",
+   "website": "https://www.anybill.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Regensburg",
+   "plz": "93053",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Argá Medtech",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/arga-medtech/",
+   "website": "https://argamedtech.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Life Sciences",
+    "Medical Technology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ATMOS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/atmos/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "New Space"
+   ],
+   "city": "Rheinmünster",
+   "plz": "77836",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "AUDAVIS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/audavis/",
+   "website": "https://www.audavis.ai/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Tech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "autarkize",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/autarkize/",
+   "website": "https://www.autarkize.com/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Pfronten",
+   "plz": "87459",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Auxilius",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/auxilius/",
+   "website": "https://www.auxilius.ai/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Tech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Banxware",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/banxware/",
+   "website": "https://www.banxware.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Berlin",
+   "plz": "10117",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "become.1",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/become-1/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Heidelberg",
+   "plz": "69115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "beeOLED",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/beeoled/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": "Dresden",
+   "plz": "01257",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Belyntic",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/belyntic-2/",
+   "website": null,
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Berlin",
+   "plz": "12489",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Betterfront",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/betterfront/",
+   "website": "https://www.betterfront.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "München",
+   "plz": "80331",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Bind-X",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/bind-x-2/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Water & Mining"
+   ],
+   "city": "Martinsried",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Biograil",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/biograil/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Drug Delivery"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "BIOVOX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/biovox/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Composite Materials & New Materials"
+   ],
+   "city": "Darmstadt",
+   "plz": "64293",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "BOX ID Systems",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/box-id-systems/",
+   "website": null,
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Drones & Logistics"
+   ],
+   "city": "Garching",
+   "plz": "85748",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "brainjo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/brainjo/",
+   "website": "https://www.brainjo.de/en-gb/corporate-health-start",
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "BTRY",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/btry/",
+   "website": null,
+   "sectors": [
+    "Deep Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Battery"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "C-mo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/c-mo/",
+   "website": null,
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Caeli Wind",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/caeli-wind/",
+   "website": "https://www.caeli-wind.de/",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Berlin",
+   "plz": "10249",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cancilico",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cancilico/",
+   "website": "https://cancilico.com/",
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "Diagnostic"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": "Dresden University",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Carelane",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/carelane/",
+   "website": null,
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Certivity",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/certivity/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Munich",
+   "plz": "80805",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Chipmetrics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/chipmetrics/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EPIX Sports",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/epix-sports/",
+   "website": "https://www.epix-sports.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Tech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Palveera",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/palveera/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Leonberg",
+   "plz": "71229",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "faCellitate",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/facellitate/",
+   "website": null,
+   "sectors": [],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Mannheim",
+   "plz": "68169",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CI Hub",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ci-hub/",
+   "website": "https://ci-hub.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "Potsdam",
+   "plz": "14482",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Clee Medical",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/clee-medical/",
+   "website": "https://www.cleemedical.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Imaging & Navigation",
+    "Medical Technology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "clickworker",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/clickworker/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Essen",
+   "plz": "45149",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "cloudplan",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cloudplan/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Hamburg",
+   "plz": "22301",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cloudsquid",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cloudsquid/",
+   "website": "https://cloudsquid.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Co-reactive",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/co-reactive/",
+   "website": "https://www.co-reactive.com/",
+   "sectors": [
+    "Chemistry & Industrial Biotech",
+    "Climate Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Coinlend",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/coinlend/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": "Mannheim",
+   "plz": "68165",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Coinpanion",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/coinpanion/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "COLIPI",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/colipi/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Industrial Biotech",
+    "Industrial Biotech"
+   ],
+   "city": "Hamburg",
+   "plz": "21079",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Comydo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/comydo/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": "Hamburg",
+   "plz": "22769",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CoolSem Technologies",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/coolsem-technologies/",
+   "website": "https://www.coolsemtechnologies.com/",
+   "sectors": [
+    "Deep Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Optics / Photonics",
+    "Semiconductors",
+    "Sensor Tech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "coramaze",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/coramaze-2/",
+   "website": "http://coramaze.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Cardiovascular Devices"
+   ],
+   "city": "Hilden",
+   "plz": "40721",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Coredinate",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/coredinate-2/",
+   "website": "https://www.coredinate.de",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Uffenheim",
+   "plz": "97215",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Covalo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/covalo/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics",
+    "Digital Tech",
+    "E-Commerce",
+    "Marketing & AdTech",
+    "Retail Intelligence"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Crocus Labs",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/crocus-labs/",
+   "website": "https://crocuslabs.com/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "AgTech"
+   ],
+   "city": "Berlin",
+   "plz": "13355",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ctrl+s",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ctrls/",
+   "website": "http://www.ctrl-s.io/",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "ESG & Energy Transition"
+   ],
+   "city": "Berlin",
+   "plz": "12435",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cubical",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cubical-2/",
+   "website": "https://www.cubical.it/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Heidenau",
+   "plz": "01809",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CustomSurg",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/customsurg/",
+   "website": null,
+   "sectors": [
+    "Digital Health",
+    "MedTech"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": "Harvard University",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "cutanos",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cutanos/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Drug Delivery"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": "Max Planck Institute of Colloids",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Cyclize",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cyclize/",
+   "website": "http://www.cyclize.de",
+   "sectors": [
+    "Chemistry & Industrial Biotech",
+    "Climate Tech"
+   ],
+   "branches": [
+    "Circular Economy",
+    "Hydrogen / eFuels"
+   ],
+   "city": "Leinfelden-Echterdingen",
+   "plz": "70771",
+   "origin": "University of Stuttgart",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Data Virtuality",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/data-virtuality/",
+   "website": "https://www.datavirtuality.com/en/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "DCUBED",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dcubed/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "New Space"
+   ],
+   "city": "Germering",
+   "plz": "82110",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "DearEmployee",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dearemployee/",
+   "website": "https://www.dearemployee.de/",
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Health & Lifestyle"
+   ],
+   "city": "Berlin",
+   "plz": "13465",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "DeepScenario",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/deepscenario/",
+   "website": "https://www.deepscenario.com/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "AI"
+   ],
+   "city": "Stuttgart",
+   "plz": "70565",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "DeepSkill",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/deepskill/",
+   "website": "https://deepskill.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Köln",
+   "plz": "50827",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Delft Circuits",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/delft-circuits/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Quantum"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "DemoSquare",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/demosquare/",
+   "website": "https://demosquare.ch/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": "EPFL",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "desk.ly",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/desk-ly/",
+   "website": "https://www.desk.ly/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Deutsche Digital Assets (DDA)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/iconiq-lab-holding-2/",
+   "website": "https://deutschedigitalassets.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "deviceTRUST",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/devicetrust/",
+   "website": "https://devicetrust.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Darmstadt",
+   "plz": "64295",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Dimericon",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dimericon/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "dimpora",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dimpora/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": "ETH Zürich",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "DNTOX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dntox/",
+   "website": "https://dntox.de/",
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Düsseldorf",
+   "plz": "40223",
+   "origin": "Leibniz Institute",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Doctorflix",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/doctorflix/",
+   "website": "https://doctorflix.de/",
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Health & Lifestyle"
+   ],
+   "city": "Berlin",
+   "plz": "10119",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "doinstruct",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/doinstruct/",
+   "website": "https://www.doinstruct.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Osnabrück",
+   "plz": "49090",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "dotega",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dotega/",
+   "website": "https://www.dotega.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Dracoon",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dracoon-en/",
+   "website": "https://www.dracoon.com/de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Regensburg",
+   "plz": "93053",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Draupnir Bio",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/draupnir-bio/",
+   "website": "https://draupnir.bio/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Cardiology / Cardiovascular"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "DXI",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dxi/",
+   "website": "https://www.dx-i.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Ebenbuild",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ebenbuild/",
+   "website": null,
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Munich",
+   "plz": "80939",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ecoPals",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ecopals/",
+   "website": "https://ecopals.de/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": "Berlin",
+   "plz": "13359",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EEDEN",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/eeden/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Recycling"
+   ],
+   "city": "Münster",
+   "plz": "48149",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "emax digital",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/emax-digital/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Germany",
+   "plz": "81671",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Emerge Tech",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/emerge/",
+   "website": "https://emerge-tech.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Berlin",
+   "plz": "10623",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "emproof",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/emproof/",
+   "website": "https://www.emproof.com",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ESG Score",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/esg-score/",
+   "website": "https://esg-score.org/en",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "ESG & Energy Transition"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ESy-Labs",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/esy-labs/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [],
+   "city": "Regensburg",
+   "plz": "93055",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EverReal",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/everreal/",
+   "website": "https://www.everreal.co/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": "München",
+   "plz": "80538",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "everyone energy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/everyone-energy/",
+   "website": "https://everyone-energy.de/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Berlin",
+   "plz": "10967",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EvlaBio",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/evlabio/",
+   "website": "https://evlabio.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Cardiology / Cardiovascular"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "eyefactive",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/eyefactive-2/",
+   "website": "https://www.eyefactive.com/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Hamburg",
+   "plz": "22761",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "eyeo B.V.",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/eyeo-imaging/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Factor2 Energy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/factor2-energy/",
+   "website": "http://www.Factor2-Energy.com",
+   "sectors": [
+    "Climate Tech",
+    "Deep Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "famPlus",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/famplus-2/",
+   "website": "https://www.famplus.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "ESG & Energy Transition"
+   ],
+   "city": "München",
+   "plz": "81675",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Filestage",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/filestage/",
+   "website": "https://filestage.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Stuttgart",
+   "plz": "70173",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "findIQ",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/findiq/",
+   "website": null,
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Herford",
+   "plz": "32049",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "finmarie",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/finmarie/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Berlin",
+   "plz": "10707",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FION Energy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fion-energy/",
+   "website": "https://www.fion-energy.com/",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FlyNex",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/flynex/",
+   "website": "https://www.flynex.de/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Drones & Logistics"
+   ],
+   "city": "Leipzig",
+   "plz": "04179",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FMC - Ferroelectric Memory Company",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fmc-ferroelectric-memory-company/",
+   "website": "https://ferroelectric-memory.com/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": "Dresden",
+   "plz": "01187",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FundaMental Pharma",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fundamental-pharma/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Neurology"
+   ],
+   "city": "Heidelberg",
+   "plz": "69121",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Genow",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/genow/",
+   "website": "https://www.genow.ai",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Gilytics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gilytics/",
+   "website": null,
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "GlassDollar",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/glassdollar/",
+   "website": "https://www.glassdollar.com/",
+   "sectors": [
+    "Climate Tech",
+    "Deep Tech",
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Berlin",
+   "plz": "10967",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "GlassFlow",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/glassflow/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "13127",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "GME",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gme-2/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Aesthetics"
+   ],
+   "city": "Erlangen",
+   "plz": "91052",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Grandperspective",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/grandperspective/",
+   "website": "https://www.grandperspective.de/",
+   "sectors": [
+    "Deep Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Berlin",
+   "plz": "10999",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Graswald",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/graswald/",
+   "website": "https://www.graswald3d.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": "Hannover",
+   "plz": "30625",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "GS Bavaria",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/gs-bavaria/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Advanced Materials",
+    "New Materials"
+   ],
+   "city": "Nürnberg",
+   "plz": "90439",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Hanko.io",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hanko-io/",
+   "website": "https://www.hanko.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Kiel",
+   "plz": "24114",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HAPILA",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hapila-2/",
+   "website": "https://www.hapila.de/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Industrial Biotech",
+    "Industrial Biotech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HBOX Therapies",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hbox-therapies/",
+   "website": "https://hbox-therapies.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Medical Technology"
+   ],
+   "city": "Aachen",
+   "plz": "52074",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Heidelberg Epignostix",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/heidelberg-epignostix/",
+   "website": "https://epignostix.com/",
+   "sectors": [
+    "Diagnostics & R&D Tools",
+    "Digital Health"
+   ],
+   "branches": [
+    "Diagnostic",
+    "Oncology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "hema.to",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hema-to/",
+   "website": "http://hema.to/",
+   "sectors": [
+    "Diagnostics & R&D Tools",
+    "Digital Health"
+   ],
+   "branches": [
+    "Diagnostic"
+   ],
+   "city": "Munich",
+   "plz": "80801",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HighLine",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/highline/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Freiburg",
+   "plz": "79100",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Hprobe",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hprobe/",
+   "website": "https://www.hprobe.com/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": "Eybens",
+   "plz": "38320",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HQS Quantum Simulations",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hqs-quantum-simulations/",
+   "website": "https://quantumsimulations.de/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Quantum",
+    "Simulations & Quantum Chemistry"
+   ],
+   "city": "Karlsruhe",
+   "plz": "76131",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "iATROS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/startup-iatros-2/",
+   "website": "https://www.i-atros.com/de/",
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "München",
+   "plz": "80798",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ICO-LUX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ico-lux/",
+   "website": "https://www.ico-lux.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Jena",
+   "plz": "07745",
+   "origin": "TU Ilmenau",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Immunic",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/immunic-2/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Immunology"
+   ],
+   "city": "Graefelfing",
+   "plz": "82166",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Implandata Ophthalmic Products",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/implandata-ophthalmic-products-2/",
+   "website": "https://www.implandata.com/index.html",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Patient Monitoring"
+   ],
+   "city": "Hannover",
+   "plz": "30159",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Implisense",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/implisense-2/",
+   "website": "https://www.implisense.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Berlin",
+   "plz": "13189",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "InCephalo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/incephalo/",
+   "website": "https://incephalo.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "INCIRT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/incirt/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": "Aachen",
+   "plz": "52074",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "inContAlert",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/incontalert/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Medical Technology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Industrial Technology and Witchcraft",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/industrial-technology-and-witchcraft/",
+   "website": "https://www.industrial-technology-and-witchcraft.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Berlin",
+   "plz": "10785",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "INLEAP Photonics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/inleap-photonics/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "innerspace",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/innerspace/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions",
+    "Regulatory"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Inovedis",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/inovedis/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Orthopedics / 3D-Printing"
+   ],
+   "city": "Albstadt",
+   "plz": "72461",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "intelligent fluids",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/bubbles-beyond-2/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "New Materials",
+    "Surface Technologies"
+   ],
+   "city": "Leipzig",
+   "plz": "04229",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "IO-Dynamics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/io-dynamics/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Mobility"
+   ],
+   "city": "Flensburg",
+   "plz": "24943",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "IonKraft",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ionkraft/",
+   "website": null,
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Circular Economy"
+   ],
+   "city": "Aachen",
+   "plz": "52074",
+   "origin": "RWTH Aachen",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "IRUBIS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/irubis/",
+   "website": null,
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [],
+   "city": "München",
+   "plz": "80336",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ISPTech",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/isptech/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "New Space"
+   ],
+   "city": "Hardthausen",
+   "plz": "74239",
+   "origin": "DLR",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Itembase",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/itembase-2/",
+   "website": "https://www.itembase.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Berlin",
+   "plz": "10969",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "JUPUS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/jupus/",
+   "website": "https://www.jupus.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Köln",
+   "plz": "50674",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "kausable",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kausable/",
+   "website": "https://kausable.ai/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics",
+    "Marketing & AdTech",
+    "Productivity Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Kõu Mobility Group",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/comodule/",
+   "website": "https://www.koumobility.com/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Mobility",
+    "Mobility"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Kranus Health",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kranus/",
+   "website": "https://www.kranushealth.com",
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Health & Lifestyle"
+   ],
+   "city": "München",
+   "plz": "80331",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Kupando",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kupando/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [],
+   "city": "Schönefeld",
+   "plz": "12529",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Laclarée Vision",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/laclaree-vision/",
+   "website": "http://www.laclaree-vision.com/",
+   "sectors": [
+    "Industrial Tech",
+    "MedTech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Lyon",
+   "plz": "69007",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Lignopure",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/lignopure/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Composite Materials & New Materials",
+    "New Materials"
+   ],
+   "city": "Hamburg",
+   "plz": "21079",
+   "origin": "TU Hamburg",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "locr",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/locr/",
+   "website": "https://de.locr.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": "Braunschweig",
+   "plz": "38106",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Lymphatica",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/lymphatica/",
+   "website": "https://www.lymphatica.ch/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Cardiovascular Devices"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "lytra",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/lytra/",
+   "website": "https://www.lytra.ai/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Marble Imaging",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/marble-imaging/",
+   "website": "https://www.marble-imaging.de/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "New Space"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Materials Nexus",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/materials-nexus/",
+   "website": "https://www.materialsnexus.com/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "mbiomics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mbiomics/",
+   "website": "https://mbiomics.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Immunology"
+   ],
+   "city": "Munich",
+   "plz": "81379",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MDTB Cell Manufacturing",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mdtb-cell-manufacturing/",
+   "website": "https://mdtbcells.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Immunology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "mediaire",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mediaire/",
+   "website": "https://mediaire.de/",
+   "sectors": [
+    "Digital Health",
+    "MedTech"
+   ],
+   "branches": [
+    "Imaging & Navigation"
+   ],
+   "city": "Berlin",
+   "plz": "10965",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Medical Decision Alliance",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/medical-decision-alliance/",
+   "website": "https://medical-decision-alliance.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Imaging & Navigation"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mevaldi",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mevaldi/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Composite Materials & New Materials"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Midel Photonics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/midel-photonics/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Bonn",
+   "plz": "53227",
+   "origin": "University of Bonn",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "minubo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/minubo-2/",
+   "website": "https://www.minubo.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Hamburg",
+   "plz": "20457",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mister Spex",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mister-spex-2/",
+   "website": "https://misterspex.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "Berlin",
+   "plz": "10405",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "\"mo:re\"",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/more/",
+   "website": null,
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MoBerries",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/moberries-2/",
+   "website": "https://moberries.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Berlin",
+   "plz": "10119",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mobility Signage",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mobility-signage/",
+   "website": "https://mobilitysignage.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Mobility"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mosanna",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mosanna/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Metabolic Diseases"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mycoverse",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mycoverse/",
+   "website": "https://www.linkedin.com/company/mycoverse/",
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Agriculture, Agritech & Animal Health"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "NanoStruct",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nanostruct/",
+   "website": "http://www.nanostruct.eu",
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Industrial Biotech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": "Universität Würzburg",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "MYR (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/myr-2/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Pharmaceuticals"
+   ],
+   "city": "Burgwedel",
+   "plz": "30938",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Natif.ai",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/natif-ai/",
+   "website": "https://natif.ai/en/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Navan",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/navan/",
+   "website": null,
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Nebula Biocides",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nebula-biocides/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech",
+    "MedTech"
+   ],
+   "branches": [
+    "New Materials"
+   ],
+   "city": "Greifswald",
+   "plz": "17489",
+   "origin": "Leibniz Institute",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "neotiv",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/neotiv/",
+   "website": "https://www.neotiv.com/de/",
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Magdeburg",
+   "plz": "39106",
+   "origin": "Guericke University",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Neural Concept",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/neural-concept/",
+   "website": "https://neuralconcept.com/",
+   "sectors": [
+    "Deep Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Nia Health",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nia-health/",
+   "website": "https://www.niahealth.ai/",
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health",
+    "Life Sciences"
+   ],
+   "city": "Berlin",
+   "plz": "10997",
+   "origin": "Charité",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Nordantech Solutions",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nordantech-solutions-gmbh-2/",
+   "website": "https://www.nordantech.com/de",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Hamburg",
+   "plz": "20095",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "NOVUM engineerING",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/novum-engineering/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Battery",
+    "Sensor & Measurement Techniques"
+   ],
+   "city": "Dresden",
+   "plz": "01069",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Noxon",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/noxon/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Rehabilitation"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "NUMAFERM",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/numaferm/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Industrial Biotech",
+    "Industrial Biotech"
+   ],
+   "city": "Düsseldorf",
+   "plz": "40225",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "nuuEnergy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nuuenergy/",
+   "website": "https://www.nuuenergy.com",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Nuuron",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/nuuron/",
+   "website": "https://www.nuuron.com/",
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Berlin",
+   "plz": "10117",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "O11 biomedical",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/o11-biomedical/",
+   "website": "https://o11-biomedical.com",
+   "sectors": [
+    "MedTech",
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Emergency Care"
+   ],
+   "city": "Aachen",
+   "plz": "52072",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "oculai",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/oculai/",
+   "website": "https://www.oculai.de/",
+   "sectors": [
+    "Deep Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Nürnberg",
+   "plz": "90443",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "OMEICOS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/omeicos-2/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Cardiology / Cardiovascular"
+   ],
+   "city": "Berlin",
+   "plz": "13125",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ondeso",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ondeso-2/",
+   "website": null,
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Regensburg",
+   "plz": "93055",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Pactos",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pactos/",
+   "website": "https://www.pactos.ai/en",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "paddy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/paddy/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "pagent.ai",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pagent-ai/",
+   "website": "https://www.pagent.ai/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Bonn",
+   "plz": "53111",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Pantherna Therapeutics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pantherna-therapeutics/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Cardiology / Cardiovascular"
+   ],
+   "city": "Hennigsdorf",
+   "plz": "16761",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PEPperPRINT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pepperprint-2/",
+   "website": "https://www.pepperprint.com/",
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Heidelberg",
+   "plz": "69123",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Phialogics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/phialogics/",
+   "website": "https://www.phialogics.net",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Immunology",
+    "Metabolic Diseases"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Phytonics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/phytonics/",
+   "website": "https://www.phytonics.tech/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Eggenstein-Leopoldshafen",
+   "plz": "76344",
+   "origin": "KIT",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "PicoLAS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/picolas-2/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Herzogenrath-Kohlscheid",
+   "plz": "52134",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Pixel Photonics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pixel-photonics/",
+   "website": "https://pixelphotonics.com",
+   "sectors": [
+    "Deep Tech",
+    "MedTech"
+   ],
+   "branches": [
+    "Quantum"
+   ],
+   "city": "Münster",
+   "plz": "48149",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Pixel-Flo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pixel-flo/",
+   "website": "https://pixel-flo.com/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Plancraft",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/plancraft/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": "Hamburg",
+   "plz": "20097",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Plasmion",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/plasmion-2/",
+   "website": "https://www.plasmion.de/",
+   "sectors": [
+    "Chemistry & Industrial Biotech",
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "Sensor & Measurement Techniques"
+   ],
+   "city": "Augsburg",
+   "plz": "86167",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PlastFormance",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/plastformance/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech",
+    "Deep Tech"
+   ],
+   "branches": [
+    "Industrial Biotech"
+   ],
+   "city": "Teisendorf",
+   "plz": "83317",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "POSpulse",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pospulse-2/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Berlin",
+   "plz": "12059",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PraxisEins",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/praxiseins/",
+   "website": null,
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Health",
+    "Health & Lifestyle"
+   ],
+   "city": "Frankfurt",
+   "plz": "60325",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PreComb",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/precomb/",
+   "website": null,
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Preventicus",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/preventicus-2/",
+   "website": null,
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health",
+    "Health & Lifestyle"
+   ],
+   "city": "Jena",
+   "plz": "07745",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Primogene",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/primogene/",
+   "website": "https://www.primogene.bio/",
+   "sectors": [
+    "Agritech & Food",
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Agriculture, Agritech & Animal Health",
+    "Industrial Biotech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Proxima Fusion",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/proxima-fusion/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Deep Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "München",
+   "plz": "81369",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PXL Vision",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/pxl-vision/",
+   "website": "https://pxl-vision.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Qnami",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/qnami/",
+   "website": "https://qnami.ch/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Quantum"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "QphoX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/qphox/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Quantum"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Qurie",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/qurie/",
+   "website": "http://www.qurie.de/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Circular Economy",
+    "Energy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "R3DT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/r3dt-meet-your-reality/",
+   "website": "https://www.r3dt.com/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Karlsruhe",
+   "plz": "76131",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "RABOT Energy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/rabot-energy/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Hamburg",
+   "plz": "20457",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "RAYDIAX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/raydiax/",
+   "website": "https://raydiax.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Imaging & Navigation"
+   ],
+   "city": "Magdeburg",
+   "plz": "39106",
+   "origin": "Universität Magdeburg",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "REBELLE",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/rebelle-2/",
+   "website": "https://www.rebelle.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "Hamburg",
+   "plz": "20457",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ReCatalyst",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/recatalyst/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "3D Printing, Surface Technologies and New Materials",
+    "Composite Materials & New Materials"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "RedMimicry",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/redmimicry/",
+   "website": "https://redmimicry.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Refined Laser Systems",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/refined-laser-systems/",
+   "website": "https://refined-lasers.com/",
+   "sectors": [
+    "Diagnostics & R&D Tools",
+    "MedTech"
+   ],
+   "branches": [
+    "Diagnostic"
+   ],
+   "city": "Münster",
+   "plz": "48149",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Reflex Aerospace",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/reflex-aerospace/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "New Space"
+   ],
+   "city": "Berlin",
+   "plz": "10245",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Refoxy Pharma",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/refoxy/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Rejuvenation"
+   ],
+   "city": "Berlin",
+   "plz": "10629",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "refuel.green",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/refuel-green/",
+   "website": "https://www.refuel.green",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Hydrogen / eFuels"
+   ],
+   "city": "Dresden",
+   "plz": "01099",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Relio",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/relio/",
+   "website": "https://relio.ch/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Rement",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/rement/",
+   "website": "https://www.rement.tech/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Circular Economy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Resolve Biosciences",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/resolve-biosciences/",
+   "website": null,
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Monheim",
+   "plz": "40789",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Resourcify",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/resourcify/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Circular Economy",
+    "Sustainability"
+   ],
+   "city": "Hamburg",
+   "plz": "20459",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "reverse.fashion",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/reverse-fashion/",
+   "website": "https://reverse.fashion",
+   "sectors": [
+    "Climate Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Circular Economy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": "Technical University",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Scavenger AI",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/113793/",
+   "website": "https://scavenger-ai.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "AI"
+   ],
+   "city": "Frankfurt",
+   "plz": "60489",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SciRhom",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/scirhom/",
+   "website": "https://scirhom.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Immunology"
+   ],
+   "city": "Planegg",
+   "plz": "82152",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Senodis",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/senodis/",
+   "website": null,
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Sensor Tech"
+   ],
+   "city": "Dresden",
+   "plz": "01099",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Seqana",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/seqana/",
+   "website": "https://www.seqana.com/",
+   "sectors": [
+    "Agritech & Food",
+    "Climate Tech"
+   ],
+   "branches": [
+    "AgTech"
+   ],
+   "city": "Berlin",
+   "plz": "10999",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SereneDB",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/serenedb/",
+   "website": "http://www.serenedb.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Seven Education (vormals Sdui)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/seven-education/",
+   "website": "https://www.7education.com/de-de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Koblenz",
+   "plz": "56070",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "sewts",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sewts/",
+   "website": null,
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "München",
+   "plz": "80805",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SideCaps",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sidecaps/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Hamburg",
+   "plz": "20457",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Signatope",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/signatope-2/",
+   "website": "https://www.signatope.de/",
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "R&D Tools"
+   ],
+   "city": "Reutlingen",
+   "plz": "72770",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Simreka",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/simreka-2/",
+   "website": null,
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics",
+    "Sustainability"
+   ],
+   "city": "Düsseldorf",
+   "plz": "40221",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Skinuvita",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/skinuvita/",
+   "website": "https://skinuvita.de/",
+   "sectors": [
+    "Digital Health",
+    "MedTech"
+   ],
+   "branches": [
+    "Aesthetics"
+   ],
+   "city": "Bremen",
+   "plz": "28195",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Skoove",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/skoove/",
+   "website": "https://www.skoove.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Berlin",
+   "plz": "10243",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SKY ENGINE AI",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sky-engine-ai/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "smartbax",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/smartbax/",
+   "website": "https://www.smartbax.de/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Life Sciences"
+   ],
+   "city": "Munich",
+   "plz": "80802",
+   "origin": "Technical University",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Smarterials Technology",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/smarterials-technology/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Composite Materials & New Materials",
+    "New Materials"
+   ],
+   "city": "Berlin",
+   "plz": "12489",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SmartLoC",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/smartloc/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Bad Oldesloe",
+   "plz": "23843",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Soley",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/soley/",
+   "website": null,
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "München",
+   "plz": "81373",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "sovity",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sovity/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Dortmund",
+   "plz": "44227",
+   "origin": "Fraunhofer",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "SPACEGOATS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/spacegoats/",
+   "website": "https://spacegoats.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Stuttgart",
+   "plz": "70180",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Spherity",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/spherity/",
+   "website": "https://spherity.com/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "spoks",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/spoks/",
+   "website": "https://www.spoks.de/en",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Mobility"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SRTD biotech",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/srtd-biotech/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Jülich",
+   "plz": "52428",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Stackgini",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/stackgini/",
+   "website": "https://www.stackgini.de/en",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Steuerboard",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/steuerboard/",
+   "website": "https://steuerboard.net/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics",
+    "Productivity Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "StoryBox",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/storybox/",
+   "website": "https://www.storybox.blog/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Marketing & AdTech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Supportwave",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/supportwave/",
+   "website": "https://www.supportwave.com",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Symphera",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/symphera/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Endoscopy"
+   ],
+   "city": "München",
+   "plz": "81675",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Synendos Therapeuthics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/synendos-therapeuthics/",
+   "website": "https://www.synendos.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Neurology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Synthara",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/synthara/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Tacalyx",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tacalyx/",
+   "website": "https://tacalyx.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Berlin",
+   "plz": "13353",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Talpasolutions",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/talpasolutions-gmbh-2/",
+   "website": "https://talpasolutions.eu/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Essen",
+   "plz": "45327",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Tangany",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tangany/",
+   "website": "https://tangany.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Taxdoo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/taxdoo/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Hamburg",
+   "plz": "20355",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TECregen",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tecregen/",
+   "website": "https://www.tecregen.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Rejuvenation"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Threedium",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/threedium/",
+   "website": "http://www.threedium.co.uk",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Tixel",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tixel-2/",
+   "website": "https://www.tixeltec.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Hannover",
+   "plz": "30625",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TolerogenixX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tolerogenixx/",
+   "website": "https://www.tolerogenixx.com",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Immunology"
+   ],
+   "city": "Heidelberg",
+   "plz": "69120",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Tomorrow Things",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tomorrow-things/",
+   "website": "https://tomorrowthings.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Bonn",
+   "plz": "53229",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Toolify",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/toolify/",
+   "website": "https://www.xito.one/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "AI"
+   ],
+   "city": "Ulm",
+   "plz": "89075",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TQ Therapeutics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tq-therapeutics/",
+   "website": "https://www.tqtherapeutics.com/",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Gene Therapy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "traceless materials",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/traceless-materials/",
+   "website": "https://www.traceless.eu/",
+   "sectors": [
+    "Chemistry & Industrial Biotech",
+    "Climate Tech",
+    "Deep Tech"
+   ],
+   "branches": [
+    "Advanced Materials",
+    "Circular Economy",
+    "Composite Materials & New Materials"
+   ],
+   "city": "Hamburg",
+   "plz": "20357",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TRAIT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/trait/",
+   "website": "https://www.trait.club/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Health & Lifestyle"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "trans.duodenal.concepts",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/trans-duodenal-concepts/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Gastrointestinal Devices"
+   ],
+   "city": "Mannheim",
+   "plz": "68199",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TRIM TX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/trim-tx/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Neurology"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "troy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/troy/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Lippstadt",
+   "plz": "59557",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Tubulis",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tubulis/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Munich",
+   "plz": "81377",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Twenty-One Semiconductors",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/twenty-one-semiconductors/",
+   "website": null,
+   "sectors": [
+    "Deep Tech",
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Neckartenzlingen",
+   "plz": "72654",
+   "origin": "University of Stuttgart",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "Twogee Biotech",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/twogee-biotech/",
+   "website": "https://www.twogee-biotech.com/",
+   "sectors": [
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Industrial Biotech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Umlaut.bio",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/umlaut-bio/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Heidelberg",
+   "plz": "69124",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Urban Ground",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/urbanground/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Urge IO (VERSUS)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/urge-io-2/",
+   "website": "https://urge.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": "Berlin",
+   "plz": "10963",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Vacis",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/vacis/",
+   "website": "https://www.vacis.nl/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Cardiovascular Devices"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Vertama",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/vertama/",
+   "website": "https://vertama.com/",
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Berlin",
+   "plz": "12435",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "viboo",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/viboo/",
+   "website": "https://viboo.io/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "virtualQ",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/virtualq-2/",
+   "website": "https://virtualq.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Berlin",
+   "plz": "10437",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "VisioLab",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/visiolab/",
+   "website": "https://www.visiolab.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Osnabrück",
+   "plz": "49078",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Visometry",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/visometry/",
+   "website": "https://visionlib.com/",
+   "sectors": [
+    "Deep Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Darmstadt",
+   "plz": "64283",
+   "origin": "Fraunhofer",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "VREY",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/vrey/",
+   "website": "http://www.vrey.io/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial Tech",
+    "PropTech/ConTech"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "wetransform",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/wetransform-2/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Darmstadt",
+   "plz": "64283",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Wirelane",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/wirelane/",
+   "website": "https://www.wirelane.com/de",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Mobility"
+   ],
+   "city": "München",
+   "plz": "81675",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "WMT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/wmt/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Heidelberg",
+   "plz": "69123",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Workpath",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/workpath/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "München",
+   "plz": "80636",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Yatta Solutions",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/yatta-solutions/",
+   "website": "https://www.yatta.de/de/start/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Kassel",
+   "plz": "34131",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "YOND",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/yond/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "Wiesbaden",
+   "plz": "65205",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Ze Energy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ze-energy/",
+   "website": null,
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Paris",
+   "plz": "75001",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Zeeg",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/zeeg/",
+   "website": "https://zeeg.me/en",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Zentio",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/zentio/",
+   "website": "https://www.zentio.io",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Zymofix",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/zymofix/",
+   "website": null,
+   "sectors": [
+    "Agritech & Food",
+    "Chemistry & Industrial Biotech"
+   ],
+   "branches": [
+    "Food, Nutrition & Personal Care"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CA Customer Alliance",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ca-customer-alliance/",
+   "website": "https://www.customer-alliance.com/de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Travel"
+   ],
+   "city": "Berlin",
+   "plz": "12109",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "SimScale",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/simscale/",
+   "website": "https://www.simscale.de/",
+   "sectors": [
+    "Deep Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Garching",
+   "plz": "85748",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Graylog",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/graylog/",
+   "website": "https://www.graylog.org/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "USA",
+   "plz": "77007",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Mitigant (formerly known as Resility)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mitigant/",
+   "website": "http://www.mitigant.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Potsdam",
+   "plz": "14482",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "VMRay",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/vmray/",
+   "website": "https://www.vmray.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": "Bochum",
+   "plz": "44780",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Venly",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/venly/",
+   "website": "https://www.venly.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Variolytics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/variolytics/",
+   "website": "https://variolytics.de/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Climate Tech"
+   ],
+   "city": "Stuttgart",
+   "plz": "70563",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Outfittery",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/outfittery/",
+   "website": "https://www.outfittery.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "E-Commerce"
+   ],
+   "city": "Berlin",
+   "plz": "10999",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EXTOLL",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/extoll/",
+   "website": "https://www.extoll.de/",
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Semiconductors"
+   ],
+   "city": "Mannheim",
+   "plz": "68159",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "kiutra",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kiutra/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Quantum"
+   ],
+   "city": "München",
+   "plz": "81379",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cycle",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cycle/",
+   "website": null,
+   "sectors": [
+    "Deep Tech"
+   ],
+   "branches": [
+    "Optics / Photonics"
+   ],
+   "city": "Hamburg",
+   "plz": "22607",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "enercast",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/enercast/",
+   "website": "https://www.enercast.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Kassel",
+   "plz": "34127",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "enexion",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/enexion/",
+   "website": "https://www.enexion.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics",
+    "Energy"
+   ],
+   "city": "Kronberg",
+   "plz": "61476",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "node.energy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/node-energy/",
+   "website": null,
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Energy",
+    "ESG & Energy Transition"
+   ],
+   "city": "Frankfurt",
+   "plz": "60596",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Remind.me",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/remind-me/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "FinTech & InsurTech"
+   ],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "INERATEC",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ineratec/",
+   "website": "https://ineratec.de/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy Generation/Storage",
+    "Hydrogen / eFuels"
+   ],
+   "city": "Karlsruhe",
+   "plz": "76187",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Instagrid",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/instagrid/",
+   "website": "https://instagrid.co/",
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Battery"
+   ],
+   "city": "Ludwigsburg",
+   "plz": "71636",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Autoaid",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/autoaid/",
+   "website": "https://www.autoaid.de/",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Mobility"
+   ],
+   "city": "Berlin",
+   "plz": "13355",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "casavi",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/casavi/",
+   "website": "https://www.casavi.de",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "PropTech/ConTech"
+   ],
+   "city": "München",
+   "plz": "80335",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "FairFleet",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/fairfleet/",
+   "website": null,
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Drones & Logistics"
+   ],
+   "city": "München",
+   "plz": "81371",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "attenio",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/attenio/",
+   "website": "http://attenio.de/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Hamburg",
+   "plz": "20539",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "DIMATE",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/dimate/",
+   "website": "https://www.dimate.de/en/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Bochum",
+   "plz": "44805",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Emteria",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/emteria/",
+   "website": "https://emteria.com/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Aachen",
+   "plz": "52066",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Erium",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/erium/",
+   "website": null,
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "AI"
+   ],
+   "city": "Garching",
+   "plz": "85748",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "tracekey",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tracekey/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure",
+    "R&D Processes & Logistics"
+   ],
+   "city": "Bochum",
+   "plz": "44892",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "eddyson",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/eddyson/",
+   "website": "https://www.eddyson.de",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Göttingen",
+   "plz": "37079",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "MetisMotion",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/metismotion/",
+   "website": null,
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Advanced Materials"
+   ],
+   "city": "München",
+   "plz": "81549",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Hypros",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/hypros/",
+   "website": "https://hypros.de/",
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Stralsund",
+   "plz": "18435",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "exelonix",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/exelonix/",
+   "website": "https://www.exelonix.com/",
+   "sectors": [
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [],
+   "city": "Dresden",
+   "plz": "01127",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Cryotherapeutics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cryotherapeutics/",
+   "website": "https://www.cryotherapeutics.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Cardiovascular Devices"
+   ],
+   "city": "Köln",
+   "plz": "51105",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Personal MedSystems",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/personal-medsystems/",
+   "website": "https://www.cardiosecur.com/de/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [],
+   "city": "Frankfurt",
+   "plz": "60329",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CereGate",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ceregate/",
+   "website": "https://www.ceregate.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Neuromodulation"
+   ],
+   "city": "Hamburg",
+   "plz": "20457",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "CorTec",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/cortec/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Neuromodulation"
+   ],
+   "city": "Freiburg",
+   "plz": "79108",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "WISE",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/wise/",
+   "website": "https://wiseneuro.com/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Neuromodulation"
+   ],
+   "city": "Berlin",
+   "plz": "10627",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "stimOS",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/stimos/",
+   "website": "http://www.stimos.net/",
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Orthopedics / 3D-Printing",
+    "Surface Technologies"
+   ],
+   "city": "Konstanz",
+   "plz": "78467",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Sedivention",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/sedivention/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Gastrointestinal Devices"
+   ],
+   "city": "Strasslach",
+   "plz": "82064",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "i3 Membrane",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/i3-membrane/",
+   "website": "https://www.i3membrane.de/",
+   "sectors": [
+    "Diagnostics & R&D Tools",
+    "MedTech"
+   ],
+   "branches": [
+    "Surface Technologies"
+   ],
+   "city": "Dresden",
+   "plz": "01328",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Lindis Blood Care",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/lindis-blood-care/",
+   "website": null,
+   "sectors": [
+    "MedTech"
+   ],
+   "branches": [
+    "Patient Monitoring"
+   ],
+   "city": "Hennigsdorf",
+   "plz": "16761",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Advanova",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/advanova/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Schwaig",
+   "plz": "90571",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "heartbeat medical",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/heartbeat-medical/",
+   "website": "https://heartbeat-med.de",
+   "sectors": [
+    "Digital Health"
+   ],
+   "branches": [
+    "Digital Health"
+   ],
+   "city": "Berlin",
+   "plz": "10405",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "PerformaNat",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/performanat/",
+   "website": null,
+   "sectors": [
+    "Agritech & Food"
+   ],
+   "branches": [
+    "Agriculture, Agritech & Animal Health",
+    "Food, Nutrition & Personal Care"
+   ],
+   "city": "Berlin",
+   "plz": "12249",
+   "origin": "Universität Berlin",
+   "origin_evidence": "htgf.de portfolio page names a spin-off/origin"
+  },
+  {
+   "company": "VEROVACCiNES",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/verovaccines/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Agriculture, Agritech & Animal Health"
+   ],
+   "city": "Halle",
+   "plz": "06120",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Abalos",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/abalos/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Oncology"
+   ],
+   "city": "Essen",
+   "plz": "45130",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "HepaRegeniX",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/heparegenix/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Metabolic Diseases"
+   ],
+   "city": "Tübingen",
+   "plz": "72072",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Zedira",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/zedira/",
+   "website": "https://zedira.com",
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Metabolic Diseases"
+   ],
+   "city": "Darmstadt",
+   "plz": "64293",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "AudioCure",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/audiocure/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [
+    "Hearing loss"
+   ],
+   "city": "Berlin",
+   "plz": "10115",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "miRdetect",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/mirdetect/",
+   "website": null,
+   "sectors": [
+    "Diagnostics & R&D Tools"
+   ],
+   "branches": [
+    "In-Vitro Dx"
+   ],
+   "city": "Bremen",
+   "plz": "28359",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "EGYM",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/egym/",
+   "website": "https://www.egym.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Health & Lifestyle"
+   ],
+   "city": "München",
+   "plz": "81677",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Quobyte",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/quobyte/",
+   "website": "https://www.quobyte.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "Hardenbergplatz",
+   "plz": "94087",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Uniki",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/uniki/",
+   "website": "https://uniki.de",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Cloud Services & Infrastructure"
+   ],
+   "city": "München",
+   "plz": "80939",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Datarade",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/datarade/",
+   "website": "https://datarade.ai/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Berlin",
+   "plz": "10178",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "ConWeaver",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/conweaver/",
+   "website": "https://www.conweaver.com/de",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Big Data Analytics & Business Analytics"
+   ],
+   "city": "Darmstadt",
+   "plz": "64283",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Flowtify",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/flowtify/",
+   "website": "https://www.flowtify.de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "ESG & Energy Transition",
+    "Sustainability"
+   ],
+   "city": "Köln",
+   "plz": "50677",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Asana Rebel",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/asana-rebel/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Health & Lifestyle"
+   ],
+   "city": "Berlin",
+   "plz": "10407",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Computomics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/computomics/",
+   "website": "https://www.computomics.com",
+   "sectors": [
+    "Agritech & Food"
+   ],
+   "branches": [
+    "Food, Nutrition & Personal Care"
+   ],
+   "city": "Tübingen",
+   "plz": "72072",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "REVIER Therapeutics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/revier-therapeutics/",
+   "website": null,
+   "sectors": [
+    "Pharmaceuticals"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "userlane",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/userlane/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Productivity Tools"
+   ],
+   "city": "München",
+   "plz": "80799",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Adlatus Robotics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/adlatus-robotics-2/",
+   "website": null,
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "Ulm",
+   "plz": "89079",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Viamon",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/viamon-2/",
+   "website": null,
+   "sectors": [
+    "Climate Tech"
+   ],
+   "branches": [
+    "Energy"
+   ],
+   "city": "Kaiserslautern",
+   "plz": "67663",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Samp",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/samp/",
+   "website": null,
+   "sectors": [
+    "Deep Tech",
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [
+    "AI"
+   ],
+   "city": "Paris",
+   "plz": "75011",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Jaipur Robotics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/jaipur-robotics/",
+   "website": "https://www.jaipurrobotics.com",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech",
+    "Industrial Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Depotcharge",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/depotcharge/",
+   "website": null,
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "syte",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/syte/",
+   "website": "https://www.syte.ms/",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [
+    "AI"
+   ],
+   "city": "Münster",
+   "plz": "48155",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Arcos",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/arcos/",
+   "website": "https://arcos.eu/de",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Kontext",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/kontext/",
+   "website": "https://kontext.security/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "AILOS Robotics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/ailos-robotics/",
+   "website": "http://www.ailos-robotics.com/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Synapticon",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/synapticon/",
+   "website": "https://www.synapticon.com/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Robotics / Automation"
+   ],
+   "city": "Filderstadt",
+   "plz": "70794",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TrustNXT",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/trustnxt/",
+   "website": "https://trustnxt.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "IT-Security"
+   ],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "beel (formerly Tokenize.it)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/beel/",
+   "website": "https://beel.com/en/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "TODAY",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/today/",
+   "website": "https://www.usetoday.io/de/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Veridue",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/veridue/",
+   "website": "https://www.veridue.ai/",
+   "sectors": [
+    "Climate Tech",
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Finches",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/finches/",
+   "website": "https://www.finches.ai/",
+   "sectors": [
+    "Agritech & Food"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "AuditOne",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/auditone/",
+   "website": "https://www.auditone.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Blockchain & Web3",
+    "IT-Security"
+   ],
+   "city": "Cologne",
+   "plz": "50670",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Crealytics",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/crealytics-2/",
+   "website": "https://crealytics.com/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Retail Intelligence"
+   ],
+   "city": "Berlin",
+   "plz": "10587",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Avelios Medical",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/avelios-medical/",
+   "website": "https://avelios.com/",
+   "sectors": [
+    "Digital Health",
+    "Digital Tech"
+   ],
+   "branches": [
+    "Digital Health",
+    "Health & Lifestyle"
+   ],
+   "city": "München",
+   "plz": "80801",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "c-LEcta (Exit)",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/c-lecta-2/",
+   "website": "https://www.c-lecta.com/",
+   "sectors": [],
+   "branches": [
+    "Industrial Biotech"
+   ],
+   "city": "Leipzig",
+   "plz": "04103",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Tweezr",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/tweezr/",
+   "website": "https://www.tweezr.io/",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [],
+   "city": null,
+   "plz": null,
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "Threedy",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/threedy/",
+   "website": "https://www.threedy.io/",
+   "sectors": [
+    "Industrial Tech"
+   ],
+   "branches": [
+    "Industrial & Engineering Software"
+   ],
+   "city": "Darmstadt",
+   "plz": "64283",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "JobLeads",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/jobleads/",
+   "website": "https://www.jobleads.com",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "EdTech & HR-Solutions"
+   ],
+   "city": "Hamburg",
+   "plz": "20457",
+   "origin": null,
+   "origin_evidence": null
+  },
+  {
+   "company": "traide",
+   "url": "https://www.htgf.de/en/portfolio/htgffamily/traide/",
+   "website": "http://www.traide.ai",
+   "sectors": [
+    "Digital Tech"
+   ],
+   "branches": [
+    "Artificial Intelligence"
+   ],
+   "city": "Berlin",
+   "plz": "10119",
+   "origin": null,
+   "origin_evidence": null
+  }
+ ]
+}
