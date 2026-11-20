@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import {
   ArrowDown,
@@ -182,12 +183,16 @@ export default function ProofDashboard({ leads, asOf }) {
   return (
     <main className="proof-app">
       <aside className="proof-sidebar">
-        <a href="/proof" className="proof-brand">
+        <Link
+          href="/"
+          className="proof-brand"
+          aria-label="Founders First homepage"
+        >
           <Radar size={28} />
           <span>
             Founders <strong>First</strong>
           </span>
-        </a>
+        </Link>
         <nav aria-label="Workspace">
           <a className="proof-activeNav" href="#leads">
             <Layers size={17} /> Lead explorer
@@ -203,9 +208,9 @@ export default function ProofDashboard({ leads, asOf }) {
       </aside>
       <div className="proof-workspace">
         <header className="proof-topbar">
-          <span className="proof-topbarLabel">
-            <Radar size={17} /> Sourcing workspace
-          </span>
+          <Link href="/" className="proof-topbarLabel">
+            <Radar size={17} aria-hidden="true" /> Founders First
+          </Link>
           <span
             className="proof-demoBadge"
             title="All teams and evidence shown are fictional"
