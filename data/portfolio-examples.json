@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "proxima-fusion",
+    "name": "Proxima Fusion",
+    "sector": "Climate & deep tech",
+    "location": "Munich",
+    "logo": "proxima-fusion.png",
+    "description": "Designs fusion power plants based on stellarators, a type of reactor that uses magnetic fields to confine plasma. The company spun out of the Max Planck Institute for Plasma Physics.",
+    "round": {
+      "amount": "€130M",
+      "stage": "Series A",
+      "date": "2025-06-11",
+      "source": "https://www.htgf.de/en/proxima-fusion-series-a/"
+    }
+  },
+  {
+    "slug": "avelios-medical",
+    "name": "Avelios Medical",
+    "sector": "Digital health",
+    "location": "Munich",
+    "logo": "avelios-medical.png",
+    "description": "Builds modular hospital software for clinical workflows and patient documentation. Its tools help care teams capture structured treatment data during everyday work.",
+    "round": {
+      "amount": "€2M",
+      "stage": "Seed",
+      "date": "2021-11-02",
+      "source": "https://www.htgf.de/en/htgf-investment-avelios-medical/"
+    }
+  },
+  {
+    "slug": "symphera",
+    "name": "Symphera",
+    "sector": "Medtech",
+    "location": "Munich",
+    "logo": "symphera.png",
+    "description": "Develops surgical instruments for minimally invasive procedures. Its system is designed to let surgeons switch tools during laparoscopic surgery without manually swapping instruments.",
+    "round": {
+      "amount": "€2.4M",
+      "stage": "Seed",
+      "date": "2024-09-16",
+      "source": "https://www.htgf.de/en/htgf-seed-symphera/"
+    }
+  },
+  {
+    "slug": "audavis",
+    "name": "AUDAVIS",
+    "sector": "Digital tech",
+    "location": "Munich",
+    "logo": "audavis.png",
+    "description": "Develops AI-assisted financial auditing software. Its Artificial Auditor helps audit teams analyze transactions and check the quality of financial data.",
+    "round": {
+      "amount": "Over €1.1M",
+      "stage": "Seed",
+      "date": "2025-01-15",
+      "source": "https://www.htgf.de/en/audavis-seed-htgf/"
+    }
+  },
+  {
+    "slug": "auxilius",
+    "name": "Auxilius",
+    "sector": "Digital tech",
+    "location": "Unterföhring · Munich area",
+    "logo": "auxilius.png",
+    "description": "Builds software for enterprise governance, risk, and compliance. It turns policies into rules that run automatically and produce evidence for internal monitoring and audits.",
+    "round": {
+      "amount": "About €1.3M",
+      "stage": "Pre-seed",
+      "date": "2026-07-07",
+      "source": "https://www.htgf.de/en/auxilius-raises-pre-seed/"
+    }
+  },
+  {
+    "slug": "lytra",
+    "name": "lytra",
+    "sector": "Industrial tech",
+    "location": "Munich",
+    "logo": "lytra.svg",
+    "description": "Builds AI software for the after-sales service teams of machinery manufacturers. It automates service requests and helps operators find product and process knowledge.",
+    "round": {
+      "amount": null,
+      "stage": "Pre-seed",
+      "date": "2026-01-15",
+      "source": "https://www.htgf.de/en/lytra-pre-seed-financing/"
+    }
+  }
+]

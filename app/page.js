@@ -7,7 +7,7 @@ import {
   Mic,
   Radar,
 } from "lucide-react";
-import fixture from "@/data/proof-leads.json";
+import companies from "@/data/portfolio-examples.json";
 import "./home.css";
 
 export const metadata = {
@@ -38,7 +38,7 @@ const sources = [
 ];
 
 export default function Home() {
-  const example = fixture.leads[0];
+  const example = companies[0];
 
   return (
     <div className="home-site">
@@ -70,7 +70,7 @@ export default function Home() {
           </p>
           <div className="home-heroActions">
             <Link className="home-action home-actionPrimary" href="/proof">
-              Explore analytics <ArrowRight size={17} aria-hidden="true" />
+              Go to analytics <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <a className="home-action" href="#how-it-works">
               How it works <ArrowDown size={16} aria-hidden="true" />
@@ -83,14 +83,14 @@ export default function Home() {
               From early signals to a lead you can evaluate.
             </h2>
             <p>
-              See which sources surfaced a team, how it ranks for HTGF fit, and
-              when its earliest signal appeared.
+              Preview a real company profile with a short description and
+              figures from its public funding announcement.
             </p>
           </div>
-          <Link href="/proof" className="home-previewCard">
+          <Link href={`/proof/${example.slug}`} className="home-previewCard">
             <div className="home-cardHeader">
-              <span>Example lead</span>
-              <span className="home-exampleLabel">Fictional data</span>
+              <span>Example candidate</span>
+              <span className="home-exampleLabel">HTGF portfolio</span>
             </div>
             <div className="home-cardTitle">
               <span className="home-signalIcon">
@@ -99,33 +99,27 @@ export default function Home() {
               <div>
                 <h3>{example.name}</h3>
                 <p>
-                  {example.sector} · {example.city}
+                  {example.sector} · {example.location}
                 </p>
               </div>
             </div>
-            <p className="home-cardDescription">{example.what}</p>
+            <p className="home-cardDescription">{example.description}</p>
             <dl>
               <div>
-                <dt>HTGF fit</dt>
-                <dd>
-                  {example.fit_score}
-                  <span>/100</span>
-                </dd>
+                <dt>Round amount</dt>
+                <dd>{example.round.amount}</dd>
               </div>
               <div>
-                <dt>Team score</dt>
-                <dd>
-                  {example.team_score}
-                  <span>/100</span>
-                </dd>
+                <dt>Round stage</dt>
+                <dd>{example.round.stage}</dd>
               </div>
               <div>
-                <dt>Sources</dt>
-                <dd>{example.source_count}</dd>
+                <dt>Announced</dt>
+                <dd>{example.round.date.slice(0, 4)}</dd>
               </div>
             </dl>
             <span className="home-previewLink">
-              View lead explorer <ArrowRight size={16} aria-hidden="true" />
+              View company profile <ArrowRight size={16} aria-hidden="true" />
             </span>
           </Link>
         </section>

@@ -20,6 +20,7 @@ const runLuma = node({
   config: {
     name: 'Run 01 Luma Munich',
     executeOnce: true,
+    alwaysOutputData: true,
     onError: 'continueRegularOutput',
     parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'dkBBn1k8pGmdUqfv', cachedResultName: '01 Luma Munich -> Traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
     output: [{ ok: true }]
@@ -32,8 +33,48 @@ const runPinboard = node({
   config: {
     name: 'Run 02 LMU pinboard',
     executeOnce: true,
+    alwaysOutputData: true,
     onError: 'continueRegularOutput',
     parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: '6e9qbOQ2CzcjxVz3', cachedResultName: '02 LMU pinboard -> Traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const runTum = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 03 TUM Venture Labs',
+    executeOnce: true,
+    alwaysOutputData: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'rBvaaF23ZcfY1Hcd', cachedResultName: '03 TUM Venture Labs -> Traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const runGithub = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 05 GitHub Munich',
+    executeOnce: true,
+    alwaysOutputData: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'Fg6ZU1fqi7JnRNu2', cachedResultName: '05 GitHub Munich -> Traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const runPodcasts = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 06 Pitch podcasts',
+    executeOnce: true,
+    alwaysOutputData: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'J0YCRvXE1fVlNsXT', cachedResultName: '06 Pitch podcasts -> Traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
     output: [{ ok: true }]
   }
 });
@@ -49,16 +90,19 @@ const runLeads = node({
   }
 });
 
-const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runLeads], { color: 7 });
+const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runLeads], { color: 7 });
 
 export default workflow('run-all', '00 Run all sources')
   .add(runByHand)
   .to(runLuma)
   .to(runPinboard)
+  .to(runTum)
+  .to(runGithub)
+  .to(runPodcasts)
   .to(runLeads)
   .add(every6Hours)
   .to(runLuma)
   .add(runFromDemo)
   .to(runLuma)
   .add(howItWorks)
-  .group('Whole engine', [runLuma, runPinboard, runLeads], { description: 'Every source flow in turn, then Make leads' });
+  .group('Whole engine', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runLeads], { description: 'Every source flow in turn, then Make leads. 04 Eventbrite is not in here: Eventbrite blocks n8n Cloud' });
