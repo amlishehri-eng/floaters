@@ -2,7 +2,7 @@ import SiteNav from "@/components/ff/site-nav";
 import companies from "@/data/portfolio-examples.json";
 import htgfPortfolio from "@/data/htgf-portfolio.json";
 import { getLeads } from "@/lib/n8n";
-import { dataLine, int } from "@/lib/screen/format";
+import { int, sourceHint } from "@/lib/screen/format";
 import { portfolioPage } from "@/lib/screen/portfolio";
 import "./portfolio.css";
 
@@ -28,7 +28,7 @@ export default async function PortfolioPage() {
             <p>
               Every lead is matched against {known ? int(known) : "the"} portfolio companies. A match comes off the call list, so nobody calls a company HTGF already backs.
             </p>
-            {mocked && <p className="ff-source">{dataLine({ asOf: as_of, mocked, error, what: "Leads" })}</p>}
+            <p className="ff-source">{sourceHint({ mocked, error, asOf: as_of })}</p>
           </div>
           <div className="po-count">
             <span>{int(v.count)}</span>

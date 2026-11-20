@@ -112,7 +112,12 @@ check("n8n hangs: snapshot after about 8 s", hang.ms >= 7500 && hang.ms < 11000,
 server.close();
 server.closeAllConnections?.();
 
-// 5. A thin lead (nothing known): honest empty states, no null text.
+// 5. The 60 s cache: a second call within the minute does not go to n8n again.
+const t0 = Date.now();
+const again = await n8n.getLeads();
+check("cache: second call within 60 s is instant", Date.now() - t0 < 50 && again === hang.leads, `${Date.now() - t0} ms`);
+
+// 6. A thin lead (nothing known): honest empty states, no null text.
 const thin = leadDetail({ id: "thin", name: "Thin", verdict: "call_now" });
 check("thin lead: empty states", thin.days.badge === "Press not checked yet" && thin.funding.coInvestors === "none named" && thin.deep.checked === false && badValues(thin).length === 0, badValues(thin).slice(0, 2).join(" | "));
 

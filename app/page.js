@@ -2,7 +2,7 @@ import Link from "next/link";
 import SiteNav from "@/components/ff/site-nav";
 import coords from "@/data/city-coords.json";
 import { getExtras, getFunnel, getLeads } from "@/lib/n8n";
-import { dataLine, longDate } from "@/lib/screen/format";
+import { sourceHint } from "@/lib/screen/format";
 import { homePage } from "@/lib/screen/home";
 import "./home.css";
 
@@ -27,8 +27,8 @@ const SOURCES = [
 export default async function Home() {
   const [funnel, leadsData, extras] = await Promise.all([getFunnel(), getLeads(), getExtras()]);
   const v = homePage({ funnel, leads: leadsData.leads, extras, coords });
-  const runDate = longDate(funnel.as_of);
-  const offline = [funnel, leadsData, extras].filter((d) => d.mocked);
+  const leadsHint = sourceHint({ mocked: leadsData.mocked, error: leadsData.error, asOf: leadsData.as_of });
+  const funnelHint = sourceHint({ mocked: funnel.mocked, error: funnel.error, asOf: funnel.as_of });
   return (
     <div className="ff ff--dark">
       <SiteNav theme="dark" />
@@ -76,6 +76,7 @@ export default async function Home() {
           {v.big.map((b) => (
             <div key={b.label}><span style={{ color: b.color }}>{b.n}</span><span>{b.label}</span></div>
           ))}
+          <p className="ff-source">Teams on the map: {leadsHint}</p>
         </div>
       </section>
 
@@ -146,8 +147,7 @@ export default async function Home() {
       </section>
 
       <footer className="ho-footer">
-        Founders First, an HTGF hackathon prototype. {runDate ? `Data from the run on ${runDate}.` : "Run date not known."}
-        {offline.length > 0 && ` ${dataLine({ asOf: offline[0].as_of, mocked: true, error: offline.map((d) => d.error).filter(Boolean)[0] })}`}
+        Founders First, an HTGF hackathon prototype. Funnel numbers: {funnelHint}
       </footer>
     </div>
   );

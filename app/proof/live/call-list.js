@@ -98,8 +98,13 @@ function useBriefing() {
         audio.current = new Audio(url);
         audio.current.onended = () => setState({ busy: false, note: "Briefing finished." });
         await audio.current.play();
-        const sample = res.headers.get("x-mocked") === "true";
-        setState({ busy: false, note: sample ? "Playing the recorded sample briefing, the live one could not be made." : "Playing today’s briefing." });
+        const from = res.headers.get("x-briefing-source");
+        const note = from === "sample"
+          ? "Playing the recorded sample briefing, today’s could not be made."
+          : from === "snapshot"
+            ? "Playing the briefing on the snapshot leads, n8n not reachable."
+            : "Playing today’s briefing.";
+        setState({ busy: false, note });
         return;
       }
       const j = await res.json();
@@ -257,7 +262,7 @@ function Detail({ s, feedback }) {
   );
 }
 
-export default function CallList({ intro, rows, details, memos, asOf, initial = 0, source, snapshot }) {
+export default function CallList({ intro, rows, details, memos, asOf, initial = 0 }) {
   const [sel, setSel] = useState(initial < rows.length ? initial : 0);
   const briefing = useBriefing();
   const feedback = useFeedback();
@@ -275,7 +280,7 @@ export default function CallList({ intro, rows, details, memos, asOf, initial = 
         </div>
       </section>
       <p className="ff-source cl-source" role="status">
-        {[briefing.note, snapshot ? source : ""].filter(Boolean).join(" ")}
+        {briefing.note}
       </p>
 
       {rows.length === 0 ? (

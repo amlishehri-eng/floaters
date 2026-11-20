@@ -14,7 +14,7 @@ export const metadata = {
 
 export default async function CallListPage({ searchParams }) {
   const [{ leads, as_of, mocked, error }, funnel, params] = await Promise.all([getLeads(), getFunnel(), searchParams]);
-  const view = callList({ leads, asOf: as_of, funnel, mocked });
+  const view = callList({ leads, asOf: as_of, funnel, mocked, error });
   const wanted = typeof params?.lead === "string" ? params.lead : "";
   const initial = Math.max(0, view.rows.findIndex((r) => r.key === wanted));
   return (
@@ -27,8 +27,6 @@ export default async function CallListPage({ searchParams }) {
         memos={view.memos}
         asOf={as_of}
         initial={initial}
-        source={error ? `The live leads did not load (${error}), so these come from the snapshot.` : mocked ? "Offline mode: these leads come from the snapshot." : ""}
-        snapshot={Boolean(mocked)}
       />
     </div>
   );

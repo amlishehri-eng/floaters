@@ -27,6 +27,13 @@ Around it:
 - **46 Screen extras** `qyIgfO2oAjk2szm0`: `GET /webhook/htgf-screen-extras` → `/api/extras` (Labs top 10 by gap_score, summary of the latest Backtest run), for `/proof/labs`, `/proof/methodology` and the home backtest band. Read-only.
 - Test helpers: 18 Calibrate `Q00KDMeS9bbjb6ki`, 19 Reset test traces `dWvlW57gLVfClgcF`.
 
+## How the screen reads n8n
+
+- `lib/n8n.js`: `getLeads()` (flow 20, `N8N_LEADS_URL`), `getFunnel()` (flow 44), `getExtras()` (flow 46). Each waits at most 8 s, then falls back to its snapshot in `data/`. Results are cached in the server process for 60 s (15 s for a fallback), so clicking between pages does not refetch; Next's own fetch cache is not used because it refuses entries over 2 MB and the Leads payload is far bigger.
+- Every page that shows numbers says where they come from: "Live from n8n, as of <time>." or "Snapshot from <time>, n8n not reachable." (`sourceHint` in `lib/screen/format.js`). Home and call list count call-now teams from the same leads they show.
+- `/api/briefing`: with flow 20 down, the script is built from the Leads snapshot (+ funnel snapshot) and still spoken by flow 45 (`X-Briefing-Source: snapshot`, `X-Mocked: true`).
+- **Refresh the snapshot** after a run: `node scripts/refresh-leads-snapshot.mjs`. It reads flow 20 and flow 44 in the same minute and rewrites `data/leads.live-snapshot.json` (rows with verdict call_now, watchlist, htgf_portfolio, their traces, all column names, counts, timestamp) and `data/funnel.sample.json`. While flow 20 answers 404 it changes nothing and says so. Then `node scripts/field-coverage.mjs` (every Leads column shown or on its INTERNAL list) and `node scripts/test-screen.mjs` (data functions, every fallback).
+
 ## The coded brain (offline reference)
 
 Everything below describes `/api/brain/run` in this repo: the first version of the brain, kept as an offline reference and for local tests. The live pipeline above does not call it.

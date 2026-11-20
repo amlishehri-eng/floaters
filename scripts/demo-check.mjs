@@ -3,6 +3,7 @@
 // Plain node (>= 20), no dependencies. Writes nothing: /api/feedback only gets invalid input (expects 400).
 //
 //   node scripts/demo-check.mjs                     # against http://localhost:4000
+//   node scripts/demo-check.mjs --no-links          # skip the link checks (nav, buttons, deep links, evidence URLs)
 //   DEMO_URL=https://<app>.vercel.app node scripts/demo-check.mjs
 //
 // Mock mode (what the demo looks like with dead wifi): stop the dev server, start it with
@@ -96,6 +97,97 @@ async function run(check) {
   return row;
 }
 
+
+// ---- Link checks: every page's nav and buttons, deep links, radar vs call list, real URLs in the lead details ----
+const PAGES = [
+  { path: "/", nav: null },
+  { path: "/proof/live", nav: "/proof/live" },
+  { path: "/proof/funnel", nav: "/proof/funnel" },
+  { path: "/proof/labs", nav: "/proof/labs" },
+  { path: "/proof/methodology", nav: "/proof/methodology" },
+  { path: "/proof", nav: "/proof" },
+];
+const NAV = ["/proof/live", "/proof/funnel", "/proof/labs", "/proof", "/proof/methodology"];
+const decode = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+const hrefs = (html) => [...html.matchAll(/<a\b[^>]*?href="([^"]*)"[^>]*>/g)].map((m) => ({ href: decode(m[1]), tag: m[0] }));
+const getText = async (p) => {
+  const res = await fetch(BASE + p, { signal: AbortSignal.timeout(TIMEOUT_MS) });
+  return { status: res.status, text: await res.text() };
+};
+
+async function linkChecks() {
+  const rows = [];
+  const add = (name, path, ok, note = "", mocked = "-") => rows.push({ name, path, ok, status: ok ? "ok" : "bad", ms: 0, mocked, note });
+  const leadsRes = await fetch(`${BASE}/api/leads`, { signal: AbortSignal.timeout(TIMEOUT_MS) }).then((r) => r.json());
+  const callNow = (leadsRes.leads || []).filter((l) => l.verdict === "call_now");
+  const top = [...callNow].sort((a, b) => (b.priority ?? -1) - (a.priority ?? -1))[0];
+  const internal = new Set();
+  const external = new Set();
+
+  for (const page of PAGES) {
+    const started = Date.now();
+    const { status, text } = await getText(page.path);
+    const links = hrefs(text);
+    const navHrefs = links.filter((l) => l.tag.includes("ff-nav__link")).map((l) => l.href);
+    const current = links.filter((l) => l.tag.includes('aria-current="page"')).map((l) => l.href);
+    const brand = links.some((l) => l.tag.includes("ff-nav__brand") && l.href === "/");
+    const empty = links.filter((l) => !l.href || /undefined|null|NaN/.test(l.href));
+    const hint = /Live from n8n, as of|Snapshot from [^<]*?, (n8n not reachable|offline mode)/.test(text);
+    for (const l of links) (l.href.startsWith("/") ? internal : /^https?:\/\//.test(l.href) ? external : null)?.add(l.href);
+    const navOk = brand && NAV.every((h) => navHrefs.includes(h)) && (page.nav ? current.length === 1 && current[0] === page.nav : current.length === 0);
+    rows.push({
+      name: `links ${page.path}`, path: page.path, ok: status === 200 && navOk && empty.length === 0 && hint,
+      status, ms: Date.now() - started, mocked: "-",
+      note: `${links.length} links, nav ${navOk ? "ok" : "WRONG"}, ${empty.length} empty/undefined href, source hint ${hint ? "shown" : "MISSING"}`,
+    });
+    if (page.path === "/") {
+      const need = ["/proof/live", "/proof/funnel", "/proof/methodology", ...(top ? [`/proof/live?lead=${encodeURIComponent(top.id)}`] : [])];
+      const missing = need.filter((h) => !links.some((l) => l.href === h));
+      add("home buttons", "/", missing.length === 0, missing.length ? `missing ${missing.join(", ")}` : `See the call list, See how it filters, Read the method, Open the lead (${top?.name})`);
+      const stars = (text.match(/class="ho-star"/g) || []).length;
+      const big = text.match(/>(\d+)<\/span><span>worth a call today/);
+      add("home radar = call list", "/", stars === callNow.length && Number(big?.[1]) === callNow.length, `${stars} radar points, "${big?.[1]} worth a call", ${callNow.length} call_now leads`, leadsRes.mocked);
+    }
+    if (page.path === "/proof/live") {
+      const rowsShown = (text.match(/class="cl-row"/g) || []).length;
+      const intro = text.match(/<p>([A-Z][a-z]+) teams? worth a call/);
+      add("call list = call_now", page.path, rowsShown === callNow.length, `${rowsShown} rows, intro "${intro?.[1]}", ${callNow.length} call_now leads`, leadsRes.mocked);
+    }
+  }
+
+  // Deep link per lead: /proof/live?lead=<key> opens exactly that lead; collect its evidence, press and website links.
+  let wrong = [];
+  for (const l of callNow) {
+    const { text } = await getText(`/proof/live?lead=${encodeURIComponent(l.id)}`);
+    const h2 = decode(text.match(/<article aria-label="Lead detail"[\s\S]*?<h2>([^<]*)<\/h2>/)?.[1] || "");
+    if (h2 !== l.name) wrong.push(`${l.id} -> "${h2}"`);
+    for (const a of hrefs(text.slice(text.indexOf('aria-label="Lead detail"')))) {
+      if (!a.href || /undefined|null|NaN/.test(a.href)) wrong.push(`${l.id}: empty href`);
+      else if (/^https?:\/\//.test(a.href)) external.add(a.href);
+    }
+  }
+  add("deep link ?lead= per lead", "/proof/live?lead=…", wrong.length === 0, wrong.length ? wrong.slice(0, 3).join("; ") : `${callNow.length} of ${callNow.length} open the right lead`);
+
+  // Internal links answer 200; external ones are well-formed URLs (reachability noted, sites may block bots).
+  const badInternal = [];
+  for (const h of internal) {
+    const res = await fetch(BASE + h, { signal: AbortSignal.timeout(TIMEOUT_MS) }).catch(() => null);
+    if (!res || res.status !== 200) badInternal.push(`${h} ${res?.status ?? "no answer"}`);
+  }
+  add("internal links answer 200", "(all pages)", badInternal.length === 0, badInternal.length ? badInternal.join(", ") : `${internal.size} distinct internal links`);
+  const malformed = [...external].filter((u) => { try { new URL(u); return false; } catch { return true; } });
+  const unreachable = [];
+  const list = [...external];
+  for (let i = 0; i < list.length; i += 8) {
+    await Promise.all(list.slice(i, i + 8).map(async (u) => {
+      const res = await fetch(u, { method: "GET", redirect: "follow", signal: AbortSignal.timeout(8000), headers: { "User-Agent": "Mozilla/5.0 (link check)" } }).catch((e) => ({ status: e.name }));
+      if (!(res.status < 400 || res.status === 403 || res.status === 429)) unreachable.push(`${u} ${res.status}`);
+    }));
+  }
+  add("external links are real URLs", "(evidence, press, sites, papers)", malformed.length === 0, `${external.size} distinct, ${malformed.length} malformed, ${unreachable.length} not reachable now${unreachable.length ? `: ${unreachable.slice(0, 2).join(", ")}` : ""}`);
+  return { rows, unreachable };
+}
+
 function printTable(rows) {
   const cols = [
     ["", (r) => (r.ok ? "PASS" : "FAIL")],
@@ -154,7 +246,14 @@ if (process.argv.includes("--render-briefing-sample")) {
   console.log(`Demo check against ${BASE}\n`);
   const rows = [];
   for (const check of CHECKS) rows.push(await run(check));
+  let unreachable = [];
+  if (!process.argv.includes("--no-links")) {
+    const links = await linkChecks().catch((err) => ({ rows: [{ name: "link checks", path: "-", ok: false, status: "-", ms: 0, mocked: "-", note: err.message }], unreachable: [] }));
+    rows.push(...links.rows);
+    unreachable = links.unreachable;
+  }
   printTable(rows);
+  if (unreachable.length) console.log(`\nExternal links that did not answer now (not a failure; check by hand):\n${unreachable.map((u) => `  ${u}`).join("\n")}`);
   const passed = rows.filter((r) => r.ok).length;
   const mocked = rows.filter((r) => r.mocked === true).length;
   const slowest = rows.reduce((a, b) => (b.ms > a.ms ? b : a));

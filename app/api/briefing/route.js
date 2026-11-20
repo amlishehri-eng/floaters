@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import briefingSample from "@/data/briefing.sample.json";
 import funnelSample from "@/data/funnel.sample.json";
+import leadsSnapshot from "@/data/leads.live-snapshot.json";
 import { buildBriefing, scriptHash } from "@/lib/voice/briefing";
 import { TTS_MODEL_ID } from "@/lib/voice/elevenlabs";
 
@@ -10,7 +11,8 @@ import { TTS_MODEL_ID } from "@/lib/voice/elevenlabs";
 // Spoken top-5 briefing: the top leads (call_now first, then by priority) and the funnel totals, as a script
 // written in code (no model), spoken by ElevenLabs through n8n flow "45 Text to speech" (N8N_TTS_URL; the key lives in
 // the n8n credential "xi-api-key"). Audio is cached by a hash of the script in data/briefing-cache/, checked before n8n.
-// Fallback (n8n or ElevenLabs down, USE_MOCKS=true, or source=sample): data/briefing.sample.json and
+// Flow 20 down: the script is built from data/leads.live-snapshot.json (+ data/funnel.sample.json), source "snapshot",
+// mocked: true, audio still rendered by flow 45. Fallback (ElevenLabs down, USE_MOCKS=true, or source=sample): data/briefing.sample.json and
 // data/briefing.sample.mp3, with mocked: true (header X-Mocked: true on audio). If there is no sample mp3 either,
 // format=audio answers JSON { mocked: true, script } so the screen can speak it with speechSynthesis.
 export const dynamic = "force-dynamic";
@@ -74,9 +76,27 @@ async function makeBriefing(lang, forceSample) {
       ...(funnelError && { funnel_mocked: true, error: `funnel from the snapshot: ${funnelError}` }),
     };
   } catch (err) {
-    console.warn("[briefing] live leads unavailable, serving the sample:", err.message);
-    return sampleBriefing(lang, err.message);
+    console.warn("[briefing] live leads unavailable, using the Leads snapshot:", err.message);
+    return snapshotBriefing(lang, err.message);
   }
+}
+
+// Flow 20 down: the script comes from the same Leads snapshot the pages show, with the funnel snapshot from the same
+// minute (data/funnel.sample.json), so the spoken numbers match the screen. The audio is still rendered live by flow 45
+// (cached by script hash). Only when the snapshot has no lead either does the old recorded sample play.
+function snapshotBriefing(lang, reason) {
+  const b = buildBriefing({ leads: leadsSnapshot.leads || [], funnel: funnelSample, lang });
+  if (!b.leads.length) return sampleBriefing(lang, reason);
+  const voiceId = process.env.ELEVENLABS_VOICE_ID || "n8n-default";
+  return {
+    lang,
+    ...b,
+    script_hash: scriptHash(b.script, { lang, voiceId, model: TTS_MODEL_ID }),
+    as_of: leadsSnapshot.as_of,
+    mocked: true,
+    source: "snapshot",
+    error: `leads from the snapshot: ${reason}`,
+  };
 }
 
 const cachePath = (hash) => path.join(CACHE_DIR, `${hash}.mp3`);

@@ -1,7 +1,7 @@
 import SiteNav from "@/components/ff/site-nav";
 import { getExtras } from "@/lib/n8n";
 import { labsPage } from "@/lib/screen/extras";
-import { dataLine, longDate } from "@/lib/screen/format";
+import { sourceHint } from "@/lib/screen/format";
 import "./labs.css";
 
 // Labs to visit (design/reference/labs.dc.html): the Labs table top 10 from flow 46, the snapshot when n8n does not answer.
@@ -15,7 +15,6 @@ export const metadata = {
 export default async function LabsPage() {
   const extras = await getExtras();
   const labs = labsPage(extras.labs);
-  const updated = longDate(labs[0]?.updatedAt);
   return (
     <div className="ff ff--paper">
       <SiteNav current="labs" theme="paper" />
@@ -51,8 +50,7 @@ export default async function LabsPage() {
         </section>
         <p className="lb-foot">
           Papers from OpenAlex. Spin-offs counted only from our own sources, so the number grows with every run and the gap score is a reason to visit, not a verdict.
-          {updated ? ` Lab data from ${updated}.` : ""}
-          {extras.mocked ? ` ${dataLine({ asOf: extras.as_of, mocked: true, error: extras.error, what: "Labs" })}` : ""}
+          {` ${sourceHint({ mocked: extras.mocked, error: extras.error, asOf: labs[0]?.updatedAt || extras.as_of })}`}
         </p>
       </main>
     </div>

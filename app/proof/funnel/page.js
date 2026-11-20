@@ -1,6 +1,6 @@
 import SiteNav from "@/components/ff/site-nav";
 import { getFunnel } from "@/lib/n8n";
-import { dataLine, dayTime } from "@/lib/screen/format";
+import { dayTime, sourceHint } from "@/lib/screen/format";
 import { funnelPage } from "@/lib/screen/funnel";
 import "./funnel.css";
 
@@ -24,9 +24,8 @@ export default async function FunnelPage() {
           <h1>{v.title[0]}<br /><span>{v.title[1]}</span></h1>
           <p>
             Every stage costs more than the one before, so each one only sees what the cheaper stage let through.
-            {when ? ` ${funnel.mocked ? "Snapshot of the run of" : "Run of"} ${when}.` : ""}
+            {` ${sourceHint({ mocked: funnel.mocked, error: funnel.error, asOf: funnel.as_of })}`}
           </p>
-          {funnel.mocked && <p className="ff-source">{dataLine({ asOf: funnel.as_of, mocked: true, error: funnel.error, what: "Funnel" })}</p>}
         </section>
 
         <section aria-label="Stages" className="fu-stages">
