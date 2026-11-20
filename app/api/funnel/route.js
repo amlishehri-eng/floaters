@@ -5,7 +5,7 @@ import funnelSample from "@/data/funnel.sample.json";
 // If n8n is unreachable (or USE_MOCKS=true): data/funnel.sample.json, a real snapshot with its own as_of, and mocked: true.
 export const dynamic = "force-dynamic";
 
-const TIMEOUT_MS = 15_000;
+const TIMEOUT_MS = 8_000;
 const FUNNEL_URL_DEFAULT = "https://floaters.app.n8n.cloud/webhook/htgf-funnel";
 
 export async function GET() {
