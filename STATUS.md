@@ -6,7 +6,7 @@ Update this file whenever you start, finish or get stuck on something. Keep entr
 | Person | Role | Owns |
 |---|---|---|
 | _Name 1_ | Frontend | `app/` (not `app/api/`), `components/` |
-| _Name 2_ | Backend + AI | `app/api/`, `lib/ai/`, `lib/voice/` |
+| Nils | Backend + AI (Person 2, the brain) | `app/api/`, `lib/ai/`, `lib/voice/` |
 | _Name 3_ | n8n + pitch | `lib/n8n.js`, `n8n/`, the n8n workspace, `docs/pitch.md` |
 
 ## Timeline
@@ -30,7 +30,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
-- _Name_: _what_
+- Nils: the brain, `/api/brain/run` + `/api/brain/extract` (OpenAI extract → filter → convergence → scoring → days ahead), sample traces/leads in `data/`
 
 ## Done
 - Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)
