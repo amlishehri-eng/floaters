@@ -1,48 +1,161 @@
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import {
+  ArrowDown,
+  ArrowRight,
+  Code2,
+  GraduationCap,
+  Mic,
+  Radar,
+} from "lucide-react";
+import fixture from "@/data/proof-leads.json";
+import "./home.css";
 
-const rainbow = [
-  "bg-red-500",
-  "bg-orange-500",
-  "bg-amber-400",
-  "bg-green-500",
-  "bg-sky-500",
-  "bg-blue-600",
-  "bg-violet-600",
+export const metadata = {
+  title: "Founders First | Early startup discovery",
+  description:
+    "Explore early startup signals from Munich’s universities, developer communities, and pitch events.",
+};
+
+const sources = [
+  {
+    Icon: GraduationCap,
+    title: "University research",
+    description:
+      "Find teams through grants, incubator programs, and university spinouts.",
+  },
+  {
+    Icon: Code2,
+    title: "Developer communities",
+    description:
+      "Track public code releases and prototypes on GitHub and Hugging Face.",
+  },
+  {
+    Icon: Mic,
+    title: "Pitch events",
+    description:
+      "See what founders share at demo days and in recorded pitches.",
+  },
 ];
 
 export default function Home() {
+  const example = fixture.leads[0];
+
   return (
-    <main className="relative isolate flex min-h-screen flex-1 items-center justify-center overflow-hidden bg-gradient-to-br from-rose-100 via-amber-50 to-violet-100 px-6 py-16">
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-2 bg-[linear-gradient(to_right,#ef4444_0%,#f97316_16%,#facc15_32%,#22c55e_48%,#0ea5e9_64%,#2563eb_80%,#7c3aed_100%)]"
-      />
-      <div aria-hidden="true" className="absolute -left-24 top-1/4 -z-10 size-80 rounded-full bg-pink-300/40 blur-3xl" />
-      <div aria-hidden="true" className="absolute -right-24 bottom-1/4 -z-10 size-80 rounded-full bg-violet-300/50 blur-3xl" />
-
-      <section className="w-full max-w-xl rounded-[2rem] border border-white/80 bg-white/75 p-8 text-center shadow-xl shadow-violet-200/50 backdrop-blur sm:p-12">
-        <div className="mx-auto mb-8 flex w-fit gap-1.5" aria-label="Rainbow colors">
-          {rainbow.map((color) => (
-            <span key={color} className={`h-2 w-7 rounded-full ${color}`} />
-          ))}
+    <div className="home-site">
+      <header className="home-header">
+        <div className="home-shell home-nav">
+          <Link className="home-brand" href="/">
+            <Radar size={24} aria-hidden="true" />
+            Founders First
+          </Link>
+          <nav aria-label="Main navigation">
+            <a className="home-methodLink" href="#how-it-works">
+              How it works
+            </a>
+            <Link className="home-action home-actionDark" href="/proof">
+              Analytics <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </nav>
         </div>
-
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-violet-700">
-          Make room for wonder
-        </p>
-        <h1 className="bg-[linear-gradient(to_right,#e11d48,#ea580c,#ca8a04,#16a34a,#0284c7,#4f46e5,#9333ea)] bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl">
-          Floaters
-        </h1>
-        <p className="mx-auto mt-5 max-w-md text-base leading-7 text-slate-600 sm:text-lg">
-          A brighter little space for ideas to take shape. Pick a color, follow a thought, and see where it floats.
-        </p>
-        <Button
-          size="lg"
-          className="mt-8 rounded-full bg-gradient-to-r from-rose-500 via-amber-500 to-violet-600 px-8 text-white shadow-lg shadow-rose-200 transition hover:scale-[1.02] hover:opacity-95"
+      </header>
+      <main className="home-shell">
+        <section className="home-hero">
+          <h1>
+            Find founders
+            <br /> <span>before the headlines.</span>
+          </h1>
+          <p>
+            Discover emerging Munich startups through the public signals their
+            founders leave behind.
+          </p>
+          <div className="home-heroActions">
+            <Link className="home-action home-actionPrimary" href="/proof">
+              Explore analytics <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+            <a className="home-action" href="#how-it-works">
+              How it works <ArrowDown size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+        <section className="home-preview" aria-labelledby="preview-title">
+          <div className="home-previewCopy">
+            <h2 id="preview-title">
+              From early signals to a lead you can evaluate.
+            </h2>
+            <p>
+              See which sources surfaced a team, how it ranks for HTGF fit, and
+              when its earliest signal appeared.
+            </p>
+          </div>
+          <Link href="/proof" className="home-previewCard">
+            <div className="home-cardHeader">
+              <span>Example lead</span>
+              <span className="home-exampleLabel">Fictional data</span>
+            </div>
+            <div className="home-cardTitle">
+              <span className="home-signalIcon">
+                <Radar size={24} aria-hidden="true" />
+              </span>
+              <div>
+                <h3>{example.name}</h3>
+                <p>
+                  {example.sector} · {example.city}
+                </p>
+              </div>
+            </div>
+            <p className="home-cardDescription">{example.what}</p>
+            <dl>
+              <div>
+                <dt>HTGF fit</dt>
+                <dd>
+                  {example.fit_score}
+                  <span>/100</span>
+                </dd>
+              </div>
+              <div>
+                <dt>Team score</dt>
+                <dd>
+                  {example.team_score}
+                  <span>/100</span>
+                </dd>
+              </div>
+              <div>
+                <dt>Sources</dt>
+                <dd>{example.source_count}</dd>
+              </div>
+            </dl>
+            <span className="home-previewLink">
+              View lead explorer <ArrowRight size={16} aria-hidden="true" />
+            </span>
+          </Link>
+        </section>
+        <section
+          className="home-method"
+          id="how-it-works"
+          aria-labelledby="method-title"
         >
-          Get started
-        </Button>
-      </section>
-    </main>
+          <h2 id="method-title">Where we look</h2>
+          <p>
+            When the same people appear across multiple sources, the dashboard
+            brings those signals together so you can evaluate the team.
+          </p>
+          <ul>
+            {sources.map(({ Icon, title, description }) => (
+              <li key={title}>
+                <Icon size={25} aria-hidden="true" />
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+      <footer className="home-shell home-footer">
+        <span>Founders First · HTGF hackathon prototype</span>
+        <Link href="/proof">
+          Analytics <ArrowRight size={14} aria-hidden="true" />
+        </Link>
+      </footer>
+    </div>
   );
 }
