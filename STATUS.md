@@ -41,6 +41,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Amli: sources live in Run all (01 Luma, 02 LMU pinboard, 03 TUM Venture Labs, 05 GitHub, 06 podcasts with ElevenLabs transcripts); next: reliability, then Eventbrite from the laptop.
 - Meto: connect the proof dashboard at `/proof` to the real Leads table.
 - Nils: task 3 calibration of "Read trace with OpenAI": 20 traces out for hand-labelling; then Amli's gap list (duplicates like Malao) and the ~180-trace backlog
+- Nils: task 5 n8n "12 Registry check" (handelsregister.ai, called at the end of 11, vc_backable only): registered, legal_form, registered_at, register_id, registry_signals → fit/team adjustments. Plan out for OK, then test on Klarvus, KyNext, ReXanh
 
 ## Done
 - Meto: refreshed the homepage and expanded the German portfolio gallery to ten companies, with illustrative fit scores for the frontend prototype.
