@@ -121,14 +121,20 @@ function downloadMemo(lead, asOf) {
   anchor.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-export default function ProofDashboard({ leads, asOf }) {
+export default function ProofDashboard({
+  leads,
+  asOf,
+  initialLeadId,
+  candidateReview,
+}) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("vc_backable");
   const [sector, setSector] = useState("");
   const [invisibleOnly, setInvisibleOnly] = useState(false);
   const [sort, setSort] = useState("fit_score");
-  const [selectedId, setSelectedId] = useState(leads[0]?.id);
-  const [shortlist, setShortlist] = useState([]);
+  const [selectedId, setSelectedId] = useState(initialLeadId ?? leads[0]?.id);
+  const [sessionShortlist, setSessionShortlist] = useState([]);
+  const shortlist = candidateReview?.savedIds ?? sessionShortlist;
   const sectors = [...new Set(leads.map((lead) => lead.sector))].sort();
   const visible = leads
     .filter((lead) => {
@@ -174,7 +180,11 @@ export default function ProofDashboard({ leads, asOf }) {
     ["Worth a call", leads.filter(worthCalling).length],
   ];
   function toggleShortlist(id) {
-    setShortlist((current) =>
+    if (candidateReview) {
+      candidateReview.onToggle(id);
+      return;
+    }
+    setSessionShortlist((current) =>
       current.includes(id)
         ? current.filter((item) => item !== id)
         : [...current, id],
@@ -234,29 +244,33 @@ export default function ProofDashboard({ leads, asOf }) {
               </span>
             </div>
           </section>
-          <section aria-label="Sourcing funnel" className="proof-funnel">
-            {funnel.map(([label, count], index) => {
-              const Icon = funnelIcons[index];
-              return (
-                <div key={label}>
-                  <span className="proof-metricIcon">
-                    <Icon size={18} aria-hidden="true" />
-                  </span>
-                  <div>
-                    <span>{label}</span>
-                    <strong>{count}</strong>
-                  </div>
-                </div>
-              );
-            })}
-          </section>
-          <p className="proof-threshold">
-            Worth a call = VC potential, fit and team scores ≥80, and at least
-            two sources.
-          </p>
+          {!candidateReview && (
+            <>
+              <section aria-label="Sourcing funnel" className="proof-funnel">
+                {funnel.map(([label, count], index) => {
+                  const Icon = funnelIcons[index];
+                  return (
+                    <div key={label}>
+                      <span className="proof-metricIcon">
+                        <Icon size={18} aria-hidden="true" />
+                      </span>
+                      <div>
+                        <span>{label}</span>
+                        <strong>{count}</strong>
+                      </div>
+                    </div>
+                  );
+                })}
+              </section>
+              <p className="proof-threshold">
+                Worth a call = VC potential, fit and team scores ≥80, and at
+                least two sources.
+              </p>
+            </>
+          )}
           <section id="leads" className="proof-explorer">
             <div className="proof-sectionHeading">
-              <h2>Lead explorer</h2>
+              <h2>{candidateReview ? "Review queue" : "Lead explorer"}</h2>
               <button
                 className="proof-shortcut"
                 aria-pressed={filter === "shortlist"}
@@ -270,6 +284,12 @@ export default function ProofDashboard({ leads, asOf }) {
                 {shortlist.length})
               </button>
             </div>
+            {candidateReview && (
+              <p className="proof-reviewNote">
+                Shortlist teams you want to save, then{" "}
+                <Link href="/proof">view saved candidates</Link>.
+              </p>
+            )}
             <div className="proof-toolbar">
               <label className="proof-search">
                 <Search size={17} />
@@ -531,7 +551,9 @@ export default function ProofDashboard({ leads, asOf }) {
                     </button>
                   </div>
                   <p className="proof-sessionNote">
-                    Shortlist is saved for this session until the page reloads.
+                    {candidateReview
+                      ? "Shortlisted teams appear in Candidates."
+                      : "Shortlist is saved for this session until the page reloads."}
                   </p>
                 </article>
               ) : (

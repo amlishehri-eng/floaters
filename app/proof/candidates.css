@@ -49,6 +49,10 @@
 .candidate-back {
   color: #5043bf;
 }
+.candidate-nav nav {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
 .candidate-nav nav,
 .candidate-back,
 .candidate-source {
@@ -329,4 +333,31 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0 14px;
+}
+
+.candidate-initials {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  background: #eeebff;
+  color: #5043bf;
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+}
+
+.candidate-profileList {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+.candidate-profileList li {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f4f6fc;
+}
+.candidate-profileList li p {
+  margin-top: 4px;
 }

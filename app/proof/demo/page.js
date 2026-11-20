@@ -1,5 +1,5 @@
 import fixture from "@/data/proof-leads.json";
-import ProofDashboard from "../proof-dashboard";
+import Review from "./review";
 
 export const metadata = {
   title: "Founders First | Sourcing demo",
@@ -7,6 +7,13 @@ export const metadata = {
     "Early startup signals, teams and the evidence behind each lead.",
 };
 
-export default function ProofPage() {
-  return <ProofDashboard leads={fixture.leads} asOf={fixture.as_of} />;
+export default async function ProofPage({ searchParams }) {
+  const { lead } = await searchParams;
+  return (
+    <Review
+      leads={fixture.leads}
+      asOf={fixture.as_of}
+      initialLeadId={typeof lead === "string" ? lead : undefined}
+    />
+  );
 }

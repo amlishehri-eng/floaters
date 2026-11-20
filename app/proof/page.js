@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import companies from "@/data/portfolio-examples.json";
-import CompanyLogo from "./company-logo";
+import fixture from "@/data/proof-leads.json";
+import SavedCandidates from "./saved-candidates";
+import CandidateCard from "./candidate-card";
 import { fitScore, maxFit } from "./fit-scoring";
 
 export const metadata = {
@@ -17,9 +19,8 @@ export default function CandidatesPage() {
         <p className="candidate-kicker">Analytics</p>
         <h1>Startup candidates</h1>
         <p>
-          Explore HTGF-backed startups from across Germany. Each profile pairs a
-          public funding announcement with an illustrative VC fit score for
-          shortlist priority. The search demo focuses on Munich.
+          Review the teams you shortlisted during the demo, or browse publicly
+          documented HTGF portfolio examples across Germany.
         </p>
         <div className="candidate-introActions">
           <Link className="candidate-introLink" href="/proof/search">
@@ -30,32 +31,22 @@ export default function CandidatesPage() {
           </Link>
         </div>
       </section>
-      <ul className="candidate-grid" aria-label="Portfolio examples">
-        {companies.map((company) => (
-          <li key={company.slug}>
-            <Link className="candidate-card" href={`/proof/${company.slug}`}>
-              <CompanyLogo company={company} />
-              <div className="candidate-cardBody">
-                <div className="candidate-cardMeta">
-                  <span className="candidate-sector">{company.sector}</span>
-                  <span className="candidate-fitBadge">
-                    Illustrative fit{" "}
-                    <strong>
-                      {fitScore(company)}/{maxFit}
-                    </strong>
-                  </span>
-                </div>
-                <h2>
-                  {company.name} <ArrowUpRight size={19} aria-hidden="true" />
-                </h2>
-                <p>
-                  <MapPin size={14} aria-hidden="true" /> {company.location}
-                </p>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <SavedCandidates leads={fixture.leads} />
+      <section className="candidate-about" aria-labelledby="portfolio-title">
+        <h2 id="portfolio-title">HTGF portfolio examples</h2>
+        <ul className="candidate-grid">
+          {companies.map((company) => (
+            <li key={company.slug}>
+              <CandidateCard
+                company={company}
+                href={`/proof/${company.slug}`}
+                fit={`${fitScore(company)}/${maxFit}`}
+                fitLabel="Illustrative fit"
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }

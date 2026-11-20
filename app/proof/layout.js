@@ -14,9 +14,10 @@ export default function AnalyticsLayout({ children }) {
             Founders First
           </Link>
           <nav aria-label="Analytics navigation">
-            <Link href="/proof">Candidates</Link>
+            <Link href="/proof/search">1. Search demo</Link>
+            <Link href="/proof/demo">2. Sourcing demo</Link>
+            <Link href="/proof">3. Candidates</Link>
             <Link href="/proof/methodology">Scoring</Link>
-            <Link href="/proof/demo">Sourcing demo</Link>
           </nav>
         </div>
       </header>

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import companies from "@/data/portfolio-examples.json";
-import CompanyLogo from "../company-logo";
+import ProfileHeader from "../profile-header";
 import { fitCriteria, fitScore, maxFit } from "../fit-scoring";
 
 const dateFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -38,20 +38,7 @@ export default async function CandidatePage({ params }) {
 
   return (
     <main className="candidate-shell candidate-main candidate-profile">
-      <Link className="candidate-back" href="/proof">
-        <ArrowLeft size={17} aria-hidden="true" /> All candidates
-      </Link>
-      <header className="candidate-profileHeader">
-        <div>
-          <p className="candidate-kicker">HTGF portfolio example</p>
-          <h1>{company.name}</h1>
-          <p className="candidate-location">
-            <MapPin size={16} aria-hidden="true" /> {company.location}{" "}
-            <span>·</span> {company.sector}
-          </p>
-        </div>
-        <CompanyLogo company={company} />
-      </header>
+      <ProfileHeader company={company} label="HTGF portfolio example" />
       <section className="candidate-about" aria-labelledby="company-about">
         <h2 id="company-about">What they do</h2>
         <p>{company.description}</p>
@@ -73,9 +60,7 @@ export default async function CandidatePage({ params }) {
           <div>
             <dt>Announcement date</dt>
             <dd>
-              <time dateTime={round.date}>
-                {scoreDate}
-              </time>
+              <time dateTime={round.date}>{scoreDate}</time>
             </dd>
           </div>
         </dl>
@@ -88,24 +73,29 @@ export default async function CandidatePage({ params }) {
         <div className="candidate-fitHeader">
           <h2 id="company-fit">Illustrative VC fit</h2>
           <span className="candidate-fitBadge">
-            <strong>{fitScore(company)}/{maxFit}</strong>
+            <strong>
+              {fitScore(company)}/{maxFit}
+            </strong>
           </span>
         </div>
         <p>
-          Shortlist priority based on information in the funding announcement
-          on <time dateTime={round.date}>{scoreDate}</time>.
+          Shortlist priority based on information in the funding announcement on{" "}
+          <time dateTime={round.date}>{scoreDate}</time>.
         </p>
         <p>{company.fit.rationale}</p>
         <dl className="candidate-fitBreakdown">
           {fitCriteria.map(({ id, max, title }) => (
             <div key={id}>
               <dt>{title}</dt>
-              <dd>{company.fit.points[id]}/{max}</dd>
+              <dd>
+                {company.fit.points[id]}/{max}
+              </dd>
             </div>
           ))}
         </dl>
         <Link className="candidate-source" href="/proof/methodology">
-          Read the scoring methodology <ArrowUpRight size={16} aria-hidden="true" />
+          Read the scoring methodology{" "}
+          <ArrowUpRight size={16} aria-hidden="true" />
         </Link>
       </section>
     </main>

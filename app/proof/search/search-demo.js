@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { publishDemoRun } from "../demo-workflow";
 import {
-  ArrowRight,
   Check,
   ChevronDown,
   Layers3,
@@ -45,53 +46,78 @@ function makeStages(leads) {
     lead.signals.map((signal) => ({ ...signal, company: lead.name })),
   );
   const qualified = leads.filter((lead) => lead.label === "vc_backable");
-  const shortlist = qualified
-    .filter((lead) => !shortlistReason(lead))
-    .sort((a, b) => b.fit_score - a.fit_score || b.team_score - a.team_score);
+  const ranked = [...qualified].sort(
+    (a, b) => b.fit_score - a.fit_score || b.team_score - a.team_score,
+  );
   return [
     {
       title: "Find public traces",
       Icon: ScanSearch,
-      description:
-        "Collect signals from universities, developer communities and pitch events.",
-      count: traces.length,
+      description: "Read every trace found in the simulated search.",
       unit: "traces",
-      traces,
+      delay: 330,
+      events: traces.map((signal) => ({
+        id: signal.trace_id,
+        title: signal.company,
+        note: sourceNames[signal.kind] ?? signal.kind,
+        outcome: "Found",
+        signal,
+      })),
     },
     {
       title: "Group by team",
       Icon: Layers3,
-      description:
-        "Combine related signals so each team appears once in the results.",
-      count: leads.length,
+      description: "Combine related traces so each team appears once.",
       unit: "teams",
-      leads,
+      delay: 360,
+      events: leads.map((lead) => ({
+        id: lead.id,
+        title: lead.name,
+        note: `${lead.signals.length} linked ${lead.signals.length === 1 ? "trace" : "traces"}`,
+        outcome: "Grouped",
+        lead,
+      })),
     },
     {
       title: "Screen for VC relevance",
       Icon: SlidersHorizontal,
       description:
-        "Keep teams building a product for a market. Filter out agencies, coursework and hobby projects.",
-      count: qualified.length,
+        "Keep product-led teams and screen out agencies, coursework and hobby projects.",
       unit: "teams",
-      leads: qualified,
-      excluded: leads
-        .filter((lead) => lead.label !== "vc_backable")
-        .map((lead) => ({
-          name: lead.name,
-          reason: `${labels[lead.label]} · ${lead.label_reason}`,
-        })),
+      delay: 480,
+      events: leads.map((lead) => {
+        const kept = lead.label === "vc_backable";
+        return {
+          id: lead.id,
+          title: lead.name,
+          note: kept
+            ? lead.label_reason
+            : `${labels[lead.label] ?? lead.label} · ${lead.label_reason}`,
+          outcome: kept ? "Passed screening" : "Filtered out",
+          excluded: !kept,
+          lead,
+        };
+      }),
     },
     {
-      title: "Build the shortlist",
+      title: "Prepare review queue",
       Icon: Target,
-      description: `Prioritize teams with at least ${criteria.sources} sources and both fit and team scores of at least ${criteria.fit}/100 in this demo.`,
-      count: shortlist.length,
+      description: `The demo prioritizes teams with at least ${criteria.sources} sources, fit of ${criteria.fit}/100 or higher, and team strength of ${criteria.team}/100 or higher.`,
       unit: "candidates",
-      leads: shortlist,
-      excluded: qualified
-        .filter(shortlistReason)
-        .map((lead) => ({ name: lead.name, reason: shortlistReason(lead) })),
+      delay: 520,
+      events: ranked.map((lead) => {
+        const reason = shortlistReason(lead);
+        return {
+          id: lead.id,
+          title: lead.name,
+          note:
+            reason ||
+            `Fit ${lead.fit_score}/100 · Team ${lead.team_score}/100 · ${lead.source_count} sources`,
+          outcome: reason ? "Filtered out" : "Ready for review",
+          excluded: Boolean(reason),
+          lead,
+        };
+      }),
     },
   ];
 }
@@ -115,7 +141,8 @@ function Signal({ signal }) {
   );
 }
 
-function Candidate({ lead }) {
+function Candidate({ event }) {
+  const { lead, outcome, note, excluded } = event;
   return (
     <details className="search-candidate">
       <summary>
@@ -126,7 +153,9 @@ function Candidate({ lead }) {
           </small>
         </span>
         <span className="search-cardMeta">
-          <span>{lead.fit_score}/100 fit</span>
+          <span className="search-outcome" data-excluded={!!excluded}>
+            {outcome}
+          </span>
           <ChevronDown size={18} aria-hidden="true" />
         </span>
       </summary>
@@ -150,8 +179,8 @@ function Candidate({ lead }) {
             <dd>{lead.stage}</dd>
           </div>
         </dl>
-        <h3>Screening rationale</h3>
-        <p>{lead.label_reason}</p>
+        <h3>Step outcome</h3>
+        <p>{note}</p>
         <p>
           {lead.fit_reason} {lead.team_reason}
         </p>
@@ -175,28 +204,63 @@ function Candidate({ lead }) {
 }
 
 export default function SearchDemo({ leads }) {
-  const stages = makeStages(leads);
-  const [completed, setCompleted] = useState(0);
-  const [running, setRunning] = useState(false);
+  const [stages] = useState(() => makeStages(leads));
+  const [run, setRun] = useState(null);
+  const [paused, setPaused] = useState(false);
   const [viewed, setViewed] = useState(null);
-  const finished = completed === stages.length;
-  const stage = completed ? stages[viewed ?? completed - 1] : null;
+  const finished = run?.stage === stages.length;
+  const running = Boolean(run && !finished);
+  const currentStage = running ? stages[run.stage] : null;
+  const seen = run?.seen;
 
   useEffect(() => {
-    if (!running || finished) return;
-    const timer = setTimeout(() => {
-      setCompleted((count) => count + 1);
-    }, 1100);
+    if (!currentStage || paused) return;
+    const timer = setTimeout(
+      () => {
+        setRun(({ stage, seen }) =>
+          seen === currentStage.events.length
+            ? { stage: stage + 1, seen: 0 }
+            : { stage, seen: seen + 1 },
+        );
+      },
+      seen === currentStage.events.length ? 1200 : currentStage.delay,
+    );
     return () => clearTimeout(timer);
-  }, [running, completed, finished]);
+  }, [currentStage, paused, seen]);
 
   function start() {
     setViewed(null);
-    setCompleted(0);
-    setRunning(true);
+    setPaused(false);
+    setRun({ stage: 0, seen: 0 });
   }
 
-  const inProgress = running && !finished;
+  function visibleEvents(index) {
+    const events = stages[index].events;
+    return index < run.stage ? events : events.slice(0, run.seen);
+  }
+
+  const activeIndex = run ? Math.min(run.stage, stages.length - 1) : 0;
+  const stageIndex = viewed ?? activeIndex;
+  const stage = stages[stageIndex];
+  const events = run ? visibleEvents(stageIndex) : [];
+  const kept = events.filter((event) => !event.excluded);
+  const excluded = events.filter((event) => event.excluded);
+  const latest =
+    run &&
+    (visibleEvents(activeIndex).at(-1) ??
+      stages[activeIndex - 1]?.events.at(-1));
+  const reviewQueue = stages.at(-1).events.filter((event) => !event.excluded);
+
+  useEffect(() => {
+    if (finished)
+      publishDemoRun(
+        stages
+          .at(-1)
+          .events.filter((event) => !event.excluded)
+          .map((event) => event.id),
+      );
+  }, [finished, stages]);
+
   return (
     <main className="candidate-shell candidate-main search-demo">
       <header className="candidate-intro search-intro">
@@ -204,37 +268,75 @@ export default function SearchDemo({ leads }) {
           <p className="candidate-kicker">Simulated search · Fictional data</p>
           <h1>Startup search</h1>
           <p>
-            Follow a Munich search from public signals to a shortlist a VC can
-            review.
+            Follow a Munich search from the first public trace to a queue of
+            teams ready for VC review.
           </p>
         </div>
-        <button
-          type="button"
-          className="search-start"
-          onClick={start}
-          disabled={inProgress}
-        >
-          <Radar size={19} aria-hidden="true" />
-          {inProgress
-            ? "Search running"
-            : finished
-              ? "Run search again"
-              : "Start search"}
-        </button>
+        <div className="search-controls">
+          <button
+            type="button"
+            className="search-start"
+            onClick={start}
+            disabled={running}
+          >
+            <Radar size={19} aria-hidden="true" />
+            {running
+              ? "Trace in progress"
+              : finished
+                ? "Run again"
+                : "Initiate trace"}
+          </button>
+          {running && (
+            <button
+              type="button"
+              className="search-pause"
+              onClick={() => setPaused(!paused)}
+            >
+              {paused ? "Resume" : "Pause"}
+            </button>
+          )}
+        </div>
       </header>
 
-      <p role="status" className="search-status">
-        {finished
-          ? `Search complete · ${stages.at(-1).count} candidates shortlisted`
-          : inProgress
-            ? `Step ${completed + 1} of ${stages.length} · ${stages[completed].title}`
-            : "Start the search to see each step and its results."}
-      </p>
+      {run ? (
+        <section className="search-activity" aria-label="Trace activity">
+          <div className="search-activityTitle">
+            <span
+              className="search-activityDot"
+              data-running={running && !paused}
+            />
+            <p role="status">
+              {finished
+                ? `Trace complete · ${reviewQueue.length} teams ready for review`
+                : `${paused ? "Paused" : "Running"} · Step ${activeIndex + 1} of ${stages.length} · ${currentStage.title}`}
+            </p>
+          </div>
+          {finished && (
+            <Link className="search-reviewLink" href="/proof/demo">
+              Review teams in Sourcing demo
+            </Link>
+          )}
+          {latest && !finished && (
+            <p className="search-latest" data-excluded={!!latest.excluded}>
+              <strong>{latest.outcome}</strong> · {latest.title}{" "}
+              <span>· {latest.note}</span>
+            </p>
+          )}
+        </section>
+      ) : (
+        <p className="search-status">
+          Initiate the trace to see findings and filtering decisions as they
+          appear.
+        </p>
+      )}
 
       <ol className="search-steps" aria-label="Search stages">
-        {stages.map(({ title, Icon, count, unit }, index) => {
-          const done = index < completed;
-          const active = inProgress && index === completed;
+        {stages.map(({ title, Icon, unit }, index) => {
+          const done = Boolean(run && index < run.stage);
+          const active = running && index === run.stage;
+          const available = done || active;
+          const rows = available ? visibleEvents(index) : [];
+          const count = rows.filter((event) => !event.excluded).length;
           return (
             <li
               key={title}
@@ -242,8 +344,8 @@ export default function SearchDemo({ leads }) {
             >
               <button
                 type="button"
-                disabled={!done}
-                aria-pressed={done && stage?.title === title}
+                disabled={!available}
+                aria-pressed={available && stageIndex === index}
                 onClick={() => setViewed(index)}
               >
                 <span className="search-stepIcon">
@@ -258,7 +360,10 @@ export default function SearchDemo({ leads }) {
                   <strong>{title}</strong>
                 </span>
                 <span className="search-stepResult">
-                  {done ? `${count} ${unit}` : active ? "Running…" : "Waiting"}
+                  {available ? `${count} ${unit}` : "Waiting"}
+                  {rows.length > count && (
+                    <small>{rows.length - count} filtered out</small>
+                  )}
                 </span>
               </button>
             </li>
@@ -266,7 +371,7 @@ export default function SearchDemo({ leads }) {
         })}
       </ol>
 
-      {stage && (
+      {run && (
         <section
           key={stage.title}
           className="search-results"
@@ -277,39 +382,42 @@ export default function SearchDemo({ leads }) {
               <h2 id="search-results-title">{stage.title}</h2>
               <p>{stage.description}</p>
             </div>
-            <span className="candidate-sector">
-              {stage.count} {stage.unit}
-            </span>
+            {running && viewed !== null && (
+              <button
+                type="button"
+                className="search-follow"
+                onClick={() => setViewed(null)}
+              >
+                Follow live
+              </button>
+            )}
           </header>
-          {stage.traces && (
-            <ul className="search-signals">
-              {stage.traces.map((signal) => (
-                <Signal key={signal.trace_id} signal={signal} />
+          {!events.length && (
+            <p className="search-empty">Waiting for the first result…</p>
+          )}
+          {stageIndex === 0 && events.length > 0 && (
+            <ul className="search-signals" aria-label="Initial traces">
+              {events.map(({ id, signal }) => (
+                <Signal key={id} signal={signal} />
               ))}
             </ul>
           )}
-          {stage.leads && (
-            <div className="search-candidates">
-              {stage.leads.map((lead) => (
-                <Candidate key={lead.id} lead={lead} />
+          {stageIndex > 0 && kept.length > 0 && (
+            <div className="search-candidates" aria-label="Teams kept">
+              {kept.map((event) => (
+                <Candidate key={event.id} event={event} />
               ))}
             </div>
           )}
-          {stage.excluded?.length > 0 && (
-            <details className="search-excluded">
-              <summary>
-                {stage.excluded.length} filtered out{" "}
-                <ArrowRight size={15} aria-hidden="true" />
-              </summary>
-              <ul>
-                {stage.excluded.map(({ name, reason }) => (
-                  <li key={name}>
-                    <strong>{name}</strong>
-                    <p>{reason}</p>
-                  </li>
+          {excluded.length > 0 && (
+            <div className="search-excluded">
+              <h3>{excluded.length} filtered out</h3>
+              <div className="search-candidates">
+                {excluded.map((event) => (
+                  <Candidate key={event.id} event={event} />
                 ))}
-              </ul>
-            </details>
+              </div>
+            </div>
           )}
         </section>
       )}

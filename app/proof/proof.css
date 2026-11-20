@@ -851,3 +851,13 @@
     text-align: right;
   }
 }
+
+.proof-reviewNote {
+  margin: 0 0 12px;
+  color: #52617b;
+  font-size: 14px;
+}
+.proof-app .proof-reviewNote a {
+  color: #5043bf;
+  text-decoration: underline;
+}
