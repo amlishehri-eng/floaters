@@ -97,4 +97,5 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Decision (20 Nov): all scraping is Amli's n8n flows 00–09; `engine/src/sources` is not used for the pipeline. Nils does screening and eligibility, Meto the screen's look.
 - Decision: STATUS.md is shared: when merging, keep everyone's lines (a merge on 20 Nov dropped some; they were restored).
 - Decision (Nils, 20 Nov): one "worth a call" for all three of us = `worth_a_call` = tier A (startup_candidate, no failed eligibility check, fit ≥ 70, team ≥ 60). More sources only sort within a tier, never gate. A company older than 3 years fails `stage` (HTGF invests in companies under 3 years). Old non-lead rows (4 Luma events) stay in Leads as tier X, nothing deleted. Meto, say if you disagree.
+- Decision (Nils, 20 Nov): the high-tech gate stays at tech_depth >= 15 of 25 (13 Classify leads `HIGH_TECH_MIN`). Below that = verdict not_high_tech (tier C), even when fit and team are high (KyNext, Spontaction, Klarvus today).
 - Decision: everyone works directly on main with auto-commit/push hooks (replaces branch+PR flow).
