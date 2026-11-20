@@ -42,6 +42,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Meto: connect the proof dashboard at `/proof` to the real Leads table.
 - Nils: task 3 calibration of "Read trace with OpenAI": 20 traces out for hand-labelling; then Amli's gap list (duplicates like Malao) and the ~180-trace backlog
 - Nils: task 5 n8n "12 Registry check" (`gYc6PMjzMDMYAwjc`, called at the end of 11, vc_backable only) built: handelsregister.ai search → fetch → founder's other companies → Leads `registered`, `legal_form`, `registered_at`, `register_id`, `registry_signals`, `registry_checked_at`; fit/team adjusted in code, 10 Make leads v2.4 keeps the adjustments. Waiting for the n8n Header Auth credential "handelsregister.ai" (Nils adds the key), then test on Klarvus, KyNext, ReXanh
+- Nils: audit scheme for Leads: `lead_type` (9 types; investor/ecosystem_org/event_only never become leads), 5 eligibility checks with evidence + trace_ids, tier A–D/X, one `worth_a_call` (= tier A); 10 v3 (points per criterion) + new 13 Classify leads; then calibration sheet
 
 ## Done
 - Amli: Germany-wide sources: Luma Munich/Berlin/Hamburg/Frankfurt, GitHub in 16 German places, new 07 university startup lists (15 universities/incubators, OpenAI reads each page), 08 university spin-off news (idw), 09 find websites (Brave, writes only `website`). Traces got a `website` column. Ids and details in `n8n/README.md`.
