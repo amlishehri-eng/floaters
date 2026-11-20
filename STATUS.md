@@ -44,6 +44,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Nils: task 5 n8n "12 Registry check" (`gYc6PMjzMDMYAwjc`, called at the end of 11, vc_backable only) built: handelsregister.ai search → fetch → founder's other companies → Leads `registered`, `legal_form`, `registered_at`, `register_id`, `registry_signals`, `registry_checked_at`; fit/team adjusted in code, 10 Make leads v2.4 keeps the adjustments. Waiting for the n8n Header Auth credential "handelsregister.ai" (Nils adds the key), then test on Klarvus, KyNext, ReXanh
 
 ## Done
+- Meto: built the local simulated search at `/proof/search` with a four-step funnel, exclusion reasons, and candidate details. Ready for review before pushing.
 - Meto: refreshed the homepage and expanded the German portfolio gallery to ten companies, with illustrative fit scores for the frontend prototype.
 - Amli: real leads on the screen: n8n flow "20 Leads for the screen" (read-only link) → `lib/n8n.js` `getLeads()` → new page `/proof/live` (uses Meto's ProofDashboard unchanged) and `/api/leads`. Falls back to the demo leads when n8n is unreachable. Tested with real data: 34 traces → 31 teams → 25 VC potential. The flow must be **published** in n8n for the live link to work.
 - Amli: podcast transcripts work (ElevenLabs, speakers told apart): each run transcribes the 3 newest episodes without one; the trace goes back to `new` with the transcript. Luma flow now skips events already in Traces, so their status is no longer reset (Nils's note).

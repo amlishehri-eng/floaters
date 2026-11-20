@@ -6,7 +6,8 @@ import { fitScore, maxFit } from "./fit-scoring";
 
 export const metadata = {
   title: "Startup candidates | Founders First",
-  description: "Explore German HTGF portfolio examples and their illustrative VC fit scores.",
+  description:
+    "Explore German HTGF portfolio examples and their illustrative VC fit scores.",
 };
 
 export default function CandidatesPage() {
@@ -17,12 +18,17 @@ export default function CandidatesPage() {
         <h1>Startup candidates</h1>
         <p>
           Explore HTGF-backed startups from across Germany. Each profile pairs a
-          public funding announcement with an illustrative VC fit score for shortlist
-          priority. The sourcing demo focuses on Munich.
+          public funding announcement with an illustrative VC fit score for
+          shortlist priority. The search demo focuses on Munich.
         </p>
-        <Link className="candidate-introLink" href="/proof/methodology">
-          How we score VC fit <ArrowUpRight size={16} aria-hidden="true" />
-        </Link>
+        <div className="candidate-introActions">
+          <Link className="candidate-introLink" href="/proof/search">
+            Start search demo <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+          <Link className="candidate-introLink" href="/proof/methodology">
+            How we score VC fit <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
       </section>
       <ul className="candidate-grid" aria-label="Portfolio examples">
         {companies.map((company) => (
@@ -33,7 +39,10 @@ export default function CandidatesPage() {
                 <div className="candidate-cardMeta">
                   <span className="candidate-sector">{company.sector}</span>
                   <span className="candidate-fitBadge">
-                    Illustrative fit <strong>{fitScore(company)}/{maxFit}</strong>
+                    Illustrative fit{" "}
+                    <strong>
+                      {fitScore(company)}/{maxFit}
+                    </strong>
                   </span>
                 </div>
                 <h2>

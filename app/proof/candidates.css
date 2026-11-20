@@ -324,3 +324,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+.candidate-introActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 14px;
+}
