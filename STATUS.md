@@ -34,6 +34,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Nils: the brain is built and tested offline; next: first real run with `OPENAI_API_KEY` on Person 1's traces, then calibrate the filter on 20 hand-labelled traces
 
 ## Done
+- Meto: polished the proof dashboard and added sector filtering, sortable score badges and direct shortlist access.
 - Meto: proof dashboard at `/proof` with ten fictional leads, funnel counts, ranking, filters, evidence cards, shortlisting and Markdown memo export.
 - Nils: brain `/api/brain/run` + `/api/brain/extract` (extract → convergence → filter → scoring → days ahead, cost per trace/lead), 10 sample traces `data/traces.sample.json`, mock `data/leads.sample.json` for the screen, n8n wiring in `docs/brain.md`, test `node scripts/test-brain.mjs`
 - Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)

@@ -4,15 +4,32 @@ import { useState } from "react";
 import {
   ArrowDown,
   ArrowUpRight,
+  Activity,
+  Bookmark,
   Check,
   Download,
   Layers,
   MapPin,
   Radar,
   Search,
+  Target,
   Users,
 } from "lucide-react";
 import "./proof.css";
+
+const funnelIcons = [Activity, Users, Layers, Target];
+const sourceNames = {
+  campus: "Campus",
+  github: "GitHub",
+  huggingface: "Hugging Face",
+  recording: "Pitch recording",
+  luma: "Luma",
+  eventbrite: "Eventbrite",
+};
+
+function sourceCount(count) {
+  return `${count} ${count === 1 ? "source" : "sources"}`;
+}
 const day = 86400000;
 const dateFormatter = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
@@ -106,10 +123,12 @@ function downloadMemo(lead, asOf) {
 export default function ProofDashboard({ leads, asOf }) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("vc_backable");
+  const [sector, setSector] = useState("");
   const [invisibleOnly, setInvisibleOnly] = useState(false);
   const [sort, setSort] = useState("fit_score");
   const [selectedId, setSelectedId] = useState(leads[0]?.id);
   const [shortlist, setShortlist] = useState([]);
+  const sectors = [...new Set(leads.map((lead) => lead.sector))].sort();
   const visible = leads
     .filter((lead) => {
       const matchesQuery = [
@@ -129,6 +148,7 @@ export default function ProofDashboard({ leads, asOf }) {
       return (
         matchesQuery &&
         matchesFilter &&
+        (!sector || lead.sector === sector) &&
         (!invisibleOnly || !lead.first_public_at)
       );
     })
@@ -165,12 +185,9 @@ export default function ProofDashboard({ leads, asOf }) {
         <a href="/proof" className="proof-brand">
           <Radar size={28} />
           <span>
-            Founders
-            <br />
-            <strong>First.</strong>
+            Founders <strong>First</strong>
           </span>
         </a>
-        <p className="proof-sidebarLabel">SOURCING WORKSPACE</p>
         <nav aria-label="Workspace">
           <a className="proof-activeNav" href="#leads">
             <Layers size={17} /> Lead explorer
@@ -186,22 +203,23 @@ export default function ProofDashboard({ leads, asOf }) {
       </aside>
       <div className="proof-workspace">
         <header className="proof-topbar">
-          <span>
-            Workspace <span className="proof-slash">/</span> Lead explorer
+          <span className="proof-topbarLabel">
+            <Radar size={17} /> Sourcing workspace
           </span>
-          <span className="proof-demoBadge">Fictional demo data</span>
+          <span
+            className="proof-demoBadge"
+            title="All teams and evidence shown are fictional"
+          >
+            Fictional demo data
+          </span>
         </header>
         <div className="proof-content">
           <section className="proof-heading">
             <div>
-              <p className="proof-eyebrow">FIND THE FOUNDERS FIRST</p>
-              <h1>
-                The next team.
-                <br />
-                <span>Before the spotlight.</span>
-              </h1>
+              <h1>Startup discovery</h1>
               <p>
-                Follow the signals. Connect the people. Find a reason to call.
+                Find emerging Munich startups through signals from universities,
+                developer communities and pitch events.
               </p>
             </div>
             <div className="proof-scope">
@@ -211,20 +229,21 @@ export default function ProofDashboard({ leads, asOf }) {
               </span>
             </div>
           </section>
-          <div className="proof-notice">
-            All teams, people, scores and evidence shown here are fictional.
-            Real leads and source verification are pending.
-          </div>
           <section aria-label="Sourcing funnel" className="proof-funnel">
-            {funnel.map(([label, count], index) => (
-              <div key={label}>
-                <span>{label}</span>
-                <strong>{count}</strong>
-                {index < funnel.length - 1 && (
-                  <ArrowUpRight className="proof-funnelArrow" size={20} />
-                )}
-              </div>
-            ))}
+            {funnel.map(([label, count], index) => {
+              const Icon = funnelIcons[index];
+              return (
+                <div key={label}>
+                  <span className="proof-metricIcon">
+                    <Icon size={18} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <span>{label}</span>
+                    <strong>{count}</strong>
+                  </div>
+                </div>
+              );
+            })}
           </section>
           <p className="proof-threshold">
             Worth a call = VC potential, fit and team scores ≥80, and at least
@@ -232,10 +251,19 @@ export default function ProofDashboard({ leads, asOf }) {
           </p>
           <section id="leads" className="proof-explorer">
             <div className="proof-sectionHeading">
-              <h2>
-                Lead explorer <span>{leads.length}</span>
-              </h2>
-              <p>Evidence behind every introduction</p>
+              <h2>Lead explorer</h2>
+              <button
+                className="proof-shortcut"
+                aria-pressed={filter === "shortlist"}
+                onClick={() =>
+                  setFilter(
+                    filter === "shortlist" ? "vc_backable" : "shortlist",
+                  )
+                }
+              >
+                <Bookmark size={16} aria-hidden="true" /> Shortlist (
+                {shortlist.length})
+              </button>
             </div>
             <div className="proof-toolbar">
               <label className="proof-search">
@@ -264,6 +292,18 @@ export default function ProofDashboard({ leads, asOf }) {
                   <option value="hobby">Hobby projects</option>
                 </select>
               </label>
+              <label className="proof-select">
+                <select
+                  aria-label="Sector"
+                  value={sector}
+                  onChange={(event) => setSector(event.target.value)}
+                >
+                  <option value="">All sectors</option>
+                  {sectors.map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
+                </select>
+              </label>
               <label className="proof-check">
                 <input
                   type="checkbox"
@@ -276,7 +316,9 @@ export default function ProofDashboard({ leads, asOf }) {
             <div className="proof-split">
               <div className="proof-listPanel">
                 <div className="proof-listHeader">
-                  <span aria-live="polite">{visible.length} teams</span>
+                  <span aria-live="polite">
+                    {visible.length} {visible.length === 1 ? "team" : "teams"}
+                  </span>
                   <label>
                     <ArrowDown size={13} />
                     <select
@@ -294,7 +336,7 @@ export default function ProofDashboard({ leads, asOf }) {
                   {visible.map((lead) => (
                     <button
                       key={lead.id}
-                      className={`$"proof-leadRow" ${selected?.id === lead.id ? "proof-selected" : ""}`}
+                      className={`proof-leadRow ${selected?.id === lead.id ? "proof-selected" : ""}`}
                       aria-pressed={selected?.id === lead.id}
                       onClick={() => setSelectedId(lead.id)}
                     >
@@ -302,16 +344,30 @@ export default function ProofDashboard({ leads, asOf }) {
                         <span className="proof-monogram">
                           {lead.name.slice(0, 1)}
                         </span>
-                        <strong>{lead.name}</strong>
+                        <div className="proof-rowIdentity">
+                          <strong>{lead.name}</strong>
+                          <small>{lead.sector}</small>
+                        </div>
                         <span className="proof-rowScore">
-                          {lead.fit_score}
-                          <small>FIT</small>
+                          {lead[sort]}
+                          <small>
+                            {
+                              {
+                                fit_score: "Fit",
+                                team_score: "Team",
+                                source_count: "Sources",
+                              }[sort]
+                            }
+                          </small>
                         </span>
                       </div>
                       <p>{lead.what}</p>
                       <div className="proof-rowMeta">
-                        <span>{lead.source_count} sources</span>
-                        <span>
+                        <span>{sourceCount(lead.source_count)}</span>
+                        <span
+                          className="proof-status"
+                          data-public={Boolean(lead.first_public_at)}
+                        >
                           {lead.first_public_at
                             ? "Public mention"
                             : "Still invisible"}
@@ -331,6 +387,7 @@ export default function ProofDashboard({ leads, asOf }) {
                         onClick={() => {
                           setQuery("");
                           setFilter("all");
+                          setSector("");
                           setInvisibleOnly(false);
                         }}
                       >
@@ -344,10 +401,13 @@ export default function ProofDashboard({ leads, asOf }) {
                 <article className="proof-detail" aria-label="Selected lead">
                   <div className="proof-detailTop">
                     <span className="proof-sector">{selected.sector}</span>
-                    <span className="proof-visibility">
+                    <span
+                      className="proof-status"
+                      data-public={Boolean(selected.first_public_at)}
+                    >
                       {selected.first_public_at
                         ? "Public mention found"
-                        : "Still invisible · demo"}
+                        : "Still invisible"}
                     </span>
                   </div>
                   <h2>{selected.name}</h2>
@@ -358,7 +418,7 @@ export default function ProofDashboard({ leads, asOf }) {
                       {selected.city}, {selected.country}
                     </span>
                     <span>{selected.stage}</span>
-                    <span>{selected.source_count} sources</span>
+                    <span>{sourceCount(selected.source_count)}</span>
                   </div>
                   <div className="proof-timing">
                     <Radar size={20} />
@@ -405,9 +465,15 @@ export default function ProofDashboard({ leads, asOf }) {
                           a.happened_at.localeCompare(b.happened_at),
                         )
                         .map((signal) => (
-                          <li key={signal.trace_id}>
+                          <li
+                            key={signal.trace_id}
+                            data-source={signal.source || signal.kind}
+                          >
                             <div className="proof-signalHeading">
-                              <strong>{signal.kind}</strong>
+                              <strong>
+                                {sourceNames[signal.source || signal.kind] ||
+                                  signal.kind}
+                              </strong>
                               <time dateTime={signal.happened_at}>
                                 {date(signal.happened_at)}
                               </time>
@@ -442,12 +508,13 @@ export default function ProofDashboard({ leads, asOf }) {
                   <div className="proof-actions">
                     <button
                       className="proof-primary"
+                      aria-pressed={shortlist.includes(selected.id)}
                       onClick={() => toggleShortlist(selected.id)}
                     >
                       {shortlist.includes(selected.id) ? (
                         <Check size={16} />
                       ) : (
-                        <Users size={16} />
+                        <Bookmark size={16} />
                       )}
                       {shortlist.includes(selected.id)
                         ? "Shortlisted"
@@ -473,7 +540,7 @@ export default function ProofDashboard({ leads, asOf }) {
           <section id="proof" className="proof-readiness">
             <div>
               <p className="proof-eyebrow">DEMO READINESS</p>
-              <h2>Turn a promising lead into proof.</h2>
+              <h2>Demo checklist</h2>
             </div>
             <div>
               <h3>Historical backtest</h3>
