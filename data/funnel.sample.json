@@ -1,155 +1,161 @@
 {
- "as_of": "2026-11-20T19:02:43.151Z",
- "stages": [
-  {
-   "key": "traces_in",
-   "label": "Traces found",
-   "count": 1259
-  },
-  {
-   "key": "stage0_skipped",
-   "label": "Skipped by code (stage 0)",
-   "count": 256,
-   "by_rule": {
-    "event_only": 1,
-    "agency": 5,
-    "ecosystem_org": 2,
-    "too_old": 235,
-    "unreadable": 7,
-    "investor": 1,
-    "duplicate": 4,
-    "not_germany": 1
-   }
-  },
-  {
-   "key": "thin_no_site",
-   "label": "Only a name, no website to read",
-   "count": 342
-  },
-  {
-   "key": "thin_rescued",
-   "label": "Only a name, website read (back to stage 0)",
-   "count": 63
-  },
-  {
-   "key": "waiting",
-   "label": "Waiting for the next run",
-   "count": 496
-  },
-  {
-   "key": "read_by_mini",
-   "label": "Read by gpt-5-mini (stage 1)",
-   "count": 165
-  },
-  {
-   "key": "leads",
-   "label": "Leads (teams)",
-   "count": 147,
-   "merged": 4
-  },
-  {
-   "key": "survivors",
-   "label": "Passed the gates (call_now, watchlist, needs_enrichment)",
-   "count": 30
-  },
-  {
-   "key": "scored_v2",
-   "label": "Scored on all evidence by gpt-5.5",
-   "count": 27
-  },
-  {
-   "key": "deep_checked",
-   "label": "Deep-checked (web, GitHub, domain, Series A)",
-   "count": 0
-  },
-  {
-   "key": "call_now",
-   "label": "Call now",
-   "count": 2
-  }
- ],
- "traces": {
-  "total": 1259,
-  "by_status": {
-   "processed": 165,
-   "skipped": 256,
-   "thin_no_site": 342,
-   "new": 496
-  },
-  "stage0_skipped_by_rule": {
-   "event_only": 1,
-   "agency": 5,
-   "ecosystem_org": 2,
-   "too_old": 235,
-   "unreadable": 7,
-   "investor": 1,
-   "duplicate": 4,
-   "not_germany": 1
-  },
-  "thin_rescue_results": {
-   "no_website": 319,
-   "fetched": 63,
-   "dead_site": 18,
-   "robots_blocked": 5
-  }
- },
- "leads": {
-  "total_rows": 151,
-  "live": 147,
-  "merged": 4,
-  "by_verdict": {
-   "not_a_lead": 4,
-   "not_high_tech": 59,
-   "too_late": 27,
-   "not_a_startup": 21,
-   "out_of_scope": 4,
-   "unscored": 2,
-   "needs_enrichment": 22,
-   "watchlist": 6,
-   "call_now": 2
-  },
-  "scored_v2": 27,
-  "deep_checked": 0,
-  "call_now": 2
- },
- "cost": {
-  "total_usd": 2.76,
-  "per_trace_read_usd": 0.0167,
-  "per_call_now_usd": 1.38,
-  "by_step": [
-   {
-    "step": "stage 1 read",
-    "model": "gpt-5-mini",
-    "usd": 0.57,
-    "calls": 0,
-    "notes": "before 20 Nov 19:00: ~70 traces in packages 1-2 + execs 115, 125, 135 (125 traces, $0.0028 each)"
-   },
-   {
-    "step": "strong scoring (15)",
-    "model": "gpt-5.5",
-    "usd": 2.11,
-    "calls": 0,
-    "notes": "before 20 Nov 19:00: execs 97, 123, 131, 141 (about 30 leads)"
-   },
-   {
-    "step": "dedupe / days ahead judges",
-    "model": "gpt-5-mini",
-    "usd": 0.05,
-    "calls": 0,
-    "notes": "flows 16 and 11, estimated"
-   },
-   {
-    "step": "40 Lab gap: why visit",
-    "model": "gpt-5-mini",
-    "usd": 0.03,
-    "calls": 20,
-    "notes": ""
-   }
+  "as_of": "2026-11-20T21:57:56.094Z",
+  "stages": [
+    {
+      "key": "traces_in",
+      "label": "Traces found",
+      "count": 1259
+    },
+    {
+      "key": "stage0_skipped",
+      "label": "Skipped by code (stage 0)",
+      "count": 260,
+      "by_rule": {
+        "event_only": 1,
+        "agency": 6,
+        "ecosystem_org": 2,
+        "too_old": 237,
+        "unreadable": 7,
+        "investor": 1,
+        "duplicate": 4,
+        "not_germany": 2
+      }
+    },
+    {
+      "key": "thin_no_site",
+      "label": "Only a name, no website to read",
+      "count": 325
+    },
+    {
+      "key": "thin_rescued",
+      "label": "Only a name, website read (back to stage 0)",
+      "count": 0
+    },
+    {
+      "key": "waiting",
+      "label": "Waiting for the next run",
+      "count": 0
+    },
+    {
+      "key": "read_by_mini",
+      "label": "Read by gpt-5-mini (stage 1)",
+      "count": 674
+    },
+    {
+      "key": "leads",
+      "label": "Leads (teams)",
+      "count": 624,
+      "merged": 10
+    },
+    {
+      "key": "survivors",
+      "label": "Passed the gates (call_now, watchlist, needs_enrichment)",
+      "count": 351
+    },
+    {
+      "key": "scored_v2",
+      "label": "Scored on all evidence by gpt-5.5",
+      "count": 218
+    },
+    {
+      "key": "deep_checked",
+      "label": "Deep-checked (web, GitHub, domain, Series A)",
+      "count": 35
+    },
+    {
+      "key": "call_now",
+      "label": "Call now",
+      "count": 5
+    }
   ],
-  "note": "Model spend only (OpenAI list prices). Brave, OpenAlex, handelsregister.ai credits and n8n are not included."
- },
- "check": {
-  "traces_add_up": true
- },
- "snapshot_note": "Real snapshot of GET https://floaters.app.n8n.cloud/webhook/htgf-funnel, taken 2026-11-20T19:02:43.151Z (package 4). Served by /api/funnel with mocked: true when n8n is unreachable. Refresh it in the final run."
+  "traces": {
+    "total": 1259,
+    "by_status": {
+      "processed": 674,
+      "skipped": 260,
+      "thin_no_site": 325
+    },
+    "stage0_skipped_by_rule": {
+      "event_only": 1,
+      "agency": 6,
+      "ecosystem_org": 2,
+      "too_old": 237,
+      "unreadable": 7,
+      "investor": 1,
+      "duplicate": 4,
+      "not_germany": 2
+    },
+    "thin_rescue_results": {
+      "no_website": 299,
+      "dead_site": 20,
+      "robots_blocked": 6
+    }
+  },
+  "leads": {
+    "total_rows": 634,
+    "live": 624,
+    "merged": 10,
+    "by_verdict": {
+      "not_a_lead": 4,
+      "not_high_tech": 130,
+      "needs_enrichment": 337,
+      "too_late": 23,
+      "not_a_startup": 71,
+      "out_of_scope": 35,
+      "unscored": 2,
+      "call_now": 5,
+      "watchlist": 9,
+      "htgf_portfolio": 8
+    },
+    "scored_v2": 218,
+    "deep_checked": 35,
+    "call_now": 5
+  },
+  "cost": {
+    "total_usd": 25.92,
+    "per_trace_read_usd": 0.0385,
+    "per_call_now_usd": 5.18,
+    "by_step": [
+      {
+        "step": "stage 1 read",
+        "model": "gpt-5-mini",
+        "usd": 2.17,
+        "calls": 540,
+        "notes": "before 20 Nov 19:00: ~70 traces in packages 1-2 + execs 115, 125, 135 (125 traces, $0.0028 each)"
+      },
+      {
+        "step": "strong scoring (15)",
+        "model": "gpt-5.5",
+        "usd": 21.25,
+        "calls": 215,
+        "notes": "before 20 Nov 19:00: execs 97, 123, 131, 141 (about 30 leads)"
+      },
+      {
+        "step": "dedupe / days ahead judges",
+        "model": "gpt-5-mini",
+        "usd": 0.05,
+        "calls": 0,
+        "notes": "flows 16 and 11, estimated"
+      },
+      {
+        "step": "40 Lab gap: why visit",
+        "model": "gpt-5-mini",
+        "usd": 0.03,
+        "calls": 20,
+        "notes": ""
+      },
+      {
+        "step": "deep checks (17)",
+        "model": "gpt-5-mini + web search, gpt-5.5",
+        "usd": 2.42,
+        "calls": 35,
+        "notes": ""
+      }
+    ],
+    "note": "Model spend only (OpenAI list prices). Brave, OpenAlex, handelsregister.ai credits and n8n are not included."
+  },
+  "check": {
+    "traces_add_up": true
+  },
+  "snapshot_note": "Snapshot of GET /webhook/htgf-funnel (flow 44) after the final run, 20 Nov 2026 22:57 CET. Used by /api/funnel when n8n does not answer within 8 s."
 }
