@@ -22,8 +22,10 @@ Copy `.env.example` to `.env.local` (Next.js reads it automatically). Share the 
 |---|---|---|
 | `ANTHROPIC_API_KEY` | `lib/ai/claude.js` | console.anthropic.com → API keys |
 | `ANTHROPIC_MODEL` | `lib/ai/claude.js` | default `claude-sonnet-5-5` |
-| `OPENAI_API_KEY` | `lib/ai/openai.js` | only if used |
-| `OPENAI_MODEL` | `lib/ai/openai.js` | set to the model you pick for that job |
+| `OPENAI_API_KEY` | `lib/ai/openai.js` | the brain (`/api/brain/*`); without it the brain serves `data/leads.sample.json` |
+| `OPENAI_MODEL` | `lib/ai/openai.js` | brain scoring, default `gpt-5.5` |
+| `OPENAI_MODEL_FAST` | `lib/ai/openai.js` | brain extraction, filter, same-person checks, web search; default `gpt-5.4-mini` |
+| `BRAIN_API_KEY` | `lib/ai/brain/auth.js` | optional; if set, n8n sends it as header `x-brain-key` |
 | `ELEVENLABS_API_KEY` | `lib/voice/elevenlabs.js` | elevenlabs.io → Profile → API keys |
 | `ELEVENLABS_VOICE_ID` | `lib/voice/elevenlabs.js` | copy from the Voices page |
 | `N8N_WEBHOOK_URL_MAIN` | `lib/n8n.js` | the **production** webhook URL (see below) |
@@ -39,9 +41,10 @@ Copy `.env.example` to `.env.local` (Next.js reads it automatically). Share the 
 - For long answers, stream the response so the UI doesn't sit blank.
 - Keep system prompts in `lib/ai/prompts/` as plain strings so everyone can tweak them.
 
-## OpenAI (only if SPEC.md requires it)
-- Package: `openai`. Same rules: server-side only, key from `OPENAI_API_KEY`, model from `OPENAI_MODEL`.
-- Write down in SPEC.md ("Which AI does what") why it's needed, e.g. embeddings or image generation.
+## OpenAI (the brain)
+- Package: `openai`. Same rules: server-side only, key from `OPENAI_API_KEY`.
+- Used by the brain (team plan requires it, see SPEC.md "Which AI does what"). Responses API with strict structured output; helper `structured()` in `lib/ai/openai.js`, price table for the cost summary in the same file.
+- How n8n calls it: `docs/brain.md`.
 
 ## ElevenLabs (voice)
 - Call it from our own routes: `app/api/voice/tts` (text → audio) and `app/api/voice/stt` (audio → text).

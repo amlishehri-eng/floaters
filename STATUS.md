@@ -30,9 +30,10 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
-- Nils: the brain, `/api/brain/run` + `/api/brain/extract` (OpenAI extract → filter → convergence → scoring → days ahead), sample traces/leads in `data/`
+- Nils: the brain is built and tested offline; next: first real run with `OPENAI_API_KEY` on Person 1's traces, then calibrate the filter on 20 hand-labelled traces
 
 ## Done
+- Nils: brain `/api/brain/run` + `/api/brain/extract` (extract → convergence → filter → scoring → days ahead, cost per trace/lead), 10 sample traces `data/traces.sample.json`, mock `data/leads.sample.json` for the screen, n8n wiring in `docs/brain.md`, test `node scripts/test-brain.mjs`
 - Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)
 - Hackathon starter top-up: `/test` integration panel, `scripts/sync.sh` + session hooks, `reviewer` agent, `openai` installed, SPEC wow/jury sections (main)
 
@@ -45,4 +46,5 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 
 ## Decisions
 - _short note of anything we agreed on, so nobody re-argues it at 3am_
+- Decision: two columns added to the contract: Traces gets `extraction` (JSON string, so no trace is extracted twice); Leads gets `fit_reason`, `team_reason`, `match_reasons`, `evidence_hash`, `still_invisible`, `worth_a_call`. Nothing renamed.
 - Decision: everyone works directly on main with auto-commit/push hooks (replaces branch+PR flow).

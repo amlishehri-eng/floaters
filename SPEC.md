@@ -34,27 +34,31 @@ Keep it small. Mock versions live in `/data`.
 
 | Entity | Fields | Notes |
 |---|---|---|
-| _TODO_ | `id`, … | _TODO_ |
+| Trace (Person 1 writes, Person 2 reads) | `id` (source:own-id, unique), `source` (luma, eventbrite, campus, github, huggingface, recording), `url`, `happened_at`, `found_at`, `title`, `text`, `people`, `org_name`, `city`, `status` (new, processed), `extraction` (added: JSON string, set by the brain) | `data/traces.sample.json` |
+| Lead (Person 2 writes, Person 3 reads) | `id` (stable, `lead:<slug>`), `name`, `people`, `what`, `sector`, `city`, `country`, `stage`, `label`, `label_reason`, `fit_score`, `team_score`, `signals`, `source_count`, `first_trace_at`, `first_public_at`, `days_ahead`, added: `fit_reason`, `team_reason`, `match_reasons`, `evidence_hash`, `still_invisible`, `worth_a_call` | `data/leads.sample.json`; lists are JSON strings in the table |
 
 ## API routes (contract between frontend and backend)
 Agree on these first so frontend can build against mocks while backend builds the real thing.
 
 | Method + path | Request body | Response | Calls |
 |---|---|---|---|
+| `POST /api/brain/run` | `{ traces: [...], previous_leads?: [...], options?: { daysAhead } }` | `{ leads, rows, trace_updates, funnel, cost, errors, mocked? }` | OpenAI (called by n8n, see `docs/brain.md`) |
+| `POST /api/brain/extract` | `{ trace }` | `{ extraction, usage }` | OpenAI (debugging) |
 | `POST /api/chat` | `{ messages: [...] }` | `{ reply: "..." }` | Claude |
 | `POST /api/voice/tts` | `{ text: "..." }` | `audio/mpeg` | ElevenLabs |
 | `POST /api/voice/stt` | form-data `audio` | `{ text: "..." }` | ElevenLabs |
 | `POST /api/automation` | `{ ... }` | `{ ok: true, ... }` | n8n (`N8N_WEBHOOK_URL_MAIN`) |
 
-_Delete the rows you don't need; add your own._
+Optional header `x-brain-key` on `/api/brain/*` when `BRAIN_API_KEY` is set.
 
 ## Which AI does what
 | Job | Service | Why |
 |---|---|---|
-| Main reasoning / text generation | Claude | default LLM |
-| _TODO (only if needed)_ | OpenAI | _TODO: why Claude isn't enough here_ |
-| Voice output / input | ElevenLabs | TTS / STT |
-| _TODO_ | n8n | _TODO: e.g. send email, save to sheet, notify Slack_ |
+| Brain: extract people/projects/quotes, noise filter, same-person checks, days-ahead web search | OpenAI `OPENAI_MODEL_FAST` (gpt-5.4-mini) | The team plan requires OpenAI: strict structured output so n8n writes answers straight into tables, plus its built-in web_search tool for "days ahead"; the cheap model keeps cost per trace low |
+| Brain: fit and team scoring | OpenAI `OPENAI_MODEL` (gpt-5.5) | Stronger model where judgement matters; weights fixed in `lib/ai/prompts/brain.js` |
+| Main reasoning / text generation elsewhere | Claude | default LLM |
+| Voice output / input | ElevenLabs | STT for pitch recordings (speakers told apart), founder clip, audio briefing |
+| Fetch sources on a schedule, read/write the Traces and Leads tables, alerts | n8n | every flow; calls `/api/brain/run` |
 
 ## Out of scope
 Things we deliberately won't build in 24h:
