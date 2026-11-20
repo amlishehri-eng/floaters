@@ -170,6 +170,32 @@ const runLeads = node({
   }
 });
 
+const runTeam = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 34 Team enrichment',
+    executeOnce: true,
+    alwaysOutputData: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'mBmYYUrE9a2OeHQ2', cachedResultName: '34 Team enrichment' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const runScore = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 15 Score enriched leads',
+    executeOnce: true,
+    alwaysOutputData: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: '6fSUcccfgSt5h58T', cachedResultName: '15 Score leads' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
 const runCapital = node({
   type: 'n8n-nodes-base.executeWorkflow',
   version: 1.4,
@@ -183,7 +209,7 @@ const runCapital = node({
   }
 });
 
-const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **09** finds company websites, then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runCapital], { color: 7 });
+const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **09** finds company websites, then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runTeam, runScore, runCapital], { color: 7 });
 
 export default workflow('run-all', '00 Run all sources')
   .add(runByHand)
@@ -199,10 +225,12 @@ export default workflow('run-all', '00 Run all sources')
   .to(runDedupe)
   .to(runWebsites)
   .to(runLeads)
+  .to(runTeam)
+  .to(runScore)
   .to(runCapital)
   .add(every6Hours)
   .to(runLuma)
   .add(runFromDemo)
   .to(runLuma)
   .add(howItWorks)
-  .group('Whole engine', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runCapital], { description: 'Every source flow in turn, then Make leads, then 33 Capital need (scoring v3). 04 Eventbrite is not in here: Eventbrite blocks n8n Cloud' });
+  .group('Whole engine', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads, runTeam, runScore, runCapital], { description: 'Every source, then Make leads, then 34 Team enrichment, 15 scores the enriched leads, then 33 Capital need. 04 Eventbrite is not in here' });
