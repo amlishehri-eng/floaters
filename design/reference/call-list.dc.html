@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Today’s call list</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&display=swap">
+<style>
+body{margin:0;background:#f4f6f9}
+a{color:#0a6e99;text-decoration:none}a:hover{color:#064f6f;text-decoration:underline}
+button{font:inherit}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f4f6f9; color: #1d1d1f; font-family: 'Mona Sans', system-ui, sans-serif; font-size: 15px; font-variant-numeric: tabular-nums">
+
+  <header style="position: sticky; top: 0; z-index: 5; background: rgba(244,246,249,0.78); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(29,29,31,0.08)">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 0 28px; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="Home.dc.html" style="color: #1d1d1f; font-weight: 700; font-stretch: 125%; letter-spacing: -0.3px; font-size: 16px; text-decoration: none">Founders First</a>
+      <nav aria-label="Main" style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 13px">
+        <a href="Main.dc.html" style="color: #1d1d1f; font-weight: 600; padding: 8px 12px; text-decoration: none">Call list</a>
+        <a href="Funnel.dc.html" style="color: #4a4a4f; padding: 8px 12px; text-decoration: none">Funnel</a>
+        <a href="Labs.dc.html" style="color: #4a4a4f; padding: 8px 12px; text-decoration: none">Labs</a>
+        <a href="Portfolio.dc.html" style="color: #4a4a4f; padding: 8px 12px; text-decoration: none">Portfolio</a>
+        <a href="Methodology.dc.html" style="color: #4a4a4f; padding: 8px 12px; text-decoration: none">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1320px; margin: 0 auto; padding: 48px 28px 80px; display: flex; flex-direction: column; gap: 36px">
+    <section style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 10px; max-width: 720px">
+        <h1 style="margin: 0; font-size: 56px; line-height: 1.02; font-weight: 750; font-stretch: 125%; letter-spacing: -1.6px">Today’s call list.</h1>
+        <p style="margin: 0; font-size: 19px; line-height: 1.45; color: #4a4a4f">Seven teams worth a call, out of 1,259 signals read across Germany. Updated 20 November, 23:05.</p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <button type="button" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: #1d1d1f; color: #ffffff; cursor: pointer; font-weight: 500">Play the briefing</button>
+        <button type="button" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid rgba(29,29,31,0.2); background: transparent; color: #1d1d1f; cursor: pointer; font-weight: 500">Export memo</button>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+
+      <section aria-label="Leads" style="flex: 1 1 320px; max-width: 380px; min-width: 0; display: flex; flex-direction: column">
+        <sc-for list="{{leads}}" as="l" hint-placeholder-count="5">
+          <button type="button" onClick="{{l.pick}}" style="text-align: left; width: 100%; box-sizing: border-box; padding: 18px 18px; border: 0; border-bottom: 1px solid rgba(29,29,31,0.08); border-radius: 18px; background: {{l.bg}}; color: #1d1d1f; cursor: pointer; display: flex; flex-direction: column; gap: 8px">
+            <span style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+              <span style="font-size: 18px; font-weight: 650; font-stretch: 112%; letter-spacing: -0.2px">{{l.name}}</span>
+              <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #d93d1e; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: #ff5b3a; box-shadow: 0 0 10px #ff5b3a"></span>Call now</span>
+            </span>
+            <span style="font-size: 13px; color: #6e6e73">{{l.place}}</span>
+            <span style="display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: #1d1d1f">
+              <span style="color: {{l.daysInk}}">{{l.daysBadge}}</span>
+              <span style="color: #4a4a4f">{{l.fundingBadge}}</span>
+            </span>
+            <span style="display: flex; gap: 16px; font-size: 12px; color: #6e6e73">
+              <span>Fit <strong style="color: #1d1d1f; font-weight: 600">{{l.fit}}</strong></span>
+              <span>Team <strong style="color: #1d1d1f; font-weight: 600">{{l.teamKnown}}</strong></span>
+              <span>Timing <strong style="color: #1d1d1f; font-weight: 600">{{l.timing}}</strong></span>
+            </span>
+          </button>
+        </sc-for>
+      </section>
+
+      <article aria-label="Lead detail" style="flex: 3 1 620px; min-width: 0; background: #ffffff; border-radius: 32px; padding: 44px 48px; display: flex; flex-direction: column; gap: 40px; box-shadow: 0 30px 60px -40px rgba(10,40,70,0.25)">
+
+        <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: center">
+          <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 12px">
+            <span style="font-size: 14px; color: #6e6e73">{{s.place}}</span>
+            <h2 style="margin: 0; font-size: 52px; line-height: 1; font-weight: 750; font-stretch: 125%; letter-spacing: -1.4px">{{s.name}}</h2>
+            <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #3a3a3f; max-width: 560px">{{s.what}}</p>
+            <p style="margin: 0; font-size: 14px; color: #6e6e73">{{s.people}}</p>
+            <sc-if value="{{s.hasWebsite}}" hint-placeholder-val="{{ true }}"><a href="{{s.website}}" style="font-size: 14px">{{s.websiteLabel}}</a></sc-if>
+          </div>
+          <div style="display: flex; gap: 22px" aria-label="Scores">
+            <sc-for list="{{s.rings}}" as="r" hint-placeholder-count="3">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+                <div style="width: 104px; height: 104px; border-radius: 50%; background: conic-gradient({{r.color}} {{r.deg}}deg, {{r.track}} 0deg); display: flex; align-items: center; justify-content: center" role="img" aria-label="{{r.label}} {{r.value}} of 100">
+                  <div style="width: 80px; height: 80px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; font-stretch: 112%">{{r.value}}</div>
+                </div>
+                <span style="font-size: 13px; font-weight: 600">{{r.label}}</span>
+                <span style="font-size: 12px; color: #6e6e73; margin-top: -6px">{{r.sub}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px 28px; border-radius: 22px; background: #fff3ef">
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 650; color: #b8321a"><span style="width: 9px; height: 9px; border-radius: 50%; background: #ff5b3a; box-shadow: 0 0 12px #ff5b3a"></span>Why call now</span>
+          <span style="font-size: 17px; line-height: 1.5">{{s.reason}}</span>
+          <span style="font-size: 15px; line-height: 1.5; color: #3a3a3f">Next step: {{s.next}}</span>
+        </div>
+
+        <sc-if value="{{s.hasAgeWarning}}" hint-placeholder-val="{{ false }}">
+          <p style="margin: -16px 0 0; font-size: 14px; line-height: 1.5; color: #7a4a00; padding: 14px 18px; border-radius: 14px; background: #fff7e8">Check the age first. {{s.ageWarning}}</p>
+        </sc-if>
+
+        <div style="display: flex; flex-direction: column">
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-top: 1px solid rgba(29,29,31,0.1)">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 650">Why now</h3>
+            <div style="display: flex; flex-direction: column; gap: 14px">
+              <p style="margin: 0; font-size: 22px; font-weight: 650; font-stretch: 112%; letter-spacing: -0.3px; color: {{s.daysInk}}">{{s.daysBadge}}</p>
+              <p style="margin: 0; line-height: 1.5; color: #3a3a3f">{{s.daysText}} <sc-if value="{{s.hasPress}}" hint-placeholder-val="{{ true }}"><a href="{{s.pressUrl}}">See the first mention</a></sc-if></p>
+              <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+                <sc-for list="{{s.timingRows}}" as="r" hint-placeholder-count="4">
+                  <div style="display: flex; flex-direction: column; gap: 6px">
+                    <span style="font-size: 13px; color: #6e6e73">{{r.label}}</span>
+                    <span style="height: 4px; border-radius: 2px; background: #e8ecf2; overflow: hidden"><span style="display: block; height: 4px; width: {{r.pct}}%; background: #33d1ff"></span></span>
+                    <span style="font-size: 13px">{{r.pts}} of {{r.max}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-top: 1px solid rgba(29,29,31,0.1)">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 650">HTGF check</h3>
+            <div style="display: flex; flex-direction: column">
+              <sc-for list="{{s.checks}}" as="c" hint-placeholder-count="5">
+                <div style="display: grid; grid-template-columns: 140px 110px minmax(0, 1fr); gap: 12px; padding: 8px 0; font-size: 14px; align-items: baseline">
+                  <span style="font-weight: 550">{{c.label}}</span>
+                  <span style="display: flex; align-items: center; gap: 6px; color: {{c.ink}}; font-weight: 600"><span style="width: 7px; height: 7px; border-radius: 50%; background: {{c.dot}}"></span>{{c.result}}</span>
+                  <span style="color: #6e6e73">{{c.evidence}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-top: 1px solid rgba(29,29,31,0.1)">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 650">Funding</h3>
+            <div style="display: flex; flex-direction: column; gap: 6px; line-height: 1.5">
+              <span style="font-weight: 600">{{s.fundingStatus}}</span>
+              <span style="color: #3a3a3f">{{s.fundingEvidence}}</span>
+              <span style="font-size: 14px; color: #6e6e73">Co-investors: {{s.coInvestors}}</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-top: 1px solid rgba(29,29,31,0.1)">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 650">Fit and team</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 36px">
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{s.fitRows}}" as="r" hint-placeholder-count="7">
+                  <div style="display: flex; flex-direction: column; gap: 5px">
+                    <span style="display: flex; justify-content: space-between; font-size: 13px"><span>{{r.label}}</span><span style="color: {{r.ink}}">{{r.shown}}</span></span>
+                    <span style="height: 3px; border-radius: 2px; background: #e8ecf2; overflow: hidden"><span style="display: block; height: 3px; width: {{r.pct}}%; background: #1d1d1f"></span></span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{s.teamRows}}" as="r" hint-placeholder-count="8">
+                  <div style="display: flex; flex-direction: column; gap: 5px">
+                    <span style="display: flex; justify-content: space-between; font-size: 13px"><span>{{r.label}}</span><span style="color: {{r.ink}}">{{r.shown}}</span></span>
+                    <span style="height: 3px; border-radius: 2px; background: #e8ecf2; overflow: hidden"><span style="display: block; height: 3px; width: {{r.pct}}%; background: #0a6e99"></span></span>
+                  </div>
+                </sc-for>
+              </div>
+              <span style="grid-column: 1 / -1; font-size: 13px; color: #6e6e73; margin-top: 6px">Every point links to the trace and the sentence it came from. “Not known” means the sources say nothing yet. Germany is a hard rule in the HTGF check, so it scores no points here.</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-top: 1px solid rgba(29,29,31,0.1)">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <h3 style="margin: 0; font-size: 17px; font-weight: 650">Deep checks</h3>
+              <span style="font-size: 13px; color: #6e6e73">{{s.deepWhen}}</span>
+            </div>
+            <div>
+              <sc-if value="{{s.deepChecked}}" hint-placeholder-val="{{ true }}">
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 36px">
+                  <sc-for list="{{s.deep}}" as="d" hint-placeholder-count="8">
+                    <div style="display: flex; flex-direction: column; gap: 3px; padding: 10px 0; border-bottom: 1px solid rgba(29,29,31,0.06)">
+                      <span style="display: flex; justify-content: space-between; gap: 10px; font-size: 14px"><span style="font-weight: 550">{{d.label}}</span><span style="color: {{d.ink}}; font-weight: 600">{{d.value}}</span></span>
+                      <span style="font-size: 13px; color: #6e6e73; line-height: 1.45">{{d.note}}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{s.notChecked}}" hint-placeholder-val="{{ false }}">
+                <p style="margin: 0; line-height: 1.5; color: #4a4a4f">Not checked yet. Flight risk, IP, competitors, Series A risk and an intro path appear after the next deep-check run.</p>
+              </sc-if>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-top: 1px solid rgba(29,29,31,0.1)">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <h3 style="margin: 0; font-size: 17px; font-weight: 650">Sources</h3>
+              <span style="font-size: 13px; color: #6e6e73">{{s.sourceLine}}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <sc-for list="{{s.quotes}}" as="q" hint-placeholder-count="2">
+                <blockquote style="margin: 0; font-size: 17px; line-height: 1.55; color: #1d1d1f; padding-left: 16px; border-left: 2px solid #33d1ff">{{q}}</blockquote>
+              </sc-for>
+              <sc-for list="{{s.matches}}" as="m" hint-placeholder-count="1">
+                <span style="font-size: 13px; color: #6e6e73">{{m.id}}, {{m.how}}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
+          <button type="button" style="min-height: 44px; padding: 0 22px; border-radius: 999px; border: 0; background: #1d1d1f; color: #ffffff; cursor: pointer; font-weight: 500">Good lead</button>
+          <button type="button" style="min-height: 44px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(29,29,31,0.2); background: transparent; color: #1d1d1f; cursor: pointer; font-weight: 500">Not a fit</button>
+          <span style="font-size: 13px; color: #6e6e73">Your vote tunes the weights.</span>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sel: 0 }; }
+  renderVals() {
+    const tone = {
+      pass: { ink: '#1b7a4b', dot: '#2fbf71' },
+      unknown: { ink: '#6e6e73', dot: '#b8bcc6' },
+      fail: { ink: '#b8321a', dot: '#ff5b3a' },
+      low: '#1b7a4b', medium: '#9a5b00', high: '#b8321a', info: '#0a6e99', none: '#6e6e73'
+    };
+    const rows = (list) => list.filter(([label]) => label !== 'Germany').map(([label, pts, max, known]) => ({
+      label, pct: known ? Math.round(pts / max * 100) : 0,
+      shown: known ? pts + ' of ' + max : 'not known', ink: known ? '#4a4a4f' : '#9a9aa0'
+    }));
+    const timing = (m, e, p, c) => [['Momentum', m, 35], ['EXIST runway', e, 25], ['PhD ending', p, 25], ['Comeback', c, 15]]
+      .map(([label, pts, max]) => ({ label, pts, max, pct: Math.round(pts / max * 100) }));
+    const check = (label, result, evidence) => ({ label, result: result === 'pass' ? 'Pass' : result === 'fail' ? 'Fail' : 'Unknown', evidence, ink: tone[result].ink, dot: tone[result].dot });
+    const deep = (label, value, t, note) => ({ label, value, note, ink: tone[t] });
+    const data = [
+      { name: 'Liquid Mirror', place: 'Ilmenau, industrial tech, prototype',
+        what: 'Large-format high-precision optics made on a deformable substrate, measured with new nanometre-accurate multi-beam metrology.',
+        people: 'Johannes Leineweber and Sebastian Fischer Calderón, founders. Mentor: Thomas Kissinger.', website: '',
+        reason: 'Tech depth 24 of 25 with two platforms already filed for patent, a team strong on all eight criteria, and first place at the ThEx AWARD 2026.',
+        next: 'call this week.', fit: 69, teamKnown: 93, knownCount: 8, timing: 15,
+        daysBadge: 'Seen one day after the first press', daysTone: 'medium', daysText: 'The award page went up a day before the idw release we read.', pressUrl: 'https://startup-mitteldeutschland.de/veranstaltungen/wettbewerbe/thex-award-2026-verleihung/',
+        fundingStatus: 'Grants', fundingBadge: 'EXIST-FT from 2027', fundingEvidence: '“2027 startet das Team mit dem renommierten Förderprogramm EXIST-Forschungstransfer in die konkrete Produktentwicklung.”', coInvestors: 'none named',
+        ageWarning: '', timingRows: timing(10, 5, 0, 0),
+        checks: [check('Germany', 'pass', 'GmbH in Ilmenau'), check('Under 3 years', 'pass', 'prototype, 2026 award'), check('HTGF sector', 'pass', 'industrial tech'), check('No VC round', 'pass', 'grants only'), check('Legal entity', 'unknown', 'HRB 525393 found by the deep check, register not read')],
+        fitRows: rows([['Germany', 10, 10, true], ['Sector', 15, 15, true], ['Tech depth', 24, 25, true], ['Stage', 9, 10, true], ['No funding', 10, 10, true], ['Corporate pull', 0, 15, false], ['Patent before company', 13, 15, true]]),
+        teamRows: rows([['Technical founder', 23, 25, true], ['Complementary roles', 14, 15, true], ['Worked together', 14, 15, true], ['Deep research', 9, 10, true], ['Earlier startup', 10, 10, true], ['Industry scar', 8, 10, true], ['Concrete pitch', 10, 10, true], ['Spin-off chair', 0, 5, false]]),
+        deepChecked: true, deepWhen: 'Checked 20 November',
+        deep: [deep('Flight risk', 'Low', 'low', 'GmbH, seat in Ilmenau, Amtsgericht Jena'), deep('IP', 'Unclear', 'none', 'Two platforms filed for patent, owner not stated'), deep('Competitors', 'Medium', 'medium', 'ALPAO and others in deformable optics'), deep('Series A risk', 'Medium', 'medium', 'Long industrial sales cycles, IP owner unclear'), deep('Grant bridge', 'EXIST-FT', 'info', 'Starts 2027 according to the release'), deep('Intro path', 'None yet', 'none', 'No HTGF portfolio link to TU Ilmenau'), deep('Bus factor', 'n/a', 'none', 'No public GitHub'), deep('Domain age', 'n/a', 'none', 'No website in the traces')],
+        quotes: ['Ein Start-up-Unternehmen der Technischen Universität Ilmenau hat beim Thüringer Gründungspreis ThEx AWARD den ersten Platz in der Kategorie „Gründen“ gewonnen.'],
+        matches: [{ id: 'idw:881283', how: 'first trace of this lead' }], sourceLine: 'One source, one trace' },
+      { name: 'sync2brain', place: 'Tübingen, life sciences, pilot customers',
+        what: 'Real-time EEG-synchronised hardware and software (bossdevice) for brain-state dependent TMS. A medical device with CE in preparation.',
+        people: 'Dr. Ramona Samba, CEO and co-founder. Dr. Brigitte Zrenner, clinical studies and co-founder.', website: 'https://sync2brain.com',
+        reason: 'Medtech hardware with tech depth 24 of 25, a team strong on known criteria, and an EXIST Transfer of Research spin-off from Tübingen.',
+        next: 'call this week.', fit: 57, teamKnown: 84, knownCount: 6, timing: 5,
+        daysBadge: 'Research paper 2,004 days before us', daysTone: 'high', daysText: 'Their paper appeared in 2021, long before our first trace.', pressUrl: 'https://frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2021.691821/full',
+        fundingStatus: 'Grants', fundingBadge: 'EXIST-FT', fundingEvidence: '“founded out of a technology transfer research project … with support by a grant … in the EXIST Transfer of Research program”', coInvestors: 'none named',
+        ageWarning: 'The first press is from May 2021. That may be the research phase, so look up the register date before calling.', timingRows: timing(0, 5, 0, 0),
+        checks: [check('Germany', 'pass', 'GmbH in Tübingen'), check('Under 3 years', 'pass', 'see the age check above'), check('HTGF sector', 'pass', 'life sciences'), check('No VC round', 'pass', 'EXIST grant only'), check('Legal entity', 'unknown', 'register not read')],
+        fitRows: rows([['Germany', 10, 10, true], ['Sector', 15, 15, true], ['Tech depth', 24, 25, true], ['Stage', 10, 10, true], ['No funding', 10, 10, true], ['Corporate pull', 3, 15, true], ['Patent before company', 0, 15, false]]),
+        teamRows: rows([['Technical founder', 20, 25, true], ['Complementary roles', 12, 15, true], ['Worked together', 12, 15, true], ['Deep research', 10, 10, true], ['Earlier startup', 0, 10, false], ['Industry scar', 0, 10, false], ['Concrete pitch', 9, 10, true], ['Spin-off chair', 0, 5, false]]),
+        deepChecked: true, deepWhen: 'Checked 20 November',
+        deep: [deep('Flight risk', 'Low', 'low', 'Impressum: GmbH in Tübingen'), deep('IP', 'None found', 'none', 'Trademarks only, no patents'), deep('Competitors', 'High', 'high', 'Neuroelectrics and others in EEG-guided stimulation'), deep('Series A risk', 'High', 'high', 'CE still in preparation, crowded field'), deep('Grant bridge', 'EIC Accelerator', 'info', 'Fits medtech validation and market entry'), deep('Intro path', 'None yet', 'none', 'No HTGF portfolio link found'), deep('Bus factor', 'n/a', 'none', 'No public GitHub'), deep('Domain age', '8 years', 'info', 'Older than the company, usual for a research spin-off')],
+        quotes: ['sync2brain was founded out of a technology transfer research project at the University of Tübingen with support by a grant from the German ministry of economic affairs in the EXIST Transfer of Research program.'],
+        matches: [{ id: 'uni:uni-tuebingen.de:sync2brain', how: 'first trace of this lead' }], sourceLine: 'One source, one trace' },
+      { name: 'Hydrogen Innovation', place: 'Schwerin, industrial tech, pilot customers',
+        what: 'Develops and produces PEM electrolyser stacks and offers system solutions for high-pressure electrolysis.',
+        people: 'No founders named yet.', website: 'https://hydrogen-innovation.de',
+        reason: 'Electrolyser stacks with tech depth 23 of 25, a spin-off of the HIAT research institute, and nobody has written about them yet.',
+        next: 'call this week.', fit: 59, teamKnown: 69, knownCount: 5, timing: 10,
+        daysBadge: 'Still invisible, 15 days ahead', daysTone: 'low', daysText: 'No press, no Crunchbase profile, no funding news. We found them through a first-hire job ad.', pressUrl: '',
+        fundingStatus: 'Unknown', fundingBadge: 'Funding unknown', fundingEvidence: 'No investor or grant mention in the traces.', coInvestors: 'none named',
+        ageWarning: '', timingRows: timing(10, 0, 0, 0),
+        checks: [check('Germany', 'pass', 'Schwerin'), check('Under 3 years', 'pass', 'describes itself as a young company'), check('HTGF sector', 'pass', 'industrial tech'), check('No VC round', 'unknown', 'nothing in the traces'), check('Legal entity', 'unknown', 'GmbH named, register not read')],
+        fitRows: rows([['Germany', 10, 10, true], ['Sector', 15, 15, true], ['Tech depth', 23, 25, true], ['Stage', 8, 10, true], ['No funding', 0, 10, false], ['Corporate pull', 5, 15, true], ['Patent before company', 0, 15, false]]),
+        teamRows: rows([['Technical founder', 18, 25, true], ['Complementary roles', 9, 15, true], ['Worked together', 8, 15, true], ['Deep research', 10, 10, true], ['Earlier startup', 0, 10, false], ['Industry scar', 0, 10, false], ['Concrete pitch', 7, 10, true], ['Spin-off chair', 0, 5, false]]),
+        deepChecked: false, deepWhen: 'Not run yet', deep: [],
+        quotes: ['Die Hydrogen Innovation GmbH ist ein junges, frisches Unternehmen im aufstrebenden Sektor der Wasserstofftechnologie.'],
+        matches: [{ id: 'jobs:10000-1208568097-S', how: 'first trace of this lead' }], sourceLine: 'A job ad, one trace' },
+      { name: 'OmicsDiscoveries', place: 'Munich, life sciences, revenue',
+        what: 'AI bioinformatics for RNA-based rare disease diagnostics. RNAvision combines more than 10 GB of genetic data per patient with clinical data.',
+        people: 'Dr. Vicente Yépez, Dr. Christian Mertes and Felix Brechtmann, founders.', website: 'https://www.omicsdiscoveries.com',
+        reason: 'In-house algorithms on hard-to-get data, a first signed hospital contract, EXIST and TUM Venture Lab Healthcare.',
+        next: 'call this week.', fit: 55, teamKnown: 69, knownCount: 6, timing: 0,
+        daysBadge: 'Press 98 days before us', daysTone: 'medium', daysText: 'A BioM news item mentioned them before our first trace.', pressUrl: 'https://bio-m.org/en/media-center/news/news/daiichi-sankyo-wird-golden-ticket-sponsor-des-biom-biotech-inkubators-maxl',
+        fundingStatus: 'Grant and sales', fundingBadge: 'EXIST and first sales', fundingEvidence: '“Funding: EXIST Startup Grant, Sales”', coInvestors: 'none named',
+        ageWarning: '', timingRows: timing(0, 5, 0, 0),
+        checks: [check('Germany', 'pass', 'GmbH in Planegg'), check('Under 3 years', 'pass', 'TUM Venture Lab since 2024'), check('HTGF sector', 'pass', 'life sciences'), check('No VC round', 'unknown', 'grant and sales only'), check('Legal entity', 'pass', 'Impressum: GmbH, Munich register')],
+        fitRows: rows([['Germany', 10, 10, true], ['Sector', 15, 15, true], ['Tech depth', 18, 25, true], ['Stage', 8, 10, true], ['No funding', 10, 10, true], ['Corporate pull', 10, 15, true], ['Patent before company', 0, 15, false]]),
+        teamRows: rows([['Technical founder', 25, 25, true], ['Complementary roles', 2, 15, true], ['Worked together', 8, 15, true], ['Deep research', 9, 10, true], ['Earlier startup', 0, 10, false], ['Industry scar', 0, 10, false], ['Concrete pitch', 8, 10, true], ['Spin-off chair', 0, 5, false]]),
+        deepChecked: true, deepWhen: 'Checked 20 November',
+        deep: [deep('Flight risk', 'Low', 'low', 'GmbH, three founders as managing directors'), deep('IP', 'None found', 'none', 'No patents found'), deep('Competitors', 'Medium', 'medium', 'Centogene and other genomics players'), deep('Series A risk', 'Medium', 'medium', 'No IP moat, but sales and a hospital contract'), deep('Grant bridge', 'EIC Accelerator', 'info', 'Clinical validation and EU scale-up'), deep('Intro path', 'None yet', 'none', 'No portfolio link yet'), deep('Bus factor', 'n/a', 'none', 'No public GitHub'), deep('Domain age', 'n/a', 'none', 'Not read')],
+        quotes: ['Securing our first signed DTA with a German hospital marked a highly significant milestone for us.'],
+        matches: [{ id: 'tumvl:omics-discoveries', how: 'first trace of this lead' }], sourceLine: 'One source, one trace' },
+      { name: 'Valoron', place: 'Munich, climate and energy, pilot customers',
+        what: 'Turns hard-to-recycle waste into sustainable fuels and chemicals. Born out of shared PhD research at TUM’s Chair of Energy Systems.',
+        people: 'Sebastian Bastek, Vincent Dieterich and Marcel Dossow, founders.', website: 'https://valoron.eu',
+        reason: 'A Waste-to-X process with tech depth 23 of 25, a strong founding team, Breakthrough Energy Fellows, seen in two sources.',
+        next: 'check the backers first. A company profile lists Breakthrough Energy and others.', fit: 57, teamKnown: 95, knownCount: 6, timing: 12,
+        daysBadge: 'No press found yet', daysTone: 'low', daysText: 'No editorial coverage found so far.', pressUrl: '',
+        fundingStatus: 'To check', fundingBadge: 'Backers to check', fundingEvidence: 'A company profile lists Breakthrough Energy, TUM Venture Labs and XPRENEURS as backers. Not confirmed as an institutional round.', coInvestors: 'Breakthrough Energy (fellowship), XPRENEURS',
+        ageWarning: '', timingRows: timing(0, 0, 0, 12),
+        checks: [check('Germany', 'pass', 'GmbH in Munich'), check('Under 3 years', 'pass', 'domain 643 days old'), check('HTGF sector', 'pass', 'climate and energy'), check('No VC round', 'unknown', 'backers listed, see funding'), check('Legal entity', 'unknown', 'register not read')],
+        fitRows: rows([['Germany', 10, 10, true], ['Sector', 15, 15, true], ['Tech depth', 23, 25, true], ['Stage', 9, 10, true], ['No funding', 10, 10, true], ['Corporate pull', 4, 15, true], ['Patent before company', 0, 15, false]]),
+        teamRows: rows([['Technical founder', 24, 25, true], ['Complementary roles', 14, 15, true], ['Worked together', 15, 15, true], ['Deep research', 10, 10, true], ['Earlier startup', 0, 10, false], ['Industry scar', 0, 10, false], ['Concrete pitch', 8, 10, true], ['Spin-off chair', 0, 5, false]]),
+        deepChecked: true, deepWhen: 'Checked 20 November',
+        deep: [deep('Flight risk', 'Low', 'low', 'GmbH registered in Munich'), deep('IP', 'None found', 'none', 'No patent found in quick searches'), deep('Competitors', 'High', 'high', 'Plastic Energy and other chemical recyclers'), deep('Series A risk', 'High', 'high', 'Capital-heavy scale-up, crowded field'), deep('Grant bridge', 'EIC Accelerator', 'info', 'Deep-tech climate scale-up'), deep('Intro path', 'None yet', 'none', 'No portfolio link yet'), deep('Bus factor', 'n/a', 'none', 'No public GitHub'), deep('Domain age', '643 days', 'info', 'Registered early 2025')],
+        quotes: ['Valoron was born out of shared PhD research at TUM’s Chair of Energy Systems.', 'Selected as Breakthrough Energy Fellows (Cohort 5)'],
+        matches: [{ id: 'tumvl:valoron', how: 'first trace of this lead' }, { id: 'cohort:accelerator.unternehmertum.de:valoron', how: 'same name, merged' }], sourceLine: 'Two sources, two traces' }
+    ];
+    const sel = this.state.sel;
+    const leads = data.map((d, i) => ({
+      name: d.name, place: d.place, fit: d.fit, teamKnown: d.teamKnown, timing: d.timing,
+      daysBadge: d.daysBadge, daysInk: tone[d.daysTone], fundingBadge: d.fundingBadge,
+      bg: i === sel ? '#ffffff' : 'transparent',
+      pick: () => this.setState({ sel: i })
+    }));
+    const d = data[sel];
+    const ring = (label, value, sub, color) => ({ label, value, sub, color, track: '#eef1f6', deg: Math.round(value * 3.6) });
+    const s = Object.assign({}, d, {
+      hasWebsite: Boolean(d.website), websiteLabel: d.website.replace(/^https?:\/\/(www\.)?/, ''),
+      hasAgeWarning: Boolean(d.ageWarning), hasPress: Boolean(d.pressUrl), notChecked: !d.deepChecked,
+      daysInk: tone[d.daysTone],
+      rings: [ring('Fit', d.fit, 'HTGF fit', '#1d1d1f'), ring('Team', d.teamKnown, d.knownCount + ' of 8 known', '#0a6e99'), ring('Timing', d.timing, 'when to call', '#ff5b3a')]
+    });
+    return { leads, s };
+  }
+}
+</script>
+</body>
+</html>

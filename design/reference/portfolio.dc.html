@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portfolio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&display=swap">
+<style>
+body{margin:0;background:#f5f5f7}
+a{color:#0a6e99;text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f5f5f7; color: #1d1d1f; font-family: 'Mona Sans', system-ui, sans-serif; font-variant-numeric: tabular-nums">
+  <header style="position: sticky; top: 0; z-index: 5; background: rgba(245,245,247,0.78); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(29,29,31,0.08)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="Home.dc.html" style="color: #1d1d1f; font-weight: 700; font-stretch: 125%; letter-spacing: -0.3px; font-size: 16px">Founders First</a>
+      <nav aria-label="Main" style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 13px">
+        <a href="Main.dc.html" style="color: #4a4a4f; padding: 8px 12px">Call list</a>
+        <a href="Funnel.dc.html" style="color: #4a4a4f; padding: 8px 12px">Funnel</a>
+        <a href="Labs.dc.html" style="color: #4a4a4f; padding: 8px 12px">Labs</a>
+        <a href="Portfolio.dc.html" style="color: #1d1d1f; font-weight: 600; padding: 8px 12px">Portfolio</a>
+        <a href="Methodology.dc.html" style="color: #4a4a4f; padding: 8px 12px">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 88px 28px 120px; display: flex; flex-direction: column; gap: 56px">
+    <section style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-end">
+      <div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 16px">
+        <h1 style="margin: 0; font-size: 72px; line-height: 1; font-weight: 800; font-stretch: 125%; letter-spacing: -2.4px">It knows what HTGF already owns.</h1>
+        <p style="margin: 0; font-size: 21px; line-height: 1.45; color: #4a4a4f; max-width: 640px">Every lead is matched against 541 portfolio companies. A match comes off the call list, so nobody calls a company HTGF already backs.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-end">
+        <span style="font-size: 96px; font-weight: 800; font-stretch: 125%; line-height: 0.9; color: #0a6e99">8</span>
+        <span style="font-size: 15px; color: #6e6e73">leads recognised as portfolio</span>
+      </div>
+    </section>
+
+    <section aria-label="Portfolio examples" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+      <sc-for list="{{companies}}" as="c" hint-placeholder-count="10">
+        <article style="background: {{c.bg}}; color: {{c.ink}}; border-radius: 28px; padding: 30px 30px 26px; min-height: 220px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 14px; color: {{c.sub}}">{{c.sector}}, {{c.city}}</span>
+          <h2 style="margin: 0; font-size: 30px; line-height: 1.05; font-weight: 750; font-stretch: 118%; letter-spacing: -0.6px">{{c.name}}</h2>
+          <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+            <span style="font-size: 24px; font-weight: 700; font-stretch: 112%">{{c.amount}}</span>
+            <span style="font-size: 14px; color: {{c.sub}}">{{c.stage}}, {{c.date}}</span>
+          </div>
+          <sc-if value="{{c.matched}}" hint-placeholder-val="{{ false }}">
+            <span style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #33d1ff; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: #33d1ff; box-shadow: 0 0 10px #33d1ff"></span>Found by our engine and marked as portfolio</span>
+          </sc-if>
+        </article>
+      </sc-for>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const companies = [
+      ['mo:re', 'Life sciences', 'Hamburg', '€2.3M', 'Seed', 'Mar 2025', true],
+      ['Proxima Fusion', 'Climate and deep tech', 'Munich', '€130M', 'Series A', 'Jun 2025'],
+      ['Avelios Medical', 'Digital health', 'Munich', '€2M', 'Seed', 'Nov 2021'],
+      ['Symphera', 'Medtech', 'Munich', '€2.4M', 'Seed', 'Sep 2024'],
+      ['AUDAVIS', 'Digital tech', 'Munich', '€1.1M', 'Seed', 'Jan 2025'],
+      ['Auxilius', 'Digital tech', 'Unterföhring', '€1.3M', 'Pre-seed', 'Jul 2026'],
+      ['lytra', 'Industrial tech', 'Munich', 'Undisclosed', 'Pre-seed', 'Jan 2026'],
+      ['Zentio', 'Industrial tech', 'Berlin', '€1.4M', 'Pre-seed', 'Dec 2025'],
+      ['IonKraft', 'Climate and industrial tech', 'Aachen', '€3.5M', 'First equity', 'Nov 2024'],
+      ['Heidelberg Epignostix', 'Life sciences', 'Heidelberg', '€4.3M', 'Seed', 'Jul 2024']
+    ].map(([name, sector, city, amount, stage, date, matched]) => ({
+      name, sector, city, amount, stage, date, matched: Boolean(matched),
+      bg: matched ? '#000000' : '#ffffff', ink: matched ? '#f5f5f7' : '#1d1d1f', sub: matched ? '#a1a1a6' : '#6e6e73'
+    }));
+    return { companies };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Labs to visit</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&display=swap">
+<style>
+body{margin:0;background:#f5f5f7}
+a{color:#0a6e99;text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f5f5f7; color: #1d1d1f; font-family: 'Mona Sans', system-ui, sans-serif; font-variant-numeric: tabular-nums">
+  <header style="position: sticky; top: 0; z-index: 5; background: rgba(245,245,247,0.78); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(29,29,31,0.08)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="Home.dc.html" style="color: #1d1d1f; font-weight: 700; font-stretch: 125%; letter-spacing: -0.3px; font-size: 16px">Founders First</a>
+      <nav aria-label="Main" style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 13px">
+        <a href="Main.dc.html" style="color: #4a4a4f; padding: 8px 12px">Call list</a>
+        <a href="Funnel.dc.html" style="color: #4a4a4f; padding: 8px 12px">Funnel</a>
+        <a href="Labs.dc.html" style="color: #1d1d1f; font-weight: 600; padding: 8px 12px">Labs</a>
+        <a href="Portfolio.dc.html" style="color: #4a4a4f; padding: 8px 12px">Portfolio</a>
+        <a href="Methodology.dc.html" style="color: #4a4a4f; padding: 8px 12px">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 88px 28px 120px; display: flex; flex-direction: column; gap: 56px">
+    <section style="display: flex; flex-direction: column; gap: 16px; max-width: 860px">
+      <h1 style="margin: 0; font-size: 72px; line-height: 1; font-weight: 800; font-stretch: 125%; letter-spacing: -2.4px">Where the next spin-offs are hiding.</h1>
+      <p style="margin: 0; font-size: 21px; line-height: 1.45; color: #4a4a4f; max-width: 680px">Labs with strong research in HTGF fields and few spin-offs so far. Go there before a team exists.</p>
+    </section>
+
+    <section aria-label="Labs ranked by gap score" style="display: flex; flex-direction: column">
+      <sc-for list="{{labs}}" as="l" hint-placeholder-count="6">
+        <article style="display: grid; grid-template-columns: 80px minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; padding: 36px 0; border-top: 1px solid rgba(29,29,31,0.12); align-items: start">
+          <span style="font-size: 56px; font-weight: 800; font-stretch: 125%; line-height: 0.9; color: #c7c7cc">{{l.rank}}</span>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <h2 style="margin: 0; font-size: 32px; line-height: 1.05; font-weight: 750; font-stretch: 118%; letter-spacing: -0.8px">{{l.name}}</h2>
+            <span style="font-size: 15px; color: #6e6e73">{{l.city}}, {{l.fields}}</span>
+            <p style="margin: 4px 0 0; font-size: 17px; line-height: 1.55; color: #3a3a3f; max-width: 560px">{{l.why}}</p>
+            <a href="{{l.paperUrl}}" style="font-size: 15px">Read the top paper: {{l.paper}}</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 15px; color: #6e6e73">Gap score</span><span style="font-size: 40px; font-weight: 750; font-stretch: 112%; color: #0a6e99">{{l.gap}}</span></span>
+              <span style="height: 8px; border-radius: 4px; background: #e3e7ee; overflow: hidden"><span style="display: block; height: 8px; width: {{l.gapPct}}%; background: #33d1ff; border-radius: 4px"></span></span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+              <div style="display: flex; flex-direction: column"><span style="font-size: 26px; font-weight: 700; font-stretch: 112%">{{l.works}}</span><span style="font-size: 14px; color: #6e6e73">papers in 24 months</span></div>
+              <div style="display: flex; flex-direction: column"><span style="font-size: 26px; font-weight: 700; font-stretch: 112%">{{l.spinoffs}}</span><span style="font-size: 14px; color: #6e6e73">spin-offs we know</span></div>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </section>
+    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #6e6e73; max-width: 720px">Papers from OpenAlex. Spin-offs counted only from our own sources, so the number grows with every run and the gap score is a reason to visit, not a verdict.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const labs = [
+      { name: 'University of Stuttgart', city: 'Stuttgart', gap: 44, works: '7,066', spinoffs: 7, fields: 'engineering, computer science, physics', why: 'Very high output in engineering and software, but only seven spin-offs in our data. LLM-based software engineering is a visible cluster.', paper: 'RepairAgent', paperUrl: 'https://openalex.org/W4411551762' },
+      { name: 'Karlsruhe Institute of Technology', city: 'Karlsruhe', gap: 31, works: '12,232', spinoffs: 24, fields: 'engineering, energy, photonics', why: 'The largest output on the list. Solid-state battery and photonics research stand out against the spin-offs we see.', paper: 'All-solid-state Li–S batteries', paperUrl: 'https://openalex.org/W4406385644' },
+      { name: 'Heidelberg University', city: 'Heidelberg', gap: 29, works: '7,714', spinoffs: 16, fields: 'physics, molecular biology', why: 'Strong physics and life sciences. Its 3D medical image segmentation work looks close to a product.', paper: 'nnInteractive', paperUrl: 'https://openalex.org/W4414578049' },
+      { name: 'LMU Munich', city: 'Munich', gap: 27, works: '9,953', spinoffs: 23, fields: 'physics, computer science', why: 'Computer vision and autonomous driving research, with few deep-tech spin-offs in our data.', paper: 'OpenDriveVLA', paperUrl: 'https://openalex.org/W4416413108' },
+      { name: 'TUM physics and materials', city: 'Munich', gap: 26, works: '2,968', spinoffs: 6, fields: 'quantum, semiconductors', why: 'Quantum and semiconductor research. Peak Quantum and Linque came out of here, and more could follow.', paper: 'Diffusion models for turbulent flow', paperUrl: 'https://openalex.org/W7125608365' },
+      { name: 'TU Darmstadt', city: 'Darmstadt', gap: 20, works: '6,180', spinoffs: 20, fields: 'engineering, computer science', why: 'Physics-informed machine learning is a strong cluster with tooling potential.', paper: 'Loss balancing for physics-informed deep learning', paperUrl: 'https://openalex.org/W4408489371' }
+    ].map((l, i) => Object.assign({ rank: i + 1, gapPct: Math.round(l.gap / 44 * 100) }, l));
+    return { labs };
+  }
+}
+</script>
+</body>
+</html>

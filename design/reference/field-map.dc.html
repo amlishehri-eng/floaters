@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field map from n8n to the screen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+body{margin:0}
+a{color:#5043cf}a:hover{color:#3a2fa8}
+</style>
+</helmet>
+<div style="width: 820px; min-height: 1640px; box-sizing: border-box; padding: 40px; background: #ffffff; color: #17233b; font-family: Geist, system-ui, sans-serif; display: flex; flex-direction: column; gap: 22px">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.4px">Field map</h1>
+    <p style="margin: 0; color: #53627a; font-size: 14px; line-height: 1.5">Every column of the n8n Leads table and where it lands. Flow 20 already sends all of them; lib/n8n.js passes them through. A field that is neither placed nor marked internal fails scripts/field-coverage.mjs.</p>
+  </div>
+  <sc-for list="{{groups}}" as="g" hint-placeholder-count="7">
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 10px; height: 10px; border-radius: 3px; background: {{g.color}}"></span>
+        <h2 style="margin: 0; font-size: 15px; font-weight: 600">{{g.place}}</h2>
+        <span style="font-size: 12px; color: #53627a">{{g.status}}</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px">
+        <sc-for list="{{g.fields}}" as="f" hint-placeholder-count="6">
+          <span style="font-family: 'Geist Mono', monospace; font-size: 12px; padding: 4px 8px; border-radius: 6px; background: {{f.bg}}; color: {{f.ink}}; border: 1px solid {{f.line}}">{{f.name}}</span>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+  <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: #53627a; border-top: 1px solid #e0e7f2; padding-top: 16px">
+    <span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #eef1fb; border: 1px solid #c9d1ef"></span>already on the screen</span>
+    <span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #fff1d6; border: 1px solid #ecd29b"></span>new: reaches the site, not shown yet</span>
+    <span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #fbe6e2; border: 1px solid #efc4bb"></span>new: lib/n8n.js drops it today</span>
+    <span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #f3f4f6; border: 1px solid #dde0e6"></span>internal, not shown on purpose</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":820,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const kinds = {
+      shown: { bg: '#eef1fb', ink: '#2c3a6b', line: '#c9d1ef' },
+      unshown: { bg: '#fff1d6', ink: '#6b4600', line: '#ecd29b' },
+      dropped: { bg: '#fbe6e2', ink: '#86291c', line: '#efc4bb' },
+      internal: { bg: '#f3f4f6', ink: '#4a5262', line: '#dde0e6' }
+    };
+    const f = (kind, names) => names.map((name) => Object.assign({ name }, kinds[kind]));
+    const groups = [
+      { place: 'List row', color: '#5043cf', status: 'name, place, badges, three scores',
+        fields: [...f('shown', ['name', 'city', 'sector', 'stage', 'fit_score', 'priority', 'worth_a_call', 'verdict']), ...f('unshown', ['days_ahead', 'still_invisible', 'team_score_known']), ...f('dropped', ['funding_status', 'flight_risk', 'timing_score'])] },
+      { place: 'Detail · header and why call now', color: '#1f6f4f', status: 'what, people, reason, next step',
+        fields: [...f('shown', ['what', 'people', 'website', 'verdict_reason', 'next_step', 'team_score']), ...f('unshown', ['tier']), ...f('dropped', ['age_warning'])] },
+      { place: 'Detail · why now', color: '#5043cf', status: 'timing bars + first press',
+        fields: [...f('unshown', ['first_public_at', 'first_public_url']), ...f('dropped', ['timing_breakdown'])] },
+      { place: 'Detail · HTGF check', color: '#1f6f4f', status: 'five eligibility checks with evidence',
+        fields: [...f('unshown', ['eligibility', 'eligible']), ...f('dropped', ['registered', 'legal_form', 'registered_at', 'register_id', 'registry_signals'])] },
+      { place: 'Detail · funding', color: '#7a4f00', status: 'status, evidence, co-investors',
+        fields: f('dropped', ['funding_evidence', 'co_investors']) },
+      { place: 'Detail · fit and team', color: '#5043cf', status: 'bars per criterion with evidence, known flags',
+        fields: [...f('shown', ['fit_criteria', 'team_criteria', 'fit_reason', 'team_reason']), ...f('dropped', ['anti_signals'])] },
+      { place: 'Detail · deep checks', color: '#962f20', status: 'grid of cards, “not checked yet” when empty',
+        fields: f('dropped', ['flight_risk_evidence', 'ip_status', 'ip_evidence', 'crowdedness', 'competitors', 'series_a_risk', 'series_a_notes', 'grant_bridges', 'intro_path', 'commitment', 'bus_factor', 'domain_age_days', 'deep_signals', 'deep_checked_at']) },
+      { place: 'Detail · sources', color: '#46536b', status: 'quotes, why traces were merged, trace links',
+        fields: [...f('shown', ['signals', 'source_count', 'first_trace_at']), ...f('unshown', ['match_reasons']), ...f('dropped', ['quotes', 'trace_count', 'lead_type', 'type_reason'])] },
+      { place: 'Internal', color: '#9aa3b2', status: 'kept in n8n, not shown on purpose',
+        fields: f('internal', ['lead_key', 'evidence_hash', 'score_version', 'scored_at', 'type_trace_ids', 'status', 'news_status', 'news_checked_at', 'registry_checked_at', 'label', 'label_reason', 'score_reason', 'deep_cost_usd', 'country', 'founded_year', 'sources']) }
+    ];
+    return { groups };
+  }
+}
+</script>
+</body>
+</html>

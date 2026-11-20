@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Funnel</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&display=swap">
+<style>
+body{margin:0;background:#000000}
+a{color:#33d1ff;text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #000000; color: #f5f5f7; font-family: 'Mona Sans', system-ui, sans-serif; font-variant-numeric: tabular-nums">
+  <header style="position: sticky; top: 0; z-index: 5; background: rgba(0,0,0,0.72); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08)">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="Home.dc.html" style="color: #f5f5f7; font-weight: 700; font-stretch: 125%; letter-spacing: -0.3px; font-size: 16px">Founders First</a>
+      <nav aria-label="Main" style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 13px">
+        <a href="Main.dc.html" style="color: #d2d2d7; padding: 8px 12px">Call list</a>
+        <a href="Funnel.dc.html" style="color: #ffffff; font-weight: 600; padding: 8px 12px">Funnel</a>
+        <a href="Labs.dc.html" style="color: #d2d2d7; padding: 8px 12px">Labs</a>
+        <a href="Portfolio.dc.html" style="color: #d2d2d7; padding: 8px 12px">Portfolio</a>
+        <a href="Methodology.dc.html" style="color: #d2d2d7; padding: 8px 12px">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 88px 28px 120px; display: flex; flex-direction: column; gap: 72px">
+    <section style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px">
+      <h1 style="margin: 0; font-size: 72px; line-height: 1; font-weight: 800; font-stretch: 125%; letter-spacing: -2.4px">From 1,259 signals<br><span style="color: #6e6e73">to seven calls.</span></h1>
+      <p style="margin: 0; max-width: 620px; font-size: 19px; line-height: 1.5; color: #a1a1a6">Every stage costs more than the one before, so each one only sees what the cheaper stage let through. Run of 20 November, 22:58.</p>
+    </section>
+
+    <section aria-label="Stages" style="display: flex; flex-direction: column; gap: 14px; align-items: center">
+      <sc-for list="{{stages}}" as="s" hint-placeholder-count="8">
+        <div style="width: 100%; display: grid; grid-template-columns: 1fr minmax(0, 2.2fr) 1fr; gap: 24px; align-items: center">
+          <span style="text-align: right; font-size: 16px; color: #d2d2d7">{{s.label}}</span>
+          <span style="display: flex; justify-content: center">
+            <span style="height: 44px; width: {{s.pct}}%; min-width: 72px; border-radius: 22px; background: {{s.color}}; box-shadow: {{s.glow}}; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 700; font-stretch: 112%; color: {{s.ink}}">{{s.n}}</span>
+          </span>
+          <span style="font-size: 14px; color: #86868b">{{s.cost}}</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0 0 12px; font-size: 24px; font-weight: 700; font-stretch: 112%">Cut by code, for free</h2>
+        <sc-for list="{{codeCuts}}" as="c" hint-placeholder-count="8">
+          <div style="display: flex; justify-content: space-between; font-size: 15px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.1)"><span style="color: #d2d2d7">{{c.label}}</span><span style="font-weight: 600">{{c.n}}</span></div>
+        </sc-for>
+        <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: #86868b">325 thin entries are parked, not dropped: no usable website yet. They return as soon as one is found.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h2 style="margin: 0 0 12px; font-size: 24px; font-weight: 700; font-stretch: 112%">Verdicts on 624 teams</h2>
+        <sc-for list="{{verdicts}}" as="v" hint-placeholder-count="10">
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.1)">
+            <span style="display: flex; align-items: center; gap: 10px; color: #d2d2d7"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{v.color}}"></span>{{v.label}}</span>
+            <span style="font-weight: 600">{{v.n}}</span>
+          </div>
+        </sc-for>
+        <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: #86868b">At the run. Two more teams reached the call list after the scoring update at 23:05.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 22px">
+        <h2 style="margin: 0; font-size: 24px; font-weight: 700; font-stretch: 112%">What it costs</h2>
+        <sc-for list="{{costs}}" as="c" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <span style="font-size: 40px; font-weight: 750; font-stretch: 112%; color: {{c.color}}">{{c.n}}</span>
+            <span style="font-size: 15px; color: #a1a1a6">{{c.label}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const max = 1259;
+    const stages = [
+      ['Traces found', 1259, 'Scrapers', 'rgba(245,245,247,0.14)', '#d2d2d7', 'none'],
+      ['Kept by the code filter', 999, 'Free', 'rgba(245,245,247,0.2)', '#f5f5f7', 'none'],
+      ['Read by the small model', 674, '$1.47 in total', 'rgba(51,209,255,0.28)', '#f5f5f7', 'none'],
+      ['Teams', 624, 'Merged in code', 'rgba(51,209,255,0.38)', '#f5f5f7', 'none'],
+      ['Past the HTGF gates', 351, 'Free', 'rgba(51,209,255,0.55)', '#000000', '0 0 24px rgba(51,209,255,0.25)'],
+      ['Scored by the strong model', 218, 'About $9.40 in total', 'rgba(51,209,255,0.8)', '#000000', '0 0 28px rgba(51,209,255,0.35)'],
+      ['Deep-checked', 35, 'About $1.90 in total', '#33d1ff', '#000000', '0 0 32px rgba(51,209,255,0.5)'],
+      ['To call now', 7, 'Live', '#ff5b3a', '#000000', '0 0 36px rgba(255,91,58,0.7)']
+    ].map(([label, n, cost, color, ink, glow]) => ({ label, n: n.toLocaleString('en-US'), cost, color, ink, glow, pct: Math.max(6, Math.round(n / max * 100)) }));
+    const codeCuts = [['Older than 3 years', 237], ['Unreadable', 7], ['Agency', 6], ['Duplicate', 4], ['Not in Germany', 2], ['Ecosystem organisation', 2], ['Investor', 1], ['Event only', 1]]
+      .map(([label, n]) => ({ label, n }));
+    const verdicts = [
+      ['Needs more evidence', 337, '#6e6e73'], ['Not high-tech', 130, '#a1a1a6'], ['Not a startup', 71, '#a1a1a6'], ['Out of scope', 35, '#a1a1a6'],
+      ['Too late', 23, '#a1a1a6'], ['Watchlist', 9, '#33d1ff'], ['Already HTGF portfolio', 8, '#f5f5f7'], ['Call now', 5, '#ff5b3a'],
+      ['Not a lead', 4, '#6e6e73'], ['Unscored', 2, '#6e6e73']
+    ].map(([label, n, color]) => ({ label, n, color }));
+    const costs = [
+      { n: '$0.003', label: 'per trace, first read', color: '#f5f5f7' },
+      { n: '$0.09', label: 'per team scored by the strong model', color: '#f5f5f7' },
+      { n: '$0.06', label: 'per team deep-checked', color: '#33d1ff' },
+      { n: '$5.18', label: 'per team on the call list', color: '#ff8a70' },
+      { n: '$25.92', label: 'all model spend so far', color: '#a1a1a6' }
+    ];
+    return { stages, codeCuts, verdicts, costs };
+  }
+}
+</script>
+</body>
+</html>
