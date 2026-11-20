@@ -43,11 +43,8 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Nils: n8n "10 Make leads" task 2: "11 Days ahead" (Brave news search for vc_backable leads → first_public_at, days_ahead); then calibration on 20 hand-labelled traces
 
 ## Done
-<<<<<<< Updated upstream
 - Meto: added six sourced portfolio example profiles and a candidate grid at `/proof`, with the fictional sourcing workspace at `/proof/demo`.
-=======
 - Amli: source flows 03 TUM Venture Labs (84 teams with founders), 05 GitHub Munich (new orgs + Hugging Face), 06 pitch podcasts (65 episodes, ElevenLabs transcripts for the newest 3), 04 Eventbrite built but blocked by Eventbrite for n8n Cloud. Traces: `extraction` column added, pinboard source = `campus`. Run all keeps going when a source has nothing new.
->>>>>>> Stashed changes
 - Nils: n8n "10 Make leads" v2.1 convergence: same lead_key merges (in one batch and into existing Leads): trace_ids/sources deduped, source_count, new `trace_count`, earliest first_trace_at, higher fit/team score kept with its reason. Leads got `trace_count`, `fit_reason`, `team_reason`. Test helper "19 Reset test traces" sets listed trace_ids back to new. Tested: Klarvus = pinboard:5028 + 5033, trace_count 2.
 - Amli: n8n project HTGF with tables Traces + Leads, flows 00 Run all, 01 Luma Munich, 02 LMU pinboard, 10 Make leads (stand-in until n8n calls `/api/brain/run`). First run: 46 traces → 8 leads. Code and ids in `n8n/README.md`.
 - Meto: launched the Founders First homepage at `/` with a fictional lead preview and two-way navigation to `/proof`.
