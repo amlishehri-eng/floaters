@@ -54,6 +54,7 @@ Copy `.env.example` to `.env.local` (Next.js reads it automatically). Share the 
 - Watch the character quota on the free plan; cache generated audio for the demo script.
 
 ## n8n (automations)
+- Our workspace: floaters.app.n8n.cloud, project **HTGF**. Which flows and tables exist, their ids and owners: `n8n/README.md`.
 - In n8n, start the workflow with a **Webhook** node (method `POST`). End it with **Respond to Webhook** if the app needs data back.
 - n8n gives two URLs:
   - **Test URL** (`/webhook-test/...`): only works while you click "Listen for test event". Good for building.

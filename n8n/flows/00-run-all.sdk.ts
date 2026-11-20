@@ -1,0 +1,64 @@
+import { workflow, node, trigger, sticky } from '@n8n/workflow-sdk';
+
+const runByHand = trigger({ type: 'n8n-nodes-base.manualTrigger', version: 1, config: { name: 'Run by hand' } });
+
+const every6Hours = trigger({
+  type: 'n8n-nodes-base.scheduleTrigger',
+  version: 1.4,
+  config: { name: 'Every 6 hours', parameters: { rule: { interval: [{ field: 'hours', hoursInterval: 6 }] } } }
+});
+
+const runFromDemo = trigger({
+  type: 'n8n-nodes-base.webhook',
+  version: 2.2,
+  config: { name: 'Run from demo', parameters: { httpMethod: 'GET', path: 'run-all', responseMode: 'onReceived', options: {} } }
+});
+
+const runLuma = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 01 Luma Munich',
+    executeOnce: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'dkBBn1k8pGmdUqfv', cachedResultName: '01 Luma Munich -> Traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const runPinboard = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 02 LMU pinboard',
+    executeOnce: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: '6e9qbOQ2CzcjxVz3', cachedResultName: '02 LMU pinboard -> Traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const runLeads = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 10 Make leads',
+    executeOnce: true,
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'jLWKNwEC08SHfAfP', cachedResultName: '10 Make leads' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
+const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runLeads], { color: 7 });
+
+export default workflow('run-all', '00 Run all sources')
+  .add(runByHand)
+  .to(runLuma)
+  .to(runPinboard)
+  .to(runLeads)
+  .add(every6Hours)
+  .to(runLuma)
+  .add(runFromDemo)
+  .to(runLuma)
+  .add(howItWorks)
+  .group('Whole engine', [runLuma, runPinboard, runLeads], { description: 'Every source flow in turn, then Make leads' });
