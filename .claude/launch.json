@@ -11,6 +11,15 @@
       "port": 4000
     },
     {
+      "name": "floaters-dev-system-node",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": [
+        "-c",
+        "PATH=/usr/local/bin:/opt/homebrew/bin:$PATH exec node node_modules/next/dist/bin/next dev -p 4000"
+      ],
+      "port": 4000
+    },
+    {
       "name": "engine",
       "runtimeExecutable": "node",
       "runtimeArgs": [
