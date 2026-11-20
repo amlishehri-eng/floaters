@@ -6,16 +6,16 @@ Update this file whenever you start, finish or get stuck on something. Keep entr
 - **Code**: GitHub `amlishehri-eng/floaters`, branch `main`. Everyone pushes to main; the hooks pull before and push after every Claude turn.
 - **Local app**: `npm run dev` → http://localhost:4000 (home `/`, candidate gallery `/proof`, sourcing demo `/proof/demo`, test panel `/test`).
 - **n8n**: floaters.app.n8n.cloud → project **HTGF** (shared; nothing in anyone's Personal project). The Traces and Leads tables live there. Workflow and table ids: `n8n/README.md`.
-- **Pipeline**: sources (Amli, n8n flows 00–09) → **Traces** → brain (Nils, `/api/brain/run`, called by n8n) → **Leads** → screen and pitch (Meto, `/proof`).
+- **Pipeline**: scraping (Amli, n8n flows 00–09) → **Traces** → screening and eligibility (Nils, n8n flows 10–19) → **Leads** → screen and pitch (Meto, `/` and `/proof` on :4000).
 - **Plans**: team plan https://claude.ai/artifact/Fn8ks5JuzbgW7tM85s7hMb · Person 1 sources plan https://claude.ai/artifact/2r75xemMjuU3K5xVvZaUMQ
 - **Who's on what right now**: see *In progress* below. Update your line when you start or finish something.
 
 ## Team
 | Person | Role | Owns |
 |---|---|---|
-| _Name 1_ | Frontend | `app/` (not `app/api/`), `components/` |
-| Nils | Backend + AI (Person 2, the brain) | `app/api/`, `lib/ai/`, `lib/voice/` |
-| Amli | Sources (Person 1) | `lib/n8n.js`, `n8n/`, the source flows in the n8n workspace (project HTGF) |
+| Meto | Screen and pitch (Person 3): the look of `/` and `/proof` | `app/` (not `app/api/`), `components/`, `docs/pitch.md` |
+| Nils | Screening and eligibility (Person 2) | n8n flows 10–19, `app/api/`, `lib/ai/`, `lib/voice/` |
+| Amli | Scraping, all sources (Person 1) | n8n flows 00–09, `n8n/`, `lib/n8n.js` |
 
 ## Timeline
 | Hour | Checkpoint | Done? |
@@ -38,12 +38,16 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
-- Amli: next source flows in n8n (TUM Venture Labs teams, then GitHub / podcasts); fix Traces for the contract (`extraction` column, pinboard source = `campus`).
+- Amli: sources live in Run all (01 Luma, 02 LMU pinboard, 03 TUM Venture Labs, 05 GitHub, 06 podcasts); next: ElevenLabs key in n8n for podcast transcripts, then reliability.
 - Meto: connect the proof dashboard at `/proof` to the real Leads table.
 - Nils: n8n "10 Make leads" task 2: "11 Days ahead" (Brave news search for vc_backable leads → first_public_at, days_ahead); then calibration on 20 hand-labelled traces
 
 ## Done
+<<<<<<< Updated upstream
 - Meto: added six sourced portfolio example profiles and a candidate grid at `/proof`, with the fictional sourcing workspace at `/proof/demo`.
+=======
+- Amli: source flows 03 TUM Venture Labs (84 teams with founders), 05 GitHub Munich (new orgs + Hugging Face), 06 pitch podcasts (65 episodes, ElevenLabs transcripts for the newest 3), 04 Eventbrite built but blocked by Eventbrite for n8n Cloud. Traces: `extraction` column added, pinboard source = `campus`. Run all keeps going when a source has nothing new.
+>>>>>>> Stashed changes
 - Nils: n8n "10 Make leads" v2.1 convergence: same lead_key merges (in one batch and into existing Leads): trace_ids/sources deduped, source_count, new `trace_count`, earliest first_trace_at, higher fit/team score kept with its reason. Leads got `trace_count`, `fit_reason`, `team_reason`. Test helper "19 Reset test traces" sets listed trace_ids back to new. Tested: Klarvus = pinboard:5028 + 5033, trace_count 2.
 - Amli: n8n project HTGF with tables Traces + Leads, flows 00 Run all, 01 Luma Munich, 02 LMU pinboard, 10 Make leads (stand-in until n8n calls `/api/brain/run`). First run: 46 traces → 8 leads. Code and ids in `n8n/README.md`.
 - Meto: launched the Founders First homepage at `/` with a fictional lead preview and two-way navigation to `/proof`.
@@ -54,8 +58,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Hackathon starter top-up: `/test` integration panel, `scripts/sync.sh` + session hooks, `reviewer` agent, `openai` installed, SPEC wow/jury sections (main)
 
 ## Blocked / needs help
-- Nils + Amli: n8n tables reserve `id`, so Traces uses `trace_id` and Leads `lead_key`: map them when n8n calls `/api/brain/run` (see `n8n/README.md`).
-- Nils + Amli: `engine/src/sources` (github, ct, incubator) overlaps Person 1's sources: agree who runs which source.
+- Eventbrite blocks n8n Cloud (human-verification page). Options: run 04 from a laptop, add events by hand, or skip. Not decided.
 - _what, waiting on whom_
 
 ## Deploy and bugs
@@ -65,4 +68,5 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 ## Decisions
 - _short note of anything we agreed on, so nobody re-argues it at 3am_
 - Decision: two columns added to the contract: Traces gets `extraction` (JSON string, so no trace is extracted twice); Leads gets `fit_reason`, `team_reason`, `match_reasons`, `evidence_hash`, `still_invisible`, `worth_a_call`. Nothing renamed.
+- Decision (20 Nov): all scraping is Amli's n8n flows 00–09; `engine/src/sources` is not used for the pipeline. Nils does screening and eligibility, Meto the screen's look.
 - Decision: everyone works directly on main with auto-commit/push hooks (replaces branch+PR flow).
