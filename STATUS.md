@@ -61,6 +61,15 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Amli: Eventbrite from the laptop. Eventbrite blocks n8n Cloud, but its pages load from a home connection. A small script on Amli's Mac reads the Eventbrite Munich startup pages gently (one every 2 s, same code as flow 04) and sends new events into Traces through an n8n webhook. Runs only while the laptop is on: run it once before the demo. Local test found 17 events (TUM IDEAward, Migrant Accelerator demo day, Female Founder Society kick-off).
 
 ## Blocked / needs help
+- Nils (from Amli, 20 Nov): what n8n screening (10 + 11) is missing compared with the coded brain (`lib/ai/brain`) and `engine/`. Most important first:
+  1. Link by person, not only by exact project name (same GitHub handle = certain; same name + same university/city = likely; close names checked by the model). Convergence is our pitch.
+  2. Several projects per trace (a demo day or podcast can name five teams; n8n keeps one).
+  3. Label the whole lead on all its traces, not each trace alone.
+  4. Points per criterion with the fixed weights in `lib/ai/prompts/brain.js` (code clamps and sums), stronger model for scoring.
+  5. `worth_a_call` (vc_backable, fit >= 70, team >= 60) and `match_reasons` (why traces were linked).
+  6. Skip re-scoring when the evidence did not change (`evidence_hash`); funnel and cost per run (scalability score); blind backtest mode.
+  7. From `engine/`: Impressum (GmbH/UG, register number, managing directors), domain age (registration, first certificate), press check (Google News), spoken top-5 briefing with ElevenLabs.
+  Fastest route: flow 10 posts new traces to `/api/brain/run` (needs the app on Vercel + OPENAI_API_KEY there). If no time: do 1 and 2 in n8n first.
 - Nils: please read "Handover to screening" in `n8n/README.md`: ~180 traces wait as `new` (10 per run), a transcribed podcast trace comes back as `new`, TUM `happened_at` is a page-edit date, podcast topics can be investors or associations.
 - _what, waiting on whom_
 
