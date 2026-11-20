@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, MapPin } from "lucide-react";
 import companies from "@/data/portfolio-examples.json";
 import CompanyLogo from "../company-logo";
+import { fitCriteria, fitScore, maxFit } from "../fit-scoring";
 
 const dateFormatter = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
@@ -33,6 +34,7 @@ export async function generateMetadata({ params }) {
 export default async function CandidatePage({ params }) {
   const company = await getCompany(params);
   const { round } = company;
+  const scoreDate = dateFormatter.format(new Date(round.date));
 
   return (
     <main className="candidate-shell candidate-main candidate-profile">
@@ -72,7 +74,7 @@ export default async function CandidatePage({ params }) {
             <dt>Announcement date</dt>
             <dd>
               <time dateTime={round.date}>
-                {dateFormatter.format(new Date(round.date))}
+                {scoreDate}
               </time>
             </dd>
           </div>
@@ -81,6 +83,30 @@ export default async function CandidatePage({ params }) {
           Read the HTGF announcement{" "}
           <ArrowUpRight size={16} aria-hidden="true" />
         </a>
+      </section>
+      <section className="candidate-about" aria-labelledby="company-fit">
+        <div className="candidate-fitHeader">
+          <h2 id="company-fit">Illustrative VC fit</h2>
+          <span className="candidate-fitBadge">
+            <strong>{fitScore(company)}/{maxFit}</strong>
+          </span>
+        </div>
+        <p>
+          Shortlist priority based on information in the funding announcement
+          on <time dateTime={round.date}>{scoreDate}</time>.
+        </p>
+        <p>{company.fit.rationale}</p>
+        <dl className="candidate-fitBreakdown">
+          {fitCriteria.map(({ id, max, title }) => (
+            <div key={id}>
+              <dt>{title}</dt>
+              <dd>{company.fit.points[id]}/{max}</dd>
+            </div>
+          ))}
+        </dl>
+        <Link className="candidate-source" href="/proof/methodology">
+          Read the scoring methodology <ArrowUpRight size={16} aria-hidden="true" />
+        </Link>
       </section>
     </main>
   );

@@ -43,6 +43,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Nils: next: calibration of "Read trace with OpenAI" on 20 hand-labelled traces (task 3)
 
 ## Done
+- Meto: refreshed the homepage and expanded the German portfolio gallery to ten companies, with illustrative fit scores for the frontend prototype.
 - Amli: podcast transcripts work (ElevenLabs, speakers told apart): each run transcribes the 3 newest episodes without one; the trace goes back to `new` with the transcript. Luma flow now skips events already in Traces, so their status is no longer reset (Nils's note).
 - Meto: added six sourced portfolio example profiles and a candidate grid at `/proof`, with the fictional sourcing workspace at `/proof/demo`.
 - Amli: source flows 03 TUM Venture Labs (84 teams with founders), 05 GitHub Munich (new orgs + Hugging Face), 06 pitch podcasts (65 episodes), 04 Eventbrite built but blocked by Eventbrite for n8n Cloud. Traces: `extraction` column added, pinboard source = `campus`. Run all keeps going when a source has nothing new.

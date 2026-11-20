@@ -11,6 +11,16 @@
       "stage": "Series A",
       "date": "2025-06-11",
       "source": "https://www.htgf.de/en/proxima-fusion-series-a/"
+    },
+    "fit": {
+      "points": {
+        "germany": 20,
+        "sector": 25,
+        "tech_depth": 25,
+        "stage": 0,
+        "no_funding": 0
+      },
+      "rationale": "The stellarator design draws on Max Planck Institute research. The Series A puts this snapshot beyond the seed-stage scouting window."
     }
   },
   {
@@ -25,6 +35,16 @@
       "stage": "Seed",
       "date": "2021-11-02",
       "source": "https://www.htgf.de/en/htgf-investment-avelios-medical/"
+    },
+    "fit": {
+      "points": {
+        "germany": 20,
+        "sector": 25,
+        "tech_depth": 16,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "Modular clinical workflows and structured patient data support fit. The announcement provides limited detail on a hard-to-copy technical advantage."
     }
   },
   {
@@ -39,6 +59,16 @@
       "stage": "Seed",
       "date": "2024-09-16",
       "source": "https://www.htgf.de/en/htgf-seed-symphera/"
+    },
+    "fit": {
+      "points": {
+        "germany": 20,
+        "sector": 25,
+        "tech_depth": 23,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "The device combines multiple laparoscopic tools in a single instrument with an automated switching mechanism."
     }
   },
   {
@@ -53,6 +83,16 @@
       "stage": "Seed",
       "date": "2025-01-15",
       "source": "https://www.htgf.de/en/audavis-seed-htgf/"
+    },
+    "fit": {
+      "points": {
+        "germany": 20,
+        "sector": 25,
+        "tech_depth": 14,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "AI-assisted transaction checks are a clear digital tech use case. The announcement gives limited detail on how the AI is differentiated."
     }
   },
   {
@@ -67,6 +107,16 @@
       "stage": "Pre-seed",
       "date": "2026-07-07",
       "source": "https://www.htgf.de/en/auxilius-raises-pre-seed/"
+    },
+    "fit": {
+      "points": {
+        "germany": 20,
+        "sector": 25,
+        "tech_depth": 20,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "Executable controls are a concrete technical approach to automating enterprise compliance."
     }
   },
   {
@@ -81,6 +131,112 @@
       "stage": "Pre-seed",
       "date": "2026-01-15",
       "source": "https://www.htgf.de/en/lytra-pre-seed-financing/"
+    },
+    "fit": {
+      "points": {
+        "germany": 20,
+        "sector": 25,
+        "tech_depth": 16,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "Factory pilots support the industrial use case. The announcement describes early product evidence with limited detail on the underlying AI."
+    }
+  },
+  {
+    "slug": "zentio",
+    "name": "Zentio",
+    "sector": "Industrial tech",
+    "location": "Berlin",
+    "logo": "zentio.png",
+    "description": "Builds production planning software for manufacturers. It brings together machine and operations data so factories can adjust schedules as conditions change.",
+    "round": {
+      "amount": "€1.4M",
+      "stage": "Pre-seed",
+      "date": "2025-12-11",
+      "source": "https://www.htgf.de/en/zentio-pre-seed/"
+    },
+    "fit": {
+      "points": {
+        "germany": 15,
+        "sector": 25,
+        "tech_depth": 19,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "The platform combines machine data, mathematical optimization and automation for real-time production planning."
+    }
+  },
+  {
+    "slug": "ionkraft",
+    "name": "IonKraft",
+    "sector": "Climate & industrial tech",
+    "location": "Aachen",
+    "logo": "ionkraft.png",
+    "description": "Develops plasma coatings for plastic packaging. The coatings provide a barrier for protecting packaged goods while making the packaging easier to recycle.",
+    "round": {
+      "amount": "€3.5M",
+      "stage": "First equity round",
+      "date": "2024-11-18",
+      "source": "https://www.htgf.de/en/htgf-ionkraft-seed/"
+    },
+    "fit": {
+      "points": {
+        "germany": 15,
+        "sector": 25,
+        "tech_depth": 24,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "The RWTH spin-off builds plasma-coating machinery. The first equity round and planned launch support early-stage fit."
+    }
+  },
+  {
+    "slug": "mo-re",
+    "name": "mo:re",
+    "sector": "Life sciences",
+    "location": "Hamburg",
+    "logo": "mo-re.jpg",
+    "description": "Builds lab equipment and software to automate 3D cell culture experiments. Its platform helps research teams run and analyze studies on cell models for animal-free drug development.",
+    "round": {
+      "amount": "€2.3M",
+      "stage": "Seed",
+      "date": "2025-03-26",
+      "source": "https://www.htgf.de/en/htgf-seed-more/"
+    },
+    "fit": {
+      "points": {
+        "germany": 15,
+        "sector": 25,
+        "tech_depth": 22,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "Dedicated lab hardware automates several steps in 3D cell culture, with software to standardize experiments."
+    }
+  },
+  {
+    "slug": "heidelberg-epignostix",
+    "name": "Heidelberg Epignostix",
+    "sector": "Life sciences",
+    "location": "Heidelberg",
+    "logo": "heidelberg-epignostix.png",
+    "description": "Develops software to classify tumors from DNA methylation patterns. Its first product focuses on distinguishing brain tumor subtypes that are difficult to tell apart with standard methods.",
+    "round": {
+      "amount": "€4.3M",
+      "stage": "Seed",
+      "date": "2024-07-02",
+      "source": "https://www.htgf.de/en/htgf-seed-heidelberg-epignostix/"
+    },
+    "fit": {
+      "points": {
+        "germany": 15,
+        "sector": 25,
+        "tech_depth": 25,
+        "stage": 15,
+        "no_funding": 0
+      },
+      "rationale": "The tumor classifier builds on a decade of research into how DNA methylation patterns distinguish cancer subtypes."
     }
   }
 ]

@@ -18,12 +18,13 @@
   gap: clamp(14px, 3vw, 28px);
 }
 .candidate-nav {
-  min-height: 65px;
+  min-height: 72px;
   justify-content: space-between;
 }
 .candidate-brand,
 .candidate-back,
 .candidate-source,
+.candidate-introLink,
 .candidate-location {
   display: inline-flex;
   align-items: center;
@@ -34,7 +35,16 @@
   white-space: nowrap;
   letter-spacing: -0.035em;
 }
-.candidate-brand svg,
+.candidate-brandMark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  place-items: center;
+  border-radius: 10px;
+  color: #fff;
+  background: #282247;
+}
 .candidate-source,
 .candidate-back {
   color: #5043bf;
@@ -72,11 +82,22 @@
   letter-spacing: -0.055em;
   font-weight: 650;
 }
-.candidate-intro > p:last-child {
+.candidate-intro > p {
   margin-top: 13px;
   max-width: 67ch;
   color: #e4e9ff;
   line-height: 1.65;
+}
+.candidate-introLink {
+  margin-top: 18px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.candidate-site .candidate-introLink:focus-visible {
+  outline-color: #e4dcff;
 }
 .candidate-grid {
   display: grid;
@@ -115,6 +136,33 @@
   padding: 16px 19px 19px;
   border-top: 1px solid #e6eaf4;
   background: #fafbff;
+}
+.candidate-cardMeta,
+.candidate-fitHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 12px;
+}
+.candidate-fitBadge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #e5f8f2;
+  color: #245e4b;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.candidate-fitBadge strong {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.candidate-fitHeader .candidate-fitBadge {
+  padding: 5px 10px;
+  font-size: 15px;
 }
 .candidate-sector {
   display: inline-block;
@@ -211,6 +259,42 @@
   font-weight: 650;
   font-size: 20px;
   margin-top: 4px;
+}
+.candidate-fitBreakdown,
+.candidate-rubric {
+  margin-block: 14px 17px;
+}
+.candidate-fitBreakdown > div,
+.candidate-rubric > div {
+  padding-block: 10px;
+  border-bottom: 1px solid #e6eaf4;
+}
+.candidate-fitBreakdown > div,
+.candidate-rubric dt {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.candidate-fitBreakdown dd {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.candidate-rubric dt {
+  font-weight: 650;
+}
+.candidate-rubric dt span {
+  color: #493bab;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.candidate-rubric dd {
+  margin-top: 4px;
+  color: #52617b;
+  line-height: 1.6;
+}
+.candidate-methodIntro {
+  margin-top: 20px;
 }
 .candidate-source:hover,
 .candidate-back:hover,

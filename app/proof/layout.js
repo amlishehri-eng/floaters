@@ -8,10 +8,14 @@ export default function AnalyticsLayout({ children }) {
       <header className="candidate-header">
         <div className="candidate-shell candidate-nav">
           <Link href="/" className="candidate-brand">
-            <Radar aria-hidden="true" size={23} /> Founders First
+            <span className="candidate-brandMark">
+              <Radar aria-hidden="true" size={21} />
+            </span>{" "}
+            Founders First
           </Link>
           <nav aria-label="Analytics navigation">
             <Link href="/proof">Candidates</Link>
+            <Link href="/proof/methodology">Scoring</Link>
             <Link href="/proof/demo">Sourcing demo</Link>
           </nav>
         </div>
