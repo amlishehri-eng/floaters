@@ -8,6 +8,13 @@ lock="$gitdir/autosync.lock"
 
 log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*"; }
 
+# Put a system/Homebrew Node first on PATH. Other Nodes earlier on PATH (e.g. the one RStudio puts in
+# ~/.local/bin) can't load Next's native compiler on macOS, and the build then fails on WASM.
+for d in /usr/local/bin /opt/homebrew/bin; do
+  [ -x "$d/node" ] && PATH="$d:$PATH"
+done
+export PATH
+
 mkdir "$lock" 2>/dev/null || exit 0  # another run holds the lock
 trap 'rm -rf "$lock"' EXIT
 date +%s >"$lock/started"
