@@ -43,6 +43,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Nils: next: calibration of "Read trace with OpenAI" on 20 hand-labelled traces (task 3)
 
 ## Done
+- Nils: n8n "10 Make leads" v2.3: old `pinboard` source counts as `campus` (Amli's rename), one-time repair of rows with stale sources/counts, tie on score keeps the reading with a reason. All Leads rows now have consistent source_count/trace_count (Klarvus, ReXanh, nexpaper = 1 source, 2 traces).
 - Nils: n8n "11 Days ahead" (called at the end of 10): Brave news search per vc_backable lead + gpt-5-mini relevance check → `first_public_at`, `first_public_url`, `days_ahead` (negative = press was first; invisible = days so far), `still_invisible`, `news_checked_at`. Own site, our sources and listing pages don't count. Tested: Klarvus −51 (Startup-Radar 2026-09-23), KyNext invisible 14, ReXanh invisible 6.
 - Nils: n8n "10 Make leads" v2.1 convergence: same lead_key merges (in one batch and into existing Leads): trace_ids/sources deduped, source_count, new `trace_count`, earliest first_trace_at, higher fit/team score kept with its reason. Leads got `trace_count`, `fit_reason`, `team_reason`. Test helper "19 Reset test traces" sets listed trace_ids back to new. Tested: Klarvus = pinboard:5028 + 5033, trace_count 2.
 - Amli: n8n project HTGF with tables Traces + Leads, flows 00 Run all, 01 Luma Munich, 02 LMU pinboard, 10 Make leads (stand-in until n8n calls `/api/brain/run`). First run: 46 traces → 8 leads. Code and ids in `n8n/README.md`.
@@ -56,6 +57,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 ## Blocked / needs help
 - Nils + Amli: n8n tables reserve `id`, so Traces uses `trace_id` and Leads `lead_key`: map them when n8n calls `/api/brain/run` (see `n8n/README.md`).
 - Nils + Amli: `engine/src/sources` (github, ct, incubator) overlaps Person 1's sources: agree who runs which source.
+- Amli (from Nils): "00 Run all" re-imports the 4 Luma traces and sets their `status` back to `new`, so 10 Make leads reads them again on every run (4 wasted gpt-5-mini calls per run; data stays correct). Fix: when a trace_id already exists, don't overwrite `status`. Pinboard/campus is fine.
 - _what, waiting on whom_
 
 ## Deploy and bugs
