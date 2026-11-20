@@ -5,7 +5,9 @@ the order on the screen follows quality, and the rules match HTGF's own criteria
 shown on the local app (`/proof/live` on :4000).
 
 Owner for this change: Amli (agreed: Nils hands over flows 13 and 15 when his final run is done).
-Rollback: 13 `a3fc2818-acb5-4e78-a51e-183b5612dbe8`, 15 `b9ea2f27-1f04-4bbe-b3ac-2831dd01961f` (versions on 20 Nov ~21:40).
+Rollback: 13 `a3fc2818-acb5-4e78-a51e-183b5612dbe8` (v7.1). 15 is not changed (Nils's last version `30e85ba3`). Old fit stays in the Leads column `fit_score_v2`.
+
+**How it is built (20 Nov ~23:10):** no change to 15 at all. Flow 13 v8 does the v3 weights, anti-signal values, hard checks and call-now rules in code, from the points 15 already stores (free, every run). The new criterion `capital_need` comes from a new flow **33 Capital need** (`4S7gTe3ofvnpIiz6`, gpt-5-mini, ~$0.003 per lead), called by 00 Run all after 10. Research or patent = the patent reading, or half of the spin-off-chair reading. Code: `n8n/flows/drafts/` (13 template + build + offline test), `n8n/flows/33-capital-need.sdk.ts`. New Leads columns: `capital_need`, `fit_score_v2`, `fit_version`.
 
 ## What HTGF says (htgf.de/en, "Our investment criteria", page updated 18 Nov 2026)
 1. First investment in pre-seed and seed: **sweet spot €800,000+**, flexible to the startup's needs; HTGF is the **lead investor** and brings co-investors.
