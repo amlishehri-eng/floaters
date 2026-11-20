@@ -46,7 +46,7 @@ What screening should know about the rows:
 - Traces: the trace id lives in `trace_id` (e.g. `tumvl:planqc`, `github:<login>`, `podcast:<guid>`).
 - Leads: the lead id lives in `lead_key` (no `lead:` prefix).
 - Traces has the `extraction` column and a `website` column (the company's own site, or `none` when 09 could not find one); pinboard rows use `source = campus`.
-- 20 Nov ~16:00: Traces was emptied on purpose and everything rescanned Germany-wide (Amli's decision).
+- 20 Nov ~16:00: Traces was emptied on purpose and everything rescanned Germany-wide (Amli's decision). Full scan 15:56–16:15 (19 min): ~900 traces, 251 with a website. University pages 682, TUM 84, podcasts 65, pinboard 42, GitHub 15, Luma 9, spin-off news 3.
 
 ## Rules
 - Public pages only. Never Luma's internal API (api.lu.ma).
