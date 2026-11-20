@@ -30,12 +30,16 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
+- Meto / Codex: GitHub publication and real Leads-table integration for `/proof` pending (branch `codex/person-3-proof`).
 - _Name_: _what_ (branch `…`)
 
 ## Done
+- Meto / Codex: `/proof` dashboard with ten fictional leads, computed funnel, search/category/visibility filters, three ranking modes, evidence cards, session shortlist and Markdown memo export. Lint and browser checks passed, including empty results and responsive layouts.
 - Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)
 
 ## Blocked / needs help
+- Codex: GitHub fetch/push requires authentication in this environment. Checkout started three cached commits behind `origin/main`.
+- Codex: production build blocked by Turbopack's local process port permission (`Operation not permitted`), including after an escalated retry. Re-run `npm run build` in an unrestricted environment before integrating.
 - _what, waiting on whom_
 
 ## Decisions
