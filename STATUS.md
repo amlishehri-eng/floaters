@@ -39,7 +39,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 
 ## In progress
 - Amli: sources done for now (01–09, 30, 31 in Run all); 09 Find websites raised to 50 names per run (20 Nov ~20:05); next: reliability, Eventbrite from the laptop.
-- Amli: second full end-to-end run done (team pages + age check, see Done); next: publish flow 20 (live screen instead of the snapshot), calibration 18 and backtest 41 on the v8.1 rules.
+- Amli: second full run done and **flow 20 published** (21 Nov ~00:52 CET); next: whatever the team test turns up; calibration 18 / backtest 41 need Nils's update first.
 
 ## Done
 - Amli: **team enrichment + age check, second full run** (21 Nov 00:20–00:44 CET, 00 Run all exec 375, **23 min 47 s, no errors**). Why: after the first v3 run only 7 call_now, 338 survivors stuck in needs_enrichment (team unknown), and 4 of 12 new call_now were too old or funded (Vyoma 2020 + €8.5M seed, AlixLabs 2019 + Series A, SaxonQ 2021 + TGFS, Devanthro 2018) because age was unknown. New flow **34 Team enrichment** (`mBmYYUrE9a2OeHQ2`): reads team/about/Impressum pages of strong-tech leads (100 leads, 87 site traces, no model). **15** Pick leads v5 (rollback `30e85ba3`): enriched leads first, 50 per run by hand (10 when called). New flow **35 Age and funding check** (`vgUgIjpBglIrReF7`, gpt-5-mini + web search): founding year, register entry and rounds with source URLs → Leads `age_check`. **13 v8.1**: call_now needs a known age (register date or founding year); 35's register date and rounds count (Series A+, seed led by a named fund, ≥ €3M = too late; "undisclosed" = unknown). **12** one-off on 29 call_now/watchlist leads: 9 read, then handelsregister.ai ran out (**4 credits left**, 13 per company); `MAX_LEADS = ONLY_KEYS.length || 5`, ONLY_KEYS empty again. Run all now: … 10 → 34 → 15 → 33 → 35. **Result: call_now 10**, every one with a confirmed age: eversyn (Magdeburg, fit 80/team 95, 2024), Liquid Mirror (69/93, 2026), Navou (67/89, 2024), Valoron (57/95, 2026), Radical Dot (63/87, 2024), Fidentis (73/67, 2025), Karevo (60/86, 2024), nextract energy (58/83, 2024), CircularFabrics (55/72, 2025), OmicsDiscoveries (55/69, 2024). Out: sync2brain (2019), Hydrogen Innovation (2020), Devanthro, SaxonQ, amsight and telekinesis (2023, > 3 years), Lucid Genomics (Caesar Ventures fund in the register), Vyoma, AlixLabs. Watchlist 13 (best: Vasc-on-Demand 67/80 and Fast Sense 63/84, age still unknown). Funnel: 1,416 traces → 659 leads → 279 survivors → 284 scored by gpt-5.5 → 63 deep-checked → **10 call now**. **Cost** of this round ≈ $16.2 (15 two batches of 50 $9.76, 35 $3.68 by hand, Run all $2.78 incl. 15 ×2 $1.99 and 35 $0.66); all model spend $45.10 (`/api/funnel`). demo-check 26/26 PASS, but `/api/leads` and the briefing still use Nils's snapshot (8 call_now) until flow 20 is published. Biggest open gap per lead: no named customer/pilot (corporate_pull) and, for Valoron, no patent.
@@ -113,7 +113,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - [ ] time `/proof/live` cold and cached (`curl -w %{time_total}`): cold under 8 s, cached well under 1 s
 - [ ] delete the test vote row id 3 (`connection-test`) in the n8n Feedback table
 - [ ] commit the refreshed snapshots
-1. **Amli: publish flow 20 now** (n8n → open "20 Leads for the screen" `qd840KXqIoUEnbxl` → Publish).
+1. ~~Amli: publish flow 20~~ done 21 Nov ~00:52 CET.
 2. Click through (expected result after each arrow):
    - [ ] http://localhost:4000/proof/live → the real leads (624 live, not the 10 demo ones), call_now on top (Liquid Mirror, Valoron, sync2brain, nextract energy, OmicsDiscoveries), no "fictional demo data" badge
    - [ ] top lead card → verdict, why, evidence links per criterion open the right pages (e.g. Liquid Mirror → idw 881283), days ahead, next_step (next_step is empty for leads 17 did not check yet)
@@ -126,7 +126,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 3. After the team test: if everything passes, tell Claude to tag `demo-v1` and freeze.
 
 ## Blocked / needs help
-- Team (from Amli, 21 Nov ~00:50): second full run is done (10 call_now, all with a confirmed age). **Publishing flow 20 waits for the team's go** (Amli's call): until then `/proof/live`, `/api/leads` and the briefing show Nils's snapshot (8 call_now). Say go in chat; Amli clicks Publish, then `node scripts/refresh-leads-snapshot.mjs` refreshes the fallback.
+- (done 21 Nov ~00:52 CET) Team (from Amli): **flow 20 is published** (`qd840KXqIoUEnbxl`, version `ed7f8aa4`). `/api/leads` = 659 live leads (`mocked: false`, 10 call_now on top), briefing live, snapshot refreshed (`data/leads.live-snapshot.json`: 32 rows, call_now 10), demo-check **26/26 PASS, 0 mocked**.
 - Nils (from Amli, 21 Nov ~00:50): calibration **18** and backtest **41** still hold an older copy of 13's rules (v7.1). To test tonight's rules they need 13 v8.1 (`n8n/flows/drafts/13-classify-v8.js`: v3 fit, age must be known, flow 35's `age_check`). Your flows, so I did not touch them. Also: handelsregister.ai has 4 credits left.
 - Amli (from Nils, connection hardening): publish flow 20, then run `node scripts/refresh-leads-snapshot.mjs` (then the checklist under Team test). Until then the pages and the briefing use the 21 Nov 00:13 Leads snapshot and say so.
 - Meto (from Nils, design build): pages rebuilt per `design/DESIGN.md`, please review `/`, `/proof/live`, `/proof/funnel`, `/proof/labs`, `/proof/methodology`, `/proof`. Your old pages still work at `/proof/search`, `/proof/demo`, `/proof/saved/*`, `/proof/<slug>` (now in `app/proof/(legacy)/`, out of the nav). Deviations from the mockups are in the design-build Done line's report.
@@ -170,6 +170,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Open bugs: _none yet_
 
 ## Decisions
+- Decision (Amli, 21 Nov ~00:52 CET): flow 20 published after the second full end-to-end run (replaces the 20 Nov ~20:15 "wait" decision); the screen now reads the live Leads table, the snapshot is only the fallback.
 - Decision (Amli, 20 Nov ~20:15): flow 20 stays unpublished until the full end-to-end test is done, so the screen and the briefing never show half-screened leads.
 - _short note of anything we agreed on, so nobody re-argues it at 3am_
 - Decision: two columns added to the contract: Traces gets `extraction` (JSON string, so no trace is extracted twice); Leads gets `fit_reason`, `team_reason`, `match_reasons`, `evidence_hash`, `still_invisible`, `worth_a_call`. Nothing renamed.

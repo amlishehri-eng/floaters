@@ -1,20 +1,20 @@
 {
-  "as_of": "2026-11-20T23:13:10.668Z",
+  "as_of": "2026-11-20T23:51:35.976Z",
   "stages": [
     {
       "key": "traces_in",
       "label": "Traces found",
-      "count": 1369
+      "count": 1416
     },
     {
       "key": "stage0_skipped",
       "label": "Skipped by code (stage 0)",
-      "count": 265,
+      "count": 272,
       "by_rule": {
         "event_only": 3,
-        "agency": 6,
+        "agency": 7,
         "ecosystem_org": 3,
-        "too_old": 239,
+        "too_old": 245,
         "unreadable": 7,
         "investor": 1,
         "duplicate": 4,
@@ -24,7 +24,7 @@
     {
       "key": "thin_no_site",
       "label": "Only a name, no website to read",
-      "count": 324
+      "count": 317
     },
     {
       "key": "thin_rescued",
@@ -39,95 +39,95 @@
     {
       "key": "read_by_mini",
       "label": "Read by gpt-5-mini (stage 1)",
-      "count": 780
+      "count": 827
     },
     {
       "key": "leads",
       "label": "Leads (teams)",
-      "count": 641,
-      "merged": 10
+      "count": 659,
+      "merged": 11
     },
     {
       "key": "survivors",
       "label": "Passed the gates (call_now, watchlist, needs_enrichment)",
-      "count": 317
+      "count": 279
     },
     {
       "key": "scored_v2",
       "label": "Scored on all evidence by gpt-5.5",
-      "count": 226
+      "count": 284
     },
     {
       "key": "deep_checked",
       "label": "Deep-checked (web, GitHub, domain, Series A)",
-      "count": 50
+      "count": 63
     },
     {
       "key": "call_now",
       "label": "Call now",
-      "count": 8
+      "count": 10
     }
   ],
   "traces": {
-    "total": 1369,
+    "total": 1416,
     "by_status": {
-      "processed": 780,
-      "skipped": 265,
-      "thin_no_site": 324
+      "processed": 827,
+      "skipped": 272,
+      "thin_no_site": 317
     },
     "stage0_skipped_by_rule": {
       "event_only": 3,
-      "agency": 6,
+      "agency": 7,
       "ecosystem_org": 3,
-      "too_old": 239,
+      "too_old": 245,
       "unreadable": 7,
       "investor": 1,
       "duplicate": 4,
       "not_germany": 2
     },
     "thin_rescue_results": {
-      "no_website": 298,
-      "dead_site": 20,
+      "dead_site": 21,
+      "no_website": 290,
       "robots_blocked": 6
     }
   },
   "leads": {
-    "total_rows": 651,
-    "live": 641,
-    "merged": 10,
+    "total_rows": 670,
+    "live": 659,
+    "merged": 11,
     "by_verdict": {
       "not_a_lead": 4,
-      "not_high_tech": 130,
-      "needs_enrichment": 293,
-      "too_late": 60,
-      "not_a_startup": 89,
+      "not_high_tech": 137,
+      "needs_enrichment": 256,
+      "too_late": 103,
+      "not_a_startup": 95,
       "out_of_scope": 30,
       "unscored": 2,
-      "call_now": 8,
-      "watchlist": 16,
+      "watchlist": 13,
+      "call_now": 10,
       "htgf_portfolio": 9
     },
-    "scored_v2": 226,
-    "deep_checked": 50,
-    "call_now": 8
+    "scored_v2": 284,
+    "deep_checked": 63,
+    "call_now": 10
   },
   "cost": {
-    "total_usd": 35.44,
-    "per_trace_read_usd": 0.0454,
-    "per_call_now_usd": 4.43,
+    "total_usd": 45.1,
+    "per_trace_read_usd": 0.0545,
+    "per_call_now_usd": 4.51,
     "by_step": [
       {
         "step": "stage 1 read",
         "model": "gpt-5-mini",
-        "usd": 2.23,
-        "calls": 562,
+        "usd": 2.31,
+        "calls": 585,
         "notes": "before 20 Nov 19:00: ~70 traces in packages 1-2 + execs 115, 125, 135 (125 traces, $0.0028 each)"
       },
       {
         "step": "strong scoring (15)",
         "model": "gpt-5.5",
-        "usd": 27.5,
-        "calls": 275,
+        "usd": 33.74,
+        "calls": 345,
         "notes": "before 20 Nov 19:00: execs 97, 123, 131, 141 (about 30 leads)"
       },
       {
@@ -147,22 +147,22 @@
       {
         "step": "33 Capital need: capital need",
         "model": "gpt-5-mini",
-        "usd": 0.27,
-        "calls": 361,
+        "usd": 0.33,
+        "calls": 423,
         "notes": ""
       },
       {
         "step": "35 Age and funding check: web check",
         "model": "gpt-5-mini",
-        "usd": 1.82,
-        "calls": 60,
+        "usd": 4.33,
+        "calls": 144,
         "notes": ""
       },
       {
         "step": "deep checks (17)",
         "model": "gpt-5-mini + web search, gpt-5.5",
-        "usd": 3.54,
-        "calls": 50,
+        "usd": 4.31,
+        "calls": 63,
         "notes": ""
       }
     ],
@@ -171,5 +171,5 @@
   "check": {
     "traces_add_up": true
   },
-  "snapshot_note": "Snapshot of GET /webhook/htgf-funnel (flow 44), 21 Nov 2026 00:13 CET, same minute as data/leads.live-snapshot.json. Used by /api/funnel when n8n does not answer within 8 s."
+  "snapshot_note": "Snapshot of flow 44, written by scripts/refresh-leads-snapshot.mjs at 2026-11-20T23:51:36.188Z, same minute as data/leads.live-snapshot.json. Used by /api/funnel when n8n does not answer within 8 s."
 }
