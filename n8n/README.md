@@ -39,6 +39,18 @@ What screening should know about the rows:
   - `recording`: a podcast episode; `people` is empty, names are in the show notes and transcript (Speaker 0/1, the host is Kyrill Ring on PITCH & PEOPLE). `org_name` is the episode topic, which can be an investor or an association (Start Munich, Women in Business e.V.), not a startup. Those should not end up `vc_backable`.
 - Text is at most 5000 characters, 12000 for an episode with a transcript.
 
+## Setting `N8N_WEBHOOK_URL_MAIN` (handed to Nils, 20 Nov ~20:45)
+Not needed for the demo. Only the `/test` panel's "n8n → /api/automation" button uses it: `/api/automation` → `lib/n8n.js` `trigger()` sends a **POST** with a JSON body to this URL and shows the answer. Empty = the button answers the mock (`mocked: true`), which is harmless. No flow listens for it yet; 00 Run all's `/webhook/run-all` is GET only and starts a ~14 min run, so don't use that one.
+
+Step by step, once there is a flow for it:
+1. In n8n (project HTGF), give the flow a **Webhook** trigger: method **POST**, a path (e.g. `htgf-automation`), "Respond" = "Using 'Respond to Webhook' node" or "Immediately". End with **Respond to Webhook** answering JSON (an object, e.g. `{ "ok": true }`).
+2. **Publish** the flow. Only the production link (`/webhook/...`) works then; `/webhook-test/...` only works while the editor is listening.
+3. In `~/Desktop/floaters`, create `.env.local` (git ignores `.env.*`, it is never pushed) with one line:
+   `N8N_WEBHOOK_URL_MAIN=https://floaters.app.n8n.cloud/webhook/htgf-automation`
+4. Restart `npm run dev` (the app reads `.env.local` only at start).
+5. Open http://localhost:4000/test → "n8n → /api/automation". `mocked: true` in the answer = it did not reach n8n (not published, wrong path, or GET instead of POST). The timeout is 8 s.
+6. For Vercel: add the same variable under Project → Settings → Environment Variables, then redeploy.
+
 ## Tables (n8n data tables in the HTGF project)
 | Table | id | Written by | Read by |
 |---|---|---|---|
