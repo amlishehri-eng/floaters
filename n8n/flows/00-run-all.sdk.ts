@@ -131,6 +131,19 @@ const runAcc = node({
   }
 });
 
+const runDedupe = node({
+  type: 'n8n-nodes-base.executeWorkflow',
+  version: 1.4,
+  config: {
+    name: 'Run 32 Remove duplicates',
+    executeOnce: true,
+    alwaysOutputData: true,
+    onError: 'continueRegularOutput',
+    parameters: { source: 'database', workflowId: { __rl: true, mode: 'id', value: 'l8SnodVexcqO2HXs', cachedResultName: '32 Remove duplicate traces' }, mode: 'once', options: { waitForSubWorkflow: true } },
+    output: [{ ok: true }]
+  }
+});
+
 const runWebsites = node({
   type: 'n8n-nodes-base.executeWorkflow',
   version: 1.4,
@@ -155,7 +168,7 @@ const runLeads = node({
   }
 });
 
-const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **09** finds company websites, then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runWebsites, runLeads], { color: 7 });
+const howItWorks = sticky('## 00 Run all sources\nOne button for the whole engine: runs every source flow in turn (a broken source does not stop the others), then **09** finds company websites, then **10 Make leads** turns the new traces into leads.\nNew source flow? Add a **Called by Run all** trigger to it and one more Run step here. Only person 1 edits this flow.', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads], { color: 7 });
 
 export default workflow('run-all', '00 Run all sources')
   .add(runByHand)
@@ -168,6 +181,7 @@ export default workflow('run-all', '00 Run all sources')
   .to(runIdw)
   .to(runJobs)
   .to(runAcc)
+  .to(runDedupe)
   .to(runWebsites)
   .to(runLeads)
   .add(every6Hours)
@@ -175,4 +189,4 @@ export default workflow('run-all', '00 Run all sources')
   .add(runFromDemo)
   .to(runLuma)
   .add(howItWorks)
-  .group('Whole engine', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runWebsites, runLeads], { description: 'Every source flow in turn, then Make leads. 04 Eventbrite is not in here: Eventbrite blocks n8n Cloud' });
+  .group('Whole engine', [runLuma, runPinboard, runTum, runGithub, runPodcasts, runUni, runIdw, runJobs, runAcc, runDedupe, runWebsites, runLeads], { description: 'Every source flow in turn, then Make leads. 04 Eventbrite is not in here: Eventbrite blocks n8n Cloud' });
