@@ -4,7 +4,7 @@ Update this file whenever you start, finish or get stuck on something. Keep entr
 
 ## Where we work (read first, keep current)
 - **Code**: GitHub `amlishehri-eng/floaters`, branch `main`. Everyone pushes to main; the hooks pull before and push after every Claude turn.
-- **Local app**: `npm run dev` → http://localhost:4000 (home `/`, proof screen `/proof`, test panel `/test`).
+- **Local app**: `npm run dev` → http://localhost:4000 (home `/`, candidate gallery `/proof`, sourcing demo `/proof/demo`, test panel `/test`).
 - **n8n**: floaters.app.n8n.cloud → project **HTGF** (shared; nothing in anyone's Personal project). The Traces and Leads tables live there. Workflow and table ids: `n8n/README.md`.
 - **Pipeline**: sources (Amli, n8n flows 00–09) → **Traces** → brain (Nils, `/api/brain/run`, called by n8n) → **Leads** → screen and pitch (Meto, `/proof`).
 - **Plans**: team plan https://claude.ai/artifact/Fn8ks5JuzbgW7tM85s7hMb · Person 1 sources plan https://claude.ai/artifact/2r75xemMjuU3K5xVvZaUMQ
@@ -43,6 +43,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Nils: the brain is built and tested offline; next: first real run with `OPENAI_API_KEY` on Person 1's traces, then calibrate the filter on 20 hand-labelled traces
 
 ## Done
+- Meto: added six sourced portfolio example profiles and a candidate grid at `/proof`, with the fictional sourcing workspace at `/proof/demo`.
 - Amli: n8n project HTGF with tables Traces + Leads, flows 00 Run all, 01 Luma Munich, 02 LMU pinboard, 10 Make leads (stand-in until n8n calls `/api/brain/run`). First run: 46 traces → 8 leads. Code and ids in `n8n/README.md`.
 - Meto: launched the Founders First homepage at `/` with a fictional lead preview and two-way navigation to `/proof`.
 - Meto: polished the proof dashboard and added sector filtering, sortable score badges and direct shortlist access.
