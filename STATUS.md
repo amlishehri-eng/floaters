@@ -54,8 +54,10 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Setup fixes: geist fonts (offline builds), cacheComponents/partialPrefetching off, Node >=20.9, mock-first helpers in `lib/` + `/api/chat`, `/api/voice/tts`, `/api/voice/stt`, `/api/automation`, default model `claude-sonnet-5-5` (branch `backend/setup`)
 - Hackathon starter top-up: `/test` integration panel, `scripts/sync.sh` + session hooks, `reviewer` agent, `openai` installed, SPEC wow/jury sections (main)
 
+## To do later
+- Amli: Eventbrite from the laptop. Eventbrite blocks n8n Cloud, but its pages load from a home connection. A small script on Amli's Mac reads the Eventbrite Munich startup pages gently (one every 2 s, same code as flow 04) and sends new events into Traces through an n8n webhook. Runs only while the laptop is on: run it once before the demo. Local test found 17 events (TUM IDEAward, Migrant Accelerator demo day, Female Founder Society kick-off).
+
 ## Blocked / needs help
-- Eventbrite blocks n8n Cloud (human-verification page). Options: run 04 from a laptop, add events by hand, or skip. Not decided.
 - _what, waiting on whom_
 
 ## Deploy and bugs
