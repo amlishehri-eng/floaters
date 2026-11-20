@@ -70,6 +70,7 @@ const braveSearch = node({
       count: 10,
       additionalParameters: { country: 'DE', text_decorations: false, spellcheck: false }
     },
+    credentials: { braveSearchApi: { id: 'LQpmM0z0cHucxWpi', name: 'Brave Search account' } },
     output: [{ web: { results: [{ url: 'https://www.planqc.eu/', title: 'planqc - Quantum computing with atoms', description: 'planqc builds quantum computers ...' }] } }]
   }
 });
@@ -159,7 +160,7 @@ const saveWebsite = node({
   }
 });
 
-const howItWorks = sticky('## 09 Find websites\nFor traces that name a startup but have no website yet, this finds the startup\'s own website so the screen and investors have a link.\n\n1. Picks up to **15 names per run**: TUM Venture Labs teams and podcast startups first, then other campus and Luma traces; newest first. Skips names that are clearly not a startup (events, investors, associations e.V., university teams), names that are just the contact person, and 3-letter names.\n2. If the trace already links the startup\'s own site, uses that. Otherwise searches `"name" city` with **Brave** (n8n gateway credits), without munich-startup.de / LinkedIn pages, one search every 1.5 s.\n3. Drops LinkedIn, Crunchbase, news, event, university and job sites. Prefers a domain that is the name itself. Checks the home page shows the name and looks German (Impressum, GmbH, .de ...).\n4. Writes **only the `website` column** (`https://host/`), or `none` when nothing fits so the name is not searched again. Never touches `status`.\n\nTo search a name again: clear its `website` cell.', [getTraces, pickCandidates, oneAtATime, linkedInTrace, braveSearch, collectResults, pause, pickWebsite, fetchHomepage, confirmSite, saveWebsite], { color: 7 });
+const howItWorks = sticky('## 09 Find websites\nFor traces that name a startup but have no website yet, this finds the startup\'s own website so the screen and investors have a link.\n\n1. Picks up to **15 names per run**: TUM Venture Labs teams and podcast startups first, then other campus and Luma traces; newest first. Skips names that are clearly not a startup (events, investors, associations e.V., university teams), names that are just the contact person, and 3-letter names.\n2. If the trace already links the startup\'s own site, uses that. Otherwise searches `"name" city` with **Brave** (our own key, credential \"Brave Search account\"), without munich-startup.de / LinkedIn pages, one search every 1.5 s.\n3. Drops LinkedIn, Crunchbase, news, event, university and job sites. Prefers a domain that is the name itself. Checks the home page shows the name and looks German (Impressum, GmbH, .de ...).\n4. Writes **only the `website` column** (`https://host/`), or `none` when nothing fits so the name is not searched again. Never touches `status`.\n\nTo search a name again: clear its `website` cell.', [getTraces, pickCandidates, oneAtATime, linkedInTrace, braveSearch, collectResults, pause, pickWebsite, fetchHomepage, confirmSite, saveWebsite], { color: 7 });
 
 export default workflow('find-websites', '09 Find websites')
   .add(runByHand)

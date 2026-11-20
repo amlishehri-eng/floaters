@@ -1,4 +1,4 @@
-import { workflow, node, trigger, sticky, expr, newCredential } from '@n8n/workflow-sdk';
+import { workflow, node, trigger, sticky, expr } from '@n8n/workflow-sdk';
 
 const runByHand = trigger({ type: 'n8n-nodes-base.manualTrigger', version: 1, config: { name: 'Run by hand' } });
 
@@ -123,7 +123,7 @@ const findStartups = node({
         textFormat: { textOptions: { type: 'json_schema', name: 'startups_on_page', strict: true, schema: "{\"type\": \"object\", \"additionalProperties\": false, \"required\": [\"startups\"], \"properties\": {\"startups\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"additionalProperties\": false, \"required\": [\"name\", \"website\", \"description\", \"founders\", \"city\", \"year\"], \"properties\": {\"name\": {\"type\": \"string\"}, \"website\": {\"type\": [\"string\", \"null\"]}, \"description\": {\"type\": [\"string\", \"null\"]}, \"founders\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}, \"city\": {\"type\": [\"string\", \"null\"]}, \"year\": {\"type\": [\"integer\", \"null\"]}}}}}}" } }
       }
     },
-    credentials: { openAiApi: newCredential('OpenAI') },
+    credentials: { openAiApi: { id: 'CGwebxN9hCQpUEFW', name: 'OpenAI Team Key' } },
     output: [{ output: [{ type: 'message', content: [{ type: 'output_text', text: '{"startups":[{"name":"Skellium","website":null,"description":"Entwickelt Lithium-Metall-Anoden für Batterien der nächsten Generation.","founders":["Jonas Gorsch"],"city":"Aachen","year":2026}]}' }] }] }]
   }
 });

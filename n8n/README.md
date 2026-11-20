@@ -16,7 +16,7 @@ and so a flow can be rebuilt if someone breaks it. **n8n itself is the live copy
 | 06 | Pitch podcasts -> Traces | `J0YCRvXE1fVlNsXT` | Person 1 | PITCH & PEOPLE + Lenas Start-ups RSS → every episode of the last 2 years from its show notes; each run, the 3 newest episodes without a transcript are transcribed by **ElevenLabs** (speakers told apart). source `recording` |
 | 07 | University startups Germany -> Traces | `938DWxWRYzIEvNNh` | Person 1 | 15 public university/incubator startup lists (TU Berlin, HU Berlin, Max Planck, Fraunhofer, KIT, TU Darmstadt, Tübingen, Cologne, Heidelberg, Hamburg, Leipzig SpinLab, Stuttgart, Hannover, Oldenburg, Kaiserslautern) → OpenAI (gateway credits) reads each page → one trace per startup with founders and `website`. trace_id `uni:<host>:<slug>`, source `campus`. Skips pages that did not change since last read (table **Page memory** `HU8vkWsRJIGzz7Rv`, fingerprint per page, re-read at least weekly) |
 | 08 | Spin-off news (idw) -> Traces | `6ZlZePphuAyIfo90` | Person 1 | idw-online.de newest 8 listing pages (~160 university press releases; its robots.txt forbids search/RSS, so not used) → startup/spin-off headlines (~1–3 a day) → each release. trace_id `idw:<id>`, source `campus` |
-| 09 | Find websites | `3omXcLPOp5Y7i2pE` | Person 1 | Traces with an org_name and no `website` → Brave search (gateway credits, max 15 per run) → official site checked on its home page → writes **only** `website` (or `none`). Never touches status |
+| 09 | Find websites | `3omXcLPOp5Y7i2pE` | Person 1 | Traces with an org_name and no `website` → Brave search (credential "Brave Search account", max 15 per run) → official site checked on its home page → writes **only** `website` (or `none`). Never touches status |
 | 30 | First hires (job ads) -> Traces | `08C3DOx2nldpCt1i` | Person 1 | Bundesagentur für Arbeit job search API (official, public client id): "Founding", "Mitgründer", "Gründerteam", "Spin-off", "Ausgründung", "Pre-Seed", "Startup" … → drops big firms, agencies, recruiters, ads older than 120 days → startups hiring their first people. trace_id `jobs:<refnr>`, **source `jobs`**. ~36 ads on the first run |
 | 31 | Accelerators and competitions -> Traces | `nHxaczLdIVLQzAC2` | Person 1 | 28 public cohort / winner pages across Germany (UnternehmerTUM batch, BayStartUP, Start-up BW, CyberLab, Hessen Ideen, TechQuartier, Pioniergeist, Saarland, KUER.NRW, MUT NRW, NBank, Bremen, AI.STARTUP.HUB Hamburg, KfW Award, Deutscher Gründerpreis, German Startup Awards, futureSAX, ExciteLab, ThEx …) → OpenAI reads each page (gateway credits) → one trace per startup. trace_id `cohort:<host>:<slug>`, **source `accelerator`**. 301 startups on the first run. Skips unchanged pages like 07 (Page memory) |
 | 32 | Remove duplicate traces | `l8SnodVexcqO2HXs` | Person 1 | Same source + same listing page + same company name (ignoring GmbH, .ai, Technologies…) → keeps the oldest row, removes the others **only if still `new`**. The same company in two different sources is kept (convergence). First run removed 5 TUM double pages (Futurail, Oceanflight, Caire, OmicsDiscoveries, EASE) |
@@ -55,7 +55,11 @@ What screening should know about the rows:
 ## Rules
 - Public pages only. Never Luma's internal API (api.lu.ma).
 - Only public, professional facts about people. Phone numbers and emails are removed in the flows.
-- Keys only in n8n Credentials. n8n's built-in AI credits ("Gateway credits") ran out on 20 Nov; flows 07 and 31 use our own key (credential "OpenAI Team Key"). 09 still uses Brave via gateway credits.
+- Keys only in n8n Credentials. n8n's built-in AI credits ("Gateway credits") ran out on 20 Nov; our own keys replace them (20 Nov ~18:20):
+  - **OpenAI Team Key** (OpenAI): 07, 31 (Person 1); 10, 11, 15, 16, 18 (Person 2).
+  - **Brave Search account** (Brave Search API): 09 Find websites (web search), 11 Days ahead (news search).
+  - **handelsregister.ai** (Header Auth): 12 Registry check (search, fetch company, founder's other companies).
+  - **xi-api-key** (ElevenLabs, Header Auth): 06 podcast transcripts.
 - Every fetch is gentle: one page every 2 s.
 
 ## Traces so far (20 Nov, 14:50)
