@@ -21,6 +21,7 @@ and so a flow can be rebuilt if someone breaks it. **n8n itself is the live copy
 | 31 | Accelerators and competitions -> Traces | `nHxaczLdIVLQzAC2` | Person 1 | 28 public cohort / winner pages across Germany (UnternehmerTUM batch, BayStartUP, Start-up BW, CyberLab, Hessen Ideen, TechQuartier, Pioniergeist, Saarland, KUER.NRW, MUT NRW, NBank, Bremen, AI.STARTUP.HUB Hamburg, KfW Award, Deutscher Gründerpreis, German Startup Awards, futureSAX, ExciteLab, ThEx …) → OpenAI reads each page (gateway credits) → one trace per startup. trace_id `cohort:<host>:<slug>`, **source `accelerator`**. 301 startups on the first run. Skips unchanged pages like 07 (Page memory) |
 | 32 | Remove duplicate traces | `l8SnodVexcqO2HXs` | Person 1 | Same source + same listing page + same company name (ignoring GmbH, .ai, Technologies…) → keeps the oldest row, removes the others **only if still `new`**. The same company in two different sources is kept (convergence). First run removed 5 TUM double pages (Futurail, Oceanflight, Caire, OmicsDiscoveries, EASE) |
 | 10–19 | Make leads, days ahead, … | `jLWKNwEC08SHfAfP`, … | Person 2 (Nils) | Screening and eligibility: Traces → Leads. Their code lives in n8n |
+| 39 | App check | `TFPplznOSk0566db` | Person 1 | `POST /webhook/htgf-automation` → answers `{ ok, flow, received, at }`. The app's `/api/automation` (`N8N_WEBHOOK_URL_MAIN`) and the `/test` panel use it to check the app reaches n8n. Published |
 | 20 | Leads for the screen | `qd840KXqIoUEnbxl` | Person 3 (set up by Amli) | Read-only link `GET /webhook/htgf-leads`: every lead + date, source, link and title of the traces behind it. The app's `/proof/live` and `/api/leads` read it (`lib/n8n.js` → `getLeads`). **Works only while published** |
 
 Person 1 owns 00–09 and 30–39 (more sources). One owner per workflow: n8n does not merge edits, the last save wins. Every source flow has three triggers: Run by hand, Called by Run all, Run from demo (webhook path = the flow's name, e.g. `/webhook/tum-venture-labs`).
@@ -39,7 +40,7 @@ What screening should know about the rows:
   - `recording`: a podcast episode; `people` is empty, names are in the show notes and transcript (Speaker 0/1, the host is Kyrill Ring on PITCH & PEOPLE). `org_name` is the episode topic, which can be an investor or an association (Start Munich, Women in Business e.V.), not a startup. Those should not end up `vc_backable`.
 - Text is at most 5000 characters, 12000 for an episode with a transcript.
 
-## Setting `N8N_WEBHOOK_URL_MAIN` (Amli sets it up, 20 Nov ~20:50: flow "39 App check", path `htgf-automation`)
+## Setting `N8N_WEBHOOK_URL_MAIN` (done 20 Nov ~21:15: flow "39 App check" `TFPplznOSk0566db`, published, path `htgf-automation`)
 Not needed for the demo. Only the `/test` panel's "n8n → /api/automation" button uses it: `/api/automation` → `lib/n8n.js` `trigger()` sends a **POST** with a JSON body to this URL and shows the answer. Empty = the button answers the mock (`mocked: true`), which is harmless. No flow listens for it yet; 00 Run all's `/webhook/run-all` is GET only and starts a ~14 min run, so don't use that one.
 
 Step by step, once there is a flow for it:
