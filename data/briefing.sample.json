@@ -1,46 +1,46 @@
 {
- "note": "Fallback for /api/briefing (n8n or ElevenLabs down, or USE_MOCKS=true). Built from the live Leads table and /api/funnel; audio of the en script: data/briefing.sample.mp3.",
- "as_of": "2026-11-20T19:26:43.294Z",
- "rendered_at": "2026-11-20T19:30:44.336Z",
+ "note": "Fallback for /api/briefing (n8n or ElevenLabs down, or USE_MOCKS=true). Built from the live Leads table and /api/funnel, spoken by n8n flow 45; audio of the en script: data/briefing.sample.mp3.",
+ "as_of": "2026-11-20T19:41:27.015Z",
+ "rendered_at": "2026-11-20T19:41:55.131Z",
  "audio_lang": "en",
  "by_lang": {
   "en": {
    "lang": "en",
-   "script": "We read 1,259 public traces, 153 became leads, 25 passed every gate, and 1 is worth a call now. Today's top 5. Number one: OmicsDiscoveries, Munich. AI-based bioinformatics SaaS for RNA-focused rare disease diagnostics. Worth a call: fit 71, team 69. Number two: Coby, Munich. KI-Plüschbegleiter für Kinder zur Unterstützung bei Gefühlen und Routinen. Fit 81, team still unknown. Still invisible: no press 65 days after our first trace. Number three: Vyoma, Munich. Startup building its own satellites to improve security. Fit 80, team still unknown. We found them 42 days before the press. Number four: SynthesEyes, Munich. Surgery training and simulation system powered by generative AI. Fit 78, team still unknown. We found them 811 days before the press. Number five: NutriSen, Munich. Lab-precise sensors combining remote and on-field data. Fit 78, team still unknown. We found them 576 days before the press. That's the briefing.",
+   "script": "We read 1,259 public traces, 153 became leads, 22 passed every gate, and 1 is worth a call now. Today's top 5. Number one: OmicsDiscoveries, Munich. AI-based bioinformatics SaaS. Worth a call: fit 71, team 69. Number two: Coby, Munich. KI-Plüschbegleiter für Kinder. Fit 81, team still unknown. Still no press, 65 days after our first trace. Number three: Vyoma, Munich. Startup building its own satellites. Fit 80, team still unknown. Found 42 days before the press. Number four: SynthesEyes, Munich. Surgery training and simulation system. Fit 78, team still unknown. Found 811 days before the press. Number five: NutriSen, Munich. Lab-precise sensors. Fit 78, team still unknown. Found 576 days before the press. That's the briefing.",
    "segments": [
     {
-     "text": "We read 1,259 public traces, 153 became leads, 25 passed every gate, and 1 is worth a call now. Today's top 5."
+     "text": "We read 1,259 public traces, 153 became leads, 22 passed every gate, and 1 is worth a call now. Today's top 5."
     },
     {
      "lead_key": "omicsdiscoveries",
-     "text": "Number one: OmicsDiscoveries, Munich. AI-based bioinformatics SaaS for RNA-focused rare disease diagnostics. Worth a call: fit 71, team 69."
+     "text": "Number one: OmicsDiscoveries, Munich. AI-based bioinformatics SaaS. Worth a call: fit 71, team 69."
     },
     {
      "lead_key": "coby",
-     "text": "Number two: Coby, Munich. KI-Plüschbegleiter für Kinder zur Unterstützung bei Gefühlen und Routinen. Fit 81, team still unknown. Still invisible: no press 65 days after our first trace."
+     "text": "Number two: Coby, Munich. KI-Plüschbegleiter für Kinder. Fit 81, team still unknown. Still no press, 65 days after our first trace."
     },
     {
      "lead_key": "vyoma",
-     "text": "Number three: Vyoma, Munich. Startup building its own satellites to improve security. Fit 80, team still unknown. We found them 42 days before the press."
+     "text": "Number three: Vyoma, Munich. Startup building its own satellites. Fit 80, team still unknown. Found 42 days before the press."
     },
     {
      "lead_key": "syntheseyes",
-     "text": "Number four: SynthesEyes, Munich. Surgery training and simulation system powered by generative AI. Fit 78, team still unknown. We found them 811 days before the press."
+     "text": "Number four: SynthesEyes, Munich. Surgery training and simulation system. Fit 78, team still unknown. Found 811 days before the press."
     },
     {
      "lead_key": "nutrisen",
-     "text": "Number five: NutriSen, Munich. Lab-precise sensors combining remote and on-field data. Fit 78, team still unknown. We found them 576 days before the press."
+     "text": "Number five: NutriSen, Munich. Lab-precise sensors. Fit 78, team still unknown. Found 576 days before the press."
     },
     {
      "text": "That's the briefing."
     }
    ],
-   "words": 147,
+   "words": 117,
    "est_seconds": 59,
    "funnel": {
     "traces": 1259,
     "leads": 153,
-    "survivors": 25,
+    "survivors": 22,
     "call_now": 1
    },
    "leads": [
@@ -95,45 +95,45 @@
      "still_invisible": false
     }
    ],
-   "script_hash": "0849a38e3574c3c6"
+   "script_hash": "436d0c12b6476441"
   },
   "de": {
    "lang": "de",
-   "script": "Wir haben 1.259 öffentliche Spuren gelesen, 153 wurden Leads, 25 haben alle Prüfungen bestanden und 1 ist jetzt einen Anruf wert. Die Top 5 von heute. Nummer eins: OmicsDiscoveries aus München. AI-based bioinformatics SaaS. Einen Anruf wert: Fit 71, Team 69. Nächster Schritt: Call this week. Nummer zwei: Coby aus München. KI-Plüschbegleiter für Kinder zur Unterstützung. Fit 81, Team noch unbekannt. Noch unsichtbar: keine Presse, 65 Tage nach unserer ersten Spur. Nummer drei: Vyoma aus München. Startup building its own satellites. Fit 80, Team noch unbekannt. Wir haben sie 42 Tage vor der Presse gefunden. Nummer vier: SynthesEyes aus München. Surgery training and simulation system. Fit 78, Team noch unbekannt. Wir haben sie 811 Tage vor der Presse gefunden. Nummer fünf: NutriSen aus München. Lab-precise sensors combining remote. Fit 78, Team noch unbekannt. Wir haben sie 576 Tage vor der Presse gefunden. Das war das Briefing.",
+   "script": "Wir haben 1.259 öffentliche Spuren gelesen, 153 wurden Leads, 22 haben alle Prüfungen bestanden und 1 ist jetzt einen Anruf wert. Die Top 5 von heute. Nummer eins: OmicsDiscoveries aus München. AI-based bioinformatics SaaS. Einen Anruf wert: Fit 71, Team 69. Nummer zwei: Coby aus München. KI-Plüschbegleiter für Kinder. Fit 81, Team noch unbekannt. Noch keine Presse, 65 Tage nach unserer ersten Spur. Nummer drei: Vyoma aus München. Startup building its own satellites. Fit 80, Team noch unbekannt. 42 Tage vor der Presse gefunden. Nummer vier: SynthesEyes aus München. Surgery training and simulation system. Fit 78, Team noch unbekannt. 811 Tage vor der Presse gefunden. Nummer fünf: NutriSen aus München. Lab-precise sensors. Fit 78, Team noch unbekannt. 576 Tage vor der Presse gefunden. Das war das Briefing.",
    "segments": [
     {
-     "text": "Wir haben 1.259 öffentliche Spuren gelesen, 153 wurden Leads, 25 haben alle Prüfungen bestanden und 1 ist jetzt einen Anruf wert. Die Top 5 von heute."
+     "text": "Wir haben 1.259 öffentliche Spuren gelesen, 153 wurden Leads, 22 haben alle Prüfungen bestanden und 1 ist jetzt einen Anruf wert. Die Top 5 von heute."
     },
     {
      "lead_key": "omicsdiscoveries",
-     "text": "Nummer eins: OmicsDiscoveries aus München. AI-based bioinformatics SaaS. Einen Anruf wert: Fit 71, Team 69. Nächster Schritt: Call this week."
+     "text": "Nummer eins: OmicsDiscoveries aus München. AI-based bioinformatics SaaS. Einen Anruf wert: Fit 71, Team 69."
     },
     {
      "lead_key": "coby",
-     "text": "Nummer zwei: Coby aus München. KI-Plüschbegleiter für Kinder zur Unterstützung. Fit 81, Team noch unbekannt. Noch unsichtbar: keine Presse, 65 Tage nach unserer ersten Spur."
+     "text": "Nummer zwei: Coby aus München. KI-Plüschbegleiter für Kinder. Fit 81, Team noch unbekannt. Noch keine Presse, 65 Tage nach unserer ersten Spur."
     },
     {
      "lead_key": "vyoma",
-     "text": "Nummer drei: Vyoma aus München. Startup building its own satellites. Fit 80, Team noch unbekannt. Wir haben sie 42 Tage vor der Presse gefunden."
+     "text": "Nummer drei: Vyoma aus München. Startup building its own satellites. Fit 80, Team noch unbekannt. 42 Tage vor der Presse gefunden."
     },
     {
      "lead_key": "syntheseyes",
-     "text": "Nummer vier: SynthesEyes aus München. Surgery training and simulation system. Fit 78, Team noch unbekannt. Wir haben sie 811 Tage vor der Presse gefunden."
+     "text": "Nummer vier: SynthesEyes aus München. Surgery training and simulation system. Fit 78, Team noch unbekannt. 811 Tage vor der Presse gefunden."
     },
     {
      "lead_key": "nutrisen",
-     "text": "Nummer fünf: NutriSen aus München. Lab-precise sensors combining remote. Fit 78, Team noch unbekannt. Wir haben sie 576 Tage vor der Presse gefunden."
+     "text": "Nummer fünf: NutriSen aus München. Lab-precise sensors. Fit 78, Team noch unbekannt. 576 Tage vor der Presse gefunden."
     },
     {
      "text": "Das war das Briefing."
     }
    ],
-   "words": 146,
-   "est_seconds": 58,
+   "words": 127,
+   "est_seconds": 64,
    "funnel": {
     "traces": 1259,
     "leads": 153,
-    "survivors": 25,
+    "survivors": 22,
     "call_now": 1
    },
    "leads": [
@@ -188,7 +188,7 @@
      "still_invisible": false
     }
    ],
-   "script_hash": "b47fc243a740e0fd"
+   "script_hash": "3ded709ea5308e7d"
   }
  }
 }

@@ -4,11 +4,12 @@ import path from "node:path";
 import briefingSample from "@/data/briefing.sample.json";
 import funnelSample from "@/data/funnel.sample.json";
 import { buildBriefing, scriptHash } from "@/lib/voice/briefing";
-import { TTS_MODEL_ID, tts } from "@/lib/voice/elevenlabs";
+import { TTS_MODEL_ID } from "@/lib/voice/elevenlabs";
 
 // GET /api/briefing?lang=en|de&format=json|audio[&source=sample]
 // Spoken top-5 briefing: the top leads (call_now first, then by priority) and the funnel totals, as a script
-// written in code (no model), spoken by ElevenLabs. Audio is cached by a hash of the script in data/briefing-cache/.
+// written in code (no model), spoken by ElevenLabs through n8n flow "45 Text to speech" (N8N_TTS_URL; the key lives in
+// the n8n credential "xi-api-key"). Audio is cached by a hash of the script in data/briefing-cache/, checked before n8n.
 // Fallback (n8n or ElevenLabs down, USE_MOCKS=true, or source=sample): data/briefing.sample.json and
 // data/briefing.sample.mp3, with mocked: true (header X-Mocked: true on audio). If there is no sample mp3 either,
 // format=audio answers JSON { mocked: true, script } so the screen can speak it with speechSynthesis.
@@ -19,6 +20,7 @@ const TIMEOUT_MS = 8_000;
 const TTS_TIMEOUT_MS = 20_000;
 const LEADS_URL_DEFAULT = "https://floaters.app.n8n.cloud/webhook/htgf-leads";
 const FUNNEL_URL_DEFAULT = "https://floaters.app.n8n.cloud/webhook/htgf-funnel";
+const TTS_URL_DEFAULT = "https://floaters.app.n8n.cloud/webhook/htgf-tts";
 const CACHE_DIR = path.join(process.cwd(), "data", "briefing-cache");
 const SAMPLE_MP3 = path.join(process.cwd(), "data", "briefing.sample.mp3");
 const LANGS = ["en", "de"];
@@ -61,7 +63,7 @@ async function makeBriefing(lang, forceSample) {
     const [{ leads, as_of }, { funnel, error: funnelError }] = await Promise.all([liveLeads(), liveFunnel()]);
     const b = buildBriefing({ leads, funnel, lang });
     if (!b.leads.length) throw new Error("no lead passed the gates (call_now, watchlist, needs_enrichment)");
-    const voiceId = process.env.ELEVENLABS_VOICE_ID || "";
+    const voiceId = process.env.ELEVENLABS_VOICE_ID || "n8n-default";
     return {
       lang,
       ...b,
@@ -122,16 +124,40 @@ async function sampleAudio(lang, reason) {
   return Response.json({ ...b, audio: null, error: [reason, "no data/briefing.sample.mp3: speak the script with speechSynthesis"].filter(Boolean).join("; ") });
 }
 
+// n8n flow "45 Text to speech": POST { text, voice_id?, hash } -> audio/mpeg (400 / 502 JSON on errors).
+async function speakViaN8n(b) {
+  const res = await fetch(process.env.N8N_TTS_URL || TTS_URL_DEFAULT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: b.script, hash: b.script_hash, ...(process.env.ELEVENLABS_VOICE_ID && { voice_id: process.env.ELEVENLABS_VOICE_ID }) }),
+    cache: "no-store",
+    signal: AbortSignal.timeout(TTS_TIMEOUT_MS),
+  });
+  const type = res.headers.get("content-type") || "";
+  if (!res.ok || !type.includes("audio")) {
+    const detail = type.includes("json") ? (await res.json().catch(() => ({}))).error : "";
+    throw new Error(`webhook returned ${res.status}${detail ? ` (${detail})` : ""}`);
+  }
+  const audio = Buffer.from(await res.arrayBuffer());
+  if (audio.length < 1000) throw new Error(`webhook returned only ${audio.length} bytes`);
+  return audio;
+}
+
 async function briefingAudio(b) {
   if (b.source === "sample") return sampleAudio(b.lang, b.error);
 
   const cached = await readCache(b.script_hash);
   if (cached) return audioResponse(cached, b, { "X-Cache": "hit" });
 
-  const result = await tts(b.script, { timeoutMs: TTS_TIMEOUT_MS });
-  if (!result.audio || result.mocked) return sampleAudio(b.lang, result.error || "ElevenLabs returned no audio");
-  await writeCache(b.script_hash, result.audio);
-  return audioResponse(result.audio, b, { "X-Cache": "miss" });
+  let audio;
+  try {
+    audio = await speakViaN8n(b);
+  } catch (err) {
+    console.warn("[briefing] n8n text to speech failed, serving the sample mp3:", err.message);
+    return sampleAudio(b.lang, `n8n text to speech failed: ${err.message}`);
+  }
+  await writeCache(b.script_hash, audio);
+  return audioResponse(audio, b, { "X-Cache": "miss" });
 }
 
 export async function GET(request) {
