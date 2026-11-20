@@ -38,6 +38,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
+- Nils: design build (DESIGN.md), touching app/, components/, lib/n8n.js with Meto's and Amli's OK.
 - Amli: sources done for now (01–09, 30, 31 in Run all); 09 Find websites raised to 50 names per run (20 Nov ~20:05); next: reliability, Eventbrite from the laptop.
 - Amli: full end-to-end run done with scoring v3 (see Done); next: publish flow 20 and check `/proof/live` on :4000.
 
