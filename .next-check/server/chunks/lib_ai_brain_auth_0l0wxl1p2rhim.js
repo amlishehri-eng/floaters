@@ -1,0 +1,3 @@
+module.exports=[71903,r=>{"use strict";async function e(r){try{let e=await r.json();if(e&&"object"==typeof e&&!Array.isArray(e))return{body:e}}catch{}return{error:Response.json({error:"Body must be a JSON object"},{status:400})}}r.s(["r",0,function(r){let e=process.env.BRAIN_API_KEY;return e&&r.headers.get("x-brain-key")!==e?Response.json({error:"missing or wrong x-brain-key header"},{status:401}):null},"Q",0,e])}];
+
+//# sourceMappingURL=lib_ai_brain_auth_0l0wxl1p2rhim.js.map

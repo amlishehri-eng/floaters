@@ -1,6 +1,6 @@
 import SiteNav from "@/components/ff/site-nav";
 import { getFunnel, getLeads } from "@/lib/n8n";
-import { dayTime, lowerFirst, sourceHint } from "@/lib/screen/format";
+import { dayTime, sourceHint } from "@/lib/screen/format";
 import { honestFunnel } from "@/lib/screen/funnel";
 import Link from "next/link";
 import "./funnel.css";
@@ -12,6 +12,9 @@ export const metadata = {
   title: "Funnel | Founders First",
   description: "How a few thousand faint signals become a short call list, and what each step costs.",
 };
+
+// "21 November, 21:58 to 00:44" in Berlin time.
+const runWhen = (r) => `Run of ${dayTime(r.start)} to ${dayTime(r.end).split(", ")[1] || dayTime(r.end)}.`;
 
 export default async function FunnelPage() {
   const [funnel, leadsData] = await Promise.all([getFunnel(), getLeads()]);
@@ -32,33 +35,25 @@ export default async function FunnelPage() {
         <div className="fd-wrap">
           <section aria-label="Stages" className="fu-stages">
             {v.stages.map((s) => (
-              <div key={s.label} className={`fu-stage${s.filteredHref ? " fd-stage" : ""}`}>
+              <div key={s.label} className="fu-stage">
                 <span className="fu-stage__label">{s.label}</span>
                 <span className="fu-stage__beam">
                   <span className="fd-beam" style={{ width: `${s.pct}%`, background: s.color, boxShadow: s.glow, color: s.ink, "--drop": `${s.dropPct || 0}%` }}>
                     {s.n}
-                    {s.filteredHref && (
-                      <span className="fd-dots" aria-hidden="true">
-                        {Array.from({ length: Math.min(s.dropped, 60) }, (_, i) => <span key={i} className="fd-dot" style={{ "--i": i }} />)}
-                      </span>
-                    )}
                   </span>
                 </span>
-                <span className="fu-stage__cost">
-                  {s.cost}
-                  {s.filteredHref && (
-                    <Link href={s.filteredHref} className="fd-link">
-                      {s.dropped} stopped here<span className="ff-sr-only">, between {lowerFirst(s.label)} and {lowerFirst(s.next)}</span>
-                    </Link>
-                  )}
-                </span>
+                <span className="fu-stage__cost">{s.cost}</span>
               </div>
             ))}
           </section>
-          <p className="fu-note fd-hint">
-            {v.diveNote || "From the HTGF gates down, every stage shows who stopped there and why."}
-            {v.problems?.length ? ` Mismatch in the funnel: ${v.problems.join("; ")}.` : ""}
-          </p>
+          <div className="fd-report">
+            {v.diveNote ? (
+              <p className="fu-note fd-hint">{v.diveNote}</p>
+            ) : (
+              <Link href="/proof/funnel/filtered?stage=all" className="ff-btn fd-report__btn">See the full report</Link>
+            )}
+            {v.problems?.length ? <p className="fu-note fd-hint">Mismatch in the funnel: {v.problems.join("; ")}.</p> : null}
+          </div>
         </div>
 
         <section className="fu-cols">
@@ -82,7 +77,8 @@ export default async function FunnelPage() {
             <p className="fu-note">{when ? `Counted from the Leads table at ${when}.` : "Counted from the Leads table."}</p>
           </div>
           <div className="fu-col fu-col--costs">
-            <h2>What it costs</h2>
+            <h2>What the last run cost</h2>
+            {v.run && <p className="fu-note fu-run">{runWhen(v.run)}</p>}
             {v.costs.map((c) => (
               <div key={c.label} className="fu-cost">
                 <span style={{ color: c.color }}>{c.n}</span>

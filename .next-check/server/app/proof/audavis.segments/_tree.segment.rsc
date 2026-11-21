@@ -1,4 +1,4 @@
-:HL["/_next/static/chunks/16_ptudkwgq0t.css","style"]
+:HL["/_next/static/chunks/2f0_hhn3-m9dz.css","style"]
 :HL["/_next/static/chunks/0k7g0j69no2mn.css","style"]
 :HL["/_next/static/chunks/1s_pos1nmwqt9.css","style"]
 :HL["/_next/static/media/6ebe0aef87bfe15f-s.p.1zjat_zsa1d11.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
@@ -9,4 +9,4 @@
 3:[["children",{"s":{"n":"slug","t":"d","k":"audavis","s":["candidates","company","demo","funnel","labs","live","methodology","portfolio","saved","search"]},"h":96,"c":"$Q4"}]]
 2:[["children",{"s":"(legacy)","h":96,"c":"$Q3"}]]
 1:[["children",{"s":"proof","h":96,"c":"$Q2"}]]
-0:{"b":"Y2MWhVlotJmRHVDgwAfH1","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"Rtu7wAClGNQPV08r62Myg","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

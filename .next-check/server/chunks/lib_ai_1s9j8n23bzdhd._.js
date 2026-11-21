@@ -1,0 +1,49 @@
+module.exports=[97568,e=>{"use strict";e.s(["r",0,5,"h",0,["hobby","agency","assignment","vc_backable"],"l",0,1500,"Y",0,30,"b",0,2e4,"A",0,["looking_for_cofounder","first_pilot_customer","planning_to_raise","grant_or_award","hiring_first_engineer","other"],"s",0,["founder","researcher","student","speaker","other"],"z",0,["digital tech","industrial tech","life sciences","chemistry","other"],"H",0,.85,"O",0,["unknown","idea","prototype","pilot customers","revenue"],"v",0,{fit:70,team:60}])},13648,10114,e=>{"use strict";var t=e.i(94981),n=e.i(34033),r=e.i(97568);let a={ä:"ae",ö:"oe",ü:"ue",ß:"ss",æ:"ae",ø:"oe",å:"aa"};function o(e){return String(e??"").toLowerCase().replace(/[äöüßæøå]/g,e=>a[e]).normalize("NFD").replace(/[̀-ͯ]/g,"")}function i(e){return o(e).replace(/\b(dr|prof|phd|msc|bsc|mr|mrs|ms)\b\.?/g," ").replace(/[^a-z0-9 ]+/g," ").replace(/\s+/g," ").trim()}function s(e){return e&&String(e).trim().toLowerCase().replace(/^https?:\/\//,"").replace(/^(www\.)?(github\.com|huggingface\.co)\//,"").replace(/^@/,"").split(/[/?#\s]/)[0]||null}let l=/\b(gmbh|ug|haftungsbeschraenkt|ag|se|kg|ohg|gbr|ev|inc|ltd|llc|corp|co|bv|sas|sarl)\b/g;function c(e,t=null){if(null==e||""===e)return t;if("string"!=typeof e)return e;try{return JSON.parse(e)}catch{return t}}function u(e){let t=c(e,e);return(Array.isArray(t)?t:String(t??"").split(/[\n,;]+/).map(e=>e.trim())).map(e=>{if(e&&"object"==typeof e)return{name:e.name||null,handle:s(e.handle)};let t=String(e??"").trim();if(!t)return null;let n=t.match(/@([\w.-]+)/)?.[1]||null;return{name:t.replace(/\(?@[\w.-]+\)?/g,"").replace(/[()]/g,"").trim()||n,handle:s(n)}}).filter(e=>e&&(e.name||e.handle))}e.s(["r",0,function(e,t){return Math.round((Date.parse(t)-Date.parse(e))/864e5)},"$",0,function(e){let t=new Map;for(let n of e)null!=n&&""!==n&&t.set(n,(t.get(n)||0)+1);let n=null;for(let[e,r]of t)(null===n||r>t.get(n))&&(n=e);return n},"g",0,function(e){let t=i(e);return"muenchen"===t?"munich":t},"y",0,s,"F",0,i,"G",0,function(e){return o(e).replace(/&/g," and ").replace(/[^a-z0-9 ]+/g," ").replace(l," ").replace(/\s+/g,"").trim()},"o",0,c,"Z",0,u,"O",0,function(e,t){if(!e||!t)return 0;if(e===t)return 1;let n=Array.from({length:t.length+1},(e,t)=>t);for(let r=1;r<=e.length;r++){let a=n[0];n[0]=r;for(let o=1;o<=t.length;o++){let i=n[o];n[o]=Math.min(n[o]+1,n[o-1]+1,a+ +(e[r-1]!==t[o-1])),a=i}}return 1-n[t.length]/Math.max(e.length,t.length)},"J",0,function(e){return o(e).replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,60)},"W",0,function(e){return!0===e||!1===e?e:null==e||""===e?null:"true"===String(e).toLowerCase()},"j",0,function(e){if(!e)return null;let t=String(e);if(/^\d{4}-\d{2}-\d{2}/.test(t))return t.slice(0,10);let n=new Date(t);return Number.isNaN(n.getTime())?null:n.toISOString().slice(0,10)},"L",0,function(e){if(null==e||""===e)return null;let t=Number(e);return Number.isFinite(t)?t:null}],10114);let h={type:"string"},m={type:["string","null"]},p=e=>({type:"object",additionalProperties:!1,required:Object.keys(e),properties:e}),d=p({projects:{type:"array",items:p({name:m,what:m,sector:{type:"string",enum:r.z},city:m,country:m,stage:{type:"string",enum:r.O},people:{type:"array",items:p({name:h,handle:m,role:{type:"string",enum:r.s},affiliation:m,links:{type:"array",items:h}})},quotes:{type:"array",items:p({text:h,timestamp:m,kind:{type:"string",enum:r.A}})},funding_mentioned:p({mentioned:{type:"boolean"},what:m})})}});async function g(e,a){let o,{data:i,usage:s}=await a({step:"extract",model:t.s,effort:"low",system:n.y,input:(o=u(e.people).map(e=>e.handle?`${e.name} (@${e.handle})`:e.name).join(", "),[`source: ${e.source||"unknown"}`,`url: ${e.url||""}`,`happened_at: ${e.happened_at||""}`,`title: ${e.title||""}`,`org_name: ${e.org_name||""}`,`city: ${e.city||""}`,`people listed by the scout: ${o}`,"\ntext:",String(e.text||"").slice(0,r.b)].join("\n")),schema:d,name:"extraction",trace:e});if(!i||!Array.isArray(i.projects))throw Error("extraction has no projects array");return{extraction:i,usage:s}}e.s(["f",0,g],13648)},34033,e=>{"use strict";let t={germany:{max:20,label:"based in Germany (any city counts the same)"},sector:{max:25,label:"an HTGF sector (digital tech, industrial tech, life sciences, chemistry)"},tech_depth:{max:25,label:"technical depth (hard to copy: research, hardware, novel models, IP)"},stage:{max:15,label:"seed stage or earlier"},no_funding:{max:15,label:"no institutional funding announced yet"}},n={technical_founder:{max:30,label:"a technical founder"},complementary_roles:{max:20,label:"complementary roles (tech + business/domain)"},worked_together:{max:20,label:"worked together before (same lab, same repo, same team)"},deep_research:{max:15,label:"PhD or deep research background"},earlier_startup:{max:15,label:"an earlier startup"}},r=e=>Object.entries(e).map(([e,t])=>`- ${e} (0 to ${t.max}): ${t.label}`).join("\n"),a=`You read one "trace": a thing our engine found in the world (an event page, a pitch recording transcript, a GitHub or Hugging Face page, a university news item). Pull out every project or team in it that could one day become a startup.
+
+Rules:
+- One trace can contain several projects (a demo day lists many pitches). Return one entry per project. Return an empty list if there is none.
+- Ignore hosts, moderators, jury members and keynote speakers who are not tied to a project.
+- name: the project or company name as written (keep suffixes like GmbH), or null if none is given.
+- what: one sentence, what they build and for whom. Only from the text.
+- sector: digital tech | industrial tech | life sciences | chemistry | other.
+- stage: idea | prototype | pilot customers | revenue | unknown. Use the strongest stage the text supports.
+- people: everyone tied to the project. handle = GitHub or Hugging Face handle without "@" (null if none). role: founder | researcher | student | speaker | other. affiliation: university, lab or company (e.g. "TUM", "LMU", "Siemens"), or null. links: URLs given for that person, else [].
+- quotes: sentences that matter for an investor, copied word for word. timestamp = the recording timestamp like "12:04" if the text has one, else null. kind:
+  - looking_for_cofounder: "we're looking for a technical co-founder"
+  - first_pilot_customer: a first pilot, LOI or paying customer
+  - planning_to_raise: "we plan to raise a pre-seed round"
+  - grant_or_award: EXIST, a prize, a hackathon win, an accelerator place
+  - hiring_first_engineer: hiring the first employees
+  - other: anything else an investor would want to read
+- funding_mentioned: mentioned = true only if investor money (a round, business angels, a VC) is mentioned; what = the sentence or a short summary. Grants and prizes are quotes, not funding.
+- city and country: where the team is based (country as ISO code, e.g. "DE"), or null.
+- Never invent facts. Use null when the text doesn't say.`,o=`You are the noise filter of an early-stage deep-tech scouting engine for a seed investor (HTGF). You get the combined evidence about one team, collected from several public sources. Give it exactly one label and a one-line reason that names the clue you used.
+
+Label | Typical clues
+assignment | a course or seminar name, "Praktikum", supervised by a chair, ends with the semester (e.g. "WS26", "SoSe")
+agency | builds for clients: "we develop apps for you", services, projects for customers, day rates
+hobby | one person, no users, "for fun", "side project", no plan to build a company
+vc_backable | a product for a market, a team of two or more, technical depth, intent to start a company (grants like EXIST, pitching at demo days, looking for co-founders, planning to raise)
+
+When in doubt between vc_backable and another label, pick the other label: investors' time is expensive.
+Keep the reason under 20 words.`,i=`You score one team for HTGF, a German seed investor. Use only the evidence given. For every criterion give points (an integer from 0 to the maximum) and a one-line "why" that names the evidence. No evidence for a criterion means low points.
+
+fit_score criteria:
+${r(t)}
+
+team_score criteria:
+${r(n)}
+
+Then write fit_reason and team_reason: one line each (under 25 words), the main reason for that score, for a lead card an investor reads in 5 seconds.`,s=`You check whether a young team is already publicly known. Search the web and news for the project name and the founder names together.
+
+Find the FIRST dated public mention of this team in one of these:
+- news articles or press (incl. startup media like Gr\xfcnderszene, Deutsche Startups, TechCrunch, local newspapers)
+- a Crunchbase or Dealroom profile
+- a funding announcement (investor or company press release)
+
+These do NOT count (they are our own sources): event listings (Luma, Eventbrite, Meetup), incubator or accelerator batch pages, university pages and university news, GitHub, Hugging Face, the team's own website, LinkedIn posts.
+
+Make sure the mention is about this exact team, not a company with a similar name.
+Return first_public_at as YYYY-MM-DD (null if nothing counts), first_public_url (null if none), on_crunchbase (a Crunchbase or Dealroom profile exists), funding_announced (an investment round was announced), and a one-line note on what you found.`;e.s(["g",0,s,"y",0,a,"N",0,o,"W",0,t,"b",0,"Two records were found in different public sources. Decide whether they are the same person (or the same project). Similar names alone are not enough: look at affiliation, city, project, handles and what they build. Answer same = true only if you are fairly sure. Give a one-line why.","h",0,i,"z",0,n])}];
+
+//# sourceMappingURL=lib_ai_1s9j8n23bzdhd._.js.map

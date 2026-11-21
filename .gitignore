@@ -41,6 +41,7 @@ next-env.d.ts
 
 # Feedback votes kept locally when n8n is unreachable (/api/feedback)
 data/feedback.local.json
+data/outreach.local.json
 
 # Rendered briefing audio, cached by script hash (/api/briefing)
 data/briefing-cache/

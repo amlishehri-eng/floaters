@@ -121,6 +121,18 @@
       "namedRegex": "^/api/leads(?:/)?$"
     },
     {
+      "page": "/api/outreach",
+      "regex": "^/api/outreach(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/outreach(?:/)?$"
+    },
+    {
+      "page": "/api/outreach/contacted",
+      "regex": "^/api/outreach/contacted(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/outreach/contacted(?:/)?$"
+    },
+    {
       "page": "/api/voice/stt",
       "regex": "^/api/voice/stt(?:/)?$",
       "routeKeys": {},

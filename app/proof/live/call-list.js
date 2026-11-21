@@ -1,14 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useCallback, useState } from "react";
+import { PlayerBar, useBriefingPlayer } from "./briefing-player";
+import OutreachSheet from "./outreach-sheet";
 import CriteriaRows from "@/components/ff/criteria-rows";
 import { downloadMemo } from "../(legacy)/proof-dashboard";
 
 // Call list (design/reference/call-list.dc.html): lead rows on the left, the detail sheet on the right.
 // All values arrive prepared by lib/screen/call-list.js; this file only renders and handles the buttons.
 
-function Row({ row, selected, onPick }) {
+const shortDay = (iso) => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", timeZone: "Europe/Berlin" }).format(new Date(iso));
+
+function Row({ row, selected, onPick, contactedAt }) {
   return (
     <button type="button" className="cl-row" aria-pressed={selected} onClick={onPick} data-selected={selected || undefined}>
       <span className="cl-row__top">
@@ -27,6 +31,7 @@ function Row({ row, selected, onPick }) {
         <span>Team <strong>{row.team}</strong></span>
         <span>Timing <strong>{row.timing}</strong></span>
       </span>
+      {contactedAt && <span className="cl-row__contacted">Contacted {shortDay(contactedAt)}</span>}
     </button>
   );
 }
@@ -64,47 +69,6 @@ function Spec({ title, aside, children }) {
   );
 }
 
-function useBriefing() {
-  const [state, setState] = useState({ busy: false, note: "" });
-  const audio = useRef(null);
-  async function play() {
-    if (audio.current && !audio.current.paused) {
-      audio.current.pause();
-      setState({ busy: false, note: "Briefing paused." });
-      return;
-    }
-    setState({ busy: true, note: "Loading the briefing…" });
-    try {
-      const res = await fetch("/api/briefing?format=audio");
-      const type = res.headers.get("content-type") || "";
-      if (type.includes("audio/")) {
-        const url = URL.createObjectURL(await res.blob());
-        audio.current = new Audio(url);
-        audio.current.onended = () => setState({ busy: false, note: "Briefing finished." });
-        await audio.current.play();
-        const from = res.headers.get("x-briefing-source");
-        const note = from === "sample"
-          ? "Playing the recorded sample briefing, today’s could not be made."
-          : from === "snapshot"
-            ? "Playing the briefing on the snapshot leads, n8n not reachable."
-            : "Playing today’s briefing.";
-        setState({ busy: false, note });
-        return;
-      }
-      const j = await res.json();
-      if (j.script && typeof window !== "undefined" && window.speechSynthesis) {
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(j.script));
-        setState({ busy: false, note: "No audio available, so your browser reads the briefing aloud." });
-        return;
-      }
-      throw new Error(j.error || `briefing answered ${res.status}`);
-    } catch (err) {
-      setState({ busy: false, note: `The briefing could not play: ${err.message}.` });
-    }
-  }
-  return { ...state, play };
-}
-
 // Good lead / Not a fit -> /api/feedback. The route clears the Candidates cache, so the page is current on the next visit.
 function useFeedback() {
   const [note, setNote] = useState({});
@@ -127,7 +91,7 @@ function useFeedback() {
   return { note, vote };
 }
 
-function Detail({ s, feedback }) {
+function Detail({ s, feedback, onDraft, contactedAt }) {
   return (
     <article aria-label="Lead detail" className="cl-sheet">
       <div className="cl-head">
@@ -238,6 +202,8 @@ function Detail({ s, feedback }) {
       <div className="cl-actions">
         <button type="button" className="ff-btn cl-btn22" onClick={() => feedback.vote(s.key, "up")}>Good lead</button>
         <button type="button" className="ff-btn ff-btn--secondary cl-btn22" onClick={() => feedback.vote(s.key, "down")}>Not a fit</button>
+        <button type="button" className="ff-btn ff-btn--secondary cl-btn22" onClick={onDraft}>Draft outreach</button>
+        {contactedAt && <span className="cl-row__contacted">Contacted {shortDay(contactedAt)}</span>}
         <span className="cl-muted13" role="status">
           {feedback.note[s.key]?.text || "Your vote tunes the weights and fills the candidates list."}
           {feedback.note[s.key]?.link && <> <Link href="/proof/candidates">See the candidates</Link></>}
@@ -247,26 +213,49 @@ function Detail({ s, feedback }) {
   );
 }
 
-export default function CallList({ intro, rows, details, memos, asOf, initial = 0 }) {
+export default function CallList({ intro, rows, details, memos, asOf, initial = 0, contacted: contactedInitial = {} }) {
   const [sel, setSel] = useState(initial < rows.length ? initial : 0);
-  const briefing = useBriefing();
+  const [contacted, setContacted] = useState(contactedInitial);
+  const [draftFor, setDraftFor] = useState(null);
+  // The briefing selects each lead as its segment starts, exactly like a click: ?lead= updates and the detail scrolls up.
+  const showLead = useCallback((key) => {
+    const i = rows.findIndex((r) => r.key === key);
+    if (i < 0) return;
+    setSel(i);
+    const url = new URL(window.location.href);
+    url.searchParams.set("lead", key);
+    window.history.replaceState(null, "", url);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(() => document.querySelector(".cl-sheet")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }));
+  }, [rows]);
+  const player = useBriefingPlayer({ onLead: showLead });
   const feedback = useFeedback();
   const s = details[sel];
+  // A hand click on another lead pauses the briefing.
+  const pick = (i) => {
+    if (player.status === "playing") player.pause();
+    setSel(i);
+    const url = new URL(window.location.href);
+    url.searchParams.set("lead", rows[i].key);
+    window.history.replaceState(null, "", url);
+  };
+  const playLabel = !player.active ? "Play the briefing" : player.status === "playing" ? "Pause the briefing" : "Resume the briefing";
+  const onPlay = () => (!player.active ? player.start() : player.status === "playing" ? player.pause() : player.resume());
   return (
-    <main className="cl-main">
+    <main className={`cl-main${player.active ? " cl-main--player" : ""}`}>
       <section className="cl-top">
         <div className="cl-top__text">
           <h1>Today’s call list.</h1>
           <p>{intro}</p>
         </div>
         <div className="cl-top__buttons">
-          <button type="button" className="ff-btn" onClick={briefing.play} disabled={briefing.busy}>Play the briefing</button>
+          <button type="button" className="ff-btn" onClick={onPlay} disabled={player.status === "loading" && !player.segs.length}>{playLabel}</button>
           <button type="button" className="ff-btn ff-btn--secondary" onClick={() => memos[sel] && downloadMemo(memos[sel], asOf, false)} disabled={!memos[sel]}>Export memo</button>
           {s && <Link href={`/proof/company/${encodeURIComponent(s.key)}`} className="ff-btn ff-btn--secondary cl-linkbtn">Open full profile</Link>}
         </div>
       </section>
       <p className="ff-source cl-source" role="status">
-        {briefing.note}
+        {player.note}
       </p>
 
       {rows.length === 0 ? (
@@ -274,10 +263,19 @@ export default function CallList({ intro, rows, details, memos, asOf, initial = 
       ) : (
         <div className="cl-layout">
           <section aria-label="Leads" className="cl-list">
-            {rows.map((row, i) => <Row key={row.key} row={row} selected={i === sel} onPick={() => setSel(i)} />)}
+            {rows.map((row, i) => <Row key={row.key} row={row} selected={i === sel} onPick={() => pick(i)} contactedAt={contacted[row.key]} />)}
           </section>
-          {s && <Detail s={s} feedback={feedback} />}
+          {s && <Detail s={s} feedback={feedback} onDraft={() => setDraftFor(s.key)} contactedAt={contacted[s.key]} />}
         </div>
+      )}
+      <PlayerBar p={player} />
+      {draftFor && (
+        <OutreachSheet
+          leadKey={draftFor}
+          name={rows.find((r) => r.key === draftFor)?.name || draftFor}
+          onClose={() => setDraftFor(null)}
+          onContacted={(key, at) => setContacted((c) => ({ ...c, [key]: at }))}
+        />
       )}
     </main>
   );

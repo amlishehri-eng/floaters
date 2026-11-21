@@ -8,6 +8,7 @@
 //   data/funnel.sample.json        the funnel at the same moment, so snapshot pages never contradict themselves
 // The full table (~650 rows with long breakdowns) is too big to ship in the app bundle, so only those rows are kept.
 // While flow 20 is not published (404) it changes nothing and says so (exit 0).
+import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -72,5 +73,11 @@ console.log(`Snapshot: ${rows.length} rows (call_now ${byVerdict.call_now || 0},
 console.log(funnel?.stages ? `Funnel: call_now ${funnel.leads?.call_now} (same minute), data/funnel.sample.json rewritten.` : `Funnel: not rewritten (flow 44 answered ${funnelRes.status || funnelRes.error}).`);
 if (funnel?.leads?.call_now !== undefined && funnel.leads.call_now !== (byVerdict.call_now || 0)) {
   console.log(`Note: flow 44 counts ${funnel.leads.call_now} call_now, flow 20 ${byVerdict.call_now || 0}. A run was writing in between; run the script again.`);
+}
+// English everywhere: translate whatever new German text the shown leads brought (lib/ai/translate.js, only missing texts).
+try {
+  execFileSync(process.execPath, [path.join(ROOT, "scripts/translate-leads.mjs")], { stdio: "inherit", cwd: ROOT });
+} catch (err) {
+  console.warn(`Translation did not finish (${err.message}); the pages translate the rest on demand.`);
 }
 console.log("Next: node scripts/field-coverage.mjs");

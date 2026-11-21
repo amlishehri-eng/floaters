@@ -10,6 +10,8 @@
   "/api/feedback/route": "/api/feedback",
   "/api/funnel/route": "/api/funnel",
   "/api/leads/route": "/api/leads",
+  "/api/outreach/contacted/route": "/api/outreach/contacted",
+  "/api/outreach/route": "/api/outreach",
   "/api/voice/stt/route": "/api/voice/stt",
   "/api/voice/tts/route": "/api/voice/tts",
   "/favicon.ico/route": "/favicon.ico",

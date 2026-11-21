@@ -2,10 +2,11 @@ import Link from "next/link";
 import BringToFront from "@/components/ff/bring-to-front";
 import CriteriaRows from "@/components/ff/criteria-rows";
 import SiteNav from "@/components/ff/site-nav";
-import { getExtras, getLeads, getVotes, latestVotes } from "@/lib/n8n";
+import { getExtras, getLeadEnglish, getLeads, getVotes, latestVotes } from "@/lib/n8n";
 import { companyPage } from "@/lib/screen/company";
+import { contactedMap } from "@/lib/outreach";
 import { broughtBackLine, stoppedAt } from "@/lib/screen/filtered";
-import { lowerFirst, sourceHint } from "@/lib/screen/format";
+import { dayMonthShort, lowerFirst, sourceHint } from "@/lib/screen/format";
 import "../../live/call-list.css";
 import "./company.css";
 
@@ -43,8 +44,9 @@ function Fact({ label, children }) {
 export default async function CompanyPage({ params }) {
   const { key: raw } = await params;
   const key = decodeURIComponent(raw);
-  const [leadsData, votesData, extras] = await Promise.all([getLeads(), getVotes(), getExtras()]);
-  const lead = leadsData.leads.find((l) => l.id === key);
+  const [leadsData, votesData, extras, contacts] = await Promise.all([getLeads(), getVotes(), getExtras(), contactedMap()]);
+  // English everywhere: anything the translation cache does not hold yet is translated now (8 s at most).
+  const lead = leadsData.leads.some((l) => l.id === key) ? await getLeadEnglish(key) : null;
   const hint = sourceHint({ mocked: leadsData.mocked, error: leadsData.error, asOf: leadsData.as_of });
 
   if (!lead) {
@@ -217,6 +219,7 @@ export default async function CompanyPage({ params }) {
             <Spec title="Sources" aside={v.sources.line}>
               {v.quotes.map((q) => <blockquote key={q} className="co-quote">{q}</blockquote>)}
               {v.quotes.length === 0 && <p className="cl-days__text">No quotes in the traces yet.</p>}
+              {v.quotes.length > 0 && v.quotesTranslated && <span className="cl-muted13">Translated from German.</span>}
               {v.traces.map((t) => (
                 <span key={t.url} className="cl-muted13">
                   <a href={t.url} target="_blank" rel="noreferrer">{t.label}</a>{t.date ? `, ${t.date}` : ""}
@@ -228,7 +231,7 @@ export default async function CompanyPage({ params }) {
               {v.sources.type && <span className="cl-muted13">{v.sources.type}</span>}
             </Spec>
 
-            <Spec title="Feedback">
+            <Spec title="Feedback" aside={contacts.get(key) ? `Contacted ${dayMonthShort(contacts.get(key).at)}` : ""}>
               {v.vote ? (
                 <>
                   <p className="cl-days__text">{v.vote.text}</p>

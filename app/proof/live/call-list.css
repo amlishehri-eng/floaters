@@ -124,3 +124,35 @@
   .cl-fitteam, .cl-deep { grid-template-columns: minmax(0, 1fr); }
 }
 .ff .cl-linkbtn { display: inline-flex; align-items: center; color: var(--ff-ink); text-decoration: none; }
+
+/* Briefing player: a slim bar fixed at the bottom while the briefing plays (briefing-player.js). */
+.cl-sheet { scroll-margin-top: 72px; }
+.cl-main--player { padding-bottom: 140px; }
+.bp-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: rgba(255, 255, 255, 0.94); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-top: 1px solid var(--ff-hair); }
+.bp-inner { max-width: 1320px; margin: 0 auto; padding: 12px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; }
+.bp-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 420px; }
+.bp-name { font-size: 14px; font-weight: 650; color: var(--ff-ink); }
+.bp-caption { font-size: 14px; line-height: 1.45; color: var(--ff-stone-deep); }
+.bp-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.ff .bp-btn { min-height: 44px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: var(--ff-adriatic); cursor: pointer; font-size: 14px; }
+.ff .bp-btn:hover { background: var(--ff-mist); }
+.ff .bp-main { min-width: 92px; }
+@media (max-width: 720px) { .bp-inner { padding: 10px 16px; } }
+
+/* Contacted note and the outreach sheet (outreach-sheet.js). */
+.cl-row__contacted { font-size: 12px; font-weight: 600; color: var(--ff-adriatic); }
+.os-backdrop { position: fixed; inset: 0; z-index: 8; background: rgba(13, 43, 61, 0.32); display: flex; justify-content: flex-end; }
+.os-sheet { width: min(560px, 100%); height: 100%; overflow-y: auto; box-sizing: border-box; background: var(--ff-white); padding: 32px 32px 40px; display: flex; flex-direction: column; gap: 12px; outline: none; box-shadow: -20px 0 60px -30px rgba(13, 43, 61, 0.4); }
+.os-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.os-head h2 { font-size: 26px; font-weight: 700; font-stretch: 112%; }
+.os-lang { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--ff-mist); align-self: flex-start; }
+.ff .os-langbtn { min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--ff-stone-deep); cursor: pointer; font-size: 14px; }
+.ff .os-langbtn[aria-pressed="true"] { background: var(--ff-white); color: var(--ff-ink); font-weight: 600; }
+.os-to { font-size: 15px; line-height: 1.5; }
+.os-label { font-size: 13px; color: var(--ff-stone-deep); margin-top: 6px; }
+.ff .os-input { font: inherit; font-size: 15px; line-height: 1.5; color: var(--ff-ink); border: 1px solid var(--ff-stone); border-radius: 14px; padding: 10px 14px; background: var(--ff-white); }
+.os-body { resize: vertical; min-height: 220px; }
+.os-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.ff .os-linkbtn { display: inline-flex; align-items: center; text-decoration: none; color: var(--ff-ink); }
+.os-muted { font-size: 14px; line-height: 1.5; color: var(--ff-stone-deep); }
+@media (max-width: 720px) { .os-sheet { padding: 24px 16px 32px; } }

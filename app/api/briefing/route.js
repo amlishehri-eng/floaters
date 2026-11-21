@@ -4,10 +4,13 @@ import path from "node:path";
 import briefingSample from "@/data/briefing.sample.json";
 import funnelSample from "@/data/funnel.sample.json";
 import leadsSnapshot from "@/data/leads.live-snapshot.json";
-import { buildBriefing, scriptHash } from "@/lib/voice/briefing";
+import { getFunnel, getLeads } from "@/lib/n8n";
+import { buildBriefing, buildSegments, scriptHash } from "@/lib/voice/briefing";
 import { TTS_MODEL_ID } from "@/lib/voice/elevenlabs";
 
-// GET /api/briefing?lang=en|de&format=json|audio[&source=sample]
+// GET /api/briefing?format=segments[&lang=de]   -> { segments: [{ lead_key | null, name, text }] } in call-list order
+// GET /api/briefing?format=audio&segment=<i>     -> that segment's audio (flow 45), cached per text hash in data/briefing-cache/
+// GET /api/briefing?lang=en|de&format=json|audio[&source=sample]   (the older single-file briefing, unchanged)
 // Spoken top-5 briefing: the top leads (call_now first, then by priority) and the funnel totals, as a script
 // written in code (no model), spoken by ElevenLabs through n8n flow "45 Text to speech" (N8N_TTS_URL; the key lives in
 // the n8n credential "xi-api-key"). Audio is cached by a hash of the script in data/briefing-cache/, checked before n8n.
@@ -26,7 +29,7 @@ const TTS_URL_DEFAULT = "https://floaters.app.n8n.cloud/webhook/htgf-tts";
 const CACHE_DIR = path.join(process.cwd(), "data", "briefing-cache");
 const SAMPLE_MP3 = path.join(process.cwd(), "data", "briefing.sample.mp3");
 const LANGS = ["en", "de"];
-const FORMATS = ["json", "audio"];
+const FORMATS = ["json", "audio", "segments"];
 
 async function getJson(url, what) {
   const res = await fetch(url, { cache: "no-store", signal: AbortSignal.timeout(TIMEOUT_MS) });
@@ -180,12 +183,49 @@ async function briefingAudio(b) {
   return audioResponse(audio, b, { "X-Cache": "miss" });
 }
 
+// ---- Segments: the briefing follows the call list (lib/voice/briefing.js buildSegments) -------------------------------
+async function callListSegments(lang) {
+  const [leadsData, funnel] = await Promise.all([getLeads(), getFunnel()]);
+  const voiceId = process.env.ELEVENLABS_VOICE_ID || "n8n-default";
+  const segments = buildSegments({ leads: leadsData.leads, funnel, lang }).map((s) => ({ ...s, hash: scriptHash(s.text, { lang, voiceId, model: TTS_MODEL_ID }) }));
+  return { segments, as_of: leadsData.as_of, mocked: Boolean(leadsData.mocked), error: leadsData.error };
+}
+
+// One segment's audio: the disk cache first (ElevenLabs is never paid twice for the same sentence), then flow 45.
+// If text to speech fails, the answer is JSON with the text, so the screen can speak it with speechSynthesis.
+async function segmentAudio(seg, i) {
+  const cached = await readCache(seg.hash);
+  if (cached) {
+    console.log(`[briefing] segment ${i} cache hit (${seg.text.length} characters, no ElevenLabs call)`);
+    return new Response(cached, { headers: { "Content-Type": "audio/mpeg", "Cache-Control": "no-store", "X-Cache": "hit", "X-Segment": String(i) } });
+  }
+  try {
+    const audio = await speakViaN8n({ script: seg.text, script_hash: seg.hash });
+    await writeCache(seg.hash, audio);
+    console.log(`[briefing] segment ${i} rendered by flow 45 (${seg.text.length} characters)`);
+    return new Response(audio, { headers: { "Content-Type": "audio/mpeg", "Cache-Control": "no-store", "X-Cache": "miss", "X-Segment": String(i) } });
+  } catch (err) {
+    console.warn(`[briefing] segment ${i} not spoken by flow 45: ${err.message}`);
+    return Response.json({ mocked: true, segment: i, text: seg.text, error: `text to speech failed: ${err.message}` });
+  }
+}
+
 export async function GET(request) {
   const params = new URL(request.url).searchParams;
   const lang = params.get("lang") || "en";
   const format = params.get("format") || "json";
   if (!LANGS.includes(lang)) return Response.json({ error: `lang must be one of ${LANGS.join(", ")}` }, { status: 400 });
   if (!FORMATS.includes(format)) return Response.json({ error: `format must be one of ${FORMATS.join(", ")}` }, { status: 400 });
+
+  if (format === "segments" || (format === "audio" && params.has("segment"))) {
+    const { segments, as_of, mocked, error } = await callListSegments(lang);
+    if (format === "segments") {
+      return Response.json({ lang, as_of, mocked, ...(error && { error }), segments: segments.map(({ hash, ...seg }) => seg) });
+    }
+    const i = Number(params.get("segment"));
+    if (!Number.isInteger(i) || !segments[i]) return Response.json({ error: `segment must be 0 to ${segments.length - 1}` }, { status: 400 });
+    return segmentAudio(segments[i], i);
+  }
 
   const b = await makeBriefing(lang, params.get("source") === "sample");
   if (format === "audio") return briefingAudio(b);

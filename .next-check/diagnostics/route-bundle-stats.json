@@ -1,10 +1,10 @@
 [
   {
     "route": "/proof/live",
-    "firstLoadUncompressedJsBytes": 499527,
+    "firstLoadUncompressedJsBytes": 507687,
     "firstLoadChunkPaths": [
       ".next-check/static/chunks/3qfy96eoyh-ek.js",
-      ".next-check/static/chunks/1phcqwysjfgv8.js",
+      ".next-check/static/chunks/1sgsks_xl_hw4.js",
       ".next-check/static/chunks/0rz_cp99es29k.js",
       ".next-check/static/chunks/1pcw6gskne7pf.js",
       ".next-check/static/chunks/1wnov70f88xjy.js",

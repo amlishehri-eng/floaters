@@ -10,6 +10,8 @@
   "/api/feedback/route": "app/api/feedback/route.js",
   "/api/funnel/route": "app/api/funnel/route.js",
   "/api/leads/route": "app/api/leads/route.js",
+  "/api/outreach/contacted/route": "app/api/outreach/contacted/route.js",
+  "/api/outreach/route": "app/api/outreach/route.js",
   "/api/voice/stt/route": "app/api/voice/stt/route.js",
   "/api/voice/tts/route": "app/api/voice/tts/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",

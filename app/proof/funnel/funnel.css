@@ -41,31 +41,13 @@
   .fu-stage__label, .fu-stage__cost { text-align: center; }
 }
 
-/* ---- Stage links to the filtered page, with a short dot split on hover or focus -------------------------------- */
+/* ---- Beams and the report button ----------------------------------------------------------------------------- */
 .fd-wrap { display: flex; flex-direction: column; gap: 18px; }
 .fd-hint { text-align: center; margin: 0 !important; }
-.fu-stage__cost { display: flex; flex-direction: column; gap: 2px; }
-.ff .fd-link { font-size: 13px; color: var(--ff-adriatic); align-self: flex-start; }
+.fd-report { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ff .fd-report__btn { display: inline-flex; align-items: center; text-decoration: none; color: var(--ff-white); }
+.fu-run { margin: -10px 0 4px !important; }
 .fd-beam {
   position: relative; height: 44px; min-width: 72px; border-radius: 22px; display: flex; align-items: center; justify-content: center;
   font-size: 19px; font-weight: 700; font-stretch: 112%;
-}
-/* The drop-out share of the beam dims and one ion dot per company (up to 60) leaves on the right, about 600 ms. */
-.fd-beam::after {
-  content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 0; border-radius: 0 22px 22px 0;
-  background: rgba(255, 255, 255, 0.55); transition: width 600ms ease-out;
-}
-.fd-stage:hover .fd-beam::after, .fd-stage:focus-within .fd-beam::after { width: var(--drop); }
-.fd-dots { position: absolute; left: 100%; top: 50%; display: none; grid-auto-flow: column; grid-template-rows: repeat(4, 6px); gap: 3px; margin-left: 12px; transform: translateY(-50%); pointer-events: none; }
-.fd-stage:hover .fd-dots, .fd-stage:focus-within .fd-dots { display: grid; }
-.fd-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ff-adriatic); box-shadow: 0 0 6px var(--ff-adriatic); animation: fd-stream 600ms ease-out both; animation-delay: calc(var(--i) * 6ms); }
-@keyframes fd-stream { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) {
-  .fd-beam::after { transition: none; }
-  .fd-dot { animation: none; }
-}
-@media (max-width: 720px) {
-  .fd-dots { display: none !important; }
-  .fu-stage__cost { align-items: center; }
-  .ff .fd-link { align-self: center; }
 }

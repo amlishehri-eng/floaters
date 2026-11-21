@@ -22,8 +22,8 @@ export default async function CandidatesPage() {
       <main className="po-main">
         <section className="po-hero">
           <div className="po-hero__text">
-            <h1>Teams worth a first call.</h1>
-            <p>Every lead you mark as a good lead on the call list lands here.</p>
+            <h1>Your shortlist.</h1>
+            <p>Every team you marked as a good lead, best fit first.</p>
             <p className="ff-source">
               {sourceHint({ mocked: leads.mocked, error: leads.error, asOf: leads.as_of })}
               {votes.mocked && votes.error ? " Votes from this computer only, n8n not reachable." : ""}

@@ -1,8 +1,8 @@
 import SiteNav from "@/components/ff/site-nav";
-import { getExtras } from "@/lib/n8n";
+import { getExtras, getFunnel } from "@/lib/n8n";
 import { FIT_V3, TEAM, TIMING, label } from "@/lib/screen/criteria";
 import { backtestView } from "@/lib/screen/extras";
-import { sourceHint } from "@/lib/screen/format";
+import { sourceHint, usd } from "@/lib/screen/format";
 import "./method.css";
 
 // Method (design/reference/method.dc.html). Weights come from lib/screen/criteria.js (same as the n8n scoring),
@@ -35,7 +35,8 @@ const SCORES = [
 ];
 
 export default async function MethodPage() {
-  const extras = await getExtras();
+  const [extras, funnel] = await Promise.all([getExtras(), getFunnel()]);
+  const allTime = Number.isFinite(Number(funnel?.cost?.total_usd)) ? Number(funnel.cost.total_usd) : null;
   const bt = backtestView(extras.backtest);
   return (
     <div className="ff">
@@ -120,6 +121,7 @@ export default async function MethodPage() {
             {bt ? bt.footnote : ""}
             {` ${sourceHint({ mocked: extras.mocked, error: extras.error, asOf: bt?.runAt || extras.as_of })}`}
           </p>
+          {allTime !== null && <p className="me-bt__foot">All runs so far, including tests and rescoring: {usd(allTime)}.</p>}
         </div>
       </section>
     </div>
