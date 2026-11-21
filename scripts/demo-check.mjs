@@ -26,7 +26,9 @@ const CHECKS = [
   { name: "funnel page", path: "/proof/funnel", page: true },
   { name: "labs page", path: "/proof/labs", page: true },
   { name: "method page", path: "/proof/methodology", page: true },
-  { name: "portfolio page", path: "/proof", page: true },
+  { name: "candidates page", path: "/proof/candidates", page: true },
+  { name: "company page", path: "/proof/company/eversyn", page: true },
+  { name: "funnel dive (?stage=)", path: "/proof/funnel?stage=scored", page: true },
   { name: "search demo (old)", path: "/proof/search", page: true },
   { name: "extras (labs + backtest)", path: "/api/extras", expect: (j) => Array.isArray(j.labs) && j.labs.length > 0 && Boolean(j.backtest), note: (j) => `${j.labs?.length ?? 0} labs, backtest ${j.backtest?.run_at ?? "none"}` },
   { name: "leads", path: "/api/leads", expect: (j) => Array.isArray(j.leads) && j.leads.length > 0, note: (j) => `${j.leads?.length ?? 0} leads` },
@@ -105,9 +107,9 @@ const PAGES = [
   { path: "/proof/funnel", nav: "/proof/funnel" },
   { path: "/proof/labs", nav: "/proof/labs" },
   { path: "/proof/methodology", nav: "/proof/methodology" },
-  { path: "/proof", nav: "/proof" },
+  { path: "/proof/candidates", nav: "/proof/candidates" },
 ];
-const NAV = ["/proof/live", "/proof/funnel", "/proof/labs", "/proof", "/proof/methodology"];
+const NAV = ["/proof/live", "/proof/funnel", "/proof/labs", "/proof/candidates", "/proof/methodology"];
 const decode = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 const hrefs = (html) => [...html.matchAll(/<a\b[^>]*?href="([^"]*)"[^>]*>/g)].map((m) => ({ href: decode(m[1]), tag: m[0] }));
 const getText = async (p) => {
@@ -154,6 +156,42 @@ async function linkChecks() {
       add("call list = call_now", page.path, rowsShown === callNow.length, `${rowsShown} rows, intro "${intro?.[1]}", ${callNow.length} call_now leads`, leadsRes.mocked);
     }
   }
+
+  // Old addresses redirect to Candidates.
+  for (const old of ["/proof", "/proof/portfolio"]) {
+    const res = await fetch(BASE + old, { redirect: "manual", signal: AbortSignal.timeout(TIMEOUT_MS) });
+    add(`redirect ${old}`, old, [307, 308].includes(res.status) && (res.headers.get("location") || "").endsWith("/proof/candidates"), `${res.status} -> ${res.headers.get("location")}`);
+  }
+
+  // Candidates: every card links to a company page that opens; flow 42's GET lists the votes.
+  const cand = await getText("/proof/candidates");
+  const cards = [...new Set([...cand.text.matchAll(/href="(\/proof\/company\/[^"]+)"/g)].map((m) => decode(m[1])))];
+  const cardFails = [];
+  for (const h of cards) {
+    const { status, text } = await getText(h);
+    if (status !== 200 || text.includes("isn’t in the leads table") || !/Visit the website|No website found yet/.test(text)) cardFails.push(h);
+  }
+  add("candidate cards open company pages", "/proof/candidates", cardFails.length === 0, cardFails.length ? cardFails.join(", ") : `${cards.length} cards, each opens its company page`);
+  const votes = await fetch(process.env.N8N_FEEDBACK_URL || "https://floaters.app.n8n.cloud/webhook/htgf-feedback", { signal: AbortSignal.timeout(8000) }).then((r) => r.json()).catch((e) => ({ error: e.message }));
+  add("feedback GET (flow 42)", "GET /webhook/htgf-feedback", Array.isArray(votes.votes), votes.error || `${votes.votes?.length ?? 0} votes`);
+  const unknown = await getText("/proof/company/no-such-lead");
+  add("company page, unknown key", "/proof/company/no-such-lead", unknown.text.includes("isn’t in the leads table"), "clear message with a link back");
+
+  // Funnel dive: lower stages go down, every dive's groups add up, every company row opens its page.
+  const fun = await getText("/proof/funnel?stage=scored");
+  const nums = [...fun.text.matchAll(/aria-label="([^"]+?), ([\d,]+)\. (?:Show|Close) the ([\d,]+) that stopped/g)].map((m) => ({ stage: decode(m[1]), n: Number(m[2].replace(/,/g, "")), drop: Number(m[3].replace(/,/g, "")) }));
+  const down = nums.every((x, i) => i === 0 || x.n <= nums[i - 1].n) && nums.every((x, i) => !nums[i + 1] || nums[i + 1].n + x.drop === x.n);
+  add("funnel stages add up", "/proof/funnel", nums.length >= 4 && down, nums.map((x) => `${x.n} (-${x.drop})`).join(" > ") || "no dive buttons (snapshot leads?)");
+  const groupNs = [...fun.text.matchAll(/class="fd-group__n">(\d+)</g)].map((m) => Number(m[1]));
+  const scored = nums.find((x) => x.stage.startsWith("Scored"));
+  add("dive ?stage=scored groups add up", "/proof/funnel?stage=scored", Boolean(scored) && groupNs.reduce((t, n) => t + n, 0) === scored.drop, `${groupNs.join(" + ")} = ${groupNs.reduce((t, n) => t + n, 0)}, drop-outs ${scored?.drop}`);
+  const diveLinks = [...new Set([...fun.text.slice(fun.text.indexOf('id="funnel-dive"')).matchAll(/href="(\/proof\/company\/[^"]+)"/g)].map((m) => decode(m[1])))];
+  const badDive = [];
+  for (const h of diveLinks) {
+    const { status, text } = await getText(h);
+    if (status !== 200 || text.includes("isn’t in the leads table")) badDive.push(h);
+  }
+  add("dive rows open company pages", "/proof/funnel?stage=scored", diveLinks.length > 0 && badDive.length === 0, badDive.length ? badDive.slice(0, 3).join(", ") : `${diveLinks.length} company links, all open`);
 
   // Deep link per lead: /proof/live?lead=<key> opens exactly that lead; collect its evidence, press and website links.
   let wrong = [];

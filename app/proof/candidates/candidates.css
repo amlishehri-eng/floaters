@@ -1,4 +1,4 @@
-/* Portfolio: copied from design/reference/portfolio.dc.html. */
+/* Candidates: the portfolio page's hero and tile grid (design/reference/portfolio.dc.html), cards are links. */
 .po-main { max-width: 1200px; margin: 0 auto; padding: 88px 28px 120px; display: flex; flex-direction: column; gap: 56px; }
 .po-hero { display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-end; }
 .po-hero__text { flex: 1 1 560px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
@@ -9,6 +9,9 @@
 .po-count span:first-child { font-size: 96px; font-weight: 800; font-stretch: 125%; line-height: 0.9; color: var(--ff-ion-deep); }
 .po-count span:last-child { font-size: 15px; color: var(--ff-muted); }
 .po-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.ff a.po-tile { text-decoration: none; color: var(--ff-ink); }
+.ff a.po-tile--matched { color: var(--ff-mist); }
+.po-empty { font-size: 19px; line-height: 1.5; color: var(--ff-ink-3); }
 .po-tile {
   background: var(--ff-white); color: var(--ff-ink); border-radius: 28px; padding: 30px 30px 26px; min-height: 220px;
   box-sizing: border-box; display: flex; flex-direction: column; gap: 10px;

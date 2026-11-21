@@ -18,6 +18,7 @@ register(
       import { pathToFileURL, fileURLToPath } from "node:url";
       const ROOT = ${JSON.stringify(ROOT)};
       export async function resolve(spec, ctx, next) {
+        if (spec === "next/cache") return { url: "data:text/javascript,export const unstable_cache = (fn) => fn; export const revalidateTag = () => {};", shortCircuit: true };
         let s = spec.startsWith("@/") ? ROOT + "/" + spec.slice(2) : spec;
         if (s.startsWith("/") || s.startsWith(".")) {
           const base = s.startsWith("/") ? s : fileURLToPath(new URL(s, ctx.parentURL));
@@ -40,9 +41,10 @@ const { callList, leadDetail } = await import(`${ROOT}/lib/screen/call-list.js`)
 const { funnelPage } = await import(`${ROOT}/lib/screen/funnel.js`);
 const { labsPage, backtestView } = await import(`${ROOT}/lib/screen/extras.js`);
 const { homePage } = await import(`${ROOT}/lib/screen/home.js`);
-const { portfolioPage } = await import(`${ROOT}/lib/screen/portfolio.js`);
+const { candidateCards } = await import(`${ROOT}/lib/screen/candidates.js`);
+const { companyPage } = await import(`${ROOT}/lib/screen/company.js`);
+const { honestFunnel } = await import(`${ROOT}/lib/screen/funnel.js`);
 const coords = JSON.parse(readFileSync(`${ROOT}/data/city-coords.json`, "utf8"));
-const companies = JSON.parse(readFileSync(`${ROOT}/data/portfolio-examples.json`, "utf8"));
 
 let failed = 0;
 const check = (name, ok, detail = "") => {
@@ -72,7 +74,9 @@ async function pages(label) {
     labs: labsPage(extras.labs),
     method: backtestView(extras.backtest),
     home: homePage({ funnel, leads: leads.leads, extras, coords }),
-    portfolio: portfolioPage({ companies, leads: leads.leads }),
+    candidates: candidateCards(leads.leads.slice(0, 3).map((lead, i) => ({ lead, voted_at: `2026-11-2${i}T10:00:00Z`, reason: "" }))),
+    company: companyPage(leads.leads[0], { vote: { vote: "up", created_at: "2026-11-21T00:00:00Z", reason: "test" }, labs: extras.labs }),
+    honest: honestFunnel(funnel, leads, { mocked: funnel.mocked }),
   };
   const flags = `leads ${leads.mocked ? "snapshot" : "live"}, funnel ${funnel.mocked ? "snapshot" : "live"}, extras ${extras.mocked ? "snapshot" : "live"}, ${ms} ms`;
   check(`${label}: data loads`, leads.leads.length > 0 && funnel.stages?.length > 0 && extras.labs?.length > 0, flags);
@@ -81,7 +85,10 @@ async function pages(label) {
   check(`${label}: labs has 10 labs`, views.labs.length === 10, `${views.labs.length}`);
   check(`${label}: method backtest table`, Boolean(views.method && views.method.table.length === 4));
   check(`${label}: home radar and top lead`, views.home.stars.length > 0 && Boolean(views.home.top), `${views.home.stars.length} points, ${views.home.skipped} without coordinates`);
-  check(`${label}: portfolio tiles`, views.portfolio.tiles.length === 10, `${views.portfolio.count} portfolio leads, ${views.portfolio.tiles.filter((t) => t.matched).length} tiles matched`);
+  check(`${label}: candidate cards`, views.candidates.length === 3 && views.candidates.every((c) => c.href.startsWith("/proof/company/")));
+  check(`${label}: company page`, Boolean(views.company?.name && views.company.fitRows.length && views.company.checks.length), views.company?.name);
+  const lower = views.honest.stages.slice(views.honest.lowerFrom ?? 99);
+  check(`${label}: honest funnel`, leads.mocked ? Boolean(views.honest.diveNote) : lower.every((s, i) => i === 0 || s.count <= lower[i - 1].count) && lower.every((s) => !s.dive || s.dive.groups.reduce((t, g) => t + g.n, 0) === s.dive.count), leads.mocked ? "snapshot: dive off" : lower.map((s) => s.count).join(" > "));
   const bad = badValues(views, label);
   check(`${label}: no null, undefined or NaN in any text`, bad.length === 0, bad.slice(0, 3).join(" | "));
   return { leads, funnel, extras, ms };

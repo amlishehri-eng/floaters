@@ -169,3 +169,24 @@ body:has(.ff--white) { background: var(--ff-white); }
   white-space: nowrap;
   border: 0;
 }
+
+/* ---- Fit and team rows as disclosures (components/ff/criteria-rows.js) ------------------- */
+.cr-col { display: flex; flex-direction: column; gap: 4px; }
+.cr-row { display: flex; flex-direction: column; }
+.ff .cr-toggle {
+  display: flex; flex-direction: column; gap: 5px; width: 100%; padding: 6px 0; margin: 0; border: 0;
+  background: transparent; color: inherit; text-align: left; cursor: pointer; border-radius: 4px;
+}
+.cr-head { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; }
+.cr-label::after { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 0 2px 7px; border-right: 1.5px solid var(--ff-muted); border-bottom: 1.5px solid var(--ff-muted); transform: rotate(45deg); }
+.cr-row[data-open] .cr-label::after { transform: rotate(-135deg); margin-bottom: -1px; }
+.cr-track { display: block; height: 3px; border-radius: 2px; background: var(--ff-track); overflow: hidden; }
+.cr-track > span { display: block; height: 100%; }
+/* The panel opens in about 200 ms (height via grid rows); no motion under reduced motion. */
+.cr-panel:not([hidden]) { display: grid; grid-template-rows: 1fr; animation: cr-open 200ms ease-out; }
+.cr-panel__inner { overflow: hidden; display: flex; flex-direction: column; gap: 8px; padding: 6px 0 12px; }
+@keyframes cr-open { from { grid-template-rows: 0fr; opacity: 0; } to { grid-template-rows: 1fr; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .cr-panel:not([hidden]) { animation: none; } }
+.cr-why { font-size: 13px; line-height: 1.5; color: var(--ff-ink-2); }
+.cr-quote { font-size: 13px; line-height: 1.5; color: var(--ff-ink); padding-left: 12px; border-left: 2px solid var(--ff-ion); overflow-wrap: anywhere; }
+.ff .cr-source { font-size: 12px; align-self: flex-start; color: var(--ff-ion-deep); }

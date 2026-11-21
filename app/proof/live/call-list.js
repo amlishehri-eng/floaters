@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
+import CriteriaRows from "@/components/ff/criteria-rows";
 import { downloadMemo } from "../(legacy)/proof-dashboard";
 
 // Call list (design/reference/call-list.dc.html): lead rows on the left, the detail sheet on the right.
@@ -42,24 +44,6 @@ function Ring({ r }) {
       </div>
       <span className="cl-ring__label">{r.label}</span>
       <span className="cl-ring__sub">{r.sub}</span>
-    </div>
-  );
-}
-
-function Bar({ r, fill }) {
-  return (
-    <div className="cl-bar">
-      <span className="cl-bar__head">
-        <span>{r.label}</span>
-        {r.url ? (
-          <a href={r.url} target="_blank" rel="noreferrer" title={r.quote || undefined} style={{ color: r.ink }}>
-            {r.shown}<span className="ff-sr-only">, source for {r.label}</span>
-          </a>
-        ) : (
-          <span style={{ color: r.ink }}>{r.shown}</span>
-        )}
-      </span>
-      <span className="cl-bar__track"><span style={{ width: `${r.pct}%`, background: fill }} /></span>
     </div>
   );
 }
@@ -121,10 +105,11 @@ function useBriefing() {
   return { ...state, play };
 }
 
+// Good lead / Not a fit -> /api/feedback. The route clears the Candidates cache, so the page is current on the next visit.
 function useFeedback() {
   const [note, setNote] = useState({});
   async function vote(key, value) {
-    setNote((n) => ({ ...n, [key]: "Saving your vote…" }));
+    setNote((n) => ({ ...n, [key]: { text: "Saving your vote…" } }));
     try {
       const res = await fetch("/api/feedback", {
         method: "POST",
@@ -132,10 +117,11 @@ function useFeedback() {
         body: JSON.stringify({ lead_key: key, vote: value }),
       });
       const j = await res.json().catch(() => ({}));
-      if (!res.ok || j.error && !j.mocked) throw new Error(j.error || `feedback answered ${res.status}`);
-      setNote((n) => ({ ...n, [key]: j.mocked ? "Saved on this computer only, because n8n did not answer." : "Thanks, your vote is saved." }));
+      if (!res.ok || (j.error && !j.mocked)) throw new Error(j.error || `feedback answered ${res.status}`);
+      const local = j.mocked ? " Saved on this computer only, because n8n did not answer." : "";
+      setNote((n) => ({ ...n, [key]: value === "up" ? { text: `Added to candidates.${local}`, link: true } : { text: `Removed from candidates.${local}` } }));
     } catch (err) {
-      setNote((n) => ({ ...n, [key]: `Your vote was not saved: ${err.message}.` }));
+      setNote((n) => ({ ...n, [key]: { text: `Your vote was not saved: ${err.message}.` } }));
     }
   }
   return { note, vote };
@@ -207,14 +193,10 @@ function Detail({ s, feedback }) {
 
         <Spec title="Fit and team">
           <div className="cl-fitteam">
-            <div className="cl-col">
-              {s.fitRows.map((r) => <Bar key={r.key} r={r} fill="#1d1d1f" />)}
-            </div>
-            <div className="cl-col">
-              {s.teamRows.map((r) => <Bar key={r.key} r={r} fill="#0a6e99" />)}
-            </div>
+            <CriteriaRows rows={s.fitRows} fill="#1d1d1f" />
+            <CriteriaRows rows={s.teamRows} fill="#0a6e99" />
             <span className="cl-fitteam__note">
-              Every point links to the trace and the sentence it came from. “Not known” means the sources say nothing yet.
+              Click a row to see why it scored that. “Not known” means the sources say nothing yet.
               Germany is a hard rule in the HTGF check, so it scores no points here.
               {s.antiSignals.length > 0 && ` Points off: ${s.antiSignals.join(", ")}.`}
               {s.teamReason && ` Team: ${s.teamReason}`}
@@ -256,7 +238,10 @@ function Detail({ s, feedback }) {
       <div className="cl-actions">
         <button type="button" className="ff-btn cl-btn22" onClick={() => feedback.vote(s.key, "up")}>Good lead</button>
         <button type="button" className="ff-btn ff-btn--secondary cl-btn22" onClick={() => feedback.vote(s.key, "down")}>Not a fit</button>
-        <span className="cl-muted13" role="status">{feedback.note[s.key] || "Your vote tunes the weights."}</span>
+        <span className="cl-muted13" role="status">
+          {feedback.note[s.key]?.text || "Your vote tunes the weights and fills the candidates list."}
+          {feedback.note[s.key]?.link && <> <Link href="/proof/candidates">See the candidates</Link></>}
+        </span>
       </div>
     </article>
   );
@@ -277,6 +262,7 @@ export default function CallList({ intro, rows, details, memos, asOf, initial = 
         <div className="cl-top__buttons">
           <button type="button" className="ff-btn" onClick={briefing.play} disabled={briefing.busy}>Play the briefing</button>
           <button type="button" className="ff-btn ff-btn--secondary" onClick={() => memos[sel] && downloadMemo(memos[sel], asOf, false)} disabled={!memos[sel]}>Export memo</button>
+          {s && <Link href={`/proof/company/${encodeURIComponent(s.key)}`} className="ff-btn ff-btn--secondary cl-linkbtn">Open full profile</Link>}
         </div>
       </section>
       <p className="ff-source cl-source" role="status">

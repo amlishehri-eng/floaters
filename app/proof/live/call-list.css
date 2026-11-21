@@ -123,3 +123,4 @@
   .cl-check__evidence { grid-column: 1 / -1; }
   .cl-fitteam, .cl-deep { grid-template-columns: minmax(0, 1fr); }
 }
+.ff .cl-linkbtn { display: inline-flex; align-items: center; color: var(--ff-ink); text-decoration: none; }

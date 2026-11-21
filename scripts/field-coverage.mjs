@@ -62,8 +62,7 @@ function screenReads() {
   const sources = [
     ...files(path.join(ROOT, "lib/screen")),
     path.join(ROOT, "app/page.js"),
-    path.join(ROOT, "app/proof/page.js"),
-    ...["live", "funnel", "labs", "methodology"].flatMap((d) => files(path.join(ROOT, "app/proof", d))),
+    ...["live", "funnel", "labs", "methodology", "candidates", "company"].flatMap((d) => files(path.join(ROOT, "app/proof", d))),
   ];
   const reads = new Map();
   for (const file of sources) {

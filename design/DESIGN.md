@@ -70,7 +70,7 @@ Rules:
 
 - Content width: `max-width: 1200px` (call list 1320px), side padding 28px, centred.
 - Section rhythm: 88–120px vertical padding. Full-bleed sections alternate black and light.
-- Top navigation on every page: sticky, 52–56px high, frosted (`backdrop-filter: saturate(180%) blur(20px)`), `rgba(0,0,0,0.72)` on dark pages, `rgba(245,245,247,0.78)` or white at 0.78 on light pages, hairline bottom border. Wordmark "Founders First" left (700, 125% width). Links right, 13px: Call list, Funnel, Labs, Portfolio, Method. The current page is ink/white and 600, the others `#4a4a4f` / `#d2d2d7`.
+- Top navigation on every page: sticky, 52–56px high, frosted (`backdrop-filter: saturate(180%) blur(20px)`), `rgba(0,0,0,0.72)` on dark pages, `rgba(245,245,247,0.78)` or white at 0.78 on light pages, hairline bottom border. Wordmark "Founders First" left (700, 125% width). Links right, 13px: Call list, Funnel, Labs, Candidates, Method. The current page is ink/white and 600, the others `#4a4a4f` / `#d2d2d7`.
 - No sidebar.
 - Specs layout for detail content: a grid of `200px | 1fr`, label left (17px, 650), facts right, separated by a hairline on top of each row, 22px vertical padding.
 - Radius hierarchy: pills and buttons 999px, detail sheet 32px, portfolio tiles 28px, small panels 14–22px, bars 2–5px. Never one radius on everything.
@@ -101,7 +101,13 @@ Rules:
 
 **Radar (home hero).** The radar lives only inside the German border: its layer has the same box as the map and is clipped with `clip-path: polygon(...)` built from the border points. Inside it, a 740px circle with eight concentric ion rings (opacity 0.22 down to 0.1), two crosshair lines, and a conic sweep (`rgba(51,209,255,0.32)` fading to transparent over 70°) rotating once every 6 s. The sweep is the only animation on the whole site and stops under `prefers-reduced-motion: reduce`. The map of Germany is an SVG polygon (projection in `design/reference/home.dc.html`: x = (lon − 5.6) × 63, y = (55.2 − lat) × 100 in a 600 × 800 box), filled `rgba(51,209,255,0.05)`, stroked ion at 0.55. About 320 faint dots inside the border (white at 0.16–0.46, one in eight ion). The call-now teams are infrared glowing dots on their real cities with name and city labels; teams in the same city get stacked labels. Next to it, three big numbers: traces read (fog), past the gates (ion), worth a call (infrared-text). Decorative parts are `aria-hidden`; the section has an `aria-label` describing it.
 
-**Portfolio tiles.** White, 28px radius, 30px padding, min-height 220px. A company our engine matched as portfolio is the one black tile, with an ion dot and "Found by our engine and marked as portfolio".
+**Candidate cards.** The former portfolio tiles: white, 28px radius, 30px padding, min-height 220px, three per row. Top line sector and city, the name in the card title size, bottom left the fit score where the round amount was ("72 fit"), bottom right "Marked good lead, 21 Nov". A lead on the call list now is the black card with the ion dot line "On the call list now". The whole card is a link to the company page; newest vote first.
+
+**Fit dropdown.** Every fit and team row on the call list and the company page is a disclosure: the whole row is a button (`aria-expanded`, `aria-controls`), the bar itself never links out. The panel under the bar says in one or two sentences why the criterion got its points, shows up to two quotes (13px, 2px ion rule) and one "Source: <host>" link per source, the only links in the panel. Not known: "The sources say nothing about this yet, so it scores no points." The panel height opens in about 200 ms, no motion under reduced motion. Several rows may be open at once. Component: `components/ff/criteria-rows.js`, data from `bar()` in `lib/screen/call-list.js`.
+
+**Funnel dive.** On the funnel page every stage from "Past the HTGF gates" down is a button. Opening one splits its beam: the drop-out share dims and one small ion dot per company (capped at 60, then "+N") leaves the beam on the right, about 600 ms in all. A panel opens under the funnel: "<N> stopped between <stage> and <next stage>", then the reasons as groups, biggest first, each with a thin ion count bar and compact company rows (name, city, one-line reason, fit if scored) that link to the company page; long groups show 8 and "Show all <n>". One stage at a time, Esc or Close closes it, `?stage=<key>` links it. No motion under reduced motion: the panel just appears.
+
+**Company page.** One lead in the call list's detail sheet, full width: header (place, name, verdict, "Visit the website", fit and team rings), then spec rows: About the company, Founders and team, Fit and team (with the fit dropdown), HTGF check, Age and register, Funding, Capital need, Why now, Deep checks, Research and labs, Sources, Feedback.
 
 ## 6. Pages
 
@@ -112,7 +118,8 @@ Rules:
 | Funnel | `/proof/funnel` | `funnel.dc.html` | black |
 | Labs | `/proof/labs` | `labs.dc.html` | `#f5f5f7` |
 | Method | `/proof/methodology` | `method.dc.html` | white, black band, `#f5f5f7` backtest |
-| Portfolio | `/proof` | `portfolio.dc.html` | `#f5f5f7` |
+| Candidates | `/proof/candidates` (`/proof` and `/proof/portfolio` redirect) | `portfolio.dc.html` (tiles become candidate cards) | `#f5f5f7` |
+| Company page | `/proof/company/[key]` | `call-list.dc.html` (detail sheet) | `#f4f6f9` with a white sheet |
 
 Section order per page is exactly as in the reference file.
 

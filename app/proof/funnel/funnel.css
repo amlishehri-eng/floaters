@@ -40,3 +40,64 @@
   .fu-stage { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .fu-stage__label, .fu-stage__cost { text-align: center; }
 }
+
+/* ---- Drop-out dive (app/proof/funnel/funnel-dive.js) -------------------------------------------------------- */
+.fd-wrap { display: flex; flex-direction: column; gap: 18px; }
+.fd-hint { text-align: center; margin: 0 !important; }
+.ff .fd-stage { border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; padding: 0; border-radius: 22px; text-align: left; }
+.fd-stage .fu-stage__label { text-align: right; }
+.fd-stage .fu-stage__label { text-decoration: underline; text-decoration-color: rgba(210, 210, 215, 0.35); text-underline-offset: 4px; }
+.fd-stage--open .fu-stage__label { color: var(--ff-white); font-weight: 600; text-decoration: none; }
+.fd-beam {
+  position: relative; height: 44px; min-width: 72px; border-radius: 22px; display: flex; align-items: center; justify-content: center;
+  font-size: 19px; font-weight: 700; font-stretch: 112%;
+}
+/* The split: the drop-out share of the beam dims, and one ion dot per company streams out to the right (about 600 ms). */
+.fd-beam::after {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 0; border-radius: 0 22px 22px 0;
+  background: rgba(0, 0, 0, 0.55); transition: width 600ms ease-out;
+}
+.fd-beam--open::after { width: var(--drop); }
+.fd-dots { position: absolute; left: 100%; top: 50%; display: grid; grid-auto-flow: column; grid-template-rows: repeat(4, 6px); gap: 3px; margin-left: 12px; transform: translateY(-50%); }
+.fd-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--ff-ion); box-shadow: 0 0 6px var(--ff-ion);
+  animation: fd-stream 600ms ease-out both; animation-delay: calc(var(--i) * 6ms);
+}
+.fd-more { grid-row: 1 / -1; align-self: center; margin-left: 6px; font-size: 12px; font-weight: 600; color: var(--ff-ion); white-space: nowrap; }
+@keyframes fd-stream { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+.fd-panel:not([hidden]) { animation: fd-panel 600ms ease-out; }
+@keyframes fd-panel { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .fd-beam::after { transition: none; }
+  .fd-dot, .fd-panel:not([hidden]) { animation: none; }
+}
+
+.fd-panel__inner { display: flex; flex-direction: column; gap: 28px; padding: 36px 0 8px; border-top: 1px solid var(--ff-hair-dark-2); }
+.fd-panel__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
+.fd-panel__head h2 { font-size: 32px; line-height: 1.05; font-weight: 750; font-stretch: 118%; letter-spacing: -0.8px; max-width: 820px; }
+.ff .fd-close { background: var(--ff-mist); color: var(--ff-void); }
+.fd-group { display: flex; flex-direction: column; gap: 8px; }
+.fd-group__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.fd-group__head h3 { font-size: 21px; font-weight: 650; }
+.fd-group__n { font-size: 21px; font-weight: 700; font-stretch: 112%; color: var(--ff-ion); }
+.fd-group__bar { display: block; height: 4px; border-radius: 2px; background: rgba(245, 245, 247, 0.1); overflow: hidden; }
+.fd-group__bar span { display: block; height: 4px; background: var(--ff-ion); border-radius: 2px; }
+.fd-rows { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; }
+.ff .fd-row {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.7fr) minmax(0, 2.4fr) 56px; gap: 16px; align-items: baseline;
+  padding: 10px 0; min-height: 44px; box-sizing: border-box; border-bottom: 1px solid var(--ff-hair-dark); color: var(--ff-mist); text-decoration: none;
+}
+.ff .fd-row:hover .fd-row__name { text-decoration: underline; }
+.fd-row__name { font-size: 15px; font-weight: 600; color: var(--ff-ion); }
+.fd-row__city { font-size: 14px; color: var(--ff-fog-2); }
+.fd-row__why { font-size: 14px; color: var(--ff-fog); }
+.fd-row__fit { font-size: 14px; font-weight: 600; text-align: right; color: var(--ff-nav-dim); }
+.ff .fd-showall { align-self: flex-start; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--ff-ion); cursor: pointer; font-size: 15px; }
+
+@media (max-width: 720px) {
+  .fd-dots { display: none; }
+  .ff .fd-row { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; }
+  .fd-row__why { grid-column: 1 / -1; }
+  .fd-row__city { grid-row: 2; }
+  .fd-panel__head h2 { font-size: 24px; }
+}

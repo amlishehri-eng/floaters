@@ -1,7 +1,8 @@
 import SiteNav from "@/components/ff/site-nav";
-import { getFunnel } from "@/lib/n8n";
+import { getFunnel, getLeads } from "@/lib/n8n";
 import { dayTime, sourceHint } from "@/lib/screen/format";
-import { funnelPage } from "@/lib/screen/funnel";
+import { honestFunnel } from "@/lib/screen/funnel";
+import FunnelDive from "./funnel-dive";
 import "./funnel.css";
 
 // Funnel (design/reference/funnel.dc.html): counts and costs from flow 44, the snapshot when n8n does not answer.
@@ -12,9 +13,9 @@ export const metadata = {
   description: "How a few thousand faint signals become a short call list, and what each step costs.",
 };
 
-export default async function FunnelPage() {
-  const funnel = await getFunnel();
-  const v = funnelPage(funnel, { mocked: funnel.mocked });
+export default async function FunnelPage({ searchParams }) {
+  const [funnel, leadsData, params] = await Promise.all([getFunnel(), getLeads(), searchParams]);
+  const v = honestFunnel(funnel, leadsData, { mocked: funnel.mocked });
   const when = dayTime(funnel.as_of);
   return (
     <div className="ff ff--dark">
@@ -28,17 +29,13 @@ export default async function FunnelPage() {
           </p>
         </section>
 
-        <section aria-label="Stages" className="fu-stages">
-          {v.stages.map((s) => (
-            <div key={s.label} className="fu-stage">
-              <span className="fu-stage__label">{s.label}</span>
-              <span className="fu-stage__beam">
-                <span style={{ width: `${s.pct}%`, background: s.color, boxShadow: s.glow, color: s.ink }}>{s.n}</span>
-              </span>
-              <span className="fu-stage__cost">{s.cost}</span>
-            </div>
-          ))}
-        </section>
+        <div className="fd-wrap">
+          <FunnelDive stages={v.stages} lowerFrom={v.lowerFrom ?? 99} initialStage={typeof params?.stage === "string" ? params.stage : ""} />
+          <p className="fu-note fd-hint">
+            {v.diveNote || "Click a stage from the HTGF gates down to see who stopped there and why."}
+            {v.problems?.length ? ` Mismatch in the funnel: ${v.problems.join("; ")}.` : ""}
+          </p>
+        </div>
 
         <section className="fu-cols">
           <div className="fu-col">

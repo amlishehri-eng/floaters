@@ -1,10 +1,13 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { revalidateTag } from "next/cache";
 import { brainAuthError, readJson } from "@/lib/ai/brain/auth";
+import { CANDIDATES_TAG } from "@/lib/n8n";
 
 // POST { lead_key, vote: "up" | "down", reason? } -> one row in the n8n data table "Feedback"
 // (webhook flow "42 Feedback", URL in N8N_FEEDBACK_URL, default the HTGF project webhook). If n8n is unreachable, or USE_MOCKS=true,
 // the vote is kept in data/feedback.local.json (gitignored) and the answer says mocked: true.
+// Every saved vote clears the Candidates cache (tag "candidates", expire 0), so /proof/candidates is current on the next visit.
 export const dynamic = "force-dynamic";
 
 const TIMEOUT_MS = 8_000;
@@ -49,6 +52,12 @@ async function keepLocally(vote) {
   return votes.length;
 }
 
+// Saved votes change the Candidates page: drop its cached votes so the next visit reads them fresh.
+function saved(payload) {
+  revalidateTag(CANDIDATES_TAG, { expire: 0 });
+  return Response.json(payload);
+}
+
 export async function POST(request) {
   const denied = brainAuthError(request);
   if (denied) return denied;
@@ -62,12 +71,12 @@ export async function POST(request) {
   if (process.env.USE_MOCKS !== "true") {
     try {
       const data = await sendToN8n(vote);
-      return Response.json({ ok: true, stored: "n8n", row_id: data.row_id ?? null, ...vote });
+      return saved({ ok: true, stored: "n8n", row_id: data.row_id ?? null, ...vote });
     } catch (err) {
       console.warn("[feedback] n8n unreachable, keeping the vote locally:", err.message);
       try {
         const count = await keepLocally(vote);
-        return Response.json({ ok: true, mocked: true, stored: "data/feedback.local.json", local_votes: count, n8n_error: err.message, ...vote });
+        return saved({ ok: true, mocked: true, stored: "data/feedback.local.json", local_votes: count, n8n_error: err.message, ...vote });
       } catch (fileErr) {
         return Response.json({ ok: false, mocked: true, error: `n8n failed (${err.message}) and the local file could not be written (${fileErr.message})` }, { status: 502 });
       }
@@ -75,7 +84,7 @@ export async function POST(request) {
   }
   try {
     const count = await keepLocally(vote);
-    return Response.json({ ok: true, mocked: true, stored: "data/feedback.local.json", local_votes: count, ...vote });
+    return saved({ ok: true, mocked: true, stored: "data/feedback.local.json", local_votes: count, ...vote });
   } catch (fileErr) {
     return Response.json({ ok: false, mocked: true, error: `the local file could not be written (${fileErr.message})` }, { status: 500 });
   }

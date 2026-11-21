@@ -1,0 +1,23 @@
+/* Company page: the call list's detail sheet and spec rows (call-list.css), full width, plus a few fact rows. */
+.co-main { max-width: 1100px; margin: 0 auto; padding: 48px 28px 80px; display: flex; flex-direction: column; gap: 20px; }
+.co-sheet { flex: none; }
+.co-title { font-size: 52px; line-height: 1; font-weight: 750; font-stretch: 125%; letter-spacing: -1.4px; overflow-wrap: anywhere; }
+.co-h { font-size: 17px; font-weight: 650; }
+.co-verdict { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ff-ink-3); }
+.co-links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 4px; }
+.ff .co-btn { display: inline-flex; align-items: center; text-decoration: none; color: var(--ff-white); }
+.ff .co-btn.ff-btn--secondary { color: var(--ff-ink); }
+.co-facts { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.co-lead { font-size: 18px; line-height: 1.5; color: var(--ff-ink-2); max-width: 680px; }
+.co-fact { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 12px; font-size: 14px; line-height: 1.5; align-items: baseline; }
+.co-fact__label { font-weight: 550; }
+.co-fact__value { color: var(--ff-ink-2); overflow-wrap: anywhere; }
+.co-note { font-size: 14px; line-height: 1.5; color: var(--ff-muted); max-width: 680px; }
+.co-quote { font-size: 16px; line-height: 1.55; padding-left: 16px; border-left: 2px solid var(--ff-ion); overflow-wrap: anywhere; }
+.ff .co-link { font-size: 14px; align-self: flex-start; }
+.co-age { margin: 0 !important; }
+@media (max-width: 720px) {
+  .co-main { padding: 32px 16px 64px; }
+  .co-title { font-size: 36px; letter-spacing: -0.8px; }
+  .co-fact { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}

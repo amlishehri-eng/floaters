@@ -5,7 +5,7 @@ const LINKS = [
   { key: "call-list", href: "/proof/live", label: "Call list" },
   { key: "funnel", href: "/proof/funnel", label: "Funnel" },
   { key: "labs", href: "/proof/labs", label: "Labs" },
-  { key: "portfolio", href: "/proof", label: "Portfolio" },
+  { key: "candidates", href: "/proof/candidates", label: "Candidates" },
   { key: "method", href: "/proof/methodology", label: "Method" },
 ];
 
