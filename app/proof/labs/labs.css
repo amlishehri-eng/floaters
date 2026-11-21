@@ -5,7 +5,7 @@
 .lb-hero p { font-size: 21px; line-height: 1.45; color: var(--ff-stone-deep); max-width: 680px; }
 .lb-list { display: flex; flex-direction: column; }
 .lb-lab { display: grid; grid-template-columns: 80px minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; padding: 36px 0; border-top: 1px solid var(--ff-hair); align-items: start; }
-.lb-rank { font-size: 56px; font-weight: 800; font-stretch: 125%; line-height: 0.9; color: var(--ff-stone); }
+.lb-rank { font-size: 56px; font-weight: 800; font-stretch: 125%; line-height: 0.9; color: var(--ff-stone-deep); }
 .lb-text { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .lb-text h2 { font-size: 32px; line-height: 1.05; font-weight: 750; font-stretch: 118%; letter-spacing: -0.8px; }
 .lb-where { font-size: 15px; color: var(--ff-stone-deep); }

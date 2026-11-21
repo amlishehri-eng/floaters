@@ -4,6 +4,7 @@
 //
 //   node scripts/demo-check.mjs                     # against http://localhost:4000
 //   node scripts/demo-check.mjs --no-links          # skip the link checks (nav, buttons, deep links, evidence URLs)
+//   node scripts/demo-check.mjs --no-audit          # skip the contrast audit (scripts/contrast-audit.mjs, needs Playwright)
 //   node scripts/demo-check.mjs --write-test        # also "Bring to the front" + Undo on one near miss (writes two votes:
 //                                                   # into n8n's Feedback table, or into data/feedback.local.json with USE_MOCKS=true)
 //   DEMO_URL=https://<app>.vercel.app node scripts/demo-check.mjs
@@ -16,6 +17,7 @@
 // ELEVENLABS_VOICE_ID in .env.local, flow "20 Leads for the screen" published):
 //   node scripts/demo-check.mjs --render-briefing-sample
 // It saves data/briefing.sample.json (en + de script) and data/briefing.sample.mp3 (en audio) from /api/briefing.
+import { execFileSync } from "node:child_process";
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -377,6 +379,16 @@ if (process.argv.includes("--render-briefing-sample")) {
     const links = await linkChecks().catch((err) => ({ rows: [{ name: "link checks", path: "-", ok: false, status: "-", ms: 0, mocked: "-", note: err.message }], unreachable: [] }));
     rows.push(...links.rows);
     unreachable = links.unreachable;
+  }
+  // Contrast audit (scripts/contrast-audit.mjs, headless browser): every visible text on every page.
+  if (!process.argv.includes("--no-audit")) {
+    try {
+      const out = execFileSync(process.execPath, [new URL("./contrast-audit.mjs", import.meta.url).pathname], { env: { ...process.env, AUDIT_URL: BASE }, encoding: "utf8", timeout: 300_000 });
+      rows.push({ name: "contrast audit", path: "(8 pages)", ok: true, status: "ok", ms: 0, mocked: "-", note: out.trim().split("\n").pop() });
+    } catch (err) {
+      const lines = String(err.stdout || err.message).trim().split("\n");
+      rows.push({ name: "contrast audit", path: "(8 pages)", ok: false, status: "bad", ms: 0, mocked: "-", note: `${lines.pop()}; first: ${lines.find((l) => l.startsWith("      ")) || ""}`.slice(0, 160) });
+    }
   }
   printTable(rows);
   if (unreachable.length) console.log(`\nExternal links that did not answer now (not a failure; check by hand):\n${unreachable.map((u) => `  ${u}`).join("\n")}`);

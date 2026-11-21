@@ -178,6 +178,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 - Open bugs: _none yet_
 
 ## Decisions
+- Decision (Nils, 21 Nov ~03:00): **Playwright** is a devDependency for testing only: `scripts/contrast-audit.mjs` (every visible text against its real background, in a headless browser) and `scripts/screens.mjs` (review screenshots). Not used by the app. It reuses the cached Chromium on this Mac, else Chrome.
 - Decision (Nils, 21 Nov ~02:00): the app's own model calls (translation layer, outreach drafts) use **gpt-5-mini** through `lib/ai/openai.js`, because the app only has `OPENAI_API_KEY`. No new libraries.
 - Decision (Amli, 21 Nov ~00:52 CET): flow 20 published after the second full end-to-end run (replaces the 20 Nov ~20:15 "wait" decision); the screen now reads the live Leads table, the snapshot is only the fallback.
 - Decision (Amli, 20 Nov ~20:15): flow 20 stays unpublished until the full end-to-end test is done, so the screen and the briefing never show half-screened leads.
