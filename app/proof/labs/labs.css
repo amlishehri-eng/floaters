@@ -35,3 +35,40 @@
   .lb-numbers { grid-column: auto; }
   .lb-rank { font-size: 40px; }
 }
+
+/* ---- The gap at a glance (DESIGN.md, labs chart) ----------------------------------------------------------------
+   Papers Adriatic, spin-offs Stone, gap score Harbour Ink, Guest Red only for the top gap when it is call-worthy.
+   Each column has its own axis (0, half, a round maximum); values show next to the bars and in a tip on hover/focus. */
+.lb-chart { display: flex; flex-direction: column; gap: 14px; }
+.lb-chart h2 { font-size: 32px; line-height: 1.1; font-weight: 750; font-stretch: 118%; letter-spacing: -0.8px; }
+.lb-chart__summary { font-size: 17px; line-height: 1.55; color: var(--ff-ink); max-width: 760px; }
+.lb-chart__scroll { overflow-x: auto; margin-top: 8px; }
+.lb-table { width: 100%; min-width: 720px; border-collapse: collapse; table-layout: fixed; }
+.lb-table th, .lb-table td { text-align: left; vertical-align: middle; padding: 0; }
+.lb-table thead th { padding: 0 18px 26px 0; font-weight: 400; vertical-align: bottom; }
+.lb-th-lab { width: 30%; font-size: 13px; font-weight: 600 !important; color: var(--ff-stone-deep); }
+.lb-axis__label { display: block; font-size: 13px; font-weight: 600; color: var(--ff-stone-deep); margin-bottom: 8px; }
+.lb-axis { position: relative; display: block; height: 16px; margin-right: 44px; border-bottom: 1px solid var(--ff-stone); }
+.lb-axis span { position: absolute; bottom: -20px; transform: translateX(-50%); font-size: 12px; color: var(--ff-stone-deep); white-space: nowrap; }
+.lb-axis span:first-child { transform: none; }
+.lb-axis span:last-child { transform: translateX(-100%); }
+.lb-table tbody tr { border-top: 1px solid var(--ff-hair); }
+.lb-table tbody th { font-size: 15px; font-weight: 600; padding: 10px 18px 10px 0; color: var(--ff-ink); line-height: 1.3; }
+.lb-table td { padding: 10px 18px 10px 0; }
+.lb-cell { position: relative; display: flex; align-items: center; gap: 8px; min-height: 28px; border-radius: 6px; outline-offset: 2px; }
+.lb-track { flex: 1 1 auto; display: block; height: 12px; }
+.lb-bar { display: block; height: 12px; border-radius: 3px; }
+.lb-bar--works { background: var(--ff-adriatic); }
+.lb-bar--spin { background: var(--ff-stone); }
+.lb-bar--gap { background: var(--ff-ink); }
+.lb-bar--call { background: var(--ff-red); box-shadow: 0 0 0 3px rgba(180, 54, 59, 0.18); }
+.lb-val { flex: 0 0 36px; font-size: 14px; font-weight: 600; color: var(--ff-ink); text-align: right; }
+.lb-cell:focus-visible { outline: 2px solid var(--ff-adriatic); }
+.lb-cell:hover .lb-track, .lb-cell:focus-visible .lb-track { filter: brightness(1.08); }
+.lb-cell[data-tip]:hover::after, .lb-cell[data-tip]:focus-visible::after {
+  content: attr(data-tip); position: absolute; z-index: 2; left: 0; bottom: calc(100% + 6px); white-space: nowrap;
+  background: var(--ff-ink); color: var(--ff-white); font-size: 13px; padding: 6px 10px; border-radius: 8px; pointer-events: none;
+}
+.lb-chart__key { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 13px; color: var(--ff-stone-deep); }
+.lb-key { display: inline-block; width: 14px; height: 10px; border-radius: 2px; margin-left: 8px; }
+.lb-key:first-child { margin-left: 0; }
