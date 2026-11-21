@@ -46,7 +46,9 @@ const check = (result, evidence, trace_ids) => ({ result, evidence, trace_ids })
 // share of a criterion's max that counts: 0 when unknown, unsupported or missing
 const share = c => (!c || typeof c !== 'object' || c.known === false || c.unsupported || !(Number(c.max) > 0)) ? 0 : Math.max(0, Math.min(1, (Number(c.points) || 0) / Number(c.max)));
 const hasEvidence = c => !!(c && typeof c === 'object' && c.known !== false && !c.unsupported && Number(c.points) > 0);
-const TOO_LATE_TEXT = /(series [a-d]\b|serie [a-d]\b|series-[a-d]\b|vc[- ]backed|venture[- ]backed|y ?combinator|\byc [swfx]\d\d\b|seed[- ]?(round|runde|finanzierung)[^.\n]{0,60}(led by|angeführt|vc|fonds|fund|ventures|capital)|(closed|abgeschlossen)[^.\n]{0,30}seed[- ]?(round|runde)[^.\n]{0,60}(vc|fonds|fund|ventures|capital))/i;
+const TOO_LATE_TEXT = /(series [a-d]\b|serie [a-d]\b|series-[a-d]\b|vc[- ]backed|venture[- ]backed|y ?combinator|\byc [swfx]\d\d\b|seed[- ]?(round|runde|finanzierung)(?:[^.\n]|\.\d){0,60}(led by|angeführt|vc|fonds|fund|ventures|capital)|(closed|abgeschlossen)(?:[^.\n]|\.\d){0,30}seed[- ]?(round|runde)(?:[^.\n]|\.\d){0,60}(vc|fonds|fund|ventures|capital))/i;
+// v8.2: a round 'led by' a named fund is institutional even when an accelerator or grant is named in the same sentence
+const LED_BY_FUND = /(led by|angef(ü|ue)hrt von)(?:[^.\n]|\.\d){0,40}(ventures|capital|fund|fonds|partners|\bvc\b|invest)/i;
 const NOT_TOO_LATE_TEXT = /(angel|seeking|suche[n]?\b|looking for|planen|planning|want to raise|pre-?seed|preseed|exist|dati|bmbf|eic\b|sprind|horizon|grant|förder|foerder|stipend|preis|award|prize|accelerator)/i;
 const eurMillions = s => { const t = String(s || ''); let m = t.match(/(\d+(?:[.,]\d+)?)\s?(mio|million|millionen|mn|m)\b/i); if (m) return parseFloat(m[1].replace(',', '.'));
   m = t.match(/(\d+(?:[.,]\d+)?)\s?k\b/i); if (m) return parseFloat(m[1].replace(',', '.')) / 1000;
@@ -127,8 +129,9 @@ for (const item of $input.all()) {
   const fund = fitB.funding || {};
   let funding_status = fund.status || (fund.mentioned ? statusFromText(fund.what) : 'unknown');
   if (funding_status === 'unknown' && personalHolders.length) funding_status = 'angels';
-  const fundQuote = String(l.quotes || '').split('\n').find(q => TOO_LATE_TEXT.test(q) && !NOT_TOO_LATE_TEXT.test(q));
-  const deepFund = deep.funding_found && TOO_LATE_TEXT.test(deep.funding_found.claim) && !NOT_TOO_LATE_TEXT.test(deep.funding_found.claim) ? deep.funding_found : null;
+  const fundQuote = String(l.quotes || '').split('\n').find(q => TOO_LATE_TEXT.test(q) && (!NOT_TOO_LATE_TEXT.test(q) || LED_BY_FUND.test(q)));
+  const lateClaim = t => TOO_LATE_TEXT.test(t) && (!NOT_TOO_LATE_TEXT.test(t) || LED_BY_FUND.test(t));
+  const deepFund = deep.funding_found && lateClaim(String(deep.funding_found.claim)) ? deep.funding_found : null;
   const disclosed = [fund.total_eur_m, eurMillions(fund.what), deep.funding_found ? eurMillions(deep.funding_found.claim) : null].filter(x => typeof x === 'number' && !isNaN(x));
   const total_m = disclosed.length ? Math.max(...disclosed) : null;
   let funding_evidence = fund.what ? `${String(fund.what).slice(0, 160)} (${fund.trace_id || typeIds[0] || ''})` : '';
@@ -193,6 +196,7 @@ for (const item of $input.all()) {
   if (!techFounder) missing.push('no known technical founder');
   if (team_score_known === null || team_score_known < A_TEAM_KNOWN) missing.push(`team ${team_score_known ?? 'unknown'} < ${A_TEAM_KNOWN} on known criteria`);
   if (fit < FIT_BAR) missing.push(`fit ${fit} < ${FIT_BAR}`);
+  // v8.2 (21 Nov): TOO_LATE_TEXT reads past decimal amounts ("Seed round of €1.6 million led by bmp ventures" was missed at the '.').
   // v8.1: HTGF only invests in companies up to 3 years old, so call_now needs a known age (founding year or register date).
   // Unknown age let Vyoma (2020), AlixLabs (2019), SaxonQ (2021) and Devanthro (2018) through on 20 Nov.
   if (!oldest && regYears === null) missing.push('age unknown: no founding year or register date in the evidence');

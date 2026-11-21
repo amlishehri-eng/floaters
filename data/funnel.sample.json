@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-20T23:51:35.976Z",
+  "as_of": "2026-11-21T00:17:13.274Z",
   "stages": [
     {
       "key": "traces_in",
@@ -50,7 +50,7 @@
     {
       "key": "survivors",
       "label": "Passed the gates (call_now, watchlist, needs_enrichment)",
-      "count": 279
+      "count": 278
     },
     {
       "key": "scored_v2",
@@ -65,7 +65,7 @@
     {
       "key": "call_now",
       "label": "Call now",
-      "count": 10
+      "count": 9
     }
   ],
   "traces": {
@@ -99,22 +99,22 @@
       "not_a_lead": 4,
       "not_high_tech": 137,
       "needs_enrichment": 256,
-      "too_late": 103,
+      "too_late": 104,
       "not_a_startup": 95,
       "out_of_scope": 30,
       "unscored": 2,
       "watchlist": 13,
-      "call_now": 10,
+      "call_now": 9,
       "htgf_portfolio": 9
     },
     "scored_v2": 284,
     "deep_checked": 63,
-    "call_now": 10
+    "call_now": 9
   },
   "cost": {
     "total_usd": 45.1,
     "per_trace_read_usd": 0.0545,
-    "per_call_now_usd": 4.51,
+    "per_call_now_usd": 5.01,
     "by_step": [
       {
         "step": "stage 1 read",
@@ -171,5 +171,5 @@
   "check": {
     "traces_add_up": true
   },
-  "snapshot_note": "Snapshot of flow 44, written by scripts/refresh-leads-snapshot.mjs at 2026-11-20T23:51:36.188Z, same minute as data/leads.live-snapshot.json. Used by /api/funnel when n8n does not answer within 8 s."
+  "snapshot_note": "Snapshot of flow 44, written by scripts/refresh-leads-snapshot.mjs at 2026-11-21T00:17:13.337Z, same minute as data/leads.live-snapshot.json. Used by /api/funnel when n8n does not answer within 8 s."
 }
