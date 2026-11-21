@@ -49,6 +49,9 @@ const hasEvidence = c => !!(c && typeof c === 'object' && c.known !== false && !
 const TOO_LATE_TEXT = /(series [a-d]\b|serie [a-d]\b|series-[a-d]\b|vc[- ]backed|venture[- ]backed|y ?combinator|\byc [swfx]\d\d\b|seed[- ]?(round|runde|finanzierung)(?:[^.\n]|\.\d){0,60}(led by|angeführt|vc|fonds|fund|ventures|capital)|(closed|abgeschlossen)(?:[^.\n]|\.\d){0,30}seed[- ]?(round|runde)(?:[^.\n]|\.\d){0,60}(vc|fonds|fund|ventures|capital))/i;
 // v8.2: a round 'led by' a named fund is institutional even when an accelerator or grant is named in the same sentence
 const LED_BY_FUND = /(led by|angef(ü|ue)hrt von)(?:[^.\n]|\.\d){0,40}(ventures|capital|fund|fonds|partners|\bvc\b|invest)/i;
+// v8.3 (21 Nov, Amli's call): HTGF's first ticket is EUR 800k+, so a seed round under EUR 3M with a disclosed amount is a hint,
+// not too late (eversyn: seed EUR 1.6M led by bmp ventures). Series A+, EUR 3M+ and seeds without an amount stay too late.
+const SMALL_SEED_M = 3;
 const NOT_TOO_LATE_TEXT = /(angel|seeking|suche[n]?\b|looking for|planen|planning|want to raise|pre-?seed|preseed|exist|dati|bmbf|eic\b|sprind|horizon|grant|förder|foerder|stipend|preis|award|prize|accelerator)/i;
 const eurMillions = s => { const t = String(s || ''); let m = t.match(/(\d+(?:[.,]\d+)?)\s?(mio|million|millionen|mn|m)\b/i); if (m) return parseFloat(m[1].replace(',', '.'));
   m = t.match(/(\d+(?:[.,]\d+)?)\s?k\b/i); if (m) return parseFloat(m[1].replace(',', '.')) / 1000;
@@ -131,14 +134,19 @@ for (const item of $input.all()) {
   if (funding_status === 'unknown' && personalHolders.length) funding_status = 'angels';
   const fundQuote = String(l.quotes || '').split('\n').find(q => TOO_LATE_TEXT.test(q) && (!NOT_TOO_LATE_TEXT.test(q) || LED_BY_FUND.test(q)));
   const lateClaim = t => TOO_LATE_TEXT.test(t) && (!NOT_TOO_LATE_TEXT.test(t) || LED_BY_FUND.test(t));
+  const smallSeed = t => { const x = String(t || ''); const m = eurMillions(x); return /seed/i.test(x) && !/series|serie/i.test(x) && m != null && m < SMALL_SEED_M; };
   const deepFund = deep.funding_found && lateClaim(String(deep.funding_found.claim)) ? deep.funding_found : null;
+  const smallSeedText = [deepFund && deepFund.claim, webFund && webFund.claim, fund.what].find(t => t && smallSeed(t)) || null;
   const disclosed = [fund.total_eur_m, eurMillions(fund.what), deep.funding_found ? eurMillions(deep.funding_found.claim) : null].filter(x => typeof x === 'number' && !isNaN(x));
   const total_m = disclosed.length ? Math.max(...disclosed) : null;
   let funding_evidence = fund.what ? `${String(fund.what).slice(0, 160)} (${fund.trace_id || typeIds[0] || ''})` : '';
   const co_investors = [...new Set([...(fund.co_investors || []), ...personalHolders, ...instHolders])];
   const bareSeed = funding_status === 'seed_vc' && !(fund.co_investors || []).length && total_m == null && !TOO_LATE_TEXT.test(String(fund.what || '')) && !/\b(led by|angef(ü|ue)hrt|vc|venture|fonds|fund|capital)\b/i.test(String(fund.what || ''));
   if (bareSeed) { funding_status = 'unknown'; funding_evidence = (funding_evidence ? funding_evidence + '; ' : '') + 'seed mentioned without a lead investor: check who led it'; }
-  if (['seed_vc', 'series_a_plus'].includes(funding_status) && fund.what) elig.no_funding = check('fail', `${funding_status}: "${String(fund.what).slice(0, 140)}"`, [fund.trace_id].filter(Boolean));
+  const otherLate = (funding_status === 'series_a_plus' && fund.what && !smallSeed(fund.what)) || (total_m != null && total_m >= SMALL_SEED_M) || instHolders.length
+    || (deepFund && !smallSeed(deepFund.claim)) || (webFund && !smallSeed(webFund.claim));
+  if (smallSeedText && !otherLate) { funding_status = 'seed_vc'; funding_evidence = `${String(smallSeedText).slice(0, 160)}`; elig.no_funding = check('pass', `seed under EUR ${SMALL_SEED_M}M: "${String(smallSeedText).slice(0, 140)}" (HTGF's first ticket is EUR 800k+; check who leads the next round)`, typeIds); }
+  else if (['seed_vc', 'series_a_plus'].includes(funding_status) && fund.what) elig.no_funding = check('fail', `${funding_status}: "${String(fund.what).slice(0, 140)}"`, [fund.trace_id].filter(Boolean));
   else if (total_m != null && total_m >= 3) { funding_status = funding_status === 'unknown' ? 'seed_vc' : funding_status; elig.no_funding = check('fail', `EUR ${total_m}M disclosed (3M or more)`, typeIds); }
   else if (instHolders.length) { funding_status = 'seed_vc'; funding_evidence = `register: ${instHolders.join(', ')}`; elig.no_funding = check('fail', `register: institutional investor ${instHolders.join(', ')} ${instHolders.length > 1 ? 'are shareholders' : 'is a shareholder'}`, ['registry']); }
   else if (deepFund) { funding_status = /series|serie/i.test(deepFund.claim) ? 'series_a_plus' : 'seed_vc'; funding_evidence = `${deepFund.claim} (${deepUrl(deepFund)})`; elig.no_funding = check('fail', `deep check: ${String(deepFund.claim).slice(0, 140)} (${deepUrl(deepFund)})`, ['deep:' + deepUrl(deepFund)]); }
