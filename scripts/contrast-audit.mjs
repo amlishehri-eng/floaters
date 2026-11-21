@@ -122,9 +122,10 @@ for (const p of PAGES) {
     }
   }
   if (p.outreach) {
-    // The outreach dialog, opened from the selected lead. The draft request is forced onto the template path
-    // (test_fallback), so the audit never pays for a model call; the dialog looks the same either way.
-    await page.route("**/api/outreach", (route) => route.continue({ postData: JSON.stringify({ ...JSON.parse(route.request().postData() || "{}"), test_fallback: true }) }));
+    // The outreach dialog, opened from the selected lead. The audit answers the draft request itself with a fixed
+    // sample (same fields as /api/outreach), so it never pays for a model call; the dialog looks the same either way.
+    const sample = { to_name: "Ada Example", founders: ["Ada Example", "Ben Example"], to_email: null, website: "https://example.com", linkedin: "https://www.linkedin.com/company/example", language: "en", model: "gpt-5.5", cost_usd: 0.03, subject: "Sample subject line", subjects: ["Sample subject line", "A second subject line", "A third subject line"], body: "Hi Ada and Ben,\n\nSample paragraph one.\n\nSample paragraph two.\n\nBest,\nYour name\nInvestment Manager, HTGF", words: 20 };
+    await page.route("**/api/outreach", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(sample) }));
     const open = page.getByRole("button", { name: "Draft outreach" }).first();
     if (await open.count()) {
       await open.click();

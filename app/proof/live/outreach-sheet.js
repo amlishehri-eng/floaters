@@ -2,8 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-// Draft outreach: a centred dialog over the call list with the draft from /api/outreach (gpt-5.5, or the template in
-// code when the model fails). Recipient line, English/German switch (redrafts), subject with three suggested lines,
+// Draft outreach: a centred dialog over the call list with the draft from /api/outreach (gpt-5.5). When the model
+// fails the dialog says why and offers Redraft; it never shows a stand-in text. Recipient line, English/German switch (redrafts), subject with three suggested lines,
 // an auto-growing message, and Copy, Open in mail (mailto:), Open LinkedIn, Mark as contacted and Redraft.
 // Focus stays inside the dialog (Tab cycles), Esc or the backdrop closes it, focus goes back to the button that opened it.
 
@@ -13,6 +13,7 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
   const [lang, setLang] = useState("en");
   const [round, setRound] = useState(0); // Redraft bumps this
   const [draft, setDraft] = useState(null);
+  const [recipient, setRecipient] = useState(null); // recipient fields when the draft failed
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [state, setState] = useState("loading"); // loading | ready | error
@@ -27,7 +28,7 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
     fetch("/api/outreach", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lead_key: leadKey, language: lang }) })
       .then(async (res) => {
         const j = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(j.error || `outreach answered ${res.status}`);
+        if (!res.ok || !j.body) throw Object.assign(new Error(j.error || `outreach answered ${res.status}`), { recipient: j.to_name ? j : null });
         return j;
       })
       .then((j) => {
@@ -36,11 +37,15 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
         setSubject(j.subject);
         setBody(j.body);
         setState("ready");
-        setNote(j.mocked
-          ? { text: `Drafted from the template, the model was not available (${j.error}). Check it before sending.`, tone: "warn" }
-          : { text: `Drafted by ${j.model} from this team's sources only${j.cost_usd ? ` ($${j.cost_usd.toFixed(3)})` : ""}. Check every fact before sending.`, tone: "" });
+        setNote({ text: `Drafted by ${j.model} from this team's sources only${j.cost_usd ? ` ($${j.cost_usd.toFixed(3)})` : ""}. Check every fact before sending.`, tone: "" });
       })
-      .catch((err) => { if (live) { setState("error"); setNote({ text: `No draft: ${err.message}. Try Redraft.`, tone: "warn" }); } });
+      .catch((err) => {
+        if (!live) return;
+        setDraft(null);
+        setRecipient(err.recipient);
+        setState("error");
+        setNote({ text: `No draft: the model call failed (${err.message}). Try Redraft.`, tone: "warn" });
+      });
     return () => { live = false; };
   }, [leadKey, lang, round]);
 
@@ -105,6 +110,7 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
     }
   }
 
+  const to = draft || recipient;
   const mailto = `mailto:${draft?.to_email || ""}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   const busy = state === "loading";
   return (
@@ -117,15 +123,15 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
 
         <div className="os-meta">
           <p className="os-to">
-            {draft ? (
+            {to ? (
               <>
-                <span className="os-to__k">To</span> <strong>{draft.founders?.length ? draft.founders.join(", ") : draft.to_name}</strong>
+                <span className="os-to__k">To</span> <strong>{to.founders?.length ? to.founders.join(", ") : to.to_name}</strong>
                 <span className="os-to__sep" aria-hidden="true">·</span>
-                {draft.to_email ? <span>{draft.to_email}</span> : <span className="os-muted">No email found</span>}
-                {draft.linkedin && <><span className="os-to__sep" aria-hidden="true">·</span><a href={draft.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></>}
-                {draft.website && <><span className="os-to__sep" aria-hidden="true">·</span><a href={draft.website} target="_blank" rel="noreferrer">Website</a></>}
+                {to.to_email ? <span>{to.to_email}</span> : <span className="os-muted">No email found</span>}
+                {to.linkedin && <><span className="os-to__sep" aria-hidden="true">·</span><a href={to.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></>}
+                {to.website && <><span className="os-to__sep" aria-hidden="true">·</span><a href={to.website} target="_blank" rel="noreferrer">Website</a></>}
               </>
-            ) : <span className="os-muted">Finding the founders…</span>}
+            ) : <span className="os-muted">{state === "error" ? "No draft" : "Finding the founders…"}</span>}
           </p>
           <div className="os-lang" role="group" aria-label="Language of the email">
             {[["en", "English"], ["de", "German"]].map(([k, l]) => (
