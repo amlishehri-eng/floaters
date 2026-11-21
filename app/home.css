@@ -30,16 +30,9 @@
 .ho-layer { position: absolute; left: 3.125%; top: -2.632%; width: 93.75%; height: 105.263%; }
 /* The radar circle is wider than the map; it is clipped to the border anyway, so hide its box from the page width too. */
 .ho-clip { overflow: hidden; }
-.ho-scope {
-  position: absolute; left: 50%; top: 50%; width: 123.333%; aspect-ratio: 1; transform: translate(-50%, -50%);
-  border-radius: 50%; overflow: hidden;
-}
-.ho-ring { position: absolute; border-radius: 50%; border: 1px solid; }
-.ho-cross { position: absolute; background: rgba(143, 166, 180, 0.35); }
-.ho-cross--v { left: 50%; top: 0; bottom: 0; width: 1px; }
-.ho-cross--h { top: 50%; left: 0; right: 0; height: 1px; }
+.ho-layer--fill { left: 0; top: 0; width: 100%; height: 100%; }
 .ho-sweep {
-  position: absolute; inset: 0; border-radius: 50%;
+  position: absolute; border-radius: 50%;
   background: conic-gradient(from 0deg, rgba(26, 82, 118, 0.26), rgba(26, 82, 118, 0.05) 50deg, rgba(26, 82, 118, 0) 70deg);
   animation: ho-sweep 6s linear infinite;
 }
@@ -48,11 +41,11 @@
 
 .ho-dot { position: absolute; border-radius: 50%; }
 .ho-star {
-  position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%;
-  background: var(--ff-red); box-shadow: 0 0 0 5px rgba(180, 54, 59, 0.18), 0 0 14px 4px rgba(180, 54, 59, 0.25);
+  position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; border: 1.5px solid var(--ff-white); box-sizing: border-box;
+  background: var(--ff-red); box-shadow: 0 0 0 3px rgba(180, 54, 59, 0.2), 0 0 8px 2px rgba(180, 54, 59, 0.22);
 }
-.ho-label { position: absolute; transform: translateY(-50%); display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
-.ho-label--left { transform: translate(-100%, -50%); }
+.ho-labels { position: absolute; display: flex; flex-direction: column; }
+.ho-label { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; line-height: min(20px, 3.125cqw); height: min(20px, 3.125cqw); }
 /* 14px / 12px at the reference size, scaled with the radar box on small screens. */
 .ho-label__name { font-size: min(14px, 2.19cqw); font-weight: 650; color: var(--ff-ink); }
 .ho-label__city { font-size: min(12px, 1.875cqw); color: var(--ff-stone-deep); }

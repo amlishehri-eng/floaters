@@ -10,10 +10,6 @@ import "./home.css";
 // backtest from flow 46. Each falls back to its dated snapshot.
 export const dynamic = "force-dynamic";
 
-const RINGS = [
-  { inset: "6.216%", a: 0.18 }, { inset: "18.649%", a: 0.14 }, { inset: "31.081%", a: 0.12 }, { inset: "43.514%", a: 0.1 },
-  { inset: "0", a: 0.22 }, { inset: "12.432%", a: 0.16 }, { inset: "24.865%", a: 0.13 }, { inset: "37.297%", a: 0.1 },
-];
 
 const SOURCES = [
   { title: "University spin-off lists", text: "Fifteen universities and institutes, from KIT to Max Planck." },
@@ -51,34 +47,45 @@ export default async function Home() {
         </div>
         <div className="ho-first__map">
           <div className="ho-radar">
-            {/* Mist land first, then the Stone rings and the Adriatic sweep, then the Stone border on top. */}
+            {/* Mist land, then (clipped to the border) Stone rings and crosshair at R/10 steps, the Adriatic sweep of radius R
+                and the trace dots, then the Stone border, then the call-now points, leader lines and label lists. */}
             <svg viewBox="0 0 600 800" className="ho-layer" aria-hidden="true">
               <polygon points={v.outline} fill="#f5f0e8" />
             </svg>
             <div className="ho-layer ho-clip" style={{ clipPath: v.clip }} aria-hidden="true">
-              <div className="ho-scope">
-                {RINGS.map((r) => (
-                  <div key={r.inset} className="ho-ring" style={{ inset: r.inset, borderColor: `rgba(143,166,180,${Math.min(0.9, r.a * 3)})` }} />
+              <svg viewBox="0 0 600 800" className="ho-layer ho-layer--fill">
+                {v.radar.rings.map((r, i) => (
+                  <circle key={r} cx={v.radar.cx} cy={v.radar.cy} r={r} fill="none" stroke="#8fa6b4" strokeOpacity={0.55 - i * 0.03} strokeWidth="1" />
                 ))}
-                <div className="ho-cross ho-cross--v" />
-                <div className="ho-cross ho-cross--h" />
-                <div className="ho-sweep" />
-              </div>
+                <line x1={v.radar.cx} y1={v.radar.cy - v.radar.r} x2={v.radar.cx} y2={v.radar.cy + v.radar.r} stroke="#8fa6b4" strokeOpacity="0.4" />
+                <line x1={v.radar.cx - v.radar.r} y1={v.radar.cy} x2={v.radar.cx + v.radar.r} y2={v.radar.cy} stroke="#8fa6b4" strokeOpacity="0.4" />
+              </svg>
+              <div
+                className="ho-sweep"
+                style={{ left: `${((v.radar.cx - v.radar.r) / 6).toFixed(3)}%`, top: `${((v.radar.cy - v.radar.r) / 8).toFixed(3)}%`, width: `${(v.radar.r / 3).toFixed(3)}%`, height: `${(v.radar.r / 4).toFixed(3)}%` }}
+              />
+              {v.dots.map((d, i) => (
+                <span key={i} className="ho-dot" style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, background: d.c, opacity: d.o }} />
+              ))}
             </div>
             <svg viewBox="0 0 600 800" className="ho-layer" aria-hidden="true">
               <polygon points={v.outline} fill="none" stroke="#8fa6b4" strokeWidth="1.5" strokeLinejoin="round" />
+              {v.labels.map((l) => (
+                <line key={l.key} x1={l.leader.x1} y1={l.leader.y1} x2={l.leader.x2} y2={l.leader.y2} stroke="#8fa6b4" strokeWidth="1" />
+              ))}
             </svg>
             <div className="ho-layer">
-              {v.dots.map((d, i) => (
-                <span key={i} className="ho-dot" style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, background: d.c, opacity: d.o }} aria-hidden="true" />
-              ))}
               {v.stars.map((t) => (
-                <span key={t.key}>
-                  <span className="ho-star" style={{ left: `${t.x}%`, top: `${t.y}%` }} aria-hidden="true" />
-                  <span className={t.left ? "ho-label ho-label--left" : "ho-label"} style={{ left: `${t.lx}%`, top: `${t.ly}%` }}>
-                    <span className="ho-label__name">{t.name}</span>
-                    <span className="ho-label__city">{t.city}</span>
-                  </span>
+                <span key={t.key} className="ho-star" style={{ left: `${t.x}%`, top: `${t.y}%` }} aria-hidden="true" />
+              ))}
+              {v.labels.map((l) => (
+                <span key={l.key} className="ho-labels" style={{ left: `${l.x}%`, top: `${l.y}%` }}>
+                  {l.lines.map((line) => (
+                    <span key={line.name} className="ho-label">
+                      <span className="ho-label__name">{line.name}</span>
+                      <span className="ho-label__city">{line.city}</span>
+                    </span>
+                  ))}
                 </span>
               ))}
             </div>
