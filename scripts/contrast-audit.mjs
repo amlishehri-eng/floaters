@@ -35,7 +35,7 @@ async function launch() {
 }
 
 // Runs inside the page: every visible element with its own text, its colour, the composited background, the ratio.
-function auditInPage() {
+function auditInPage(root = "body") {
   const parse = (c) => {
     const m = String(c).match(/rgba?\(([^)]+)\)/);
     if (!m) return null;
@@ -66,7 +66,7 @@ function auditInPage() {
     return parts.join(" > ");
   };
   const out = [];
-  for (const el of document.querySelectorAll("body *")) {
+  for (const el of document.querySelectorAll(`${root} *`)) {
     if (["SCRIPT", "STYLE", "NOSCRIPT", "SVG", "PATH", "OPTION"].includes(el.tagName)) continue;
     const own = [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join(" ").trim();
     if (!own) continue;
@@ -88,7 +88,7 @@ function auditInPage() {
 
 const PAGES = [
   { name: "home", path: "/" },
-  { name: "call list", path: "/proof/live", lead: true },
+  { name: "call list", path: "/proof/live", lead: true, outreach: true },
   { name: "funnel", path: "/proof/funnel" },
   { name: "filtered", path: "/proof/funnel/filtered" },
   { name: "labs", path: "/proof/labs" },
@@ -121,13 +121,28 @@ for (const p of PAGES) {
       runs.push({ state: `focus ${sel}`, results: await page.evaluate(auditInPage) });
     }
   }
+  if (p.outreach) {
+    // The outreach dialog, opened from the selected lead. The draft request is forced onto the template path
+    // (test_fallback), so the audit never pays for a model call; the dialog looks the same either way.
+    await page.route("**/api/outreach", (route) => route.continue({ postData: JSON.stringify({ ...JSON.parse(route.request().postData() || "{}"), test_fallback: true }) }));
+    const open = page.getByRole("button", { name: "Draft outreach" }).first();
+    if (await open.count()) {
+      await open.click();
+      await page.waitForSelector(".os-dialog #os-body", { timeout: 30_000 });
+      runs.push({ state: "outreach dialog", results: await page.evaluate(auditInPage, ".os-dialog") });
+      const chip = await page.$(".os-chip");
+      if (chip) { await chip.hover(); runs.push({ state: "outreach chip hover", results: await page.evaluate(auditInPage, ".os-dialog") }); }
+      await page.keyboard.press("Escape");
+    }
+    await page.unroute("**/api/outreach");
+  }
   const bad = new Map();
   for (const run of runs) {
     checked += run.results.length;
     for (const r of run.results) if (r.ratio < r.min) bad.set(`${r.selector}|${r.fg}|${r.bg}`, { ...r, state: run.state });
   }
   failures += bad.size;
-  console.log(`${bad.size ? "FAIL" : "PASS"}  ${p.name.padEnd(13)} ${p.path}  ${runs[0].results.length} texts${runs.length > 1 ? `, ${runs.length - 1} hover/focus states` : ""}${bad.size ? `, ${bad.size} under the minimum` : ""}`);
+  console.log(`${bad.size ? "FAIL" : "PASS"}  ${p.name.padEnd(13)} ${p.path}  ${runs[0].results.length} texts${runs.length > 1 ? `, ${runs.length - 1} hover/focus/dialog states` : ""}${bad.size ? `, ${bad.size} under the minimum` : ""}`);
   for (const r of bad.values()) console.log(`      ${r.ratio.toFixed(2)} < ${r.min}  ${r.fg} on ${r.bg}  ${r.size}px  ${r.selector}  "${r.text}"${r.state ? `  (${r.state})` : ""}`);
 }
 await browser.close();

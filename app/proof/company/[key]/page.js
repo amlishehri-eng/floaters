@@ -4,7 +4,7 @@ import CriteriaRows from "@/components/ff/criteria-rows";
 import SiteNav from "@/components/ff/site-nav";
 import { getExtras, getLeadEnglish, getLeads, getVotes, latestVotes } from "@/lib/n8n";
 import { companyPage } from "@/lib/screen/company";
-import { contactedMap } from "@/lib/outreach";
+import { contactedMap } from "@/lib/ai/outreach";
 import { broughtBackLine, stoppedAt } from "@/lib/screen/filtered";
 import { dayMonthShort, lowerFirst, sourceHint } from "@/lib/screen/format";
 import "../../live/call-list.css";

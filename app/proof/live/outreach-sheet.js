@@ -1,20 +1,26 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-// Draft outreach (working prototype): a sheet over the call list with the draft from /api/outreach (gpt-5-mini, or the
-// template when the model fails), an editable subject and body, an English/German switch that redrafts, and Copy,
-// "Open in mail" (mailto:), "Open LinkedIn" and "Mark as contacted" (/api/outreach/contacted). Errors show in the sheet.
+// Draft outreach: a centred dialog over the call list with the draft from /api/outreach (gpt-5.5, or the template in
+// code when the model fails). Recipient line, English/German switch (redrafts), subject with three suggested lines,
+// an auto-growing message, and Copy, Open in mail (mailto:), Open LinkedIn, Mark as contacted and Redraft.
+// Focus stays inside the dialog (Tab cycles), Esc or the backdrop closes it, focus goes back to the button that opened it.
+
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
   const [lang, setLang] = useState("en");
+  const [round, setRound] = useState(0); // Redraft bumps this
   const [draft, setDraft] = useState(null);
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [state, setState] = useState("loading"); // loading | ready | error
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState({ text: "", tone: "" });
   const dialog = useRef(null);
-  const opener = useRef(null);
+  const area = useRef(null);
+  const close = useRef(onClose);
+  useEffect(() => { close.current = onClose; }, [onClose]);
 
   useEffect(() => {
     let live = true;
@@ -30,33 +36,60 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
         setSubject(j.subject);
         setBody(j.body);
         setState("ready");
-        if (j.mocked) setNote(`Drafted from a template, the model was not available (${j.error}).`);
+        setNote(j.mocked
+          ? { text: `Drafted from the template, the model was not available (${j.error}). Check it before sending.`, tone: "warn" }
+          : { text: `Drafted by ${j.model} from this team's sources only${j.cost_usd ? ` ($${j.cost_usd.toFixed(3)})` : ""}. Check every fact before sending.`, tone: "" });
       })
-      .catch((err) => { if (live) { setState("error"); setNote(`No draft: ${err.message}.`); } });
+      .catch((err) => { if (live) { setState("error"); setNote({ text: `No draft: ${err.message}. Try Redraft.`, tone: "warn" }); } });
     return () => { live = false; };
-  }, [leadKey, lang]);
+  }, [leadKey, lang, round]);
 
-  // Focus the sheet on open, give it back on close; Esc closes.
+  // Open: remember the opener and focus the dialog. Close: give focus back. Esc closes, Tab stays inside.
   useEffect(() => {
-    opener.current = document.activeElement;
+    const opener = document.activeElement;
     dialog.current?.focus();
-    const onKey = (e) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => { window.removeEventListener("keydown", onKey); opener.current?.focus?.(); };
-  }, [onClose]);
+    const onKey = (e) => {
+      if (e.key === "Escape") { e.preventDefault(); close.current(); return; }
+      if (e.key !== "Tab" || !dialog.current) return;
+      const items = [...dialog.current.querySelectorAll(FOCUSABLE)].filter((el) => el.offsetParent !== null);
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog.current)) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener("keydown", onKey);
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = overflow; opener?.focus?.(); };
+  }, []);
+
+  // The message grows with its text (at least 12 rows, set in CSS).
+  useLayoutEffect(() => {
+    const el = area.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight + 2}px`;
+  }, [body, state]);
+
+  function redraft(nextLang = lang) {
+    setState("loading");
+    setNote({ text: "", tone: "" });
+    if (nextLang !== lang) setLang(nextLang);
+    else setRound((r) => r + 1);
+  }
 
   async function copy() {
     const all = `Subject: ${subject}\n\n${body}`;
     try {
       await navigator.clipboard.writeText(all);
-      setNote("Copied to the clipboard.");
+      setNote({ text: "Copied subject and message to the clipboard.", tone: "ok" });
     } catch (err) {
       // Some browsers refuse the clipboard API: select the message and use the older copy command instead.
-      const area = document.getElementById("os-body");
-      area?.focus();
-      area?.select();
+      area.current?.focus();
+      area.current?.select();
       const ok = typeof document.execCommand === "function" && document.execCommand("copy");
-      setNote(ok ? "Copied the message to the clipboard." : `Could not copy (${err.message}). The message is selected: press Cmd+C or Ctrl+C.`);
+      setNote(ok ? { text: "Copied the message to the clipboard.", tone: "ok" } : { text: `Could not copy (${err.message}). The message is selected: press Cmd+C or Ctrl+C.`, tone: "warn" });
     }
   }
 
@@ -66,45 +99,77 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
       const j = await res.json().catch(() => ({}));
       if (!res.ok || !j.ok) throw new Error(j.error || `answered ${res.status}`);
       onContacted(leadKey, j.at);
-      setNote("Marked as contacted.");
+      setNote({ text: "Marked as contacted. The call list and the company page show the date.", tone: "ok" });
     } catch (err) {
-      setNote(`Not saved: ${err.message}.`);
+      setNote({ text: `Not saved: ${err.message}.`, tone: "warn" });
     }
   }
 
   const mailto = `mailto:${draft?.to_email || ""}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const busy = state === "loading";
   return (
-    <div className="os-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="os-sheet" role="dialog" aria-modal="true" aria-labelledby="os-title" tabIndex={-1} ref={dialog}>
+    <div className="os-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="os-dialog" role="dialog" aria-modal="true" aria-labelledby="os-title" aria-busy={busy} tabIndex={-1} ref={dialog}>
         <div className="os-head">
           <h2 id="os-title">Outreach to {name}</h2>
-          <button type="button" className="ff-btn ff-btn--secondary" onClick={onClose}>Close</button>
+          <button type="button" className="os-close" onClick={onClose} aria-label="Close">Close</button>
         </div>
-        <div className="os-lang" role="group" aria-label="Language">
-          {[["en", "English"], ["de", "German"]].map(([k, l]) => (
-            <button key={k} type="button" className="os-langbtn" aria-pressed={lang === k} onClick={() => { if (k === lang) return; setState("loading"); setNote(""); setLang(k); }} disabled={state === "loading"}>{l}</button>
-          ))}
+
+        <div className="os-meta">
+          <p className="os-to">
+            {draft ? (
+              <>
+                <span className="os-to__k">To</span> <strong>{draft.founders?.length ? draft.founders.join(", ") : draft.to_name}</strong>
+                <span className="os-to__sep" aria-hidden="true">·</span>
+                {draft.to_email ? <span>{draft.to_email}</span> : <span className="os-muted">No email found</span>}
+                {draft.linkedin && <><span className="os-to__sep" aria-hidden="true">·</span><a href={draft.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></>}
+                {draft.website && <><span className="os-to__sep" aria-hidden="true">·</span><a href={draft.website} target="_blank" rel="noreferrer">Website</a></>}
+              </>
+            ) : <span className="os-muted">Finding the founders…</span>}
+          </p>
+          <div className="os-lang" role="group" aria-label="Language of the email">
+            {[["en", "English"], ["de", "German"]].map(([k, l]) => (
+              <button key={k} type="button" className="os-langbtn" aria-pressed={lang === k} disabled={busy} onClick={() => k !== lang && redraft(k)}>{l}</button>
+            ))}
+          </div>
         </div>
-        {state === "loading" && <p className="os-muted" role="status">Drafting…</p>}
-        {draft && state !== "loading" && (
+
+        {busy && (
+          <div className="os-loading" role="status">
+            <span className="os-spinner" aria-hidden="true" />
+            {draft ? "Redrafting…" : "Drafting from this team's sources, about 10 seconds…"}
+          </div>
+        )}
+
+        {draft && !busy && (
           <>
-            <p className="os-to">
-              To {draft.to_name}
-              {draft.to_email ? <> &lt;{draft.to_email}&gt;</> : <span className="os-muted">. No email found, reach out on LinkedIn{draft.linkedin ? "" : " or the website"}.</span>}
-            </p>
-            <label className="os-label" htmlFor="os-subject">Subject</label>
-            <input id="os-subject" className="os-input" value={subject} onChange={(e) => setSubject(e.target.value)} />
-            <label className="os-label" htmlFor="os-body">Message</label>
-            <textarea id="os-body" className="os-input os-body" rows={10} value={body} onChange={(e) => setBody(e.target.value)} />
-            <div className="os-actions">
-              <button type="button" className="ff-btn" onClick={copy}>Copy</button>
-              <a className="ff-btn ff-btn--secondary os-linkbtn" href={mailto}>Open in mail</a>
-              {draft.linkedin && <a className="ff-btn ff-btn--secondary os-linkbtn" href={draft.linkedin} target="_blank" rel="noreferrer">Open LinkedIn</a>}
-              <button type="button" className="ff-btn ff-btn--secondary" onClick={() => contacted(draft.to_email ? "email" : draft.linkedin ? "linkedin" : "copy")}>Mark as contacted</button>
+            <div className="os-field">
+              <label className="os-label" htmlFor="os-subject">Subject</label>
+              <input id="os-subject" className="os-input" value={subject} onChange={(e) => setSubject(e.target.value)} />
+              {draft.subjects?.length > 1 && (
+                <div className="os-chips" role="group" aria-label="Suggested subject lines">
+                  {draft.subjects.map((s) => (
+                    <button key={s} type="button" className="os-chip" aria-pressed={s === subject} onClick={() => setSubject(s)}>{s}</button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="os-field">
+              <label className="os-label" htmlFor="os-body">Message</label>
+              <textarea id="os-body" ref={area} className="os-input os-body" rows={12} value={body} onChange={(e) => setBody(e.target.value)} />
             </div>
           </>
         )}
-        <p className="os-muted" role="status">{note}</p>
+
+        <p className={`os-note${note.tone ? ` os-note--${note.tone}` : ""}`} role="status">{note.text}</p>
+
+        <div className="os-actions">
+          <button type="button" className="ff-btn" onClick={copy} disabled={!draft || busy}>Copy</button>
+          {draft && !busy ? <a className="ff-btn ff-btn--secondary os-linkbtn" href={mailto}>Open in mail</a> : <button type="button" className="ff-btn ff-btn--secondary" disabled>Open in mail</button>}
+          {draft?.linkedin && <a className="ff-btn ff-btn--secondary os-linkbtn" href={draft.linkedin} target="_blank" rel="noreferrer">Open LinkedIn</a>}
+          <button type="button" className="ff-btn ff-btn--secondary" disabled={!draft || busy} onClick={() => contacted(draft.to_email ? "email" : draft.linkedin ? "linkedin" : "copy")}>Mark as contacted</button>
+          <button type="button" className="ff-btn ff-btn--secondary os-redraft" disabled={busy} onClick={() => redraft()}>Redraft</button>
+        </div>
       </div>
     </div>
   );

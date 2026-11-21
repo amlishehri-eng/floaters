@@ -255,14 +255,28 @@ async function linkChecks() {
   const bytes = (await a2.arrayBuffer()).byteLength;
   add("briefing segment audio cached", "/api/briefing?format=audio&segment=0", (a2.headers.get("content-type") || "").includes("audio") && a2.headers.get("x-cache") === "hit", `${Math.round(bytes / 1024)} KB, second request ${a2.headers.get("x-cache") || "no audio"}`);
 
-  // Outreach: a draft from the model, and the template when the model fails.
-  const draft = (lang, extra = {}) => fetch(`${BASE}/api/outreach`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lead_key: callNow[0]?.id, language: lang, ...extra }), signal: AbortSignal.timeout(40_000) }).then((r) => r.json());
+  // Outreach: a draft from the model (gpt-5.5), and the template when the model fails. Both follow the rules:
+  // 90 to 140 words, three subject lines, two time slots, no dashes or exclamation marks, signed for HTGF.
+  const draft = (lang, extra = {}) => fetch(`${BASE}/api/outreach`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lead_key: callNow[0]?.id, language: lang, ...extra }), signal: AbortSignal.timeout(60_000) }).then((r) => r.json());
+  const rules = (d) => {
+    const body = String(d.body || "");
+    const words = body.split(/\s+/).filter(Boolean).length;
+    const broken = [
+      !(words >= 90 && words <= 140) && `${words} words`,
+      (d.subjects || []).length !== 3 && `${(d.subjects || []).length} subjects`,
+      /[—–!]/.test(body) && "dash or exclamation mark",
+      !/HTGF\s*$/.test(body.trim()) && "no HTGF sign-off",
+      !/20/.test(body) && "no 20-minute ask",
+    ].filter(Boolean);
+    return { words, broken };
+  };
   if (callNow[0]) {
     const en = await draft("en");
-    const words = String(en.body || "").split(/\s+/).filter(Boolean).length;
-    add("outreach draft (en)", "/api/outreach", Boolean(en.subject && en.body) && words <= 130, `${en.mocked ? `template (${en.error})` : "model"}, ${words} words, email ${en.to_email || "none"}, LinkedIn ${en.linkedin ? "yes" : "none"}`, en.mocked ?? false);
+    const r1 = rules(en);
+    add("outreach draft (en)", "/api/outreach", Boolean(en.subject && en.body) && !r1.broken.length, `${en.mocked ? `template (${en.error})` : `${en.model}, $${en.cost_usd}`}, ${r1.words} words, to ${en.to_name}, email ${en.to_email || "none"}${r1.broken.length ? `, broken: ${r1.broken.join(", ")}` : ""}`, en.mocked ?? false);
     const fb = await draft("de", { test_fallback: true });
-    add("outreach fallback (de)", "/api/outreach", fb.mocked === true && Boolean(fb.subject && fb.body), `template: ${String(fb.subject).slice(0, 60)}`, true);
+    const r2 = rules(fb);
+    add("outreach fallback (de)", "/api/outreach", fb.mocked === true && !r2.broken.length && /^Guten Tag/.test(fb.body), `template, ${r2.words} words: ${String(fb.subject).slice(0, 60)}${r2.broken.length ? `, broken: ${r2.broken.join(", ")}` : ""}`, true);
   }
 
   if (process.argv.includes("--write-test")) {

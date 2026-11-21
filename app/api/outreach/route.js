@@ -1,9 +1,9 @@
 import { getLeadEnglish } from "@/lib/n8n";
-import { draftOutreach } from "@/lib/outreach";
+import { draftOutreach } from "@/lib/ai/outreach";
 
-// POST /api/outreach { lead_key, language: "en" | "de" } -> { to_name, to_email | null, subject, body, linkedin | null, mocked?, error? }
-// A first email from an HTGF investment manager, built only from this lead's evidence (gpt-5-mini, 8 s); the template in
-// lib/outreach.js when the model is off or fails (mocked: true, error says why). Sender from OUTREACH_SENDER_NAME / _TITLE.
+// POST /api/outreach { lead_key, language: "en" | "de" } -> { to_name, founders, to_email | null, website, linkedin | null, subject, subjects[3], body, words, model?, cost_usd?, mocked?, error? }
+// A first email from an HTGF investment manager, built only from this lead's evidence (gpt-5.5, up to 45 s); the template in
+// lib/ai/outreach.js when the model is off or fails (mocked: true, error says why). Sender from OUTREACH_SENDER_NAME / _TITLE.
 export const dynamic = "force-dynamic";
 const KEY = /^[a-z0-9][a-z0-9:._-]{0,119}$/i;
 

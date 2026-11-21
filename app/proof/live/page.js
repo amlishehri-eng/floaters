@@ -1,6 +1,6 @@
 import SiteNav from "@/components/ff/site-nav";
 import { getFunnel, getLeads } from "@/lib/n8n";
-import { contactedMap } from "@/lib/outreach";
+import { contactedMap } from "@/lib/ai/outreach";
 import { callList } from "@/lib/screen/call-list";
 import CallList from "./call-list";
 import "./call-list.css";

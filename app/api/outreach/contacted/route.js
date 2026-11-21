@@ -1,4 +1,4 @@
-import { markContacted } from "@/lib/outreach";
+import { markContacted } from "@/lib/ai/outreach";
 
 // POST /api/outreach/contacted { lead_key, channel: "email" | "linkedin" | "copy" } -> { ok, lead_key, at, channel }
 // Kept in data/outreach.local.json (gitignored), the same fallback style as feedback. The call list and the company page
