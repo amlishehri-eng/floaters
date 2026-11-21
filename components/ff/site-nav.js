@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RunMyDay from "./run-my-day";
 
 // Top navigation for every Founders First page (DESIGN.md section 4). theme: dark | paper | call | white.
 const LINKS = [
@@ -14,13 +15,16 @@ export default function SiteNav({ current, theme = "paper" }) {
     <header className={`ff-nav ff-nav--${theme}`}>
       <div className="ff-nav__inner">
         <Link href="/" className="ff-nav__brand">Founders First</Link>
-        <nav aria-label="Main" className="ff-nav__links">
-          {LINKS.map((l) => (
-            <Link key={l.key} href={l.href} className="ff-nav__link" aria-current={current === l.key ? "page" : undefined}>
-              {l.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="ff-nav__right">
+          <nav aria-label="Main" className="ff-nav__links">
+            {LINKS.map((l) => (
+              <Link key={l.key} href={l.href} className="ff-nav__link" aria-current={current === l.key ? "page" : undefined}>
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+          <RunMyDay />
+        </div>
       </div>
     </header>
   );

@@ -1,0 +1,24 @@
+{
+  "_note": "Real executions of n8n flow 00 Run all (YLjdNTgC73QKTWKg), times CET. Results from STATUS.md and /api/funnel. Shown by the Run my day button (a replay, it does not start a run).",
+  "replay": {
+    "label": "Replay of the last full run",
+    "stages": [
+      { "label": "Source workflows", "value": 9, "note": "spin-off lists, accelerators, GitHub, events, job ads, podcasts" },
+      { "label": "Traces found", "value": 1416, "note": "public signals across Germany" },
+      { "label": "Kept by the code filter", "value": 1144, "note": "free, no model" },
+      { "label": "Read by the small model", "value": 827, "note": "about $0.003 a trace" },
+      { "label": "Teams", "value": 659, "note": "merged in code" },
+      { "label": "Past the HTGF gates", "value": 397, "note": "free, rules as code" },
+      { "label": "Scored by the strong model", "value": 284, "note": "every point quotes its source" },
+      { "label": "Still standing after the self-check", "value": 223, "note": "Handelsregister and web" },
+      { "label": "Deep-checked", "value": 39, "note": "flight risk, IP, competitors, intro path" },
+      { "label": "To call now", "value": 10, "note": "worth a call today", "call": true }
+    ]
+  },
+  "runs": [
+    { "id": 375, "started": "2026-11-21T00:20:20+01:00", "duration": "23 min 47 s", "title": "Full run · team pages and age check", "result": "1,416 traces → 10 to call now", "status": "success" },
+    { "id": 277, "started": "2026-11-20T23:13:59+01:00", "duration": "23 min 19 s", "title": "Full run · scoring v3", "result": "7 to call now", "status": "success" },
+    { "id": 65, "started": "2026-11-20T16:56:04+01:00", "duration": "18 min 49 s", "title": "Germany-wide rescan", "result": "~900 new traces", "status": "success" },
+    { "id": 5, "started": "2026-11-20T15:25:01+01:00", "duration": "3 min 24 s", "title": "First run", "result": "46 traces → 8 leads", "status": "success" }
+  ]
+}
