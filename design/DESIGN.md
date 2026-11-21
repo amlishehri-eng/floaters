@@ -1,6 +1,6 @@
 # Founders First design rules
 
-The single source for how the site looks. The approved mockups are in `design/reference/` (one `.dc.html` file per page) and on the design canvas https://claude.ai/artifact/AozBmBhsAoZCm9xYMKpyK2. When this file and a reference file disagree, the reference file wins for layout and spacing, this file wins for rules.
+The single source for how the site looks. **Recoloured on 21 Nov 2026 (section 2): the reference files predate the new palette; keep their layout, spacing and type, take every colour from this file.** The approved mockups are in `design/reference/` (one `.dc.html` file per page) and on the design canvas https://claude.ai/artifact/AozBmBhsAoZCm9xYMKpyK2. When this file and a reference file disagree, the reference file wins for layout and spacing, this file wins for rules.
 
 ## 1. Idea
 
@@ -14,31 +14,28 @@ Everything else stays quiet.
 
 ## 2. Colour
 
-| Token | Hex | Use |
-|---|---|---|
-| `void` | `#000000` | Dark sections: home hero, funnel page, top-lead band, call-now band on Method, matched portfolio tile |
-| `paper` | `#f5f5f7` | Light page background (call list `#f4f6f9`) |
-| `white` | `#ffffff` | Detail sheet, Method page, backtest section |
-| `ink` | `#1d1d1f` | Text on light, primary button background |
-| `ink-2` | `#3a3a3f` / `#4a4a4f` | Body text and secondary text on light |
-| `muted` | `#6e6e73` | Captions on light (passes 4.5:1 on white) |
-| `fog` | `#a1a1a6` / `#86868b` | Body and captions on black |
-| `mist` | `#f5f5f7` | Text on black |
-| `ion` | `#33d1ff` | Signal and data: bars, radar, sweep, quote rule, links on black. Graphics only on light backgrounds |
-| `ion-deep` | `#0a6e99` | Ion as text or bar on light (links, team ring, gap score) |
-| `infrared` | `#ff5b3a` | Call now only: dots, glow, timing ring, last funnel bar |
-| `infrared-text` | `#d93d1e` on light, `#ff8a70` on black, `#b8321a` on the pale call-now panel | Call-now text |
-| `pass` | text `#1b7a4b`, dot `#2fbf71` | HTGF check pass, low risk |
-| `amber` | text `#9a5b00` / `#7a4a00`, panel `#fff7e8` | Medium risk, age hint |
-| `track` | `#e8ecf2` / `#eef1f6` / `#e3e7ee` | Empty part of bars and rings |
-| `hairline` | `rgba(29,29,31,0.08–0.12)` on light, `rgba(255,255,255,0.08–0.1)` on black | Dividers |
+White and Stone are the primary colours; the rest support them. Tokens live in `app/ff.css` (`--ff-*`); `node scripts/contrast.mjs` checks every text/background pair.
+
+| Token | Hex | Use | Contrast |
+|---|---|---|---|
+| `white` | `#ffffff` | Main page surface, about 60% of every page | |
+| `stone` | `#8fa6b4` | Second primary: rules, bar and ring tracks (as `--ff-track`, Stone at 30%), hairlines (`--ff-hair`, 45%), quiet fills, radar rings and trace dots, beams of the early funnel stages. **Never text** | 2.54:1 on white, decoration only |
+| `stone-deep` | `#4f6573` | Derived from Stone: captions and secondary text | **6.10:1 on white, 5.38:1 on Mist** |
+| `mist` | `#f5f0e8` | Cards, panels, alternate bands, the radar's land | |
+| `adriatic` | `#1a5276` | Links, primary buttons, data bars, the team ring, the radar sweep, focus rings | 8.36:1 on white, 7.37:1 on Mist; white on it 8.36:1 |
+| `ink` (Harbour Ink) | `#0d2b3d` | All text; at most ONE deep band per page (home: "Top of today's list") | 14.68:1 on white, 12.94:1 on Mist; Mist on it 12.94:1, Stone on it 5.79:1 |
+| `red` (Guest Red) | `#b4363b` | ONLY call-now markers: radar dots, the call-now funnel beam, the call-now chip and dot | 5.95:1 on white, 5.24:1 on Mist; white on it 5.95:1 |
+
+Ratio on a page: about 60 white / 20 Stone / 10 Adriatic / 5 Ink / 5 Red.
 
 Rules:
-- Infrared means "call now" and nothing else. Never use it for errors, links or decoration.
-- Ion means signal or data. Do not use it as a generic accent.
-- No purple, no gradient washes as decoration. The only gradients are the radar sweep (conic, ion) and the score rings (conic, solid colour).
-- Glow (`box-shadow` in ion or infrared) only on: call-now dots, the last two funnel bars, the radar points.
-- Colours that must be told apart also differ in lightness (black fit ring, deep ion team ring, infrared timing ring).
+- **Guest Red means "call now" and nothing else, and never an area bigger than a chip.** The only larger red shape is the call-now beam on the funnel. Never red for errors, links, fail states or decoration.
+- Status colours are not separate hues: pass = Adriatic, unknown = Stone deep text with a Stone dot, fail and high risk = Harbour Ink. The age hint and the "Why call now" panel are Mist.
+- Funnel beams go Stone → Adriatic → Ink by stage (`#e3eaee`, `#c7d3db`, `#8fa6b4`, `#4f7891`, `#2f6385`, `#1a5276`, `#144461`, `#0d2b3d`: Stone and Adriatic tints and shades, numbers at least 4.74:1), call now is Guest Red.
+- Rings: fit Harbour Ink, team Adriatic, timing Stone: they differ in lightness, not only hue.
+- No black, no purple, no gradient washes. The only gradients are the radar sweep (conic, Adriatic fading to transparent) and the score rings (conic, solid colour).
+- Halos (a soft ring of the same colour at low opacity) only on call-now dots and the call-now beam.
+- Do not copy the all-caps tracked labels or middle-dot captions from the palette sheet the colours came from.
 
 ## 3. Type
 
@@ -70,7 +67,7 @@ Rules:
 
 - Content width: `max-width: 1200px` (call list 1320px), side padding 28px, centred.
 - Section rhythm: 88–120px vertical padding. Full-bleed sections alternate black and light.
-- Top navigation on every page: sticky, 52–56px high, frosted (`backdrop-filter: saturate(180%) blur(20px)`), `rgba(0,0,0,0.72)` on dark pages, `rgba(245,245,247,0.78)` or white at 0.78 on light pages, hairline bottom border. Wordmark "Founders First" left (700, 125% width). Links right, 13px: Call list, Funnel, Labs, Candidates, Method. The current page is ink/white and 600, the others `#4a4a4f` / `#d2d2d7`.
+- Top navigation on every page: sticky, 52–56px high, frosted (`backdrop-filter: saturate(180%) blur(20px)`), white at 0.82 on every page, Stone hairline bottom border. Wordmark "Founders First" left (700, 125% width). Links right, 13px: Call list, Funnel, Labs, Candidates, Method. The current page is Ink and 600, the others Stone deep.
 - No sidebar.
 - Specs layout for detail content: a grid of `200px | 1fr`, label left (17px, 650), facts right, separated by a hairline on top of each row, 22px vertical padding.
 - Radius hierarchy: pills and buttons 999px, detail sheet 32px, portfolio tiles 28px, small panels 14–22px, bars 2–5px. Never one radius on everything.
@@ -101,13 +98,19 @@ Rules:
 
 **Radar (home hero).** The radar lives only inside the German border: its layer has the same box as the map and is clipped with `clip-path: polygon(...)` built from the border points. Inside it, a 740px circle with eight concentric ion rings (opacity 0.22 down to 0.1), two crosshair lines, and a conic sweep (`rgba(51,209,255,0.32)` fading to transparent over 70°) rotating once every 6 s. The sweep is the only animation on the whole site and stops under `prefers-reduced-motion: reduce`. The map of Germany is an SVG polygon (projection in `design/reference/home.dc.html`: x = (lon − 5.6) × 63, y = (55.2 − lat) × 100 in a 600 × 800 box), filled `rgba(51,209,255,0.05)`, stroked ion at 0.55. About 320 faint dots inside the border (white at 0.16–0.46, one in eight ion). The call-now teams are infrared glowing dots on their real cities with name and city labels; teams in the same city get stacked labels. Next to it, three big numbers: traces read (fog), past the gates (ion), worth a call (infrared-text). Decorative parts are `aria-hidden`; the section has an `aria-label` describing it.
 
-**Candidate cards.** The former portfolio tiles (a company brought back from the funnel gets one extra muted line, "Brought back, filtered for: <reason>"): white, 28px radius, 30px padding, min-height 220px, three per row. Top line sector and city, the name in the card title size, bottom left the fit score where the round amount was ("72 fit"), bottom right "Marked good lead, 21 Nov". A lead on the call list now is the black card with the ion dot line "On the call list now". The whole card is a link to the company page; newest vote first.
+**Home first screen.** At 1280×800, 1440×900 and 1920×1080 the headline, subline, both buttons, the whole radar (every border corner) and the three stats are visible without scrolling: two columns, text and stats left (headline `clamp(40px, min(4.6vw, 7.6vh), 84px)`), the radar right with its height from the viewport (`min(760px, 100svh − nav − 48px)`, 640:760). Below 900px it stacks. Order: first screen → "Top of today's list" (the one Harbour Ink band) → "The cheapest step runs first" → sources → backtest. The radar: Mist land, Stone border and rings, Adriatic sweep, Stone trace dots, Guest Red call-now dots with a soft halo.
+
+**Briefing player.** "Play the briefing" plays the segments of `/api/briefing?format=segments` back to back (intro, one per call-now lead in call-list order, close). When a lead's segment starts, the call list selects it like a click (`?lead=` updates, the detail scrolls to its top, instantly under reduced motion). A slim bar fixed at the bottom shows the lead name ("Navou, 3 of 10"), the sentence as a caption, Previous lead, Pause/Play, Next lead, Stop; Esc stops; a hand click on a lead pauses.
+
+**Outreach sheet.** "Draft outreach" (third button next to Good lead / Not a fit) opens a sheet from the right over the call list: To line (or "No email found, reach out on LinkedIn or the website"), editable subject and message, an English/German switch that redrafts, Copy, Open in mail (mailto), Open LinkedIn (when known), Mark as contacted. The row and the company page then say "Contacted 21 Nov" in Adriatic.
+
+**Candidate cards.** Mist cards, 28px radius, 30px padding, min-height 220px, three per row: sector and city, the name, fit big ("72 fit"), "Marked good lead, 21 Nov", and for a lead brought back from the funnel one line "Brought back, filtered for: <reason>". A lead on the call list now gets the Guest Red chip "On the call list now". The whole card links to the company page; order: fit high to low, ties newest vote first.
 
 **Fit dropdown.** Every fit and team row on the call list and the company page is a disclosure: the whole row is a button (`aria-expanded`, `aria-controls`), the bar itself never links out. The panel under the bar says in one or two sentences why the criterion got its points, shows up to two quotes (13px, 2px ion rule) and one "Source: <host>" link per source, the only links in the panel. Not known: "The sources say nothing about this yet, so it scores no points." The panel height opens in about 200 ms, no motion under reduced motion. Several rows may be open at once. Component: `components/ff/criteria-rows.js`, data from `bar()` in `lib/screen/call-list.js`.
 
-**Funnel stage links.** On the funnel page every stage from "Past the HTGF gates" down has a quiet ion link under its cost, "<N> stopped here", to `/proof/funnel/filtered?stage=<key>`. On hover or focus the beam's drop-out share dims and up to 60 small ion dots leave on the right (about 600 ms, none under reduced motion, hidden on phones). No inline panel.
+**Funnel right column and report.** The right column shows only each stage's cost from the last run. Under the funnel one primary button, "See the full report", opens `/proof/funnel/filtered?stage=all`; the per-stage counts live in its stage switcher. "What the last run cost" carries the run's date and time; the all-time total is one sentence on the Method page.
 
-**Filtered page.** Hero like Candidates, then a segmented stage switcher (links, `?stage=`, the current one white on the track colour), "Worth a second look" near-miss cards, the reason strip and the company grid.
+**Filtered page.** Hero like Candidates ("Your shortlist.", best fit first), then a segmented stage switcher (links, `?stage=`, the current one white on the track colour), "Worth a second look" near-miss cards, the reason strip and the company grid.
 
 **Reason strip.** One row per reason for the selected stage, biggest first: reason (16px, 600), count in ion-deep, a 4px ion count bar on the track, and one muted stat line from the data ("median 3 years 9 months since register"). A row is a link that filters the grid (`?reason=`); the current row is white, clicking it again clears the filter.
 
@@ -128,9 +131,9 @@ Rules:
 | Funnel | `/proof/funnel` | `funnel.dc.html` | black |
 | Labs | `/proof/labs` | `labs.dc.html` | `#f5f5f7` |
 | Method | `/proof/methodology` | `method.dc.html` | white, black band, `#f5f5f7` backtest |
-| Candidates | `/proof/candidates` (`/proof` and `/proof/portfolio` redirect) | `portfolio.dc.html` (tiles become candidate cards) | `#f5f5f7` |
-| Company page | `/proof/company/[key]` | `call-list.dc.html` (detail sheet) | `#f4f6f9` with a white sheet |
-| Filtered | `/proof/funnel/filtered` (`?stage=`, `?reason=`) | `portfolio.dc.html` (cards), call list bars | `#f5f5f7`, nav current: Funnel |
+| Candidates | `/proof/candidates` (`/proof` and `/proof/portfolio` redirect) | `portfolio.dc.html` (tiles become candidate cards) | white, Mist cards |
+| Company page | `/proof/company/[key]` | `call-list.dc.html` (detail sheet) | white, white sheet with a Stone hairline |
+| Filtered | `/proof/funnel/filtered` (`?stage=`, `?reason=`) | `portfolio.dc.html` (cards), call list bars | white, Mist cards, nav current: Funnel |
 
 Section order per page is exactly as in the reference file.
 

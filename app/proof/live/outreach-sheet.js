@@ -46,11 +46,17 @@ export default function OutreachSheet({ leadKey, name, onClose, onContacted }) {
   }, [onClose]);
 
   async function copy() {
+    const all = `Subject: ${subject}\n\n${body}`;
     try {
-      await navigator.clipboard.writeText(`Subject: ${subject}\n\n${body}`);
+      await navigator.clipboard.writeText(all);
       setNote("Copied to the clipboard.");
     } catch (err) {
-      setNote(`Could not copy: ${err.message}.`);
+      // Some browsers refuse the clipboard API: select the message and use the older copy command instead.
+      const area = document.getElementById("os-body");
+      area?.focus();
+      area?.select();
+      const ok = typeof document.execCommand === "function" && document.execCommand("copy");
+      setNote(ok ? "Copied the message to the clipboard." : `Could not copy (${err.message}). The message is selected: press Cmd+C or Ctrl+C.`);
     }
   }
 

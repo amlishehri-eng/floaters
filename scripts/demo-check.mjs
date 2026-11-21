@@ -151,7 +151,7 @@ async function linkChecks() {
       const missing = need.filter((h) => !links.some((l) => l.href === h));
       add("home buttons", "/", missing.length === 0, missing.length ? `missing ${missing.join(", ")}` : `See the call list, See how it filters, Read the method, Open the lead (${top?.name})`);
       const stars = (text.match(/class="ho-star"/g) || []).length;
-      const big = text.match(/>(\d+)<\/span><span>worth a call today/);
+      const big = text.match(/>(\d+)<\/span><span>(?:<span[^>]*><\/span>)?worth a call today/);
       add("home radar = call list", "/", stars === callNow.length && Number(big?.[1]) === callNow.length, `${stars} radar points, "${big?.[1]} worth a call", ${callNow.length} call_now leads`, leadsRes.mocked);
     }
     if (page.path === "/proof/live") {
@@ -188,8 +188,11 @@ async function linkChecks() {
     const f = await getText("/proof/funnel/filtered");
     add("filtered page offline", "/proof/funnel/filtered", f.text.includes("This page needs the live Leads table") && fun.text.includes("needs the live Leads table"), "explains it needs the live Leads table");
   }
-  const stageLinks = [...fun.text.matchAll(/href="(\/proof\/funnel\/filtered\?stage=(\w+))"[^>]*>(\d+)<!-- --> stopped here/g)].map((m) => ({ href: decode(m[1]), key: m[2], n: Number(m[3]) }));
-  if (!leadsRes.mocked) add("funnel stage links", "/proof/funnel", stageLinks.length === 4, stageLinks.map((x) => `${x.key} ${x.n}`).join(", ") || "no stage links (snapshot leads?)");
+  // The funnel links to the full report; the stage counts come from the filtered page's stage switcher.
+  add("funnel report button", "/proof/funnel", leadsRes.mocked || fun.text.includes('href="/proof/funnel/filtered?stage=all"'), "See the full report");
+  const allPage = await getText("/proof/funnel/filtered?stage=all");
+  const stageLinks = [...allPage.text.matchAll(/href="(\/proof\/funnel\/filtered\?stage=(\w+))"[^>]*>[^<]*<!-- --> <span class="fl-tab__n">(\d+)</g)].map((m) => ({ href: decode(m[1]), key: m[2], n: Number(m[3]) }));
+  if (!leadsRes.mocked) add("filtered stage switcher", "/proof/funnel/filtered", stageLinks.length === 4, stageLinks.map((x) => `${x.key} ${x.n}`).join(", ") || "no stage links found");
   const sums = [];
   const cardHrefs = new Set();
   for (const st of stageLinks) {
@@ -216,6 +219,49 @@ async function linkChecks() {
   add("filtered page has no raw values", "/proof/funnel/filtered", !raw, raw ? `found: ${raw[0].slice(0, 80)}` : "no undefined, NaN, JSON or cut-off parenthesis in the text");
   const companies = await getText("/proof/company/eversyn");
   add("company page", "/proof/company/eversyn", companies.status === 200 && companies.text.includes("Visit the website"), "opens");
+
+  // Last-run costs: flow 44 sends cost.rows, the funnel shows "What the last run cost", Method has the all-time total.
+  const funnelJson = await fetch(`${BASE}/api/funnel`, { signal: AbortSignal.timeout(TIMEOUT_MS) }).then((r) => r.json());
+  const costRows = Array.isArray(funnelJson.cost?.rows) ? funnelJson.cost.rows : [];
+  const plain = (h) => h.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  const whole = plain(fun.text).match(/class="fu-cost"><span[^>]*>\$([\d.]+)<\/span><span>the whole run</)?.[1];
+  // Recompute the newest run from the rows (gap over 30 min = new run) and compare the rows part with the page.
+  const sorted = costRows.filter((r) => Date.parse(r.run_at)).sort((a, b) => Date.parse(a.run_at) - Date.parse(b.run_at));
+  let start = 0;
+  sorted.forEach((r, i) => { if (i && Date.parse(r.run_at) - Date.parse(sorted[i - 1].run_at) > 30 * 60 * 1000) start = i; });
+  const rowsUsd = sorted.slice(start).reduce((t, r) => t + (Number(r.usd) || 0), 0);
+  add("last-run costs", "/proof/funnel", costRows.length > 0 && Number(whole) >= rowsUsd - 0.01, `${costRows.length} cost rows, last run ${sorted.length - start} rows $${rowsUsd.toFixed(2)} + deep checks = $${whole} on the page`, funnelJson.mocked);
+  const method = await getText("/proof/methodology");
+  add("all-time total only on Method", "/proof/methodology", /All runs so far, including tests and rescoring/.test(plain(method.text)) && !/all model spend so far/.test(plain(fun.text)), "one sentence on Method, not on the funnel");
+
+  // English everywhere: Liquid Mirror's company page and call-list detail have no German text left.
+  const { looksGerman } = await import(new URL("../lib/ai/translate.js", import.meta.url));
+  const germanIn = (html) => [...plain(html).replace(/<style[\s\S]*?<\/style>/g, "").matchAll(/>([^<>]{12,})</g)].map((m) => decode(m[1])).filter((t) => looksGerman(t.replace(/\b[A-Z][a-zäöüß]+ von [A-Z][a-zäöüß]+/g, "")));
+  const lmCompany = germanIn((await getText("/proof/company/liquid-mirror")).text);
+  const lmLive = (await getText("/proof/live?lead=liquid-mirror")).text;
+  const lmDetail = germanIn(lmLive.slice(lmLive.indexOf('aria-label="Lead detail"')));
+  add("translations present (Liquid Mirror)", "/proof/company/liquid-mirror", lmCompany.length === 0 && lmDetail.length === 0, lmCompany.length + lmDetail.length ? `German left: ${[...lmCompany, ...lmDetail].slice(0, 2).join(" | ").slice(0, 100)}` : "company page and call-list detail are English");
+
+  // Briefing segments: an intro, one per call-now lead in call-list order, a close; segment audio cached by text hash.
+  const segs = await fetch(`${BASE}/api/briefing?format=segments`, { signal: AbortSignal.timeout(TIMEOUT_MS) }).then((r) => r.json());
+  const order = (segs.segments || []).filter((x) => x.lead_key).map((x) => x.lead_key);
+  const sameOrder = order.join(",") === callNow.map((l) => l.id).join(",");
+  add("briefing segments follow the call list", "/api/briefing?format=segments", Array.isArray(segs.segments) && sameOrder && segs.segments.length === callNow.length + 2, `${segs.segments?.length ?? 0} segments, order ${sameOrder ? "matches" : "DIFFERS from"} the call list`, segs.mocked);
+  const a1 = await fetch(`${BASE}/api/briefing?format=audio&segment=0`, { signal: AbortSignal.timeout(30_000) });
+  await a1.arrayBuffer();
+  const a2 = await fetch(`${BASE}/api/briefing?format=audio&segment=0`, { signal: AbortSignal.timeout(30_000) });
+  const bytes = (await a2.arrayBuffer()).byteLength;
+  add("briefing segment audio cached", "/api/briefing?format=audio&segment=0", (a2.headers.get("content-type") || "").includes("audio") && a2.headers.get("x-cache") === "hit", `${Math.round(bytes / 1024)} KB, second request ${a2.headers.get("x-cache") || "no audio"}`);
+
+  // Outreach: a draft from the model, and the template when the model fails.
+  const draft = (lang, extra = {}) => fetch(`${BASE}/api/outreach`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lead_key: callNow[0]?.id, language: lang, ...extra }), signal: AbortSignal.timeout(40_000) }).then((r) => r.json());
+  if (callNow[0]) {
+    const en = await draft("en");
+    const words = String(en.body || "").split(/\s+/).filter(Boolean).length;
+    add("outreach draft (en)", "/api/outreach", Boolean(en.subject && en.body) && words <= 130, `${en.mocked ? `template (${en.error})` : "model"}, ${words} words, email ${en.to_email || "none"}, LinkedIn ${en.linkedin ? "yes" : "none"}`, en.mocked ?? false);
+    const fb = await draft("de", { test_fallback: true });
+    add("outreach fallback (de)", "/api/outreach", fb.mocked === true && Boolean(fb.subject && fb.body), `template: ${String(fb.subject).slice(0, 60)}`, true);
+  }
 
   if (process.argv.includes("--write-test")) {
     // A near miss when the leads are live; offline any snapshot lead that is not a candidate yet.

@@ -1,8 +1,8 @@
 {
  "meta": {
-  "cost_usd_total": 0.3114,
+  "cost_usd_total": 0.3485,
   "model": "gpt-5-mini",
-  "updated_at": "2026-11-21T01:22:49.005Z"
+  "updated_at": "2026-11-21T01:28:00.728Z"
  },
  "leads": {
   "ai-powered-hr-tech-startup-melanie-schewtschenko-consulting": {
@@ -276,7 +276,8 @@
    },
    "type_reason": {
     "h": "c790bcc31ec4",
-    "en": "Pinboard posting in category 'Co-Founder gesucht' and explicit 'sucht technischen (Mit-)Gründer / CTO'."
+    "en": "Pinboard posting in category 'Co-Founder wanted' and explicit 'is looking for a technical (co-)founder / CTO'.",
+    "retried": true
    },
    "quotes": {
     "h": "0a8d568609bc",
@@ -316,7 +317,8 @@
    },
    "timing_breakdown/momentum/evidence/0/quote": {
     "h": "9016595736eb",
-    "en": "[co-founder wanted] CTO / Technischer (Mit-)Gründer gesucht – aktivitätsbasierte Social-Matching-App (München)"
+    "en": "[co-founder wanted] CTO / Technical (co-)founder wanted – activity-based social matching app (Munich)",
+    "retried": true
    },
    "timing_breakdown/exist_runway/evidence/0/quote": {
     "h": "8a7613a694ab",
@@ -364,7 +366,8 @@
   "sentire": {
    "ip_evidence/0/claim": {
     "h": "c0437166a73d",
-    "en": "MTZ pinboard co‑founder search describes the project as being in a 'patentrechtlich geschützte Projektphase' (patent‑protected project phase) but gives no patent number or registry reference."
+    "en": "MTZ pinboard co‑founder search describes the project as in a 'patent-protected project phase' (patent‑protected project phase) but gives no patent number or registry reference.",
+    "retried": true
    }
   },
   "finate": {
@@ -374,7 +377,8 @@
    },
    "fit_breakdown/germany/evidence/0/quote": {
     "h": "d126a1fe4af7",
-    "en": "Technical Co-Founder gesucht – Gemeinsam ein Fintech von 0 aufbauen"
+    "en": "Technical Co-Founder wanted – Build a fintech together from scratch",
+    "retried": true
    },
    "fit_breakdown/sector/evidence/0/quote": {
     "h": "d019f001e71c",
@@ -410,7 +414,8 @@
    },
    "timing_breakdown/momentum/evidence/0/quote": {
     "h": "df0ebe047df2",
-    "en": "[co-founder wanted] Technical Co-Founder gesucht – Gemeinsam ein Fintech von 0 aufbauen 🚀"
+    "en": "[co-founder wanted] Technical Co-Founder wanted – Build a fintech together from scratch 🚀",
+    "retried": true
    }
   },
   "nexpaper": {
@@ -572,7 +577,8 @@
    },
    "type_reason": {
     "h": "0e98d8dab529",
-    "en": "Job posting repeatedly describes Helix as a 'junges Startup aus München' and seeks students to work 'eng mit den Gründern' indicating an early-stage company."
+    "en": "Job posting repeatedly describes Helix as a \"young startup from Munich\" and seeks students to work \"closely with the founders\" indicating an early-stage company.",
+    "retried": true
    },
    "people": {
     "h": "59cda43e88f9",
@@ -790,11 +796,13 @@
   "oceanflight": {
    "fit_breakdown/germany/evidence/1/quote": {
     "h": "e58646fd86b4",
-    "en": "Titian obtained his degree in mechanical engineering at Hochschule Munich."
+    "en": "Titian obtained his degree in mechanical engineering at University of Applied Sciences Munich.",
+    "retried": true
    },
    "team_breakdown/deep_research/evidence/0/quote": {
     "h": "b91392fc5af6",
-    "en": "built an underwater robot for his master’s thesis at MIT."
+    "en": "built an underwater robot for his master’s thesis at MIT.",
+    "retried": true
    }
   },
   "deltaorbit": {
@@ -818,7 +826,8 @@
    },
    "ip_evidence/0/claim": {
     "h": "80a3cdddda58",
-    "en": "Company statement: 'Mit der Gründung von CeiliX im Jahr 2024 wurden sämtliche Patente und das technologische Know-how in das Unternehmen überführt.' (patents and technology were transferred into the company)."
+    "en": "Company statement: \"With the founding of CeiliX in 2024, all patents and the technological know-how were transferred into the company.\" (patents and technology were transferred into the company).",
+    "retried": true
    },
    "age_check/founded_quote": {
     "h": "88668c861366",
@@ -858,7 +867,8 @@
    },
    "fit_breakdown/no_funding/evidence/0/quote": {
     "h": "11985153a47e",
-    "en": "Funding: EXIST-Gründerstipendium (BMWK), Nachrangdarlehen der Rentenbank"
+    "en": "Funding: EXIST-Gründerstipendium (BMWK), subordinated loan from Rentenbank",
+    "retried": true
    },
    "team_breakdown/technical_founder/evidence/0/quote": {
     "h": "4b4d9818b123",
@@ -878,7 +888,8 @@
    },
    "timing_breakdown/exist_runway/evidence/0/quote": {
     "h": "11985153a47e",
-    "en": "Funding: EXIST-Gründerstipendium (BMWK), Nachrangdarlehen der Rentenbank"
+    "en": "Funding: EXIST-Gründerstipendium (BMWK), subordinated loan from Rentenbank",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "ec738a763494",
@@ -886,11 +897,13 @@
    },
    "ip_evidence/0/claim": {
     "h": "57d4bd89c235",
-    "en": "Local press article states the research team 'hat seine Entwicklung zum Patent angemeldet' (says the development has been filed for patent)."
+    "en": "Local press article states the research team 'has filed its development for a patent' (says the development has been filed for patent).",
+    "retried": true
    },
    "age_check/rounds/1/quote": {
     "h": "11985153a47e",
-    "en": "Funding: EXIST-Gründerstipendium (BMWK), Nachrangdarlehen der Rentenbank"
+    "en": "Funding: EXIST-Gründerstipendium (BMWK), subordinated loan from Rentenbank",
+    "retried": true
    }
   },
   "micro-factory": {
@@ -974,7 +987,8 @@
    },
    "capital_need/why": {
     "h": "c0b6abf9dc73",
-    "en": "GitHub org describes \"Software für den deutschen Mittelstand\", indicating a software product for SMEs that can be built with a small team and low upfront capital."
+    "en": "GitHub org describes \"software for the German SME sector\", indicating a software product for SMEs that can be built with a small team and low upfront capital.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "b0fcaa8128cc",
@@ -1142,7 +1156,8 @@
    },
    "type_reason": {
     "h": "b41a15f11102",
-    "en": "Podcast interviews a Mitgründer (Lukas Paetzmann) about the startup Articly"
+    "en": "Podcast interviews a co-founder (Lukas Paetzmann) about the startup Articly",
+    "retried": true
    },
    "people": {
     "h": "0d97f05128d2",
@@ -1150,7 +1165,8 @@
    },
    "quotes": {
     "h": "2d00350d9fd2",
-    "en": "[other] Exactly this question was the starting point for Articly .\n[other] and why Articly made a decisive strategy shift after the appearance on Die Höhle der Löwen."
+    "en": "[other] Exactly this question was the starting point for Articly.\n[other] and why Articly, after the appearance on Die Höhle der Löwen, made a decisive strategic change.",
+    "retried": true
    },
    "fit_breakdown/germany/evidence/0/quote": {
     "h": "721911ee0fa2",
@@ -1162,7 +1178,8 @@
    },
    "fit_breakdown/stage/evidence/0/quote": {
     "h": "bfbe96808f64",
-    "en": "made a decisive strategy shift after the appearance on Die Höhle der Löwen"
+    "en": "made a decisive strategic change after the appearance on Die Höhle der Löwen",
+    "retried": true
    },
    "fit_breakdown/corporate_pull/evidence/0/quote": {
     "h": "a9741379498e",
@@ -1416,7 +1433,8 @@
   "sari-app": {
    "what": {
     "h": "78d37ef9fa90",
-    "en": "Assistive AI app that helps people with ALS regain speech"
+    "en": "Assistive AI app that helps people with ALS regain speech",
+    "retried": true
    },
    "quotes": {
     "h": "c2dddef84afb",
@@ -1424,15 +1442,18 @@
    },
    "fit_breakdown/sector/why": {
     "h": "9638ee3db071",
-    "en": "Assistive AI for ALS speech support fits HTGF digital tech / digital health."
+    "en": "Assistive AI for ALS speech support fits HTGF digital tech / digital health.",
+    "retried": true
    },
    "fit_breakdown/sector/evidence/0/quote": {
     "h": "f450d2a7b2ca",
-    "en": "How the Sari-App gives people with ALS their speech back"
+    "en": "How the Sari-App gives people with ALS back their speech",
+    "retried": true
    },
    "fit_breakdown/tech_depth/evidence/0/quote": {
     "h": "f450d2a7b2ca",
-    "en": "How the Sari-App gives people with ALS their speech back"
+    "en": "How the Sari-App gives people with ALS back their speech",
+    "retried": true
    },
    "fit_breakdown/stage/evidence/0/quote": {
     "h": "dcf4a2f3c9ae",
@@ -1440,7 +1461,8 @@
    },
    "team_breakdown/concrete_pitch_language/evidence/0/quote": {
     "h": "61c63451201d",
-    "en": "gives people with ALS their speech back"
+    "en": "gives people with ALS back their speech",
+    "retried": true
    },
    "timing_breakdown/exist_runway/evidence/0/quote": {
     "h": "4585e1954dbd",
@@ -1450,7 +1472,8 @@
   "bellaria": {
    "quotes": {
     "h": "7d5f19cf9c52",
-    "en": "[raising] how he achieved a breakthrough with Karsten Maschmeyer on \"Die Höhle der Löwen\".\n[other] Many toilet visits, one idea – and a startup.\n[other] how the idea for the Aircube arose from uncomfortable everyday situations in professional sports\n[raising] how he put everything on the line – and how he achieved a breakthrough with Karsten Maschmeyer on \"Die Höhle der Löwen\"."
+    "en": "[raising] how he achieved the breakthrough with Karsten Maschmeyer on „Die Höhle der Löwen“.\n[other] Many toilet visits, one idea – and a startup.\n[other] how the idea for the Aircube arose from uncomfortable everyday situations in professional sports\n[raising] how he put everything on the line – and how he achieved the breakthrough with Karsten Maschmeyer on „Die Höhle der Löwen“.",
+    "retried": true
    },
    "fit_breakdown/sector/evidence/0/quote": {
     "h": "95900cb75c00",
@@ -1458,7 +1481,8 @@
    },
    "fit_breakdown/stage/why": {
     "h": "d5d9530743a4",
-    "en": "The trace calls Bellaria a startup and links it to Die Höhle der Löwen, suggesting an early consumer-product startup but without a precise round/stage."
+    "en": "The trace calls Bellaria a startup and links it to Die Höhle der Löwen, suggesting an early consumer-product startup but without a precise round/stage.",
+    "retried": true
    },
    "fit_breakdown/stage/evidence/0/quote": {
     "h": "5d0f19f559dd",
@@ -1466,7 +1490,8 @@
    },
    "fit_breakdown/no_funding/evidence/0/quote": {
     "h": "6f11f1c60534",
-    "en": "how he achieved a breakthrough with Karsten Maschmeyer on \"Die Höhle der Löwen\"."
+    "en": "how he achieved the breakthrough with Karsten Maschmeyer on „Die Höhle der Löwen“.",
+    "retried": true
    },
    "team_breakdown/industry_scar/evidence/0/quote": {
     "h": "d3a78b116821",
@@ -1522,7 +1547,8 @@
    },
    "fit_breakdown/germany/why": {
     "h": "5854df52a0f0",
-    "en": "The trace places the founders in Munich: 'Drei junge Gründer aus München'."
+    "en": "The trace places the founders in Munich: 'Three young founders from Munich'.",
+    "retried": true
    },
    "fit_breakdown/germany/evidence/0/quote": {
     "h": "7fcc19a25cab",
@@ -1788,7 +1814,8 @@
    },
    "fit_breakdown/stage/evidence/0/quote": {
     "h": "db21ca1139df",
-    "en": "Source page: https://uni-tuebingen.de/forschung/innovation/startup-center/unsere-startups/"
+    "en": "Source page: https://uni-tuebingen.de/forschung/innovation/startup-center/unsere-startups/",
+    "retried": true
    },
    "age_check/rounds/0/quote": {
     "h": "14494bc28978",
@@ -1806,7 +1833,8 @@
    },
    "type_reason": {
     "h": "afd53a67f86b",
-    "en": "Listed by TU Berlin Centre for Entrepreneurship and described as 'KI-Automatisierung für den Chipentwurf' — a team building a product for chip design."
+    "en": "Listed by TU Berlin Centre for Entrepreneurship and described as \"AI automation for chip design\" — a team building a product for chip design.",
+    "retried": true
    },
    "fit_breakdown/sector/evidence/0/quote": {
     "h": "16366ae996ef",
@@ -1818,7 +1846,8 @@
    },
    "capital_need/why": {
     "h": "86260c97006d",
-    "en": "Described as 'KI-Automatisierung für den Chipentwurf' — AI automation for chip design implies deep technical work, EDA integration and significant engineering and compute costs."
+    "en": "Described as \"AI automation for chip design\" — AI automation for chip design implies deep technical work, EDA integration and significant engineering and compute costs.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "16366ae996ef",
@@ -1886,7 +1915,8 @@
    },
    "capital_need/why": {
     "h": "2a287cce9830",
-    "en": "Described as \"KI-basierte Energieoptimierung für die Industrie\", implying industrial AI software requiring engineering and integration."
+    "en": "Described as \"AI-based energy optimization for industry\", implying industrial AI software requiring engineering and integration.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "8c65bb1c0cc4",
@@ -1954,7 +1984,8 @@
    },
    "age_check/rounds/1/quote": {
     "h": "4a3c5919e7aa",
-    "en": "Our unique privacy-by-design concept has been recognized & funded by various (part-)public institutions in Germany (u.a. Bundesministerium für Wirtschaft und Klimaschutz, "
+    "en": "Our unique privacy-by-design concept has been recognized & funded by various (partly) public institutions in Germany (among others Bundesministerium für Wirtschaft und Klimaschutz, ",
+    "retried": true
    },
    "age_check/rounds/2/quote": {
     "h": "456189c1e1cd",
@@ -1986,7 +2017,8 @@
    },
    "verdict_reason": {
     "h": "63e365ec7350",
-    "en": "tech depth unknown (thin evidence): Trace only gives the one-line 'KI für visuelle Effekte' with no technical detail, models, hardware or proprietary data described."
+    "en": "tech depth unknown (thin evidence): Trace only gives the one-line 'AI for visual effects' with no technical detail, models, hardware or proprietary data described.",
+    "retried": true
    },
    "type_reason": {
     "h": "386207851c01",
@@ -1994,11 +2026,13 @@
    },
    "fit_breakdown/tech_depth/why": {
     "h": "4dbb2a7ab3f8",
-    "en": "Trace only gives the one-line 'KI für visuelle Effekte' with no technical detail, models, hardware or proprietary data described."
+    "en": "Trace only gives the one-line 'AI for visual effects' with no technical detail, models, hardware or proprietary data described.",
+    "retried": true
    },
    "capital_need/why": {
     "h": "55eb048b2895",
-    "en": "Trace shows only the one-line description 'KI für visuelle Effekte' with no technical, hardware or regulatory detail."
+    "en": "Trace shows only the one-line description 'AI for visual effects' with no technical, hardware or regulatory detail.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "3aefb822f404",
@@ -2057,6 +2091,10 @@
    "capital_need/evidence/0/quote": {
     "h": "981c8dfcee7a",
     "en": "Development of bio-based packaging solutions"
+   },
+   "quotes": {
+    "h": "f380b2ab6006",
+    "en": "[other] Development of bio-based packaging solutions\n[other] Founded: 2025\n[other] Listed by: TU Berlin Centre for Entrepreneurship (Berlin)"
    }
   },
   "onu": {
@@ -2130,11 +2168,13 @@
    },
    "score_reason": {
     "h": "1b730ed78800",
-    "en": "Berlin TU startup in industrial robotics fleet management, but the only technical evidence is the one-liner \"Flottenmanagement für autonome Roboter\". Team is essentially unknown: the TU Berlin trace lists no people, roles, research background, or prior collaboration."
+    "en": "Berlin TU startup in industrial robotics fleet management, but the only technical evidence is the one-liner \"Fleet management for autonomous robots\". Team is essentially unknown: the TU Berlin trace lists no people, roles, research background, or prior collaboration.",
+    "retried": true
    },
    "fit_reason": {
     "h": "179746c2edf4",
-    "en": "Berlin TU startup in industrial robotics fleet management, but the only technical evidence is the one-liner \"Flottenmanagement für autonome Roboter\"."
+    "en": "Berlin TU startup in industrial robotics fleet management, but the only technical evidence is the one-liner \"Fleet management for autonomous robots\".",
+    "retried": true
    },
    "quotes": {
     "h": "572fb2534761",
@@ -2194,7 +2234,8 @@
    },
    "capital_need/why": {
     "h": "c4dd646604c5",
-    "en": "No technical details or product description on the TU listing (only \"Chemische Compliance zugänglich machen\")."
+    "en": "No technical details or product description on the TU listing (only \"make chemical compliance accessible\").",
+    "retried": true
    }
   },
   "tatkraft-ai": {
@@ -2288,7 +2329,8 @@
    },
    "verdict_reason": {
     "h": "e014723004ef",
-    "en": "tech depth unknown (thin evidence): Only described as 'Digitalisierung und Projekte im Wassersektor' — vague digitalization projects, no technical detail about proprietary hardware, algorithms or hard-to-copy data."
+    "en": "tech depth unknown (thin evidence): Only described as \"digitalization and projects in the water sector\" — vague digitalization projects, no technical detail about proprietary hardware, algorithms or hard-to-copy data.",
+    "retried": true
    },
    "quotes": {
     "h": "9f8d20e08439",
@@ -2296,11 +2338,13 @@
    },
    "fit_breakdown/tech_depth/why": {
     "h": "c962f7da19ae",
-    "en": "Only described as 'Digitalisierung und Projekte im Wassersektor' — vague digitalization projects, no technical detail about proprietary hardware, algorithms or hard-to-copy data."
+    "en": "Only described as \"digitalization and projects in the water sector\" — vague digitalization projects, no technical detail about proprietary hardware, algorithms or hard-to-copy data.",
+    "retried": true
    },
    "capital_need/why": {
     "h": "2e6a29c44f83",
-    "en": "Described as 'Digitalisierung und Projekte im Wassersektor' indicating software/digital projects rather than hardware or regulated clinical/industrial systems."
+    "en": "Described as \"digitalization and projects in the water sector\" indicating software/digital projects rather than hardware or regulated clinical/industrial systems.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "bb5b9d26e0f0",
@@ -2318,7 +2362,8 @@
    },
    "capital_need/why": {
     "h": "a602c40c4f08",
-    "en": "Described as 'KI-gestützte Plattform fur Planungs- und Genehmigungsverfahren'."
+    "en": "Described as 'AI-supported platform for planning and approval procedures'.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "20bdb716486f",
@@ -2374,11 +2419,13 @@
    },
    "score_reason": {
     "h": "f63e7539ccdb",
-    "en": "Berlin/TU-listed 2024 chemistry materials lead with the strongest evidence being “Nanomaterialien für eine grüne Chemie”; funding, patents and corporate pull are unknown. Team is not assessable because the TU Berlin trace names no founders, roles or backgrounds."
+    "en": "Berlin/TU-listed 2024 chemistry materials lead with the strongest evidence being \"Nanomaterials for green chemistry\"; funding, patents and corporate pull are unknown. Team is not assessable because the TU Berlin trace names no founders, roles or backgrounds.",
+    "retried": true
    },
    "fit_reason": {
     "h": "1bd5e7c6b04a",
-    "en": "Berlin/TU-listed 2024 chemistry materials lead with the strongest evidence being “Nanomaterialien für eine grüne Chemie”; funding, patents and corporate pull are unknown."
+    "en": "Berlin/TU-listed 2024 chemistry materials lead with the strongest evidence being \"Nanomaterials for green chemistry\"; funding, patents and corporate pull are unknown.",
+    "retried": true
    },
    "quotes": {
     "h": "ef14c4432c7d",
@@ -2476,7 +2523,8 @@
    },
    "capital_need/why": {
     "h": "dd19d1a4a505",
-    "en": "Listing contains only the slogan 'Wir beschleunigen die Energiewende' with no product, technology or IP details."
+    "en": "Listing contains only the slogan 'We accelerate the energy transition' with no product, technology or IP details.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "10c2a3ab2ed3",
@@ -2486,35 +2534,43 @@
   "soltrac": {
    "what": {
     "h": "a49c18ce5489",
-    "en": "Solarsysteme für Satelliten"
+    "en": "Solar systems for satellites",
+    "retried": true
    },
    "score_reason": {
     "h": "4a99780244c7",
-    "en": "Berlin TU startup founded in 2024 building solar systems for satellites, a clear industrial/space hardware lead, but funding and customer pull are unknown. No founders or roles are provided; only a concise product line, \"Solarsysteme für Satelliten\", and founding year are known."
+    "en": "Berlin TU startup founded in 2024 building solar systems for satellites, a clear industrial/space hardware lead, but funding and customer pull are unknown. No founders or roles are provided; only a concise product line, \"Solarsysteme für Satelliten\", and founding year are known.",
+    "retried": true
    },
    "team_reason": {
     "h": "814f61bd84d1",
-    "en": "No founders or roles are provided; only a concise product line, \"Solarsysteme für Satelliten\", and founding year are known."
+    "en": "No founders or roles are provided; only a concise product line, \"Solar systems for satellites\", and founding year are known.",
+    "retried": true
    },
    "quotes": {
     "h": "ca1397d363d6",
-    "en": "[other] Solarsysteme für Satelliten\n[other] Founded: 2024"
+    "en": "[other] Solar systems for satellites\n[other] Founded: 2024",
+    "retried": true
    },
    "fit_breakdown/sector/evidence/0/quote": {
     "h": "a49c18ce5489",
-    "en": "Solarsysteme für Satelliten"
+    "en": "Solar systems for satellites",
+    "retried": true
    },
    "fit_breakdown/tech_depth/evidence/0/quote": {
     "h": "a49c18ce5489",
-    "en": "Solarsysteme für Satelliten"
+    "en": "Solar systems for satellites",
+    "retried": true
    },
    "team_breakdown/concrete_pitch_language/evidence/0/quote": {
     "h": "a49c18ce5489",
-    "en": "Solarsysteme für Satelliten"
+    "en": "Solar systems for satellites",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "a49c18ce5489",
-    "en": "Solarsysteme für Satelliten"
+    "en": "Solar systems for satellites",
+    "retried": true
    }
   },
   "factor-4-solutions": {
@@ -2542,7 +2598,8 @@
    },
    "capital_need/why": {
     "h": "3d04e605d453",
-    "en": "Described as \"Optimierung der Bebauungsvorschriften mit KI\" — a software product for planning/regulatory optimization that will require engineers and integration with municipal/regulatory customers."
+    "en": "Described as \"Optimization of development regulations with AI\" — a software product for planning/regulatory optimization that will require engineers and integration with municipal/regulatory customers.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "61bff24d0fdf",
@@ -2654,7 +2711,8 @@
    },
    "capital_need/why": {
     "h": "631695d28727",
-    "en": "Described as \"Nachhaltige Prozesskühlung für die Zerspanung\" — an industrial process cooling hardware solution for machining (prototype stage implies hardware development and pilot needs)."
+    "en": "Described as \"Sustainable process cooling for machining\" — an industrial process cooling hardware solution for machining (prototype stage implies hardware development and pilot needs).",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "d3bcfb80abf1",
@@ -2702,7 +2760,8 @@
    },
    "capital_need/why": {
     "h": "5f175ddb742e",
-    "en": "Described as a 'Copilot für technische Vertriebsmitarbeiter im Maschinenbau' — a software copiloted sales tool for industrial customers (enterprise SaaS, integration-heavy)."
+    "en": "Described as a \"copilot for technical sales representatives in mechanical engineering\" — a software copiloted sales tool for industrial customers (enterprise SaaS, integration-heavy).",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "5d018fd1bf1c",
@@ -2742,7 +2801,8 @@
   "qitech": {
    "fit_breakdown/stage/evidence/0/quote": {
     "h": "eba4db6a6f3a",
-    "en": "Source page: https://highest-darmstadt.de/en/fuer-unternehmen/start-ups/"
+    "en": "Source page: https://highest-darmstadt.de/en/fuer-unternehmen/start-ups/",
+    "retried": true
    },
    "capital_need/evidence/1/quote": {
     "h": "425ef2b49814",
@@ -2758,7 +2818,8 @@
   "cerasleeve": {
    "fit_breakdown/stage/evidence/0/quote": {
     "h": "eba4db6a6f3a",
-    "en": "Source page: https://highest-darmstadt.de/en/fuer-unternehmen/start-ups/"
+    "en": "Source page: https://highest-darmstadt.de/en/fuer-unternehmen/start-ups/",
+    "retried": true
    },
    "age_check/founded_quote": {
     "h": "1ede6080b4c8",
@@ -2822,7 +2883,8 @@
    },
    "age_check/rounds/0/quote": {
     "h": "94c75b984e74",
-    "en": "Funded by the Europäischen Fonds für regionale Entwicklung (EFRE) and the Land Niedersachsen within the framework of the Richtlinie Hightech-Inkubatoren/Akzeleratoren (HTI)"
+    "en": "Funded by the European Regional Development Fund (EFRE) and the State of Lower Saxony within the framework of the High-Tech Incubators/Accelerators (HTI) directive.",
+    "retried": true
    }
   },
   "conlytics": {
@@ -3008,7 +3070,8 @@
    },
    "capital_need/why": {
     "h": "02bacf59fd54",
-    "en": "The trace states they develop \"Softwarelösungen und Schulungen im Kontext der Umweltrisikobewertung von Chemikalien\", indicating a software product for chemical risk assessment."
+    "en": "The trace states they develop \"software solutions and training in the context of environmental risk assessment of chemicals\", indicating a software product for chemical risk assessment.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "e471365f0cf2",
@@ -3022,7 +3085,8 @@
    },
    "verdict_reason": {
     "h": "9c75e21b60e2",
-    "en": "stage (older than 3 years: founded 2016 (web check: https://www.firmenpresse.de/pressinfo1324665-nach-6-jahren-forschung-entsteht-ein-high-tech-produkt-fuer-die-montage-kleinster-bauteile.html))"
+    "en": "stage (older than 3 years: founded 2016 (web check: https://www.firmenpresse.de/pressinfo1324665-nach-6-jahren-forschung-entsteht-ein-high-tech-produkt-fuer-die-montage-kleinster-bauteile.html))",
+    "retried": true
    },
    "type_reason": {
     "h": "8abdbfe4c93d",
@@ -3054,7 +3118,8 @@
    },
    "eligibility/stage/evidence": {
     "h": "97772a6abedb",
-    "en": "older than 3 years: founded 2016 (web check: https://www.firmenpresse.de/pressinfo1324665-nach-6-jahren-forschung-entsteht-ein-high-tech-produkt-fuer-die-montage-kleinster-bauteile.html)"
+    "en": "older than 3 years: founded 2016 (web check: https://www.firmenpresse.de/pressinfo1324665-nach-6-jahren-forschung-entsteht-ein-high-tech-produkt-fuer-die-montage-kleinster-bauteile.html)",
+    "retried": true
    },
    "age_check/founded_quote": {
     "h": "50067fda70b2",
@@ -3256,7 +3321,8 @@
    },
    "capital_need/why": {
     "h": "7c23c1cb4a76",
-    "en": "KI-basierte, herstellerunabhängige Energiemanagementlösung zur Steuerung von Energiesystemen — software requiring engineering and deep integration with energy systems (pilot customers)."
+    "en": "AI-based, manufacturer-independent energy management solution for controlling energy systems — software requiring engineering and deep integration with energy systems (pilot customers).",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "c02f5d721a34",
@@ -3422,7 +3488,8 @@
   "emulate-energy": {
    "fit_breakdown/tech_depth/why": {
     "h": "b8efbfc861ab",
-    "en": "Deep energy-system software: utility-grade DER orchestration/control across EVs, heat pumps, batteries and solar; hard-to-copy parts are orchestration, utility workflows and DER/tariff integrations."
+    "en": "Deep energy-system software: utility-grade DER orchestration/control across EVs, heat pumps, batteries and solar; hard-to-copy parts are orchestration, utility workflows and DER/tariff integrations.",
+    "retried": true
    }
   },
   "lhz-analytics": {
@@ -3748,7 +3815,8 @@
    },
    "flight_risk_evidence/0/claim": {
     "h": "8d5ab10391c5",
-    "en": "REGASCOLD GmbH is registered as a German GmbH with legal seat in Aachen and Philipp Ketteniß listed as Geschäftsführer."
+    "en": "REGASCOLD GmbH is registered as a German GmbH with registered office in Aachen and Philipp Ketteniß listed as managing director.",
+    "retried": true
    },
    "age_check/founded_quote": {
     "h": "276d4ae87acf",
@@ -3892,11 +3960,13 @@
    },
    "timing_breakdown/momentum/evidence/0/quote": {
     "h": "2641e2a51d88",
-    "en": "[Ostbayerische Technische Hochschule Regensburg] Drone catcher wins audience prize at the OTH Regensburg University Founders' Day"
+    "en": "[Ostbayerische Technische Hochschule Regensburg] Drone catcher wins audience award at the university founders' day of OTH Regensburg",
+    "retried": true
    },
    "timing_breakdown/comeback/evidence/0/quote": {
     "h": "2641e2a51d88",
-    "en": "[Ostbayerische Technische Hochschule Regensburg] Drone catcher wins audience prize at the OTH Regensburg University Founders' Day"
+    "en": "[Ostbayerische Technische Hochschule Regensburg] Drone catcher wins audience award at the university founders' day of OTH Regensburg",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "9dee60f5d646",
@@ -4010,7 +4080,8 @@
    },
    "type_reason": {
     "h": "abac8088b18a",
-    "en": "Article repeatedly calls it a \"Start-up-Unternehmen der Technischen Universität Ilmenau\" and describes product and startup plans (EXIST transfer)."
+    "en": "Article repeatedly calls it a \"start-up company of Technische Universität Ilmenau\" and describes product and startup plans (EXIST transfer).",
+    "retried": true
    },
    "people": {
     "h": "de405c4b6ffc",
@@ -4026,11 +4097,13 @@
    },
    "fit_breakdown/germany/why": {
     "h": "50cb3116b372",
-    "en": "Based at Technische Universität Ilmenau / Ilmenau, Germany."
+    "en": "Based at Technische Universität Ilmenau / Ilmenau, Germany.",
+    "retried": true
    },
    "fit_breakdown/germany/evidence/0/quote": {
     "h": "e15e5fdc423f",
-    "en": "Technische Universität Ilmenau"
+    "en": "Technischen Universität Ilmenau",
+    "retried": true
    },
    "fit_breakdown/sector/evidence/0/quote": {
     "h": "c5b319120acc",
@@ -4200,7 +4273,8 @@
    },
    "quotes": {
     "h": "b03986f02c53",
-    "en": "[first_hire] To expand our laser production we are looking for a motivated employee (m/f/d) with training as a physics laboratory assistant or a bachelor's degree in applied physics with a focus on optics.\n[other] As a university spin-off based in Marburg we combine many years of experience in laser technology with application-oriented research and precise manufacturing.\n[grant_or_award] In addition to our established products, developments from the BMFTR research projects ISABELLA and ABXSens as well as the Eurostars project BRICS are to be introduced into production.\n[other] Originating from a university spin-off, the internationally active company combines many years of experience in laser technology with application-oriented research and development.\n[grant_or_award] The collaborative project funded by the Bundesministerium für Forschung, Technologie und Raumfahrt (BMFTR) ..."
+    "en": "[first_hire] To expand our laser production we are looking for a motivated employee (m/f/d) with training as a physics laboratory technician or a Bachelor's degree in applied physics with a focus on optics.\n[other] As a university spin-off based in Marburg, we combine many years of experience in laser technology with application-oriented research and precise manufacturing.\n[grant_or_award] In addition to our established products, developments from the BMFTR research projects ISABELLA and ABXSens as well as the Eurostars project BRICS are to be incorporated into production.\n[other] Originating from a university spin-off, the internationally active company combines many years of experience in laser technology with application-oriented research and development.\n[grant_or_award] The consortium project funded by the Federal Ministry for Research, Technology and Space (BMFTR) ...",
+    "retried": true
    },
    "funding_evidence": {
     "h": "d336264a360c",
@@ -4228,7 +4302,8 @@
    },
    "fit_breakdown/no_funding/evidence/0/quote": {
     "h": "dc3d1ae3aabb",
-    "en": "Funded by the Bundesministerium für Forschung, Technologie und Raumfahrt (BMFTR)"
+    "en": "The consortium project funded by the Federal Ministry for Research, Technology and Space (BMFTR)",
+    "retried": true
    },
    "fit_breakdown/no_funding/evidence/1/quote": {
     "h": "99bf46eabcf5",
@@ -4270,7 +4345,8 @@
    },
    "fit_breakdown/germany/evidence/1/quote": {
     "h": "bd5f42f8dd64",
-    "en": "Impressum: nodeline GmbH | Vertreten durch die Geschäftsführung: | Handelsregister | Amtsgericht Mannheim HRB 754387"
+    "en": "Imprint: nodeline GmbH | Represented by the management: | Commercial register | Amtsgericht Mannheim HRB 754387",
+    "retried": true
    },
    "fit_breakdown/sector/evidence/0/quote": {
     "h": "20edb2360340",
@@ -4330,7 +4406,8 @@
    },
    "age_check/rounds/0/quote": {
     "h": "1524a10710ee",
-    "en": "Now it's official: Our project ShieldConnect is being funded with up to nearly 800,000 Euro by the Bundesministerium für Forschung, Technologie und Raumfahrt (BMFTR)."
+    "en": "Now it's official: Our project ShieldConnect is being funded with up to almost 800.000 Euro by the Federal Ministry for Research, Technology and Space Travel (BMFTR).",
+    "retried": true
    }
   },
   "qooda": {
@@ -4448,7 +4525,8 @@
    },
    "fit_breakdown/germany/why": {
     "h": "16fb98844d09",
-    "en": "HQ explicitly listed as Höhenkirchen-Siegertsbrunn bei München (Germany)."
+    "en": "HQ explicitly listed as Höhenkirchen-Siegertsbrunn near München (Germany).",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "f7cba6f0fbb4",
@@ -4456,7 +4534,8 @@
    },
    "eligibility/germany/evidence": {
     "h": "1fba6abeb734",
-    "en": "based in Höhenkirchen-Siegertsbrunn bei München (Munich)"
+    "en": "based in Höhenkirchen-Siegertsbrunn near München (Munich)",
+    "retried": true
    }
   },
   "soul-of-concrete": {
@@ -4608,7 +4687,8 @@
    },
    "fit_breakdown/germany/why": {
     "h": "c97e6b5254f1",
-    "en": "HQ explicitly given as Garching bei München on the BayStartUP page."
+    "en": "HQ explicitly given as Garching bei München on the BayStartUP page.",
+    "retried": true
    },
    "capital_need/why": {
     "h": "a721c6487bc5",
@@ -4620,7 +4700,8 @@
    },
    "eligibility/germany/evidence": {
     "h": "9f622227bc4f",
-    "en": "based in Garching bei München (Munich)"
+    "en": "based in Garching bei München (Munich)",
+    "retried": true
    }
   },
   "deskbot-io": {
@@ -5134,7 +5215,8 @@
    },
    "score_reason": {
     "h": "5b479bf5573c",
-    "en": "Medical diagnostics startup from Karlsruhe in the CyberLab Accelerator — relevant life-sciences use case, but few technical details. No named founder evidence or role descriptions in the entry; only the generic term 'Informatiker:innen und Ärzt:innen' is given."
+    "en": "Medical diagnostics startup from Karlsruhe in the CyberLab Accelerator — relevant life-sciences use case, but few technical details. No named founder evidence or role description in the entry; only generally \"computer scientists and physicians\" indicated.",
+    "retried": true
    },
    "fit_reason": {
     "h": "43fd8c54cad9",
@@ -5142,7 +5224,8 @@
    },
    "team_reason": {
     "h": "7f4f244cb01f",
-    "en": "No named founder evidence or role descriptions in the entry; only the generic term 'Informatiker:innen und Ärzt:innen' is given."
+    "en": "No named founder evidence or role description in the entry; only generally \"computer scientists and physicians\" indicated.",
+    "retried": true
    },
    "verdict_reason": {
     "h": "ab7a78522024",
@@ -5656,7 +5739,8 @@
    },
    "fit_breakdown/no_funding/evidence/0/quote": {
     "h": "002003b33e1f",
-    "en": "Programs: MUT – Der Gründungspreis NRW 2026 (Nominee) (2026)"
+    "en": "Program: MUT – Der Gründungspreis NRW 2026 (Nominierte) (2026)",
+    "retried": true
    }
   },
   "prinoa-dental": {
@@ -5710,7 +5794,8 @@
    },
    "age_check/rounds/0/quote": {
     "h": "660e9c49b0fc",
-    "en": "Our innovation originates at the Institute of X-ray Physics at the University of Göttingen and is supported by the EXIST-Forschungstransfer of the Bundesministerium für Wirtschaft und Klimaschu"
+    "en": "Our innovation originated at the Institute for X-ray Physics at the University of Göttingen and is supported by the EXIST-Forschungstransfer des Bundesministeriums für Wirtschaft und Klimaschu",
+    "retried": true
    }
   },
   "glitther": {
@@ -6118,7 +6203,8 @@
    },
    "eligibility/no_funding/evidence": {
     "h": "edd2b690b304",
-    "en": "grants: \"KfW Award Gründen 2025 (Teilnahme/Auszeichnung im Förderprogramm)\" (HTGF invests pre-seed and seed, with angels)"
+    "en": "grants: \"KfW Award Founding 2025 (Participation/Award in the funding programme)\" (HTGF invests pre-seed and seed, with angels)",
+    "retried": true
    },
    "age_check/founded_quote": {
     "h": "02f1e6f9b936",
@@ -6276,7 +6362,8 @@
    },
    "capital_need/why": {
     "h": "11076dee8bec",
-    "en": "KfW description: Kunststoff-Kreislauf mit Rücknahmesystemen, Recyclingprozessen und Produktdesign (materials/processes requiring facilities/equipment)."
+    "en": "KfW description: Plastic cycle with take-back systems, recycling processes and product design (materials/processes requiring facilities/equipment).",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "733ed862686f",
@@ -6284,7 +6371,8 @@
    },
    "eligibility/no_funding/evidence": {
     "h": "74a29191a1fd",
-    "en": "grants: \"Teilnehmer / Projekt auf der KfW Award Gründen 2025 Seite (Auszeichnung/Programm).\" (HTGF invests pre-seed and seed, with angels)"
+    "en": "grants: \"Participant / project on the KfW Award Gründen 2025 page (award/program).\" (HTGF invests pre-seed and seed, with angels)",
+    "retried": true
    },
    "age_check/founded_quote": {
     "h": "280726476315",
@@ -6296,7 +6384,8 @@
    },
    "anti_signals/0/evidence": {
     "h": "524c011d5466",
-    "en": "Website copy is service/project-heavy: \"Am Computer, in der Produktion – und immer inklusive guter Beratung.\""
+    "en": "Website copy is service/project-heavy: \"At the computer, in production – and always including good consulting.\"",
+    "retried": true
    }
   },
   "odecon": {
@@ -6354,7 +6443,8 @@
   "simfacture": {
    "team_breakdown/deep_research/evidence/0/quote": {
     "h": "26e8ec032147",
-    "en": "Represented by the Managing Director (Geschäftsführer): Dr. Johannes Koal"
+    "en": "Represented by the Managing Director (Geschäftsführer): Dr. Johannes Koal",
+    "retried": true
    }
   },
   "skyfall-defence": {
@@ -6520,7 +6610,8 @@
    },
    "capital_need/why": {
     "h": "ae058ca8c451",
-    "en": "Builds an intelligent sensor system (hardware) plus KI-basierte Sensordatenanalyse für industrielle Prozessüberwachung — evidence of sensors/hardware and industrial integration."
+    "en": "Builds an intelligent sensor system (hardware) plus AI-based sensor data analysis for industrial process monitoring — evidence of sensors/hardware and industrial integration.",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "c5f5dc09be71",
@@ -6546,7 +6637,8 @@
    },
    "capital_need/why": {
     "h": "d61ac5dfdc85",
-    "en": "Trace identifies product as 'migohead – Otoplastiken für Hörsysteme' (custom ear molds for hearing systems)."
+    "en": "Trace identifies product as 'migohead – Otoplastiken für Hörsysteme' (custom ear molds for hearing systems).",
+    "retried": true
    },
    "capital_need/evidence/0/quote": {
     "h": "67a1bc691b45",
@@ -6863,6 +6955,16 @@
    "capital_need/evidence/0/quote": {
     "h": "208e1038c3bd",
     "en": "Develops tailor-made polymers for the semiconductor industry that combine multiple functions in a single polymer and lead to higher purity and cost efficiency."
+   }
+  },
+  "flexpower": {
+   "age_check/rounds/0/quote": {
+    "h": "1d6c0b4b6140",
+    "en": "Duration  | 01/04/2024 - 31/03/2026\nExecuting institution  | MPG • MPI Halle • SMFD\nFunding amount  | 711.525,00 €"
+   },
+   "age_check/rounds/1/quote": {
+    "h": "2e2426894a8e",
+    "en": "Duration 01.04.2024 - 31.03.2026\nFunding amount 711.525,00 €\nProject leader Mr Ali Shaygan Nia"
    }
   }
  }
