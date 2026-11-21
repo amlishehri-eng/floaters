@@ -1,0 +1,44 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/proof/layout,_N_T_/proof/(legacy)/layout,_N_T_/proof/(legacy)/search/layout,_N_T_/proof/(legacy)/search/page,_N_T_/proof/search"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/proof/!KGxlZ2FjeSk/search/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 96,
+                "slots": {
+                  "children": {
+                    "hints": 160,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/54870be738c44e78dbe60600744d6dcff5686e4272873cb216f28976d92f6446/$/proof/search",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/proof/(legacy)/search/page"
+    },
+    "isFallback": false
+  }
+}

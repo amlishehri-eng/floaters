@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fproof\u002F[slug]","\u002Fproof\u002Fsaved\u002F[id]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

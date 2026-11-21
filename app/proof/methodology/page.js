@@ -26,20 +26,20 @@ const rows = (list) => list.map((c) => ({ label: label(c.key), max: c.weight }))
 const SCORES = [
   {
     title: "HTGF fit",
-    color: "#1d1d1f",
+    color: "#0d2b3d",
     rows: rows(FIT_V3),
     note: "Germany, sector, stage and funding are hard rules above, so they earn no points. Up to 30 points off for a thin AI wrapper, agency income, polish without a product or founders on too many projects.",
   },
-  { title: "Team", color: "#0a6e99", rows: rows(TEAM), note: "Scored only on the criteria the sources speak to, and shown as how many of eight are known." },
-  { title: "Timing", color: "#d93d1e", rows: rows(TIMING), note: "Says when to call, not whether. It sorts the call list." },
+  { title: "Team", color: "#1a5276", rows: rows(TEAM), note: "Scored only on the criteria the sources speak to, and shown as how many of eight are known." },
+  { title: "Timing", color: "#4f6573", rows: rows(TIMING), note: "Says when to call, not whether. It sorts the call list." },
 ];
 
 export default async function MethodPage() {
   const extras = await getExtras();
   const bt = backtestView(extras.backtest);
   return (
-    <div className="ff ff--white">
-      <SiteNav current="method" theme="white" />
+    <div className="ff">
+      <SiteNav current="method" />
       <main className="me-main">
         <section className="me-hero">
           <h1>Hard rules first. Points second.</h1>

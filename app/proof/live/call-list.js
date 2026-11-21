@@ -36,7 +36,7 @@ function Ring({ r }) {
     <div className="cl-ring">
       <div
         className="cl-ring__disc"
-        style={{ background: `conic-gradient(${r.color} ${r.deg}deg, #eef1f6 0deg)` }}
+        style={{ background: `conic-gradient(${r.color} ${r.deg}deg, rgba(143,166,180,0.3) 0deg)` }}
         role="img"
         aria-label={r.aria}
       >
@@ -163,8 +163,8 @@ function Detail({ s, feedback }) {
               {s.timingRows.map((r) => (
                 <div key={r.label} className="cl-timing__item">
                   <span className="cl-muted13">{r.label}</span>
-                  <span className="cl-bar__track cl-bar__track--4"><span style={{ width: `${r.pct}%`, background: "#33d1ff" }} /></span>
-                  <span className="cl-13" style={r.pts === null ? { color: "#6e6e73" } : undefined}>{r.pts === null ? "not known" : `${r.pts} of ${r.max}`}</span>
+                  <span className="cl-bar__track cl-bar__track--4"><span style={{ width: `${r.pct}%`, background: "#1a5276" }} /></span>
+                  <span className="cl-13" style={r.pts === null ? { color: "#4f6573" } : undefined}>{r.pts === null ? "not known" : `${r.pts} of ${r.max}`}</span>
                 </div>
               ))}
             </div>
@@ -193,8 +193,8 @@ function Detail({ s, feedback }) {
 
         <Spec title="Fit and team">
           <div className="cl-fitteam">
-            <CriteriaRows rows={s.fitRows} fill="#1d1d1f" />
-            <CriteriaRows rows={s.teamRows} fill="#0a6e99" />
+            <CriteriaRows rows={s.fitRows} fill="#0d2b3d" />
+            <CriteriaRows rows={s.teamRows} fill="#1a5276" />
             <span className="cl-fitteam__note">
               Click a row to see why it scored that. “Not known” means the sources say nothing yet.
               Germany is a hard rule in the HTGF check, so it scores no points here.

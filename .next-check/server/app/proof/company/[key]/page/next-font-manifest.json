@@ -1,0 +1,11 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/app/proof/company/[key]/page": [
+      "static/media/7309d5682ef03964-s.p.0z0hpjmp_9hhf.woff2",
+      "static/media/6ebe0aef87bfe15f-s.p.1zjat_zsa1d11.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}

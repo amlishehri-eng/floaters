@@ -17,8 +17,8 @@ export default async function CandidatesPage() {
   const { leads, votes, candidates } = await getCandidates();
   const cards = candidateCards(candidates);
   return (
-    <div className="ff ff--paper">
-      <SiteNav current="candidates" theme="paper" />
+    <div className="ff">
+      <SiteNav current="candidates" />
       <main className="po-main">
         <section className="po-hero">
           <div className="po-hero__text">

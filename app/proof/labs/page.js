@@ -16,8 +16,8 @@ export default async function LabsPage() {
   const extras = await getExtras();
   const labs = labsPage(extras.labs);
   return (
-    <div className="ff ff--paper">
-      <SiteNav current="labs" theme="paper" />
+    <div className="ff">
+      <SiteNav current="labs" />
       <main className="lb-main">
         <section className="lb-hero">
           <h1>Where the next spin-offs are hiding.</h1>

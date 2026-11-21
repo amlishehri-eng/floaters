@@ -2,34 +2,34 @@
 .fu-main { max-width: 1200px; margin: 0 auto; padding: 88px 28px 120px; display: flex; flex-direction: column; gap: 72px; }
 .fu-hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; }
 .fu-hero h1 { font-size: 72px; line-height: 1; font-weight: 800; font-stretch: 125%; letter-spacing: -2.4px; }
-.fu-hero h1 span { color: var(--ff-muted); }
-.fu-hero p { max-width: 620px; font-size: 19px; line-height: 1.5; color: var(--ff-fog); }
+.fu-hero h1 span { color: var(--ff-stone-deep); }
+.fu-hero p { max-width: 620px; font-size: 19px; line-height: 1.5; color: var(--ff-stone-deep); }
 .fu-hero .ff-source { font-size: 14px; }
 
 .fu-stages { display: flex; flex-direction: column; gap: 14px; align-items: center; }
 .fu-stage { width: 100%; display: grid; grid-template-columns: 1fr minmax(0, 2.2fr) 1fr; gap: 24px; align-items: center; }
-.fu-stage__label { text-align: right; font-size: 16px; color: var(--ff-nav-dim); }
+.fu-stage__label { text-align: right; font-size: 16px; color: var(--ff-stone-deep); }
 .fu-stage__beam { display: flex; justify-content: center; }
 .fu-stage__beam > span {
   height: 44px; min-width: 72px; border-radius: 22px; display: flex; align-items: center; justify-content: center;
   font-size: 19px; font-weight: 700; font-stretch: 112%;
 }
-.fu-stage__cost { font-size: 14px; color: var(--ff-fog-2); }
+.fu-stage__cost { font-size: 14px; color: var(--ff-stone-deep); }
 
 .fu-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; }
 .fu-col { display: flex; flex-direction: column; gap: 4px; }
 .fu-col h2 { margin: 0 0 12px; font-size: 24px; font-weight: 700; font-stretch: 112%; }
-.fu-line { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 9px 0; border-bottom: 1px solid var(--ff-hair-dark-2); }
-.fu-line > span:first-child { color: var(--ff-nav-dim); }
+.fu-line { display: flex; justify-content: space-between; align-items: center; font-size: 15px; padding: 9px 0; border-bottom: 1px solid var(--ff-hair); }
+.fu-line > span:first-child { color: var(--ff-stone-deep); }
 .fu-n { font-weight: 600; }
 .fu-verdict { display: flex; align-items: center; gap: 10px; }
 .fu-verdict span { width: 8px; height: 8px; border-radius: 50%; }
-.fu-note { margin: 12px 0 0 !important; font-size: 14px; line-height: 1.5; color: var(--ff-fog-2); }
+.fu-note { margin: 12px 0 0 !important; font-size: 14px; line-height: 1.5; color: var(--ff-stone-deep); }
 .fu-col--costs { gap: 22px; }
 .fu-col--costs h2 { margin: 0; }
 .fu-cost { display: flex; flex-direction: column; gap: 2px; }
 .fu-cost span:first-child { font-size: 40px; font-weight: 750; font-stretch: 112%; }
-.fu-cost span:last-child { font-size: 15px; color: var(--ff-fog); }
+.fu-cost span:last-child { font-size: 15px; color: var(--ff-stone-deep); }
 
 @media (max-width: 860px) {
   .fu-cols { grid-template-columns: minmax(0, 1fr); }
@@ -45,7 +45,7 @@
 .fd-wrap { display: flex; flex-direction: column; gap: 18px; }
 .fd-hint { text-align: center; margin: 0 !important; }
 .fu-stage__cost { display: flex; flex-direction: column; gap: 2px; }
-.ff .fd-link { font-size: 13px; color: var(--ff-ion); align-self: flex-start; }
+.ff .fd-link { font-size: 13px; color: var(--ff-adriatic); align-self: flex-start; }
 .fd-beam {
   position: relative; height: 44px; min-width: 72px; border-radius: 22px; display: flex; align-items: center; justify-content: center;
   font-size: 19px; font-weight: 700; font-stretch: 112%;
@@ -53,12 +53,12 @@
 /* The drop-out share of the beam dims and one ion dot per company (up to 60) leaves on the right, about 600 ms. */
 .fd-beam::after {
   content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 0; border-radius: 0 22px 22px 0;
-  background: rgba(0, 0, 0, 0.55); transition: width 600ms ease-out;
+  background: rgba(255, 255, 255, 0.55); transition: width 600ms ease-out;
 }
 .fd-stage:hover .fd-beam::after, .fd-stage:focus-within .fd-beam::after { width: var(--drop); }
 .fd-dots { position: absolute; left: 100%; top: 50%; display: none; grid-auto-flow: column; grid-template-rows: repeat(4, 6px); gap: 3px; margin-left: 12px; transform: translateY(-50%); pointer-events: none; }
 .fd-stage:hover .fd-dots, .fd-stage:focus-within .fd-dots { display: grid; }
-.fd-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ff-ion); box-shadow: 0 0 6px var(--ff-ion); animation: fd-stream 600ms ease-out both; animation-delay: calc(var(--i) * 6ms); }
+.fd-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ff-adriatic); box-shadow: 0 0 6px var(--ff-adriatic); animation: fd-stream 600ms ease-out both; animation-delay: calc(var(--i) * 6ms); }
 @keyframes fd-stream { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .fd-beam::after { transition: none; }

@@ -1,78 +1,46 @@
-/* Founders First design tokens and shared pieces (design/DESIGN.md, look from design/reference/*.dc.html).
+/* Founders First design tokens and shared pieces (design/DESIGN.md; the reference files predate the recolour).
    One place for the colours, the type family, the top navigation, focus rings and small shared components.
    Page layouts live next to each page (app/home.css, app/proof/live/call-list.css, ...). Not layered, so these
    rules win over Tailwind's base layer from globals.css. */
 
 :root {
-  --ff-void: #000000;
-  --ff-paper: #f5f5f7;
-  --ff-paper-call: #f4f6f9;
-  --ff-white: #ffffff;
-  --ff-ink: #1d1d1f;
-  --ff-ink-2: #3a3a3f;
-  --ff-ink-3: #4a4a4f;
-  --ff-muted: #6e6e73;
-  --ff-fog: #a1a1a6;
-  --ff-fog-2: #86868b;
-  --ff-mist: #f5f5f7;
-  --ff-nav-dim: #d2d2d7;
-  --ff-rank: #c7c7cc;
-  --ff-ion: #33d1ff;
-  --ff-ion-deep: #0a6e99;
-  --ff-ion-deep-hover: #064f6f;
-  --ff-infrared: #ff5b3a;
-  --ff-infrared-text: #d93d1e;
-  --ff-infrared-on-black: #ff8a70;
-  --ff-infrared-panel: #b8321a;
-  --ff-pass: #1b7a4b;
-  --ff-pass-dot: #2fbf71;
-  --ff-amber: #9a5b00;
-  --ff-amber-2: #7a4a00;
-  --ff-amber-panel: #fff7e8;
-  --ff-callnow-panel: #fff3ef;
-  --ff-unknown: #9a9aa0;
-  --ff-unknown-dot: #b8bcc6;
-  --ff-track: #e8ecf2;
-  --ff-track-2: #eef1f6;
-  --ff-track-3: #e3e7ee;
-  --ff-hair: rgba(29, 29, 31, 0.08);
-  --ff-hair-2: rgba(29, 29, 31, 0.1);
-  --ff-hair-3: rgba(29, 29, 31, 0.12);
-  --ff-hair-dark: rgba(255, 255, 255, 0.08);
-  --ff-hair-dark-2: rgba(255, 255, 255, 0.1);
+  /* Palette (design/DESIGN.md section 2). White and Stone are primary; the rest support. */
+  --ff-white: #ffffff;        /* main page surface, ~60% of every page */
+  --ff-stone: #8fa6b4;        /* rules, tracks, rings, quiet fills, radar rings; never text (2.54:1 on white) */
+  --ff-stone-deep: #4f6573;   /* captions and secondary text: 6.10:1 on white, 5.38:1 on Mist */
+  --ff-mist: #f5f0e8;         /* cards and alternate bands */
+  --ff-adriatic: #1a5276;     /* links, buttons, data bars, rings, radar sweep, focus: 8.36:1 on white */
+  --ff-ink: #0d2b3d;          /* Harbour Ink: all text (14.68:1 on white) and at most one deep band per page */
+  --ff-red: #b4363b;          /* Guest Red: only call-now markers, never bigger than a chip (5.95:1 on white) */
+  --ff-track: rgba(143, 166, 180, 0.3);  /* Stone tint: bar and ring tracks */
+  --ff-hair: rgba(143, 166, 180, 0.45);  /* Stone hairlines */
   --ff-font: var(--font-mona), system-ui, sans-serif;
 }
 
-/* The body takes the page colour so overscroll never flashes white on the black pages. */
-body:has(.ff--dark) { background: var(--ff-void); }
-body:has(.ff--paper) { background: var(--ff-paper); }
-body:has(.ff--call) { background: var(--ff-paper-call); }
-body:has(.ff--white) { background: var(--ff-white); }
+/* The body takes the page colour so overscroll never flashes another colour. */
+body:has(.ff) { background: var(--ff-white); }
 
 .ff {
   min-height: 100vh;
   font-family: var(--ff-font);
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
+  background: var(--ff-white);
+  color: var(--ff-ink);
 }
-.ff--dark { background: var(--ff-void); color: var(--ff-mist); }
-.ff--paper { background: var(--ff-paper); color: var(--ff-ink); }
-.ff--call { background: var(--ff-paper-call); color: var(--ff-ink); font-size: 15px; }
-.ff--white { background: var(--ff-white); color: var(--ff-ink); }
+.ff--call { font-size: 15px; }
 
 .ff h1, .ff h2, .ff h3, .ff p, .ff blockquote { margin: 0; }
 .ff button { font: inherit; }
-.ff a { text-decoration: none; }
+.ff a { text-decoration: none; color: var(--ff-adriatic); }
 .ff a:hover { text-decoration: underline; }
-.ff--dark a { color: var(--ff-ion); }
-.ff--paper a, .ff--call a, .ff--white a { color: var(--ff-ion-deep); }
-.ff--call a:hover { color: var(--ff-ion-deep-hover); }
-.ff-light-section a { color: var(--ff-ion-deep); }
 
-/* Visible focus everywhere: 2px ion-deep, 3px offset (DESIGN.md section 9). */
+/* Visible focus everywhere: 2px Adriatic, 3px offset (DESIGN.md section 9). */
 .ff a:focus-visible,
-.ff button:focus-visible {
-  outline: 2px solid var(--ff-ion-deep);
+.ff button:focus-visible,
+.ff input:focus-visible,
+.ff select:focus-visible {
+  outline: 2px solid var(--ff-adriatic);
   outline-offset: 3px;
 }
 
@@ -81,14 +49,11 @@ body:has(.ff--white) { background: var(--ff-white); }
   position: sticky;
   top: 0;
   z-index: 5;
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--ff-hair);
 }
-.ff-nav--dark { background: rgba(0, 0, 0, 0.72); border-bottom-color: var(--ff-hair-dark); }
-.ff-nav--paper { background: rgba(245, 245, 247, 0.78); }
-.ff-nav--call { background: rgba(244, 246, 249, 0.78); }
-.ff-nav--white { background: rgba(255, 255, 255, 0.78); }
 .ff-nav__inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -111,19 +76,16 @@ body:has(.ff--white) { background: var(--ff-white); }
   align-items: center;
   color: var(--ff-ink);
 }
-.ff-nav--dark .ff-nav__brand { color: var(--ff-mist); }
 .ff-nav__links { display: flex; gap: 4px; flex-wrap: wrap; font-size: 13px; }
-/* 44px tall touch target, same look as the reference's 8px 12px padding. */
+/* 44px tall touch target. */
 .ff .ff-nav__link {
   padding: 0 12px;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  color: var(--ff-ink-3);
+  color: var(--ff-stone-deep);
 }
-.ff-nav--dark .ff-nav__link { color: var(--ff-nav-dim); }
 .ff .ff-nav__link[aria-current="page"] { color: var(--ff-ink); font-weight: 600; }
-.ff-nav--dark .ff-nav__link[aria-current="page"] { color: var(--ff-white); }
 @media (max-width: 480px) {
   .ff-nav__inner { padding: 0 16px; }
   .ff-nav__links { gap: 0; margin-left: -8px; }
@@ -136,12 +98,12 @@ body:has(.ff--white) { background: var(--ff-white); }
   padding: 0 20px;
   border-radius: 999px;
   border: 0;
-  background: var(--ff-ink);
+  background: var(--ff-adriatic);
   color: var(--ff-white);
   cursor: pointer;
   font-weight: 500;
 }
-.ff-btn--secondary { border: 1px solid rgba(29, 29, 31, 0.2); background: transparent; color: var(--ff-ink); }
+.ff-btn--secondary { border: 1px solid var(--ff-stone); background: transparent; color: var(--ff-ink); }
 .ff-btn:disabled { cursor: default; opacity: 0.6; }
 
 .ff-dot {
@@ -150,13 +112,12 @@ body:has(.ff--white) { background: var(--ff-white); }
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--ff-infrared);
-  box-shadow: 0 0 10px var(--ff-infrared);
+  background: var(--ff-red);
+  box-shadow: 0 0 0 3px rgba(180, 54, 59, 0.18);
 }
 
 /* Data-source line: where the numbers come from, and the error when n8n did not answer. */
-.ff-source { font-size: 13px; line-height: 1.5; color: var(--ff-muted); }
-.ff--dark .ff-source { color: var(--ff-fog-2); }
+.ff-source { font-size: 13px; line-height: 1.5; color: var(--ff-stone-deep); }
 
 .ff-sr-only {
   position: absolute;
@@ -178,7 +139,7 @@ body:has(.ff--white) { background: var(--ff-white); }
   background: transparent; color: inherit; text-align: left; cursor: pointer; border-radius: 4px;
 }
 .cr-head { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; }
-.cr-label::after { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 0 2px 7px; border-right: 1.5px solid var(--ff-muted); border-bottom: 1.5px solid var(--ff-muted); transform: rotate(45deg); }
+.cr-label::after { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 0 2px 7px; border-right: 1.5px solid var(--ff-stone-deep); border-bottom: 1.5px solid var(--ff-stone-deep); transform: rotate(45deg); }
 .cr-row[data-open] .cr-label::after { transform: rotate(-135deg); margin-bottom: -1px; }
 .cr-track { display: block; height: 3px; border-radius: 2px; background: var(--ff-track); overflow: hidden; }
 .cr-track > span { display: block; height: 100%; }
@@ -187,14 +148,14 @@ body:has(.ff--white) { background: var(--ff-white); }
 .cr-panel__inner { overflow: hidden; display: flex; flex-direction: column; gap: 8px; padding: 6px 0 12px; }
 @keyframes cr-open { from { grid-template-rows: 0fr; opacity: 0; } to { grid-template-rows: 1fr; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .cr-panel:not([hidden]) { animation: none; } }
-.cr-why { font-size: 13px; line-height: 1.5; color: var(--ff-ink-2); }
-.cr-quote { font-size: 13px; line-height: 1.5; color: var(--ff-ink); padding-left: 12px; border-left: 2px solid var(--ff-ion); overflow-wrap: anywhere; }
-.ff .cr-source { font-size: 12px; align-self: flex-start; color: var(--ff-ion-deep); }
+.cr-why { font-size: 13px; line-height: 1.5; color: var(--ff-ink); }
+.cr-quote { font-size: 13px; line-height: 1.5; color: var(--ff-ink); padding-left: 12px; border-left: 2px solid var(--ff-adriatic); overflow-wrap: anywhere; }
+.ff .cr-source { font-size: 12px; align-self: flex-start; color: var(--ff-adriatic); }
 
 /* ---- Bring to the front (components/ff/bring-to-front.js) -------------------------------- */
 .bf { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
 .ff .bf-btn { padding: 0 18px; font-size: 14px; }
 .bf-on { font-size: 14px; font-weight: 600; }
-.ff .bf-undo { min-height: 44px; padding: 0 6px; border: 0; background: transparent; color: var(--ff-ink-3); font: inherit; font-size: 14px; text-decoration: underline; cursor: pointer; }
-.bf-note { font-size: 13px; color: var(--ff-muted); }
+.ff .bf-undo { min-height: 44px; padding: 0 6px; border: 0; background: transparent; color: var(--ff-stone-deep); font: inherit; font-size: 14px; text-decoration: underline; cursor: pointer; }
+.bf-note { font-size: 13px; color: var(--ff-stone-deep); }
 .bf-note:empty { display: none; }

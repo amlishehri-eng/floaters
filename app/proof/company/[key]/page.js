@@ -82,7 +82,7 @@ export default async function CompanyPage({ params }) {
               <h1 className="co-title">{v.name}</h1>
               <span className="co-verdict">
                 {v.callNow && <span className="ff-dot" aria-hidden="true" />}
-                <span style={v.callNow ? { color: "#b8321a" } : undefined}>{v.verdictLabel}</span>
+                <span style={v.callNow ? { color: "var(--ff-red)" } : undefined}>{v.verdictLabel}</span>
               </span>
               <div className="co-links">
                 {v.website ? (
@@ -96,7 +96,7 @@ export default async function CompanyPage({ params }) {
             <div className="cl-rings" aria-label="Scores">
               {v.rings.map((r) => (
                 <div key={r.label} className="cl-ring">
-                  <div className="cl-ring__disc" style={{ background: `conic-gradient(${r.color} ${r.deg}deg, #eef1f6 0deg)` }} role="img" aria-label={r.aria}>
+                  <div className="cl-ring__disc" style={{ background: `conic-gradient(${r.color} ${r.deg}deg, rgba(143,166,180,0.3) 0deg)` }} role="img" aria-label={r.aria}>
                     <div className="cl-ring__inner" aria-hidden="true">{r.value}</div>
                   </div>
                   <span className="cl-ring__label">{r.label}</span>
@@ -128,8 +128,8 @@ export default async function CompanyPage({ params }) {
 
             <Spec title="Fit and team">
               <div className="cl-fitteam">
-                <CriteriaRows rows={v.fitRows} fill="#1d1d1f" />
-                <CriteriaRows rows={v.teamRows} fill="#0a6e99" />
+                <CriteriaRows rows={v.fitRows} fill="#0d2b3d" />
+                <CriteriaRows rows={v.teamRows} fill="#1a5276" />
                 <span className="cl-fitteam__note">
                   Click a row to see why it scored that. “Not known” means the sources say nothing yet.
                   Germany is a hard rule in the HTGF check, so it scores no points here.

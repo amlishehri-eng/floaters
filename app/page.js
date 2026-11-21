@@ -30,8 +30,8 @@ export default async function Home() {
   const leadsHint = sourceHint({ mocked: leadsData.mocked, error: leadsData.error, asOf: leadsData.as_of });
   const funnelHint = sourceHint({ mocked: funnel.mocked, error: funnel.error, asOf: funnel.as_of });
   return (
-    <div className="ff ff--dark">
-      <SiteNav theme="dark" />
+    <div className="ff">
+      <SiteNav />
 
       <section className="ho-hero">
         <h1>{v.title[0]}<br /><span>{v.title[1]}</span></h1>
@@ -47,7 +47,7 @@ export default async function Home() {
           <div className="ho-layer ho-clip" style={{ clipPath: v.clip }} aria-hidden="true">
             <div className="ho-scope">
               {RINGS.map((r) => (
-                <div key={r.inset} className="ho-ring" style={{ inset: r.inset, borderColor: `rgba(51,209,255,${r.a})` }} />
+                <div key={r.inset} className="ho-ring" style={{ inset: r.inset, borderColor: `rgba(143,166,180,${Math.min(0.9, r.a * 3)})` }} />
               ))}
               <div className="ho-cross ho-cross--v" />
               <div className="ho-cross ho-cross--h" />
@@ -55,7 +55,7 @@ export default async function Home() {
             </div>
           </div>
           <svg viewBox="0 0 600 800" className="ho-layer" aria-hidden="true">
-            <polygon points={v.outline} fill="rgba(51,209,255,0.05)" stroke="rgba(51,209,255,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
+            <polygon points={v.outline} fill="#f5f0e8" stroke="#8fa6b4" strokeWidth="1.5" strokeLinejoin="round" />
           </svg>
           <div className="ho-layer">
             {v.dots.map((d, i) => (
@@ -74,7 +74,7 @@ export default async function Home() {
         </div>
         <div className="ho-big">
           {v.big.map((b) => (
-            <div key={b.label}><span style={{ color: b.color }}>{b.n}</span><span>{b.label}</span></div>
+            <div key={b.label}><span style={{ color: b.color }}>{b.n}</span><span>{b.callNow && <span className="ff-dot ho-big__dot" aria-hidden="true" />}{b.label}</span></div>
           ))}
           <p className="ff-source">Teams on the map: {leadsHint}</p>
         </div>
@@ -98,7 +98,7 @@ export default async function Home() {
 
       {v.top ? (
         <section className="ho-top">
-          <span className="ho-top__kicker">Top of today’s list</span>
+          <span className="ho-top__kicker"><span className="ff-dot" aria-hidden="true" />Top of today’s list</span>
           <h2>{v.top.name}</h2>
           <p>{v.top.what}</p>
           <div className="ho-top__numbers">

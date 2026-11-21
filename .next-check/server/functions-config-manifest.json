@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "functions": {
+    "/api/brain/extract": {
+      "maxDuration": 60
+    },
+    "/api/brain/run": {
+      "maxDuration": 300
+    }
+  }
+}

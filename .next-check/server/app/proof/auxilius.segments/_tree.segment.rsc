@@ -1,0 +1,12 @@
+:HL["/_next/static/chunks/16_ptudkwgq0t.css","style"]
+:HL["/_next/static/chunks/0k7g0j69no2mn.css","style"]
+:HL["/_next/static/chunks/1s_pos1nmwqt9.css","style"]
+:HL["/_next/static/media/6ebe0aef87bfe15f-s.p.1zjat_zsa1d11.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/7309d5682ef03964-s.p.0z0hpjmp_9hhf.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/GeistMono_Variable.p.2vtemngyy8z-u.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/Geist_Variable-s.p.43azbxi7zpibd.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+4:[["children",{"s":"__PAGE__","h":160}]]
+3:[["children",{"s":{"n":"slug","t":"d","k":"auxilius","s":["candidates","company","demo","funnel","labs","live","methodology","portfolio","saved","search"]},"h":96,"c":"$Q4"}]]
+2:[["children",{"s":"(legacy)","h":96,"c":"$Q3"}]]
+1:[["children",{"s":"proof","h":96,"c":"$Q2"}]]
+0:{"b":"FxdmYQQ1pazW5MWhuFAsn","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

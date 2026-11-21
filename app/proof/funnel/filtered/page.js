@@ -38,8 +38,8 @@ export default async function FilteredPage({ searchParams }) {
     : null;
 
   return (
-    <div className="ff ff--paper">
-      <SiteNav current="funnel" theme="paper" />
+    <div className="ff">
+      <SiteNav current="funnel" />
       <main className="fl-main">
         <Link href="/proof/funnel" className="fl-back">Back to the funnel</Link>
         <section className="fl-hero">

@@ -17,7 +17,7 @@ function Stats({ stats }) {
           <dt>{s.label}</dt>
           <dd>
             {s.ring !== undefined && s.ring !== null ? (
-              <span className="fl-ring" style={{ background: `conic-gradient(#1d1d1f ${Math.round(s.ring * 3.6)}deg, #eef1f6 0deg)` }} role="img" aria-label={`${s.label} ${s.value} of 100`}>
+              <span className="fl-ring" style={{ background: `conic-gradient(#0d2b3d ${Math.round(s.ring * 3.6)}deg, rgba(143,166,180,0.3) 0deg)` }} role="img" aria-label={`${s.label} ${s.value} of 100`}>
                 <span aria-hidden="true">{s.value}</span>
               </span>
             ) : (

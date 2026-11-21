@@ -1,0 +1,44 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/proof/layout,_N_T_/proof/(legacy)/layout,_N_T_/proof/(legacy)/[slug]/layout,_N_T_/proof/(legacy)/[slug]/page,_N_T_/proof/symphera"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/proof/!KGxlZ2FjeSk/$d$slug/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 96,
+                "slots": {
+                  "children": {
+                    "hints": 160,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/a369675234e502558255666939f39468b20fdafd01c481dcddb7f3eccd68dad1/$/proof/symphera",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/proof/(legacy)/[slug]/page"
+    },
+    "isFallback": false
+  }
+}
