@@ -39,7 +39,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 
 ## In progress
 - Amli: sources done for now (01–09, 30, 31 in Run all); 09 Find websites raised to 50 names per run (20 Nov ~20:05); next: reliability, Eventbrite from the laptop.
-- Amli: **pitch video, 2:20** (HyperFrames, outside the repo: `~/Desktop/founders-first-video`): real app + n8n screens, eversyn as pick of the day with a "why eversyn" part (fit 80 / team 95, tech depth, 4 patents, Thomas Rexer, first seen 1 Jan 2024); **silent, read live** from its SCRIPT.md (290 words, cue times, ~150 wpm); checked (0 errors), render after the team approves (21 Nov ~03:55 CET).
+- Amli: **pitch video**: old draft deleted (21 Nov ~04:05 CET); next: match the real app + n8n screens to the team's own recorded voiceover (HyperFrames, `~/Desktop/founders-first-video`, screen captures kept).
 - Amli: second full run done and **flow 20 published** (21 Nov ~00:52 CET); next: whatever the team test turns up; calibration 18 / backtest 41 need Nils's update first.
 
 ## Done
