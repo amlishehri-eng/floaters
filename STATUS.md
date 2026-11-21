@@ -40,7 +40,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 ## In progress
 - Nils: fix round (radar, outreach, dark funnel, labs charts, contrast).
 - Amli: sources done for now (01–09, 30, 31 in Run all); 09 Find websites raised to 50 names per run (20 Nov ~20:05); next: reliability, Eventbrite from the laptop.
-- Amli: **2:00 pitch video** (HyperFrames, outside the repo: `~/Desktop/founders-first-video`): real app + n8n screens, George voiceover via flow 45, eversyn as pick of the day; built and checked (0 errors), preview open, render after the team approves (21 Nov ~03:05 CET).
+- Amli: **2:00 pitch video** (HyperFrames, outside the repo: `~/Desktop/founders-first-video`): real app + n8n screens, eversyn as pick of the day; **silent, read live** from its SCRIPT.md (cue times, ~145 wpm, ElevenLabs voice removed); built and checked (0 errors), preview open, render after the team approves (21 Nov ~03:30 CET).
 - Amli: second full run done and **flow 20 published** (21 Nov ~00:52 CET); next: whatever the team test turns up; calibration 18 / backtest 41 need Nils's update first.
 
 ## Done
