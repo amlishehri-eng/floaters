@@ -11,6 +11,7 @@ CLAUDE.local.md
 node_modules/
 .next/
 .next-autosync/
+.next-check/
 dist/
 build/
 out/
