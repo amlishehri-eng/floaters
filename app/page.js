@@ -79,9 +79,9 @@ export default async function Home() {
                 <span key={t.key} className="ho-star" style={{ left: `${t.x}%`, top: `${t.y}%` }} aria-hidden="true" />
               ))}
               {v.labels.map((l) => (
-                <span key={l.key} className="ho-labels" style={{ left: `${l.x}%`, top: `${l.y}%` }}>
+                <span key={l.key} className="ho-labels" style={{ position: "absolute", display: "flex", flexDirection: "column", left: `${l.x}%`, top: `${l.y}%` }}>
                   {l.lines.map((line) => (
-                    <span key={line.name} className="ho-label">
+                    <span key={line.name} className="ho-label" style={{ display: "flex", alignItems: "baseline", gap: 6, whiteSpace: "nowrap" }}>
                       <span className="ho-label__name">{line.name}</span>
                       <span className="ho-label__city">{line.city}</span>
                     </span>
