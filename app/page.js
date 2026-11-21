@@ -33,65 +33,55 @@ export default async function Home() {
     <div className="ff">
       <SiteNav />
 
-      <section className="ho-hero">
-        <h1>{v.title[0]}<br /><span>{v.title[1]}</span></h1>
-        <p>Founders First reads Germany’s spin-off lists, research news, code and pitches every day, and tells HTGF who to call before anyone writes about them.</p>
-        <div className="ho-hero__cta">
-          <Link href="/proof/live" className="ho-btn">See the call list</Link>
-          <Link href="/proof/funnel" className="ho-link">See how it filters</Link>
-        </div>
-      </section>
-
-      <section aria-label={v.radarLabel} className="ho-radar-wrap">
-        <div className="ho-radar">
-          <div className="ho-layer ho-clip" style={{ clipPath: v.clip }} aria-hidden="true">
-            <div className="ho-scope">
-              {RINGS.map((r) => (
-                <div key={r.inset} className="ho-ring" style={{ inset: r.inset, borderColor: `rgba(143,166,180,${Math.min(0.9, r.a * 3)})` }} />
-              ))}
-              <div className="ho-cross ho-cross--v" />
-              <div className="ho-cross ho-cross--h" />
-              <div className="ho-sweep" />
-            </div>
+      {/* First screen: everything here fits one viewport at 1280×800 and up (DESIGN.md, home). */}
+      <section className="ho-first" aria-label={v.radarLabel}>
+        <div className="ho-first__text">
+          <h1>{v.title[0]}<br /><span>{v.title[1]}</span></h1>
+          <p>Founders First reads Germany’s spin-off lists, research news, code and pitches every day, and tells HTGF who to call before anyone writes about them.</p>
+          <div className="ho-hero__cta">
+            <Link href="/proof/live" className="ho-btn">See the call list</Link>
+            <Link href="/proof/funnel" className="ho-link">See how it filters</Link>
           </div>
-          <svg viewBox="0 0 600 800" className="ho-layer" aria-hidden="true">
-            <polygon points={v.outline} fill="#f5f0e8" stroke="#8fa6b4" strokeWidth="1.5" strokeLinejoin="round" />
-          </svg>
-          <div className="ho-layer">
-            {v.dots.map((d, i) => (
-              <span key={i} className="ho-dot" style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, background: d.c, opacity: d.o }} aria-hidden="true" />
-            ))}
-            {v.stars.map((t) => (
-              <span key={t.key}>
-                <span className="ho-star" style={{ left: `${t.x}%`, top: `${t.y}%` }} aria-hidden="true" />
-                <span className={t.left ? "ho-label ho-label--left" : "ho-label"} style={{ left: `${t.lx}%`, top: `${t.ly}%` }}>
-                  <span className="ho-label__name">{t.name}</span>
-                  <span className="ho-label__city">{t.city}</span>
-                </span>
-              </span>
+          <div className="ho-big">
+            {v.big.map((b) => (
+              <div key={b.label}><span style={{ color: b.color }}>{b.n}</span><span>{b.callNow && <span className="ff-dot ho-big__dot" aria-hidden="true" />}{b.label}</span></div>
             ))}
           </div>
-        </div>
-        <div className="ho-big">
-          {v.big.map((b) => (
-            <div key={b.label}><span style={{ color: b.color }}>{b.n}</span><span>{b.callNow && <span className="ff-dot ho-big__dot" aria-hidden="true" />}{b.label}</span></div>
-          ))}
           <p className="ff-source">Teams on the map: {leadsHint}</p>
         </div>
-      </section>
-
-      <section className="ho-light">
-        <div className="ho-light__inner">
-          <h2>The cheapest step runs first. The expensive ones only where it matters.</h2>
-          <div className="ho-steps">
-            {v.steps.map((st) => (
-              <div key={st.no} className="ho-step">
-                <span className="ho-step__no" style={{ color: st.color }}>{st.no}</span>
-                <span className="ho-step__title">{st.title}</span>
-                <span className="ho-step__text">{st.text}</span>
-                <span className="ho-step__cost">{st.cost}</span>
+        <div className="ho-first__map">
+          <div className="ho-radar">
+            {/* Mist land first, then the Stone rings and the Adriatic sweep, then the Stone border on top. */}
+            <svg viewBox="0 0 600 800" className="ho-layer" aria-hidden="true">
+              <polygon points={v.outline} fill="#f5f0e8" />
+            </svg>
+            <div className="ho-layer ho-clip" style={{ clipPath: v.clip }} aria-hidden="true">
+              <div className="ho-scope">
+                {RINGS.map((r) => (
+                  <div key={r.inset} className="ho-ring" style={{ inset: r.inset, borderColor: `rgba(143,166,180,${Math.min(0.9, r.a * 3)})` }} />
+                ))}
+                <div className="ho-cross ho-cross--v" />
+                <div className="ho-cross ho-cross--h" />
+                <div className="ho-sweep" />
               </div>
-            ))}
+            </div>
+            <svg viewBox="0 0 600 800" className="ho-layer" aria-hidden="true">
+              <polygon points={v.outline} fill="none" stroke="#8fa6b4" strokeWidth="1.5" strokeLinejoin="round" />
+            </svg>
+            <div className="ho-layer">
+              {v.dots.map((d, i) => (
+                <span key={i} className="ho-dot" style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.s, height: d.s, background: d.c, opacity: d.o }} aria-hidden="true" />
+              ))}
+              {v.stars.map((t) => (
+                <span key={t.key}>
+                  <span className="ho-star" style={{ left: `${t.x}%`, top: `${t.y}%` }} aria-hidden="true" />
+                  <span className={t.left ? "ho-label ho-label--left" : "ho-label"} style={{ left: `${t.lx}%`, top: `${t.ly}%` }}>
+                    <span className="ho-label__name">{t.name}</span>
+                    <span className="ho-label__city">{t.city}</span>
+                  </span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -116,6 +106,22 @@ export default async function Home() {
       )}
 
       <section className="ho-light">
+        <div className="ho-light__inner">
+          <h2>The cheapest step runs first. The expensive ones only where it matters.</h2>
+          <div className="ho-steps">
+            {v.steps.map((st) => (
+              <div key={st.no} className="ho-step">
+                <span className="ho-step__no" style={{ color: st.color }}>{st.no}</span>
+                <span className="ho-step__title">{st.title}</span>
+                <span className="ho-step__text">{st.text}</span>
+                <span className="ho-step__cost">{st.cost}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="ho-white ho-white--sources">
         <div className="ho-light__inner ho-light__inner--48">
           <h2>Where the first signals show up.</h2>
           <div className="ho-sources">
@@ -126,8 +132,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="ho-white">
-        <div className="ho-white__inner">
+      <section className="ho-light ho-light--bt">
+        <div className="ho-white__inner ho-bt">
           <div className="ho-bt__text">
             <h2>Tested blind on HTGF’s own portfolio.</h2>
             <p>Earliest archived websites only, every investor mention removed. {v.backtest ? v.backtest.sentence : "The backtest has not run yet."}</p>

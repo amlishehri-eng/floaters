@@ -1,10 +1,23 @@
-/* Home: copied from design/reference/home.dc.html. The radar box is fluid (percentages of the reference's
-   640 x 760 box), so it scales down on a phone instead of overflowing. */
+/* Home (design/DESIGN.md, home). The first screen fits one viewport from 1280×800 up: text and stats on the left,
+   the radar on the right, sized from the viewport height (percentages of the reference's 640 × 760 box). */
+.ho-first {
+  max-width: 1320px; margin: 0 auto; box-sizing: border-box; min-height: calc(100svh - 53px); padding: 24px 28px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px 48px;
+}
+.ho-first__text { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.ho-first__text h1 { font-size: clamp(40px, min(4.6vw, 7.6vh), 84px); line-height: 0.98; font-weight: 800; font-stretch: 125%; letter-spacing: -0.035em; }
+.ho-first__text h1 span { color: var(--ff-stone-deep); }
+.ho-first__text > p:first-of-type { max-width: 560px; font-size: clamp(16px, min(1.5vw, 2.4vh), 21px); line-height: 1.45; color: var(--ff-stone-deep); }
+.ho-first__text .ho-hero__cta { justify-content: flex-start; }
+.ho-first__text .ho-big { flex-direction: row; flex-wrap: wrap; gap: 12px 40px; flex: none; padding-top: 18px; border-top: 1px solid var(--ff-hair); }
+.ho-first__text .ho-big > div span:first-child { font-size: clamp(30px, min(3vw, 5vh), 44px); }
+.ho-first__map { display: flex; justify-content: center; }
+.ho-first .ho-radar { width: auto; height: min(760px, calc(100svh - 53px - 48px)); }
+@media (max-width: 900px) {
+  .ho-first { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 40px 16px; }
+  .ho-first .ho-radar { width: min(640px, 100%); height: auto; }
+}
 
-.ho-hero { padding: 96px 28px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
-.ho-hero h1 { font-size: 88px; line-height: 0.98; font-weight: 800; font-stretch: 125%; letter-spacing: -3px; max-width: 1100px; }
-.ho-hero h1 span { color: var(--ff-stone-deep); }
-.ho-hero p { max-width: 640px; font-size: 21px; line-height: 1.45; color: var(--ff-stone-deep); }
 .ho-hero__cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center; }
 .ff .ho-btn {
   min-height: 48px; display: inline-flex; align-items: center; padding: 0 26px; border-radius: 999px;
@@ -12,10 +25,6 @@
 }
 .ff .ho-link { min-height: 48px; display: inline-flex; align-items: center; padding: 0 18px; color: var(--ff-adriatic); }
 
-.ho-radar-wrap {
-  max-width: 1200px; margin: 48px auto 0; padding: 0 28px 24px; display: flex; flex-wrap: wrap; gap: 40px;
-  align-items: center; justify-content: center;
-}
 .ho-radar { position: relative; width: min(640px, 100%); aspect-ratio: 640 / 760; flex: 0 1 auto; container-type: inline-size; }
 /* Map layer: the reference's 600 x 800 box at left 20px, top -20px inside the 640 x 760 box. */
 .ho-layer { position: absolute; left: 3.125%; top: -2.632%; width: 93.75%; height: 105.263%; }
@@ -83,6 +92,9 @@
 .ho-source span:last-child { font-size: 16px; line-height: 1.5; color: var(--ff-stone-deep); }
 
 .ho-white { background: var(--ff-white); color: var(--ff-ink); padding: 120px 28px; }
+.ho-white--sources .ho-light__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
+.ho-white--sources h2 { font-size: 56px; line-height: 1.04; font-weight: 750; font-stretch: 125%; letter-spacing: -1.6px; max-width: 900px; }
+.ho-light--bt .ho-white__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: space-between; }
 .ho-white__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: space-between; }
 .ho-bt__text { flex: 1 1 520px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .ho-bt__text h2 { font-size: 48px; line-height: 1.06; font-weight: 750; font-stretch: 125%; letter-spacing: -1.4px; }
@@ -102,10 +114,6 @@
   .ho-sources { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
-  .ho-hero { padding: 64px 16px 0; }
-  .ho-hero h1 { font-size: 48px; letter-spacing: -1.4px; }
-  .ho-hero p { font-size: 18px; }
-  .ho-radar-wrap { padding: 0 16px 24px; margin-top: 32px; }
   .ho-big { flex-basis: 100%; }
   .ho-light, .ho-white { padding: 72px 16px; }
   .ho-light h2 { font-size: 34px; letter-spacing: -0.8px; }
