@@ -8,6 +8,7 @@
   --ff-white: #ffffff;        /* main page surface, ~60% of every page */
   --ff-stone: #8fa6b4;        /* rules, tracks, rings, quiet fills, radar rings; never text (2.54:1 on white) */
   --ff-stone-deep: #4f6573;   /* captions and secondary text: 6.10:1 on white, 5.38:1 on Mist */
+  --ff-stone-light: #a9bcc7; /* Stone mixed toward white: captions on Harbour Ink, 7.49:1 */
   --ff-mist: #f5f0e8;         /* cards and alternate bands */
   --ff-adriatic: #1a5276;     /* links, buttons, data bars, rings, radar sweep, focus: 8.36:1 on white */
   --ff-ink: #0d2b3d;          /* Harbour Ink: all text (14.68:1 on white) and at most one deep band per page */
@@ -19,6 +20,7 @@
 
 /* The body takes the page colour so overscroll never flashes another colour. */
 body:has(.ff) { background: var(--ff-white); }
+body:has(.ff--ink) { background: var(--ff-ink); }
 
 .ff {
   min-height: 100vh;
@@ -29,6 +31,9 @@ body:has(.ff) { background: var(--ff-white); }
   color: var(--ff-ink);
 }
 .ff--call { font-size: 15px; }
+/* The Harbour Ink page (only the funnel): white headlines, Mist body text, Stone light captions, Mist focus ring. */
+.ff.ff--ink { background: var(--ff-ink); color: var(--ff-mist); }
+.ff--ink a:focus-visible, .ff--ink button:focus-visible { outline-color: var(--ff-mist); }
 
 .ff h1, .ff h2, .ff h3, .ff p, .ff blockquote { margin: 0; }
 .ff button { font: inherit; }
@@ -86,6 +91,10 @@ body:has(.ff) { background: var(--ff-white); }
   color: var(--ff-stone-deep);
 }
 .ff .ff-nav__link[aria-current="page"] { color: var(--ff-ink); font-weight: 600; }
+.ff-nav--dark { background: rgba(13, 43, 61, 0.88); border-bottom-color: rgba(143, 166, 180, 0.3); }
+.ff .ff-nav--dark .ff-nav__brand { color: var(--ff-white); }
+.ff .ff-nav--dark .ff-nav__link { color: var(--ff-stone-light); }
+.ff .ff-nav--dark .ff-nav__link[aria-current="page"] { color: var(--ff-white); }
 @media (max-width: 480px) {
   .ff-nav__inner { padding: 0 16px; }
   .ff-nav__links { gap: 0; margin-left: -8px; }

@@ -21,8 +21,8 @@ export default async function FunnelPage() {
   const v = honestFunnel(funnel, leadsData, { mocked: funnel.mocked });
   const when = dayTime(funnel.as_of);
   return (
-    <div className="ff">
-      <SiteNav current="funnel" />
+    <div className="ff ff--ink">
+      <SiteNav current="funnel" theme="dark" />
       <main className="fu-main">
         <section className="fu-hero">
           <h1>{v.title[0]}<br /><span>{v.title[1]}</span></h1>

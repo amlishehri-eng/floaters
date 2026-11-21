@@ -7,7 +7,7 @@ const L = (hex) => {
 };
 export const ratio = (a, b) => { const x = L(a), y = L(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
 
-const T = { white: "#ffffff", stone: "#8fa6b4", stoneDeep: "#4f6573", mist: "#f5f0e8", adriatic: "#1a5276", ink: "#0d2b3d", red: "#b4363b" };
+const T = { white: "#ffffff", stone: "#8fa6b4", stoneDeep: "#4f6573", stoneLight: "#a9bcc7", mist: "#f5f0e8", adriatic: "#1a5276", adriaticTint: "#c5d7e5", ink: "#0d2b3d", red: "#b4363b" };
 // [text, background, minimum, where]
 const PAIRS = [
   ["ink", "white", 4.5, "all text on the page surface"],
@@ -24,6 +24,10 @@ const PAIRS = [
   ["white", "ink", 4.5, "primary button on the Ink band (white text on ink)"],
   ["ink", "stone", 4.5, "beam numbers on a Stone beam"],
   ["white", "red", 4.5, "beam number on the call-now beam"],
+  ["stoneLight", "ink", 4.5, "captions on the Harbour Ink funnel page (Stone light)"],
+  ["ink", "mist", 4.5, "report button and the deep-checked beam on the funnel page"],
+  ["adriaticTint", "ink", 4.5, "cost figure per deep check on the funnel page"],
+  ["ink", "adriaticTint", 4.5, "beam numbers on the light Adriatic tints"],
   ["stone", "white", 0, "Stone as decoration only (rules, tracks, rings), never text: no minimum"],
 ];
 let bad = 0;
