@@ -25,7 +25,7 @@ White and Stone are the primary colours; the rest support them. Tokens live in `
 | `mist` | `#f5f0e8` | Cards, panels, alternate bands, the radar's land | |
 | `adriatic` | `#1a5276` | Links, primary buttons, data bars, the team ring, the radar sweep, focus rings | 8.36:1 on white, 7.37:1 on Mist; white on it 8.36:1 |
 | `ink` (Harbour Ink) | `#0d2b3d` | All text; at most ONE deep band per page (home: "Top of today's list", Method: the call-list rule); call-now candidate cards; the whole funnel page (the one exception) | 14.68:1 on white, 12.94:1 on Mist; Mist on it 12.94:1, Stone on it 5.79:1 |
-| `red` (Guest Red) | `#b4363b` | ONLY call-now markers: radar dots, the call-now funnel beam, the call-now chip and dot; on Labs the gap bar of the top lab when its gap score is 40 or more ("worth a visit now") | 5.95:1 on white, 5.24:1 on Mist; white on it 5.95:1 |
+| `red` (Guest Red) | `#b4363b` | ONLY call-now markers: radar dots, the call-now funnel beam, the call-now chip and dot | 5.95:1 on white, 5.24:1 on Mist; white on it 5.95:1 |
 
 Ratio on a page: about 60 white / 20 Stone / 10 Adriatic / 5 Ink / 5 Red.
 
@@ -128,7 +128,7 @@ Rules:
 
 **Method band and calibration.** "When a team goes on the call list" is the page's one Harbour Ink band (white rule text, Mist title, the red dot stays). "Calibrated by hand" follows on white: title Adriatic, "14" Stone deep, "to 20" Harbour Ink, "of 20" and the note Stone deep. The backtest section is Mist.
 
-**Labs chart ("The gap at a glance").** Between the hero and the lab list: a one- or two-sentence summary (the biggest gap and the lab that publishes the most), then a real table (`<table>` with a screen-reader caption) with one row per lab and three bar columns, each on its own axis from 0 to a round maximum (0, half, max, sentence-case label above): papers in 24 months Adriatic, spin-offs we know Stone, gap score (of 100) Harbour Ink, Guest Red only for the top lab when its gap is 40 or more. Values sit next to the bars and show as a Harbour Ink tip on hover and keyboard focus (each bar cell is focusable). A key under the table. On narrow screens the table scrolls sideways inside its box. Lab text is built from the numbers in `labWhy()` (`lib/screen/extras.js`): "7,066 papers in the last 24 months, most of them in …. Only 7 spin-offs we know of so far, about one for every 1,009 papers. A paper that hints at a startup: …", no raw gap score in the prose.
+**Lab text.** Lab text is built from the numbers in `labWhy()` (`lib/screen/extras.js`): "7,066 papers in the last 24 months, most of them in …. Only 7 spin-offs we know of so far, about one for every 1,009 papers. A paper that hints at a startup: …", no raw gap score in the prose.
 
 **Company page.** One lead in the call list's detail sheet, full width: header (place, name, verdict, "Visit the website", fit and team rings), then spec rows: About the company, Founders and team, Fit and team (with the fit dropdown), HTGF check, Age and register, Funding, Capital need, Why now, Deep checks, Research and labs, Sources, Feedback.
 
@@ -139,7 +139,7 @@ Rules:
 | Home | `/` | `home.dc.html` | white first screen, Harbour Ink "Top of today's list" band, Mist and white sections |
 | Call list | `/proof/live` | `call-list.dc.html` | Mist with a white detail sheet; outreach dialog white |
 | Funnel | `/proof/funnel` | `funnel.dc.html` | Harbour Ink, the whole page (the one exception to one band per page) |
-| Labs | `/proof/labs` | `labs.dc.html` | white, chart on white |
+| Labs | `/proof/labs` | `labs.dc.html` | white |
 | Method | `/proof/methodology` | `method.dc.html` | white, one Harbour Ink band (the rule), calibration on white, Mist backtest |
 | Candidates | `/proof/candidates` (`/proof` and `/proof/portfolio` redirect) | `portfolio.dc.html` (tiles become candidate cards) | white, Mist cards |
 | Company page | `/proof/company/[key]` | `call-list.dc.html` (detail sheet) | white, white sheet with a Stone hairline |
