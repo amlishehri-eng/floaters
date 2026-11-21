@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-21T00:26:09.228Z",
+  "as_of": "2026-11-21T01:17:05.783Z",
   "stages": [
     {
       "key": "traces_in",
@@ -50,7 +50,7 @@
     {
       "key": "survivors",
       "label": "Passed the gates (call_now, watchlist, needs_enrichment)",
-      "count": 281
+      "count": 280
     },
     {
       "key": "scored_v2",
@@ -96,15 +96,15 @@
     "live": 659,
     "merged": 11,
     "by_verdict": {
-      "not_a_lead": 4,
+      "not_a_lead": 5,
       "not_high_tech": 137,
       "needs_enrichment": 258,
       "too_late": 101,
       "not_a_startup": 95,
       "out_of_scope": 30,
       "unscored": 2,
-      "watchlist": 13,
       "call_now": 10,
+      "watchlist": 12,
       "htgf_portfolio": 9
     },
     "scored_v2": 284,
@@ -171,5 +171,5 @@
   "check": {
     "traces_add_up": true
   },
-  "snapshot_note": "Snapshot of flow 44, written by scripts/refresh-leads-snapshot.mjs at 2026-11-21T00:26:09.295Z, same minute as data/leads.live-snapshot.json. Used by /api/funnel when n8n does not answer within 8 s."
+  "snapshot_note": "Snapshot of flow 44, written by scripts/refresh-leads-snapshot.mjs at 2026-11-21T01:17:05.843Z, same minute as data/leads.live-snapshot.json. Used by /api/funnel when n8n does not answer within 8 s."
 }
