@@ -38,6 +38,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 | H14–17 | _Name_ |
 
 ## In progress
+- Nils: fit dropdowns, Candidates, company page, funnel dive.
 - Amli: sources done for now (01–09, 30, 31 in Run all); 09 Find websites raised to 50 names per run (20 Nov ~20:05); next: reliability, Eventbrite from the laptop.
 - Amli: second full run done and **flow 20 published** (21 Nov ~00:52 CET); next: whatever the team test turns up; calibration 18 / backtest 41 need Nils's update first.
 
