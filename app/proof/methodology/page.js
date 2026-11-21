@@ -74,22 +74,26 @@ export default async function MethodPage() {
         </section>
       </main>
 
+      {/* The one Harbour Ink band on this page: the rule that puts a team on the call list. */}
       <section className="me-band">
         <div className="me-band__inner">
           <div className="me-band__rule">
             <span className="me-band__title"><span className="ff-dot me-band__dot" aria-hidden="true" />When a team goes on the call list</span>
             <p>It passes every gate, scores at least 70 percent on tech depth with evidence, has a known technical founder, clears 60 on the team criteria we know and 55 on fit, and has one outside proof: corporate pull, research or a patent, a grant, a prize or an accelerator.</p>
           </div>
-          <div className="me-band__calib">
-            <span className="me-band__ion">Calibrated by hand</span>
-            <div className="me-band__nums">
-              <span className="me-band__from">14</span>
-              <span className="me-band__to-word">to</span>
-              <span className="me-band__to">20</span>
-              <span className="me-band__of">of 20</span>
-            </div>
-            <p>Twenty traces from every source, labelled blind. The first prompt agreed on 14, the tuned rules on all 20.</p>
+        </div>
+      </section>
+
+      <section className="me-calib">
+        <div className="me-calib__inner">
+          <span className="me-calib__title">Calibrated by hand</span>
+          <div className="me-band__nums">
+            <span className="me-band__from">14</span>
+            <span className="me-band__to-word">to</span>
+            <span className="me-band__to">20</span>
+            <span className="me-band__of">of 20</span>
           </div>
+          <p>Twenty traces from every source, labelled blind. The first prompt agreed on 14, the tuned rules on all 20.</p>
         </div>
       </section>
 
