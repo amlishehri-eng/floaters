@@ -39,7 +39,7 @@ Staggered ~3h slots so two people are always awake. **Nobody sleeps H20–24** (
 
 ## In progress
 - Amli: sources done for now (01–09, 30, 31 in Run all); 09 Find websites raised to 50 names per run (20 Nov ~20:05); next: reliability, Eventbrite from the laptop.
-- Amli: **pitch video built on the team voiceover** (3:03, HyperFrames, `~/Desktop/founders-first-video`, `tools/build-vo.mjs`): every shot anchored to the transcript, fresh app captures, n8n flows, the Handelsregister page, code-built graphics (podcasts, 1,416 counter, blind-test dots, 3-year window, earliness timeline), speaker chips Amli/Nils/Meto; check 0 errors; preview open, render after the team approves (21 Nov ~05:30 CET).
+- Amli: **pitch video v2, 2:59** (`~/Desktop/founders-first-video`, `tools/build-vo.mjs`): clean n8n retakes (no stickies, no controls), every highlight measured from the page, cues lead the voice by 0.3 s, no name chips, podcast player + live ElevenLabs transcript of the voiceover, steady funnel frame, voice +2 % to fit 2:59; check 0 errors; preview open, render after the team approves (21 Nov ~06:15 CET).
 - Amli: second full run done and **flow 20 published** (21 Nov ~00:52 CET); next: whatever the team test turns up; calibration 18 / backtest 41 need Nils's update first.
 
 ## Done
