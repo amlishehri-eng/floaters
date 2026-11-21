@@ -21,3 +21,5 @@
   .co-title { font-size: 36px; letter-spacing: -0.8px; }
   .co-fact { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
+.co-stopped { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; padding: 16px 22px; border-radius: 22px; background: var(--ff-white); border: 1px solid var(--ff-hair-2); }
+.co-stopped p { font-size: 15px; line-height: 1.5; color: var(--ff-ink-2); max-width: 720px; }

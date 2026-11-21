@@ -41,6 +41,7 @@ export default async function CandidatesPage() {
               <Link key={c.key} href={c.href} className={c.callNow ? "po-tile po-tile--matched" : "po-tile"}>
                 <span className="po-tile__sub">{c.sector}, {c.city}</span>
                 <h2>{c.name}</h2>
+                {c.brought && <span className="po-tile__sub po-tile__brought">{c.brought}</span>}
                 <div className="po-tile__round">
                   <span className="po-tile__amount">{c.fit}</span>
                   <span className="po-tile__sub">{c.voted}</span>

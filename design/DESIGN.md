@@ -101,11 +101,21 @@ Rules:
 
 **Radar (home hero).** The radar lives only inside the German border: its layer has the same box as the map and is clipped with `clip-path: polygon(...)` built from the border points. Inside it, a 740px circle with eight concentric ion rings (opacity 0.22 down to 0.1), two crosshair lines, and a conic sweep (`rgba(51,209,255,0.32)` fading to transparent over 70°) rotating once every 6 s. The sweep is the only animation on the whole site and stops under `prefers-reduced-motion: reduce`. The map of Germany is an SVG polygon (projection in `design/reference/home.dc.html`: x = (lon − 5.6) × 63, y = (55.2 − lat) × 100 in a 600 × 800 box), filled `rgba(51,209,255,0.05)`, stroked ion at 0.55. About 320 faint dots inside the border (white at 0.16–0.46, one in eight ion). The call-now teams are infrared glowing dots on their real cities with name and city labels; teams in the same city get stacked labels. Next to it, three big numbers: traces read (fog), past the gates (ion), worth a call (infrared-text). Decorative parts are `aria-hidden`; the section has an `aria-label` describing it.
 
-**Candidate cards.** The former portfolio tiles: white, 28px radius, 30px padding, min-height 220px, three per row. Top line sector and city, the name in the card title size, bottom left the fit score where the round amount was ("72 fit"), bottom right "Marked good lead, 21 Nov". A lead on the call list now is the black card with the ion dot line "On the call list now". The whole card is a link to the company page; newest vote first.
+**Candidate cards.** The former portfolio tiles (a company brought back from the funnel gets one extra muted line, "Brought back, filtered for: <reason>"): white, 28px radius, 30px padding, min-height 220px, three per row. Top line sector and city, the name in the card title size, bottom left the fit score where the round amount was ("72 fit"), bottom right "Marked good lead, 21 Nov". A lead on the call list now is the black card with the ion dot line "On the call list now". The whole card is a link to the company page; newest vote first.
 
 **Fit dropdown.** Every fit and team row on the call list and the company page is a disclosure: the whole row is a button (`aria-expanded`, `aria-controls`), the bar itself never links out. The panel under the bar says in one or two sentences why the criterion got its points, shows up to two quotes (13px, 2px ion rule) and one "Source: <host>" link per source, the only links in the panel. Not known: "The sources say nothing about this yet, so it scores no points." The panel height opens in about 200 ms, no motion under reduced motion. Several rows may be open at once. Component: `components/ff/criteria-rows.js`, data from `bar()` in `lib/screen/call-list.js`.
 
-**Funnel dive.** On the funnel page every stage from "Past the HTGF gates" down is a button. Opening one splits its beam: the drop-out share dims and one small ion dot per company (capped at 60, then "+N") leaves the beam on the right, about 600 ms in all. A panel opens under the funnel: "<N> stopped between <stage> and <next stage>", then the reasons as groups, biggest first, each with a thin ion count bar and compact company rows (name, city, one-line reason, fit if scored) that link to the company page; long groups show 8 and "Show all <n>". One stage at a time, Esc or Close closes it, `?stage=<key>` links it. No motion under reduced motion: the panel just appears.
+**Funnel stage links.** On the funnel page every stage from "Past the HTGF gates" down has a quiet ion link under its cost, "<N> stopped here", to `/proof/funnel/filtered?stage=<key>`. On hover or focus the beam's drop-out share dims and up to 60 small ion dots leave on the right (about 600 ms, none under reduced motion, hidden on phones). No inline panel.
+
+**Filtered page.** Hero like Candidates, then a segmented stage switcher (links, `?stage=`, the current one white on the track colour), "Worth a second look" near-miss cards, the reason strip and the company grid.
+
+**Reason strip.** One row per reason for the selected stage, biggest first: reason (16px, 600), count in ion-deep, a 4px ion count bar on the track, and one muted stat line from the data ("median 3 years 9 months since register"). A row is a link that filters the grid (`?reason=`); the current row is white, clicking it again clears the filter.
+
+**Near-miss card.** Candidates card size (28px radius, 30px padding) in the paper grid, at most six, picked round-robin over the rules. The "missed by" line sits under the name in ion-deep, 15px, 600, then the reason sentence, the stats row and the footer ("Open profile", "Bring to the front"). A note under the heading says they are flagged by rule, not by a model.
+
+**Stats row.** Three to five small figures under a hairline: label 12px muted, value 14px 600; fit as a 34px ring (ink on the track colour), "not known" in muted 400. Fit, team, age, funding (amount or status) and tech depth when scored.
+
+**Bring to the front.** A primary button on light; after it: "On the candidates page" (a link) and an underlined "Undo". It is a vote ("up" with the reason sentence), never a verdict change; errors show next to it.
 
 **Company page.** One lead in the call list's detail sheet, full width: header (place, name, verdict, "Visit the website", fit and team rings), then spec rows: About the company, Founders and team, Fit and team (with the fit dropdown), HTGF check, Age and register, Funding, Capital need, Why now, Deep checks, Research and labs, Sources, Feedback.
 
@@ -120,6 +130,7 @@ Rules:
 | Method | `/proof/methodology` | `method.dc.html` | white, black band, `#f5f5f7` backtest |
 | Candidates | `/proof/candidates` (`/proof` and `/proof/portfolio` redirect) | `portfolio.dc.html` (tiles become candidate cards) | `#f5f5f7` |
 | Company page | `/proof/company/[key]` | `call-list.dc.html` (detail sheet) | `#f4f6f9` with a white sheet |
+| Filtered | `/proof/funnel/filtered` (`?stage=`, `?reason=`) | `portfolio.dc.html` (cards), call list bars | `#f5f5f7`, nav current: Funnel |
 
 Section order per page is exactly as in the reference file.
 

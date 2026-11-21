@@ -1,9 +1,11 @@
 import Link from "next/link";
+import BringToFront from "@/components/ff/bring-to-front";
 import CriteriaRows from "@/components/ff/criteria-rows";
 import SiteNav from "@/components/ff/site-nav";
 import { getExtras, getLeads, getVotes, latestVotes } from "@/lib/n8n";
 import { companyPage } from "@/lib/screen/company";
-import { sourceHint } from "@/lib/screen/format";
+import { broughtBackLine, stoppedAt } from "@/lib/screen/filtered";
+import { lowerFirst, sourceHint } from "@/lib/screen/format";
 import "../../live/call-list.css";
 import "./company.css";
 
@@ -58,11 +60,21 @@ export default async function CompanyPage({ params }) {
     );
   }
 
-  const v = companyPage(lead, { vote: latestVotes(votesData.votes).get(key) || null, labs: extras.labs });
+  const vote = latestVotes(votesData.votes).get(key) || null;
+  const v = companyPage(lead, { vote, labs: extras.labs });
+  // Stopped after the gates? Only with the live Leads table (the snapshot does not hold the whole funnel).
+  const stopped = !leadsData.mocked && leadsData.leads.length > 50 ? stoppedAt(leadsData.leads, key, leadsData.as_of) : null;
+  const brought = broughtBackLine(vote);
   return (
     <div className="ff ff--call">
       <SiteNav theme="call" />
       <main className="co-main">
+        {stopped && (
+          <div className="co-stopped">
+            <p>Stopped between {lowerFirst(stopped.from)} and {lowerFirst(stopped.to)}: {stopped.sentence}</p>
+            <BringToFront leadKey={v.key} bringReason={stopped.bringReason} candidate={vote?.vote === "up"} />
+          </div>
+        )}
         <article className="cl-sheet co-sheet" aria-label={`Profile of ${v.name}`}>
           <div className="cl-head">
             <div className="cl-head__text">
@@ -220,7 +232,8 @@ export default async function CompanyPage({ params }) {
               {v.vote ? (
                 <>
                   <p className="cl-days__text">{v.vote.text}</p>
-                  {v.vote.reason && <p className="co-note">Reason: {v.vote.reason}</p>}
+                  {brought && <p className="co-note">{brought}</p>}
+                  {v.vote.reason && !brought && <p className="co-note">Reason: {v.vote.reason}</p>}
                 </>
               ) : (
                 <p className="cl-days__text">No vote yet. Mark it on the <Link href={`/proof/live?lead=${encodeURIComponent(v.key)}`}>call list</Link>.</p>

@@ -33,3 +33,4 @@
   .po-count span:first-child { font-size: 72px; }
   .po-grid { grid-template-columns: minmax(0, 1fr); }
 }
+.po-tile__brought { line-height: 1.45; }

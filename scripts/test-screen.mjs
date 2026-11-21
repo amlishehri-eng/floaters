@@ -44,6 +44,7 @@ const { homePage } = await import(`${ROOT}/lib/screen/home.js`);
 const { candidateCards } = await import(`${ROOT}/lib/screen/candidates.js`);
 const { companyPage } = await import(`${ROOT}/lib/screen/company.js`);
 const { honestFunnel } = await import(`${ROOT}/lib/screen/funnel.js`);
+const { filteredPage, nearMiss, ageOf } = await import(`${ROOT}/lib/screen/filtered.js`);
 const coords = JSON.parse(readFileSync(`${ROOT}/data/city-coords.json`, "utf8"));
 
 let failed = 0;
@@ -88,7 +89,32 @@ async function pages(label) {
   check(`${label}: candidate cards`, views.candidates.length === 3 && views.candidates.every((c) => c.href.startsWith("/proof/company/")));
   check(`${label}: company page`, Boolean(views.company?.name && views.company.fitRows.length && views.company.checks.length), views.company?.name);
   const lower = views.honest.stages.slice(views.honest.lowerFrom ?? 99);
-  check(`${label}: honest funnel`, leads.mocked ? Boolean(views.honest.diveNote) : lower.every((s, i) => i === 0 || s.count <= lower[i - 1].count) && lower.every((s) => !s.dive || s.dive.groups.reduce((t, g) => t + g.n, 0) === s.dive.count), leads.mocked ? "snapshot: dive off" : lower.map((s) => s.count).join(" > "));
+  check(`${label}: honest funnel`, leads.mocked ? Boolean(views.honest.diveNote) : lower.every((s, i) => i === 0 || s.count <= lower[i - 1].count) && lower.every((s, i) => !lower[i + 1] || s.dropped + lower[i + 1].count === s.count), leads.mocked ? "snapshot: dive off" : lower.map((s) => s.count).join(" > "));
+  if (!leads.mocked) {
+    const f = filteredPage(leads.leads, { stage: "all", asOf: leads.as_of });
+    const sums = f.tabs.filter((t) => t.key !== "all").map((t) => {
+      const v = filteredPage(leads.leads, { stage: t.key, asOf: leads.as_of });
+      return v.reasons.reduce((n, r) => n + r.n, 0) === t.count && v.cards.length === t.count;
+    });
+    check(`${label}: filtered reasons add up per stage`, sums.every(Boolean) && f.reasons.reduce((n, r) => n + r.n, 0) === f.total, `${f.total} stopped, ${f.reasons.length} reasons`);
+    check(`${label}: filtered near misses ≤ 6, each with a rule`, f.near.length <= 6 && f.near.every((c) => c.near?.rule && c.near?.missedBy), `${f.nearAll} match, ${f.near.length} shown: ${f.near.map((c) => c.near.rule.split(",")[0]).join("; ")}`);
+    const raw = JSON.stringify(f.cards.map((c) => [c.sentence, c.city, c.stats.map((x) => x.value)]));
+    check(`${label}: filtered cards have no raw values`, !/undefined|null|NaN|[{}]|\(\s*"|\($/.test(raw) && !/Deutschland/.test(raw));
+  }
+  // Near-miss rules on hand-made leads (each rule fires only when it should).
+  const asOf = "2026-11-21T00:00:00Z";
+  const mk = (o) => ({ id: "t", score_version: 2, ...o });
+  check(`${label}: near-miss rules`, [
+    nearMiss(mk({ registered_at: "2023-07-01" }), "Older than three years", asOf, 80)?.rule === "age over the limit by 6 months or less",
+    nearMiss(mk({ registered_at: "2022-01-01" }), "Older than three years", asOf, 80) === null,
+    nearMiss(mk({ verdict_reason: "no_funding (EUR 3.4M disclosed (3M or more))" }), "Raised €3M or more", asOf, 80)?.missedBy === "€3.4M, just over the line.",
+    nearMiss(mk({ fit_score: 53 }), "Fit below 55", asOf, 80)?.missedBy === "Fit 53, call now starts at 55.",
+    nearMiss(mk({ fit_score: 49 }), "Fit below 55", asOf, 80) === null,
+    nearMiss(mk({ fit_score: 66, registered_at: "2020-01-01" }), "Older than three years", asOf, 80)?.missedBy === "Fit 66, stopped by the age check.",
+    nearMiss(mk({ fit_score: 40, team_score_known: 85, registered_at: "2020-01-01" }), "Older than three years", asOf, 80)?.rule.startsWith("team score"),
+    nearMiss(mk({ fit_score: 66 }), "Team mostly unknown", asOf, 80) === null,
+    ageOf({ age_check: { founded_year: 2021 } }, asOf)?.exact === false,
+  ].every(Boolean));
   const bad = badValues(views, label);
   check(`${label}: no null, undefined or NaN in any text`, bad.length === 0, bad.slice(0, 3).join(" | "));
   return { leads, funnel, extras, ms };

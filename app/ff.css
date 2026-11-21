@@ -190,3 +190,11 @@ body:has(.ff--white) { background: var(--ff-white); }
 .cr-why { font-size: 13px; line-height: 1.5; color: var(--ff-ink-2); }
 .cr-quote { font-size: 13px; line-height: 1.5; color: var(--ff-ink); padding-left: 12px; border-left: 2px solid var(--ff-ion); overflow-wrap: anywhere; }
 .ff .cr-source { font-size: 12px; align-self: flex-start; color: var(--ff-ion-deep); }
+
+/* ---- Bring to the front (components/ff/bring-to-front.js) -------------------------------- */
+.bf { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.ff .bf-btn { padding: 0 18px; font-size: 14px; }
+.bf-on { font-size: 14px; font-weight: 600; }
+.ff .bf-undo { min-height: 44px; padding: 0 6px; border: 0; background: transparent; color: var(--ff-ink-3); font: inherit; font-size: 14px; text-decoration: underline; cursor: pointer; }
+.bf-note { font-size: 13px; color: var(--ff-muted); }
+.bf-note:empty { display: none; }

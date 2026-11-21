@@ -1,0 +1,77 @@
+/* Filtered page: hero and cards from the Candidates page (po-* in candidates.css), reason strip and stats row here. */
+.fl-main { max-width: 1200px; margin: 0 auto; padding: 56px 28px 120px; display: flex; flex-direction: column; gap: 40px; }
+.ff .fl-back { align-self: flex-start; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; }
+.fl-hero { display: flex; flex-direction: column; gap: 14px; max-width: 860px; margin-top: -16px; }
+.fl-hero h1 { font-size: 72px; line-height: 1; font-weight: 800; font-stretch: 125%; letter-spacing: -2.4px; }
+.fl-hero p { font-size: 21px; line-height: 1.45; color: var(--ff-ink-3); max-width: 680px; }
+.fl-hero .ff-source { font-size: 14px; }
+.fl-empty { font-size: 17px; line-height: 1.5; color: var(--ff-ink-3); }
+.fl-h2 { font-size: 26px; font-weight: 700; font-stretch: 112%; }
+
+/* Stage switcher: a segmented control of links (?stage=). */
+.fl-tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; background: var(--ff-track); align-self: flex-start; }
+.ff .fl-tab {
+  min-height: 40px; display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; border-radius: 999px;
+  font-size: 14px; color: var(--ff-ink-3); text-decoration: none;
+}
+.ff .fl-tab[aria-current="page"] { background: var(--ff-white); color: var(--ff-ink); font-weight: 600; }
+.fl-tab__n { font-weight: 600; color: var(--ff-muted); }
+.ff .fl-tab[aria-current="page"] .fl-tab__n { color: var(--ff-ion-deep); }
+
+/* Reason strip: one row per reason, a thin count bar and one stat line; a row is a filter link (?reason=). */
+.fl-reasons { display: flex; flex-direction: column; gap: 2px; }
+.fl-reasons .fl-h2 { margin-bottom: 10px; }
+.ff .fl-reason {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); grid-template-areas: "head stat" "bar bar"; gap: 6px 24px;
+  padding: 12px 14px; border-radius: 14px; color: var(--ff-ink); text-decoration: none; align-items: baseline;
+}
+.ff .fl-reason:hover { background: rgba(29, 29, 31, 0.04); text-decoration: none; }
+.ff .fl-reason[aria-current="true"] { background: var(--ff-white); }
+.fl-reason__head { grid-area: head; display: flex; justify-content: space-between; gap: 12px; }
+.fl-reason__label { font-size: 16px; font-weight: 600; }
+.fl-reason__n { font-size: 16px; font-weight: 700; font-stretch: 112%; color: var(--ff-ion-deep); }
+.fl-reason__bar { grid-area: bar; display: block; height: 4px; border-radius: 2px; background: var(--ff-track-3); overflow: hidden; }
+.fl-reason__bar span { display: block; height: 4px; background: var(--ff-ion); border-radius: 2px; }
+.fl-reason__stat { grid-area: stat; font-size: 14px; color: var(--ff-muted); }
+
+.fl-near { display: flex; flex-direction: column; gap: 12px; }
+.fl-near .po-grid { margin-top: 8px; }
+
+/* Cards: Candidates tiles; near misses at Candidates size, the grid a bit smaller. */
+.fl-card { min-height: 0; gap: 10px; }
+.fl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.fl-grid .fl-card { padding: 22px 22px 18px; border-radius: 22px; }
+.fl-name { font-size: 22px; line-height: 1.1; font-weight: 750; font-stretch: 118%; letter-spacing: -0.4px; overflow-wrap: anywhere; }
+.fl-name--near { font-size: 30px; letter-spacing: -0.6px; }
+.fl-missed { font-size: 15px; font-weight: 600; color: var(--ff-ion-deep); }
+.fl-sentence { font-size: 15px; line-height: 1.45; color: var(--ff-ink-2); }
+.fl-stats { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 4px 0 0; padding-top: 12px; border-top: 1px solid var(--ff-hair); }
+.fl-stat { display: flex; flex-direction: column; gap: 2px; min-width: 52px; }
+.fl-stat dt { font-size: 12px; color: var(--ff-muted); }
+.fl-stat dd { margin: 0; font-size: 14px; font-weight: 600; }
+.fl-stat__unknown { font-weight: 400; color: var(--ff-muted); }
+.fl-ring { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.fl-ring > span { width: 26px; height: 26px; border-radius: 50%; background: var(--ff-white); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+.fl-foot { margin-top: auto; padding-top: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.ff .fl-open { font-size: 14px; min-height: 44px; display: inline-flex; align-items: center; }
+
+.fl-grid-wrap { display: flex; flex-direction: column; gap: 18px; }
+.fl-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.fl-label { font-size: 14px; color: var(--ff-ink-3); }
+.ff .fl-input {
+  min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(29, 29, 31, 0.2); background: var(--ff-white);
+  font: inherit; font-size: 15px; color: var(--ff-ink);
+}
+.ff .fl-input:focus-visible { outline: 2px solid var(--ff-ion-deep); outline-offset: 3px; }
+.fl-count { font-size: 14px; color: var(--ff-muted); margin-left: auto; }
+.fl-more { align-self: center; }
+
+@media (max-width: 960px) { .fl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .fl-main { padding: 40px 16px 80px; }
+  .fl-hero h1 { font-size: 44px; letter-spacing: -1.2px; }
+  .fl-grid { grid-template-columns: minmax(0, 1fr); }
+  .fl-tabs { border-radius: 22px; }
+  .ff .fl-reason { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "bar" "stat"; }
+  .fl-count { margin-left: 0; }
+}

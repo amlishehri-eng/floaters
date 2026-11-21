@@ -4,6 +4,8 @@
 //
 //   node scripts/demo-check.mjs                     # against http://localhost:4000
 //   node scripts/demo-check.mjs --no-links          # skip the link checks (nav, buttons, deep links, evidence URLs)
+//   node scripts/demo-check.mjs --write-test        # also "Bring to the front" + Undo on one near miss (writes two votes:
+//                                                   # into n8n's Feedback table, or into data/feedback.local.json with USE_MOCKS=true)
 //   DEMO_URL=https://<app>.vercel.app node scripts/demo-check.mjs
 //
 // Mock mode (what the demo looks like with dead wifi): stop the dev server, start it with
@@ -28,7 +30,9 @@ const CHECKS = [
   { name: "method page", path: "/proof/methodology", page: true },
   { name: "candidates page", path: "/proof/candidates", page: true },
   { name: "company page", path: "/proof/company/eversyn", page: true },
-  { name: "funnel dive (?stage=)", path: "/proof/funnel?stage=scored", page: true },
+  { name: "filtered page", path: "/proof/funnel/filtered", page: true },
+  { name: "filtered ?stage=", path: "/proof/funnel/filtered?stage=scored", page: true },
+  { name: "filtered ?stage=&reason=", path: "/proof/funnel/filtered?stage=scored&reason=Older%20than%20three%20years", page: true },
   { name: "search demo (old)", path: "/proof/search", page: true },
   { name: "extras (labs + backtest)", path: "/api/extras", expect: (j) => Array.isArray(j.labs) && j.labs.length > 0 && Boolean(j.backtest), note: (j) => `${j.labs?.length ?? 0} labs, backtest ${j.backtest?.run_at ?? "none"}` },
   { name: "leads", path: "/api/leads", expect: (j) => Array.isArray(j.leads) && j.leads.length > 0, note: (j) => `${j.leads?.length ?? 0} leads` },
@@ -177,21 +181,59 @@ async function linkChecks() {
   const unknown = await getText("/proof/company/no-such-lead");
   add("company page, unknown key", "/proof/company/no-such-lead", unknown.text.includes("isn’t in the leads table"), "clear message with a link back");
 
-  // Funnel dive: lower stages go down, every dive's groups add up, every company row opens its page.
-  const fun = await getText("/proof/funnel?stage=scored");
-  const nums = [...fun.text.matchAll(/aria-label="([^"]+?), ([\d,]+)\. (?:Show|Close) the ([\d,]+) that stopped/g)].map((m) => ({ stage: decode(m[1]), n: Number(m[2].replace(/,/g, "")), drop: Number(m[3].replace(/,/g, "")) }));
-  const down = nums.every((x, i) => i === 0 || x.n <= nums[i - 1].n) && nums.every((x, i) => !nums[i + 1] || nums[i + 1].n + x.drop === x.n);
-  add("funnel stages add up", "/proof/funnel", nums.length >= 4 && down, nums.map((x) => `${x.n} (-${x.drop})`).join(" > ") || "no dive buttons (snapshot leads?)");
-  const groupNs = [...fun.text.matchAll(/class="fd-group__n">(\d+)</g)].map((m) => Number(m[1]));
-  const scored = nums.find((x) => x.stage.startsWith("Scored"));
-  add("dive ?stage=scored groups add up", "/proof/funnel?stage=scored", Boolean(scored) && groupNs.reduce((t, n) => t + n, 0) === scored.drop, `${groupNs.join(" + ")} = ${groupNs.reduce((t, n) => t + n, 0)}, drop-outs ${scored?.drop}`);
-  const diveLinks = [...new Set([...fun.text.slice(fun.text.indexOf('id="funnel-dive"')).matchAll(/href="(\/proof\/company\/[^"]+)"/g)].map((m) => decode(m[1])))];
-  const badDive = [];
-  for (const h of diveLinks) {
-    const { status, text } = await getText(h);
-    if (status !== 200 || text.includes("isn’t in the leads table")) badDive.push(h);
+  // Funnel stage links -> filtered page; every reason adds up to its stage; ?reason= filters; cards open company pages.
+  const fun = await getText("/proof/funnel");
+  if (leadsRes.mocked) {
+    // Offline (snapshot leads): the funnel and the filtered page must say they need the live Leads table.
+    const f = await getText("/proof/funnel/filtered");
+    add("filtered page offline", "/proof/funnel/filtered", f.text.includes("This page needs the live Leads table") && fun.text.includes("needs the live Leads table"), "explains it needs the live Leads table");
   }
-  add("dive rows open company pages", "/proof/funnel?stage=scored", diveLinks.length > 0 && badDive.length === 0, badDive.length ? badDive.slice(0, 3).join(", ") : `${diveLinks.length} company links, all open`);
+  const stageLinks = [...fun.text.matchAll(/href="(\/proof\/funnel\/filtered\?stage=(\w+))"[^>]*>(\d+)<!-- --> stopped here/g)].map((m) => ({ href: decode(m[1]), key: m[2], n: Number(m[3]) }));
+  if (!leadsRes.mocked) add("funnel stage links", "/proof/funnel", stageLinks.length === 4, stageLinks.map((x) => `${x.key} ${x.n}`).join(", ") || "no stage links (snapshot leads?)");
+  const sums = [];
+  const cardHrefs = new Set();
+  for (const st of stageLinks) {
+    const { status, text } = await getText(st.href);
+    const reasons = [...text.matchAll(/class="fl-reason__n">(\d+)</g)].map((m) => Number(m[1]));
+    const total = reasons.reduce((t, n) => t + n, 0);
+    sums.push(`${st.key} ${total}/${st.n}${status === 200 && total === st.n ? "" : " WRONG"}`);
+    for (const m of text.matchAll(/href="(\/proof\/company\/[^"]+)"/g)) cardHrefs.add(decode(m[1]));
+  }
+  if (!leadsRes.mocked) add("filtered reasons add up per stage", "/proof/funnel/filtered?stage=…", sums.length === 4 && !sums.some((x) => x.includes("WRONG")), sums.join(", "));
+  const rf = await getText("/proof/funnel/filtered?stage=scored&reason=Older%20than%20three%20years");
+  const reasonN = Number(rf.text.match(/aria-current="true"[^>]*>[\s\S]*?class="fl-reason__n">(\d+)</)?.[1] || rf.text.match(/class="fl-reason"[^>]*aria-current="true"[\s\S]*?fl-reason__n">(\d+)</)?.[1]);
+  const cardsShown = (rf.text.match(/class="po-tile fl-card"/g) || []).length;
+  if (!leadsRes.mocked) add("filtered ?reason= filters the grid", "?stage=scored&reason=…", reasonN > 0 && cardsShown === Math.min(reasonN, 24), `${cardsShown} cards for ${reasonN} in the reason`);
+  const badCards = [];
+  for (const h of [...cardHrefs].slice(0, 40)) {
+    const { status, text } = await getText(h);
+    if (status !== 200 || text.includes("isn’t in the leads table")) badCards.push(h);
+  }
+  if (!leadsRes.mocked) add("filtered cards open company pages", "/proof/funnel/filtered", cardHrefs.size > 0 && badCards.length === 0, badCards.length ? badCards.slice(0, 3).join(", ") : `${Math.min(cardHrefs.size, 40)} of ${cardHrefs.size} company links checked, all open`);
+  const all = await getText("/proof/funnel/filtered");
+  const visible = all.text.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "").replace(/<!--[\s\S]*?-->/g, "");
+  const raw = visible.match(/>[^<]*(\bundefined\b|\bNaN\b|\{"|\(\s*<)[^<]*</);
+  add("filtered page has no raw values", "/proof/funnel/filtered", !raw, raw ? `found: ${raw[0].slice(0, 80)}` : "no undefined, NaN, JSON or cut-off parenthesis in the text");
+  const companies = await getText("/proof/company/eversyn");
+  add("company page", "/proof/company/eversyn", companies.status === 200 && companies.text.includes("Visit the website"), "opens");
+
+  if (process.argv.includes("--write-test")) {
+    // A near miss when the leads are live; offline any snapshot lead that is not a candidate yet.
+    const candNow = await getText("/proof/candidates");
+    const key = all.text.match(/fl-card--near"[\s\S]*?href="\/proof\/company\/([^"]+)"/)?.[1]
+      || (leadsRes.mocked ? (leadsRes.leads || []).map((l) => l.id).find((k) => !candNow.text.includes(`/proof/company/${k}"`)) : undefined);
+    const post = (vote, reason) => fetch(`${BASE}/api/feedback`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lead_key: key, vote, reason }), signal: AbortSignal.timeout(TIMEOUT_MS) }).then((r) => r.json());
+    if (!key) add("bring to the front + undo", "/api/feedback", false, "no near-miss card to test with");
+    else {
+      const up = await post("up", "brought back from the funnel: demo-check write test");
+      const cand = await getText("/proof/candidates");
+      const on = cand.text.includes(`/proof/company/${key}`) && cand.text.includes("Brought back, filtered for: demo-check write test");
+      const down = await post("down", "undo bring to the front");
+      const cand2 = await getText("/proof/candidates");
+      const off = !cand2.text.includes(`/proof/company/${key}`);
+      add("bring to the front + undo", `/api/feedback (${key})`, up.ok && on && down.ok && off, `${up.mocked ? "local file" : "n8n"}: up ${up.ok ? "saved" : up.error}, on candidates ${on}, undo ${down.ok ? "saved" : down.error}, gone ${off}`);
+    }
+  }
 
   // Deep link per lead: /proof/live?lead=<key> opens exactly that lead; collect its evidence, press and website links.
   let wrong = [];

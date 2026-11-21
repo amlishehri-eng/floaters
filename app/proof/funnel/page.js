@@ -1,8 +1,8 @@
 import SiteNav from "@/components/ff/site-nav";
 import { getFunnel, getLeads } from "@/lib/n8n";
-import { dayTime, sourceHint } from "@/lib/screen/format";
+import { dayTime, lowerFirst, sourceHint } from "@/lib/screen/format";
 import { honestFunnel } from "@/lib/screen/funnel";
-import FunnelDive from "./funnel-dive";
+import Link from "next/link";
 import "./funnel.css";
 
 // Funnel (design/reference/funnel.dc.html): counts and costs from flow 44, the snapshot when n8n does not answer.
@@ -13,8 +13,8 @@ export const metadata = {
   description: "How a few thousand faint signals become a short call list, and what each step costs.",
 };
 
-export default async function FunnelPage({ searchParams }) {
-  const [funnel, leadsData, params] = await Promise.all([getFunnel(), getLeads(), searchParams]);
+export default async function FunnelPage() {
+  const [funnel, leadsData] = await Promise.all([getFunnel(), getLeads()]);
   const v = honestFunnel(funnel, leadsData, { mocked: funnel.mocked });
   const when = dayTime(funnel.as_of);
   return (
@@ -30,9 +30,33 @@ export default async function FunnelPage({ searchParams }) {
         </section>
 
         <div className="fd-wrap">
-          <FunnelDive stages={v.stages} lowerFrom={v.lowerFrom ?? 99} initialStage={typeof params?.stage === "string" ? params.stage : ""} />
+          <section aria-label="Stages" className="fu-stages">
+            {v.stages.map((s) => (
+              <div key={s.label} className={`fu-stage${s.filteredHref ? " fd-stage" : ""}`}>
+                <span className="fu-stage__label">{s.label}</span>
+                <span className="fu-stage__beam">
+                  <span className="fd-beam" style={{ width: `${s.pct}%`, background: s.color, boxShadow: s.glow, color: s.ink, "--drop": `${s.dropPct || 0}%` }}>
+                    {s.n}
+                    {s.filteredHref && (
+                      <span className="fd-dots" aria-hidden="true">
+                        {Array.from({ length: Math.min(s.dropped, 60) }, (_, i) => <span key={i} className="fd-dot" style={{ "--i": i }} />)}
+                      </span>
+                    )}
+                  </span>
+                </span>
+                <span className="fu-stage__cost">
+                  {s.cost}
+                  {s.filteredHref && (
+                    <Link href={s.filteredHref} className="fd-link">
+                      {s.dropped} stopped here<span className="ff-sr-only">, between {lowerFirst(s.label)} and {lowerFirst(s.next)}</span>
+                    </Link>
+                  )}
+                </span>
+              </div>
+            ))}
+          </section>
           <p className="fu-note fd-hint">
-            {v.diveNote || "Click a stage from the HTGF gates down to see who stopped there and why."}
+            {v.diveNote || "From the HTGF gates down, every stage shows who stopped there and why."}
             {v.problems?.length ? ` Mismatch in the funnel: ${v.problems.join("; ")}.` : ""}
           </p>
         </div>
