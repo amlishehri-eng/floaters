@@ -22,7 +22,7 @@
 .me-band { margin-top: 96px; background: var(--ff-ink); color: var(--ff-white); padding: 96px 28px; }
 .me-band__inner { max-width: 1200px; margin: 0 auto; }
 .me-band__rule { display: flex; flex-direction: column; gap: 14px; max-width: 900px; }
-.me-band__title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--ff-mist); }
+.me-band__title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 600; color: var(--ff-white); }
 .me-band__dot { width: 10px; height: 10px; box-shadow: 0 0 0 4px rgba(180, 54, 59, 0.35); }
 .me-band__rule p { font-size: 28px; line-height: 1.3; font-weight: 600; font-stretch: 108%; color: var(--ff-white); }
 /* Calibration on white, Harbour Ink with Stone deep for the small text. */

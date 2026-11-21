@@ -74,12 +74,13 @@ export default async function MethodPage() {
         </section>
       </main>
 
-      {/* The one Harbour Ink band on this page: the rule that puts a team on the call list. */}
-      <section className="me-band">
+      {/* The one Harbour Ink band on this page: the rule that puts a team on the call list. Background and text colour
+          also inline, so the band is never cream text on white, not even with a cached old stylesheet. */}
+      <section className="me-band" style={{ background: "#0d2b3d", color: "#ffffff" }}>
         <div className="me-band__inner">
           <div className="me-band__rule">
-            <span className="me-band__title"><span className="ff-dot me-band__dot" aria-hidden="true" />When a team goes on the call list</span>
-            <p>It passes every gate, scores at least 70 percent on tech depth with evidence, has a known technical founder, clears 60 on the team criteria we know and 55 on fit, and has one outside proof: corporate pull, research or a patent, a grant, a prize or an accelerator.</p>
+            <span className="me-band__title" style={{ color: "#ffffff" }}><span className="ff-dot me-band__dot" style={{ background: "#b4363b" }} aria-hidden="true" />When a team goes on the call list</span>
+            <p style={{ color: "#ffffff" }}>It passes every gate, scores at least 70 percent on tech depth with evidence, has a known technical founder, clears 60 on the team criteria we know and 55 on fit, and has one outside proof: corporate pull, research or a patent, a grant, a prize or an accelerator.</p>
           </div>
         </div>
       </section>
